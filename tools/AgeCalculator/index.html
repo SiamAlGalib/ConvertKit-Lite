@@ -74,9 +74,24 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;paddin
 .learn-heading span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .learn-intro{color:#9bb8e0;font-size:14px;line-height:1.7;margin:0 0 18px}
 .article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.article-card{display:block;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px;transition:transform .18s,border-color .18s}
-.article-card:hover{transform:translateY(-2px);border-color:#4b9cff}
-.article-tag{display:inline-block;color:#bda2ff;background:rgba(124,63,240,.14);border:1px solid rgba(164,107,255,.28);border-radius:999px;padding:4px 9px;font-size:10px;font-weight:700;margin-bottom:10px}
+
+/* Article cards with banner */
+.article-card{display:flex;flex-direction:column;overflow:hidden;padding:0;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:transform .18s,border-color .18s,box-shadow .18s}
+.article-card:hover{transform:translateY(-3px);border-color:#4b9cff;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+
+.article-banner.art::after,.article-banner.art .article-tag,.article-banner.art .glyph{display:none}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700;margin:0}
+
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-body p{flex:1}
 .article-card h3{font-size:15px;margin:0 0 8px;color:#f2f6ff}
 .article-card p{font-size:12px;line-height:1.65;color:#9bb8e0;margin:0 0 12px}
 .article-read{font-size:12px;color:#79b7ff;font-weight:700}
@@ -172,29 +187,51 @@ nav a[href="#learn"]::before{
 
 <section class="narrow learn-section" id="learn">
   <h2 class="learn-heading">Learn about <span>Age</span></h2>
-  <p class="learn-intro">Helpful articles and guides about age calculation. To add your own articles, edit the article cards below and change each card's title, description, and link.</p>
+  <p class="learn-intro">Helpful articles and guides about age calculation. To add your own articles, edit the article cards below and change each card's title, description, banner image, and link.</p>
   <div class="article-list">
-    <!-- ARTICLE 1: Replace href, title, and description with your article details. -->
-    <a class="article-card" href="./articles/chronological-age-calculator/">
-      <span class="article-tag">CHRONOLOGICAL AGE</span>
-      <h3>Chronological Age Calculator: Calculate Your Exact Age</h3>
-      <p>Learn what chronological age means and how to calculate your age in years, months, and days.</p>
-      <span class="article-read">Read article →</span>
+
+    <!-- ARTICLE 1: Replace href, banner src, title, and description with your article details. -->
+    <a class="article-card" href="../../articles/chronological-age-calculator/">
+      <div class="article-banner art">
+        <span class="glyph">🎂</span>
+        <img src="age-calculator-banner-1.png" alt="How to calculate your exact age" loading="lazy" onerror="this.remove()"/>
+        <span class="article-tag">CHRONOLOGICAL AGE</span>
+      </div>
+      <div class="article-body">
+        <h3>Chronological Age Calculator: Calculate Your Exact Age</h3>
+        <p>Learn what chronological age means and how to calculate your age in years, months, and days.</p>
+        <span class="article-read">Read article →</span>
+      </div>
     </a>
+
     <!-- ARTICLE 2 -->
     <a class="article-card" href="../../articles/age-in-days-weeks-months/">
-      <span class="article-tag">AGE FACTS</span>
-      <h3>Age in Days, Weeks, and Months</h3>
-      <p>Understand the different ways to express your age beyond years.</p>
-      <span class="article-read">Read article →</span>
+      <div class="article-banner b2">
+        <span class="glyph">📅</span>
+        <img src="../../articles/age-in-days-weeks-months/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/>
+        <span class="article-tag">AGE FACTS</span>
+      </div>
+      <div class="article-body">
+        <h3>Age in Days, Weeks, and Months</h3>
+        <p>Understand the different ways to express your age beyond years.</p>
+        <span class="article-read">Read article →</span>
+      </div>
     </a>
+
     <!-- ARTICLE 3 -->
     <a class="article-card" href="../../articles/leap-years-and-birthdays/">
-      <span class="article-tag">CALENDAR GUIDE</span>
-      <h3>Leap Years and Birthdays Explained</h3>
-      <p>See how calendar dates and leap years can affect date calculations.</p>
-      <span class="article-read">Read article →</span>
+      <div class="article-banner b3">
+        <span class="glyph">🗓️</span>
+        <img src="../../articles/leap-years-and-birthdays/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/>
+        <span class="article-tag">CALENDAR GUIDE</span>
+      </div>
+      <div class="article-body">
+        <h3>Leap Years and Birthdays Explained</h3>
+        <p>See how calendar dates and leap years can affect date calculations.</p>
+        <span class="article-read">Read article →</span>
+      </div>
     </a>
+
     <!-- Duplicate an article-card block above to add more articles. -->
   </div>
 </section>
