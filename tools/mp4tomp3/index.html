@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MP4 to MP3 Converter — ConvertKit Lite</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:#f2f6ff;font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}
+nav{display:flex;gap:32px;font-size:13px;color:#c4d6f4}nav a:hover{color:#fff}
+h1{font-size:36px;letter-spacing:-1.4px;margin:38px 0 8px}
+h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#c4d6ef;font-size:15px;margin:0 0 26px}
+.card{border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);padding:24px;margin-bottom:40px}
+.drop{border:2px dashed #2b5d97;border-radius:14px;background:#061a35;text-align:center;padding:42px 16px;cursor:pointer;transition:.2s}
+.drop:hover,.drop.over{border-color:#4b9cff;background:#08213f;box-shadow:0 0 25px rgba(41,113,255,.2)}
+.drop .ico{font-size:34px;margin-bottom:8px}
+.drop b{display:block;font-size:15px}
+.drop small{color:#9bb8e0;font-size:12px}
+.file{display:none;align-items:center;justify-content:space-between;gap:12px;border:1px solid #194a84;border-radius:12px;background:#0a2142;padding:14px 16px}
+.file strong{display:block;font-size:14px;word-break:break-all}
+.file small{color:#9bb8e0;font-size:12px}
+label{display:block;font-size:12px;color:#9bb8e0;margin:18px 0 8px;font-weight:600}
+select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.primary{background:linear-gradient(100deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2);padding:13px 28px}
+.primary:disabled{opacity:.4;cursor:not-allowed}
+.ghost{background:#0a2142;border:1px solid #194a84;padding:10px 18px;font-size:13px}
+.btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.bar{display:none;margin-top:20px}
+.track{height:10px;border-radius:8px;background:#061a35;border:1px solid #194a84;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#2d82ff,#a35cff);transition:width .15s}
+.status{font-size:12px;color:#9bb8e0;margin-top:8px}
+.err{color:#ff7b95;font-size:13px;margin-top:14px;min-height:18px}
+.result{display:none;margin-top:22px;border:1px solid #2b5d97;border-radius:14px;background:#071a35;padding:18px}
+.result audio{width:100%;margin:12px 0}
+.result .meta{font-size:12px;color:#9bb8e0}
+.note{font-size:12px;color:#6f8fbd;margin-top:16px}
+@media(max-width:700px){nav{display:none}h1{font-size:30px}}
+@media(max-width:480px){.container{width:calc(100% - 24px)}}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png"/>ConvertKit <span class="lite">Lite</span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="../../#about">About</a><a href="../../#faq">FAQ</a></nav>
+</div></header>
+
+<main class="narrow">
+<h1>MP4 to MP3 <span>Converter</span></h1>
+<p class="sub">Extract the audio from a video and save it as MP3. Your file never leaves your device.</p>
+
+<div class="card">
+<div class="drop" id="drop"><div class="ico">🎬</div><b>Click to choose a video, or drag and drop it here</b><small>MP4, MOV, M4A, WebM and other common formats</small></div>
+<input type="file" id="pick" accept="video/*,audio/*,.mp4,.m4a,.mov,.webm,.mkv" hidden/>
+
+<div class="file" id="file"><div><strong id="fname"></strong><small id="fsize"></small></div><button class="ghost" id="clear" type="button">Remove</button></div>
+
+<label for="kbps">MP3 quality</label>
+<select id="kbps">
+<option value="128">128 kbps (standard, smaller file)</option>
+<option value="192" selected>192 kbps (good quality)</option>
+<option value="256">256 kbps (high quality)</option>
+<option value="320">320 kbps (maximum quality)</option>
+</select>
+
+<div class="btns"><button class="primary" id="go" disabled>Convert to MP3</button></div>
+
+<div class="bar" id="bar"><div class="track"><div class="fill" id="fill"></div></div><div class="status" id="status"></div></div>
+<div class="err" id="err"></div>
+
+<div class="result" id="result">
+<strong>Your MP3 is ready</strong>
+<audio id="player" controls></audio>
+<div class="meta" id="meta"></div>
+<div class="btns"><button class="primary" id="dl">Download MP3</button><button class="ghost" id="again" type="button">Convert another</button></div>
+</div>
+
+<div class="note">Conversion happens in your browser. Best for videos up to about an hour; very long or very large files may run out of memory.</div>
+</div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let file=null,outUrl=null,outName='audio.mp3';
+const mb=b=>(b/1048576).toFixed(b>1e8?0:1)+' MB';
+
+function setFile(f){
+  if(!f)return;
+  file=f;$('fname').textContent=f.name;$('fsize').textContent=mb(f.size);
+  $('file').style.display='flex';$('drop').style.display='none';$('go').disabled=false;
+  $('err').textContent='';$('result').style.display='none';$('bar').style.display='none';
+}
+function reset(){
+  file=null;$('pick').value='';$('file').style.display='none';$('drop').style.display='block';
+  $('go').disabled=true;$('result').style.display='none';$('bar').style.display='none';$('err').textContent='';
+  if(outUrl){URL.revokeObjectURL(outUrl);outUrl=null}
+}
+$('drop').onclick=()=>$('pick').click();
+$('pick').onchange=e=>setFile(e.target.files[0]);
+$('clear').onclick=reset;$('again').onclick=reset;
+['dragenter','dragover'].forEach(t=>$('drop').addEventListener(t,e=>{e.preventDefault();$('drop').classList.add('over')}));
+['dragleave','drop'].forEach(t=>$('drop').addEventListener(t,e=>{e.preventDefault();$('drop').classList.remove('over')}));
+$('drop').addEventListener('drop',e=>setFile(e.dataTransfer.files[0]));
+
+const progress=(p,t)=>{$('fill').style.width=p+'%';$('status').textContent=t};
+const tick=()=>new Promise(r=>setTimeout(r,0));
+
+$('go').onclick=async()=>{
+  if(!file)return;
+  $('err').textContent='';$('result').style.display='none';
+  $('go').disabled=true;$('bar').style.display='block';progress(3,'Reading file…');
+  let ctx;
+  try{
+    const data=await file.arrayBuffer();
+    progress(10,'Extracting audio…');
+    const AC=window.AudioContext||window.webkitAudioContext;
+    ctx=new AC({sampleRate:44100});
+    const buf=await ctx.decodeAudioData(data);
+
+    const kbps=+$('kbps').value,ch=Math.min(2,buf.numberOfChannels),rate=buf.sampleRate;
+    const enc=new lamejs.Mp3Encoder(ch,rate,kbps);
+    const toI16=f=>{const o=new Int16Array(f.length);for(let i=0;i<f.length;i++){const s=Math.max(-1,Math.min(1,f[i]));o[i]=s<0?s*32768:s*32767}return o};
+    const L=toI16(buf.getChannelData(0)),R=ch>1?toI16(buf.getChannelData(1)):null;
+    const step=1152,parts=[];
+    for(let i=0,n=0;i<L.length;i+=step,n++){
+      const out=ch>1?enc.encodeBuffer(L.subarray(i,i+step),R.subarray(i,i+step)):enc.encodeBuffer(L.subarray(i,i+step));
+      if(out.length)parts.push(out);
+      if(n%300===0){progress(15+Math.round(i/L.length*83),'Converting to MP3… '+Math.round(i/L.length*100)+'%');await tick()}
+    }
+    const end=enc.flush();if(end.length)parts.push(end);
+
+    const blob=new Blob(parts,{type:'audio/mpeg'});
+    if(outUrl)URL.revokeObjectURL(outUrl);
+    outUrl=URL.createObjectURL(blob);
+    outName=file.name.replace(/\.[^.]+$/,'')+'.mp3';
+    $('player').src=outUrl;
+    const d=buf.duration,m=Math.floor(d/60),s=Math.round(d%60);
+    $('meta').textContent=outName+' · '+mb(blob.size)+' · '+m+':'+String(s).padStart(2,'0')+' · '+kbps+' kbps';
+    progress(100,'Done');$('result').style.display='block';
+  }catch(e){
+    console.error(e);
+    $('err').textContent='Could not convert this file. It may have no audio track, use a format your browser cannot decode, or be too large. Try a smaller MP4 or another browser (Chrome works best).';
+    $('bar').style.display='none';
+  }finally{
+    if(ctx&&ctx.close)ctx.close();
+    $('go').disabled=!file;
+  }
+};
+
+$('dl').onclick=()=>{
+  if(!outUrl)return;
+  const a=document.createElement('a');a.href=outUrl;a.download=outName;
+  document.body.appendChild(a);a.click();a.remove();
+};
+</script>
+</body>
+</html>
