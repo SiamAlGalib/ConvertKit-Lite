@@ -6,42 +6,40 @@
 <title>Chronological Age Calculator: Calculate Your Exact Age — ConvertKit Lite</title>
 <meta name="description" content="Learn what chronological age means, calculate exact age in years, months and days, and understand age between two dates."/>
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:#f2f6ff;font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+body{margin:0;min-height:100vh;color:#f2f6ff;font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 82% 8%,rgba(42,88,190,.25),transparent 34%),radial-gradient(ellipse at 15% 55%,rgba(82,53,180,.10),transparent 30%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
 a{color:inherit;text-decoration:none}
-header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
+.grad,h1 span,h2 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* header */
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.94);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
 .container{width:min(1180px,calc(100% - 48px));margin:auto}
-.narrow{width:min(760px,calc(100% - 32px));margin:auto}
 .navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
-.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
-.brand img{width:34px;height:34px;object-fit:contain}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-.7px;white-space:nowrap}
+.brand img{width:36px;height:36px;object-fit:contain;display:block}
 .brand .lite{color:#a46bff}
-nav{display:flex;align-items:center;gap:8px;font-size:13px;color:#c4d6f4}
-nav a{
-  position:relative;display:inline-flex;align-items:center;justify-content:center;
-  padding:10px 16px;border:1px solid transparent;border-radius:11px;
-  color:#b9cbea;font-weight:600;letter-spacing:.15px;
-  transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease;
-}
-nav a::after{
-  content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transform-origin:center;
-  transition:transform .2s ease;
-}
-nav a:hover,nav a:focus-visible{
-  color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));
-  border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);
-  transform:translateY(-1px);outline:none;
-}
-nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
-nav a:active{transform:translateY(0)}
-@media(max-width:700px){nav{display:none}}
-h1{font-size:36px;letter-spacing:-1.4px;margin:38px 0 8px}
-h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:#c4d6ef;font-size:15px;margin:0 0 26px}
-.card{border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);padding:24px;margin-bottom:40px}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;transition:.2s}
+nav a:hover,nav a.active{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);transform:translateY(-1px)}
+
+/* article layout */
+.article-wrap{width:min(900px,calc(100% - 32px));margin:0 auto;padding-bottom:60px}
+.article-hero{padding:42px 0 0}
+.eyebrow{display:inline-flex;padding:6px 11px;border:1px solid #285a96;border-radius:999px;color:#86c4ff;background:rgba(46,139,255,.08);font-size:11px;font-weight:800;letter-spacing:.7px}
+.article-hero h1{font-size:clamp(30px,5vw,46px);line-height:1.1;letter-spacing:-1.5px;margin:15px 0 10px}
+.article-lead{color:#b9cee9;font-size:15px;max-width:760px;margin:0}
+.banner{margin:26px 0 34px;border:1px solid #1c5a9b;border-radius:20px;overflow:hidden;background:#061a36;box-shadow:0 18px 55px rgba(0,0,0,.25)}
+.banner img{display:block;width:100%;height:auto}
+.tool-intro{margin:0 0 10px;color:#e9f2ff;font-size:18px;font-weight:750}
+.tool-note{margin:0 0 14px;color:#7898bf;font-size:12px}
+.tool-shell{border:1px solid #2363a8;border-radius:19px;background:linear-gradient(145deg,rgba(10,34,69,.98),rgba(5,20,43,.98));padding:4px;box-shadow:0 20px 60px rgba(0,0,0,.25),0 0 35px rgba(46,139,255,.08)}
+.tool-inner{width:100%;margin:auto}
+.tool-title{font-size:30px;font-weight:800;letter-spacing:-1.2px;margin:26px 24px 6px}
+.sub{color:#c4d6ef;font-size:14px;margin:0 24px 20px}
+
+/* calculator */
+.card{margin:0;border:0;padding:24px;background:transparent}
 label,.lbl{display:block;font-size:12px;color:#9bb8e0;margin-bottom:8px;font-weight:600}
 .opt{color:#6f8fbd;font-weight:400}
 input,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
@@ -68,34 +66,23 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;paddin
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
 .stats div{display:flex;justify-content:space-between;gap:10px;border:1px solid #194a84;border-radius:10px;background:#0a2142;padding:12px 14px;font-size:13px}
 .stats span{color:#9bb8e0}.stats strong{text-align:right}
-@media(max-width:700px){nav{display:none}.stats{grid-template-columns:1fr}.big.five{grid-template-columns:repeat(3,1fr)}.big b{font-size:28px}h1{font-size:30px}}
-@media(max-width:480px){.time{grid-template-columns:1fr 1fr}.container{width:calc(100% - 24px)}}
 
-.learn-section{margin:0 auto 54px}
-.learn-heading{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
-.learn-heading span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.learn-intro{color:#9bb8e0;font-size:14px;line-height:1.7;margin:0 0 18px}
-.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.article-card{display:block;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px;transition:transform .18s,border-color .18s}
-.article-card:hover{transform:translateY(-2px);border-color:#4b9cff}
-.article-tag{display:inline-block;color:#bda2ff;background:rgba(124,63,240,.14);border:1px solid rgba(164,107,255,.28);border-radius:999px;padding:4px 9px;font-size:10px;font-weight:700;margin-bottom:10px}
-.article-card h3{font-size:15px;margin:0 0 8px;color:#f2f6ff}
-.article-card p{font-size:12px;line-height:1.65;color:#9bb8e0;margin:0 0 12px}
-.article-read{font-size:12px;color:#79b7ff;font-weight:700}
-@media(max-width:600px){.article-list{grid-template-columns:1fr}.learn-heading{font-size:23px}}
+/* article content */
+.article-content{color:#bfd2e9;font-size:16px;line-height:1.75;margin-top:38px}
+.article-content h2{font-size:27px;line-height:1.25;color:#fff;margin:38px 0 10px;letter-spacing:-.6px}
+.article-content h3{font-size:19px;color:#fff;margin:26px 0 7px}
+.article-content p{margin:0 0 16px}
+.article-content ol,.article-content ul{padding-left:22px;margin:8px 0 20px}
+.article-content li{margin:7px 0}
+.callout{margin:24px 0;padding:19px;border:1px solid #285e9d;border-radius:15px;background:linear-gradient(145deg,#092448,#071a34)}
+.callout strong{color:#fff}
+.tool-link{display:inline-flex;margin-top:10px;padding:10px 15px;border-radius:10px;background:linear-gradient(90deg,#21aefc,#8d58ff);color:#fff;font-weight:800;font-size:13px}
+.faq{border-top:1px solid #173d69;margin-top:34px;padding-top:4px}
 
-
-nav a[href="#learn"]{color:#e6dcff}
-nav a[href="#learn"]::before{
-  content:"✦";font-size:10px;margin-right:7px;color:#ad83ff;
-}
-
-
-.related-tools{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
-.related-tools-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}
-.related-tools-title{font-size:25px;letter-spacing:-.6px;margin:0 0 7px}
-.related-tools-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.related-tools-intro{font-size:13px;line-height:1.7;color:#9bb8e0;margin:0;max-width:560px}
+/* related tools */
+.related-tools{margin:56px 0 0}
+.related-tools-title{font-size:25px;letter-spacing:-.6px;margin:0 0 7px;color:#fff}
+.related-tools-intro{font-size:13px;line-height:1.7;color:#9bb8e0;margin:0 0 18px;max-width:560px}
 .related-tools-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .related-tool-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
 .related-tool-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
@@ -106,45 +93,10 @@ nav a[href="#learn"]::before{
 .related-tool-link{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .related-tool-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
 .related-tool-card.explore .related-tool-icon{color:#e3d4ff;background:linear-gradient(135deg,rgba(124,63,240,.25),rgba(173,91,255,.18));border-color:rgba(173,91,255,.35)}
-@media(max-width:700px){.related-tools-grid{grid-template-columns:1fr}.related-tools-head{display:block}.related-tools-title{font-size:23px}.related-tool-card{min-height:0}}
 
-
-
-/* Article page improvements */
-body{background:radial-gradient(ellipse at 82% 8%,rgba(42,88,190,.25),transparent 34%),radial-gradient(ellipse at 15% 55%,rgba(82,53,180,.10),transparent 30%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
-header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.94);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
-.container{width:min(1180px,calc(100% - 48px));margin:auto}
-.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
-.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-.7px;white-space:nowrap}
-.brand img{width:36px;height:36px;object-fit:contain;display:block}
-.brand .lite{color:#a46bff}
-nav{display:flex;align-items:center;gap:8px;font-size:13px;color:#c4d6f4}
-nav a{padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;transition:.2s}
-nav a:hover,nav a.active{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);transform:translateY(-1px)}
-.article-wrap{width:min(900px,calc(100% - 32px));margin:0 auto;padding-bottom:60px}
-.article-hero{padding:42px 0 16px}
-.eyebrow{display:inline-flex;padding:6px 11px;border:1px solid #285a96;border-radius:999px;color:#86c4ff;background:rgba(46,139,255,.08);font-size:11px;font-weight:800;letter-spacing:.7px}
-.article-hero h1{font-size:clamp(30px,5vw,46px);line-height:1.1;letter-spacing:-1.5px;margin:15px 0 10px}
-.article-hero h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.article-lead{color:#b9cee9;font-size:15px;max-width:760px;margin:0}
-.tool-intro{margin:26px 0 10px;color:#e9f2ff;font-size:18px;font-weight:750}
-.tool-note{margin:0 0 14px;color:#7898bf;font-size:12px}
-.tool-shell{border:1px solid #2363a8;border-radius:19px;background:linear-gradient(145deg,rgba(10,34,69,.98),rgba(5,20,43,.98));padding:4px;box-shadow:0 20px 60px rgba(0,0,0,.25),0 0 35px rgba(46,139,255,.08)}
-.tool-shell .card{margin:0;border:0;background:transparent;box-shadow:none}
-.banner{margin:34px 0 38px;border:1px solid #1c5a9b;border-radius:20px;overflow:hidden;background:#061a36;box-shadow:0 18px 55px rgba(0,0,0,.25)}
-.banner img{display:block;width:100%;height:auto}
-.article-content{color:#bfd2e9;font-size:16px;line-height:1.75}
-.article-content h2{font-size:27px;line-height:1.25;color:#fff;margin:38px 0 10px;letter-spacing:-.6px}
-.article-content h3{font-size:19px;color:#fff;margin:26px 0 7px}
-.article-content p{margin:0 0 16px}
-.article-content ol,.article-content ul{padding-left:22px;margin:8px 0 20px}
-.article-content li{margin:7px 0}
-.callout{margin:24px 0;padding:19px;border:1px solid #285e9d;border-radius:15px;background:linear-gradient(145deg,#092448,#071a34)}
-.callout strong{color:#fff}
-.tool-link{display:inline-flex;margin-top:10px;padding:10px 15px;border-radius:10px;background:linear-gradient(90deg,#21aefc,#8d58ff);color:#fff;font-weight:800;font-size:13px}
-.faq{border-top:1px solid #173d69;margin-top:34px;padding-top:4px}
 footer{text-align:center;color:#6f8eb5;font-size:12px;padding:0 0 35px}
-@media(max-width:700px){nav{display:none}.article-hero{padding-top:30px}.article-content{font-size:15px}.tool-intro{font-size:16px}}
+@media(max-width:700px){nav{display:none}.article-hero{padding-top:30px}.article-content{font-size:15px}.tool-intro{font-size:16px}.stats{grid-template-columns:1fr}.big.five{grid-template-columns:repeat(3,1fr)}.big b{font-size:28px}.related-tools-grid{grid-template-columns:1fr}.related-tool-card{min-height:0}.related-tools-title{font-size:23px}}
+@media(max-width:480px){.time{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -170,11 +122,15 @@ footer{text-align:center;color:#6f8eb5;font-size:12px;padding:0 0 35px}
     <p class="article-lead">Use the calculator first, then learn how chronological age is calculated in years, months, and days.</p>
   </section>
 
+  <figure class="banner">
+    <img src="../../age-calculator-banner-1.png" width="1672" height="941" alt="How to calculate your exact age — ConvertKit Lite age calculator"/>
+  </figure>
+
   <div class="tool-intro">Calculate your age</div>
   <p class="tool-note">Enter your date of birth below. You can also choose a date to calculate your age on a specific day.</p>
   <section class="tool-shell" id="top" aria-label="Chronological age calculator">
-    <main class="narrow">
-<h1>Age <span>Calculator</span></h1>
+    <div class="tool-inner">
+<div class="tool-title">Age <span class="grad">Calculator</span></div>
 <p class="sub">Type your date of birth or pick it from the calendar. Add your birth time if you want an even more exact result.</p>
 
 <div class="card">
@@ -224,12 +180,8 @@ footer{text-align:center;color:#6f8eb5;font-size:12px;padding:0 0 35px}
 </div>
 </div>
 </div>
-</main>
+    </div>
   </section>
-
-  <figure class="banner">
-    <img src="../../age-calculator-banner-1.png" alt="ConvertKit Lite age calculator illustration"/>
-  </figure>
 
   <article class="article-content">
     <p><strong>Chronological age</strong> is the amount of time that has passed since a person's date of birth. It is commonly expressed in completed years, but an exact calculation can also show the remaining months and days.</p>
@@ -256,7 +208,7 @@ footer{text-align:center;color:#6f8eb5;font-size:12px;padding:0 0 35px}
     <p>An age calculator can also find the amount of time between two dates. This is useful when you want to calculate an age on a specific date rather than today.</p>
 
     <h3>Example</h3>
-    <p>Suppose a person was born on April 15, 2000. If the target date is October 27, 2024, the calculator can express the elapsed age in completed years plus the remaining months and days.</p>
+    <p>Suppose a person was born on October 21, 2006. If the target date is September 29, 2026, they have completed 19 years, and 11 months and 8 days have passed since their last birthday: an exact age of 19 years, 11 months, and 8 days.</p>
 
     <h2>Chronological Age for Children</h2>
     <p>For children, a difference of a few months can be important when describing age. An exact calculation can therefore be more informative than using only a whole number of years.</p>
@@ -282,15 +234,58 @@ footer{text-align:center;color:#6f8eb5;font-size:12px;padding:0 0 35px}
       <br/><a class="tool-link" href="#top">Back to calculator ↑</a>
     </div>
   </article>
+
+  <section class="related-tools" aria-labelledby="related-tools-title">
+    <h2 class="related-tools-title" id="related-tools-title">Explore More <span>Tools</span></h2>
+    <p class="related-tools-intro">Keep going with these useful calculators and image tools from ConvertKit Lite.</p>
+    <div class="related-tools-grid">
+      <a class="related-tool-card" href="../../">
+        <span class="related-tool-icon" aria-hidden="true">📅</span>
+        <h3>Age Calculator</h3>
+        <p>Find your exact age in years, months, and days from your date of birth.</p>
+        <span class="related-tool-link">Calculate age →</span>
+      </a>
+      <a class="related-tool-card" href="../../../../tools/faceage/">
+        <span class="related-tool-icon" aria-hidden="true">✦</span>
+        <h3>Face Age Estimator</h3>
+        <p>Estimate the apparent age of a face from a photo. Results are approximate.</p>
+        <span class="related-tool-link">Try tool →</span>
+      </a>
+      <a class="related-tool-card" href="../../../../tools/bmicalculator/">
+        <span class="related-tool-icon" aria-hidden="true">⚖</span>
+        <h3>BMI Calculator</h3>
+        <p>Calculate body mass index from height and weight.</p>
+        <span class="related-tool-link">Calculate BMI →</span>
+      </a>
+      <a class="related-tool-card" href="../../../../tools/imagecompressor/">
+        <span class="related-tool-icon" aria-hidden="true">▧</span>
+        <h3>Image Compressor &amp; Resizer</h3>
+        <p>Reduce image file size or resize images for easier sharing.</p>
+        <span class="related-tool-link">Optimize image →</span>
+      </a>
+      <a class="related-tool-card" href="../../../../tools/qrcodegenerator/">
+        <span class="related-tool-icon" aria-hidden="true">▦</span>
+        <h3>QR Code Generator</h3>
+        <p>Create a QR code from text, a link, or other supported content.</p>
+        <span class="related-tool-link">Create QR code →</span>
+      </a>
+      <a class="related-tool-card explore" href="../../../../#tools">
+        <span class="related-tool-icon" aria-hidden="true">⌘</span>
+        <h3>Explore All Tools</h3>
+        <p>Browse the complete ConvertKit Lite collection to find more utilities.</p>
+        <span class="related-tool-link">Browse all tools →</span>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer>© ConvertKit Lite · Age Calculator</footer>
+
 <script>
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,'0');
 const fmt=n=>n.toLocaleString();
 
-// time dropdowns
 for(let i=1;i<=12;i++)$('hh').add(new Option(pad(i),i));
 for(let i=0;i<60;i++)$('mi').add(new Option(pad(i),i));
 const isoDate=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
@@ -301,14 +296,11 @@ $('until').addEventListener('input',updateHint);
 $('tillNow').onclick=setTillNow;
 setTillNow();
 
-// date validity
 function validDate(d,m,y){
   if(!(d>=1&&m>=1&&m<=12&&y>=1900&&y<=9999))return false;
   const t=new Date(y,m-1,d);
   return t.getFullYear()===y&&t.getMonth()===m-1&&t.getDate()===d;
 }
-
-// manual -> calendar
 function manualToCal(){
   const d=+$('dd').value,m=+$('mm').value,y=+$('yyyy').value;
   $('cal').value=($('yyyy').value.length===4&&validDate(d,m,y))?`${y}-${pad(m)}-${pad(d)}`:'';
@@ -323,8 +315,6 @@ function manualToCal(){
     if(e.key==='Backspace'&&!$(id).value&&i>0)$(arr[i-1]).focus();
   });
 });
-
-// calendar -> manual
 $('cal').addEventListener('input',()=>{
   const v=$('cal').value;
   if(!v)return;
@@ -338,7 +328,6 @@ $('calc').onclick=()=>{
   if(!$('dd').value||!$('mm').value||!$('yyyy').value)return $('err').textContent='Please enter your full date of birth (or pick it from the calendar).';
   if($('yyyy').value.length<4||!validDate(d,m,y))return $('err').textContent='That date does not look valid. Please check the day, month and year.';
 
-  // time is optional: needs both hour and minute; minute alone defaults hour, hour alone defaults minute
   const hasTime=$('hh').value!==''||$('mi').value!=='';
   let bh=0,bmin=0;
   if(hasTime){
