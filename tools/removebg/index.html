@@ -42,6 +42,8 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor
 .ghost{background:#0a2142;border:1px solid #194a84;padding:12px 20px;font-size:13px}
 .btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
 .bar{display:none;margin-top:18px}
+select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+.speed{margin-bottom:18px}.speed label{margin-top:0}
 .track{height:10px;border-radius:8px;background:#061a35;border:1px solid #194a84;overflow:hidden}
 .fill{height:100%;width:0;background:linear-gradient(90deg,#2d82ff,#a35cff);transition:width .2s}
 .status{font-size:12px;color:#9bb8e0;margin-top:8px}
@@ -62,6 +64,7 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor
 <p class="sub">Erase the background from a photo automatically with AI. Your image stays on your device.</p>
 
 <div class="card">
+<div class="speed"><label for="speed">Speed / quality</label><select id="speed"><option value="512">Fast (lower detail)</option><option value="768" selected>Balanced (recommended)</option><option value="1024">Best quality (slowest)</option></select></div>
 <div class="drop" id="drop"><div class="ico">✨</div><b>Click to choose an image, or drag and drop it here</b><small>JPG, PNG or WebP. Works on people, products, pets and objects.</small></div>
 <input type="file" id="pick" accept="image/*" hidden/>
 
@@ -104,7 +107,7 @@ const ENGINES={
 };
 const ENG=ENGINES[USE];
 let sess=null;
-let lib=null,srcImg=null,simple=false,tolTimer,cutout=null,bg='transparent',baseName='image',runId=0;
+let tmr,t0,curFile=null,lib=null,srcImg=null,simple=false,tolTimer,cutout=null,bg='transparent',baseName='image',runId=0;
 const readURL=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(b)});
 const loadImg=u=>new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('img'));i.src=u});
 const sz=b=>b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(2)+' MB';
@@ -117,11 +120,14 @@ function loadScript(src){
   });
 }
 async function fetchModel(url,cb){
+  let cache=null;
+  try{cache=await caches.open('convertkit-models');const hit=await cache.match(url);if(hit)return new Uint8Array(await hit.arrayBuffer())}catch(e){}
   const r=await fetch(url);
   if(!r.ok)throw new Error('HTTP '+r.status+' for '+url);
   const total=+r.headers.get('content-length')||0,rd=r.body.getReader(),chunks=[];let got=0;
   for(;;){const {done,value}=await rd.read();if(done)break;chunks.push(value);got+=value.length;cb(got,total)}
   const out=new Uint8Array(got);let o=0;for(const c of chunks){out.set(c,o);o+=c.length}
+  try{if(cache)await cache.put(url,new Response(out,{headers:{'content-type':'application/octet-stream'}}))}catch(e){}
   return out;
 }
 async function getSession(cb){
@@ -135,8 +141,7 @@ async function getSession(cb){
   }
   throw new Error(errs.join(' | '));
 }
-async function aiRemove(img,cb,onRun){
-  const s=await getSession(cb),S=ENG.size;
+async function infer(s,img,S,onRun){
   const c=document.createElement('canvas');c.width=c.height=S;
   const x=c.getContext('2d');x.drawImage(img,0,0,S,S);
   const d=x.getImageData(0,0,S,S).data,f=new Float32Array(3*S*S),N=S*S;
@@ -144,7 +149,16 @@ async function aiRemove(img,cb,onRun){
   onRun&&onRun();
   await new Promise(r=>setTimeout(r,30));
   const out=await s.run({[s.inputNames[0]]:new ort.Tensor('float32',f,[1,3,S,S])});
-  const m=out[s.outputNames[0]].data;
+  return out[s.outputNames[0]].data;
+}
+async function aiRemove(img,cb,onRun,size){
+  const s=await getSession(cb);
+  let S=size||ENG.size,m;
+  for(;;){
+    try{m=await infer(s,img,S,onRun);break}
+    catch(e){if(S===ENG.size)throw e;S=ENG.size} // model may only accept its full size
+  }
+  const N=S*S;
   const mc=document.createElement('canvas');mc.width=mc.height=S;
   const mx=mc.getContext('2d'),mi=mx.createImageData(S,S);
   for(let i=0;i<N;i++){const v=Math.max(0,Math.min(1,(m[i]-.08)/.84))*255;mi.data[i*4]=v;mi.data[i*4+1]=v;mi.data[i*4+2]=v;mi.data[i*4+3]=255}
@@ -162,13 +176,14 @@ async function aiRemove(img,cb,onRun){
 }
 
 function reset(){
-  runId++;cutout=null;$('pick').value='';
+  runId++;clearInterval(tmr);curFile=null;cutout=null;$('pick').value='';
   $('work').style.display='none';$('drop').style.display='block';
   $('after').style.display='none';$('afterBox').style.display='block';$('ph').textContent='Waiting…';
   $('opts').style.display='none';$('bar').style.display='none';$('err').textContent='';
   $('simple').style.display='none';simple=false;srcImg=null;
 }
 $('again').onclick=reset;
+$('speed').addEventListener('change',()=>{if(curFile&&$('work').style.display==='block')handle(curFile)});
 $('drop').onclick=()=>$('pick').click();
 $('pick').onchange=e=>handle(e.target.files[0]);
 ['dragenter','dragover'].forEach(t=>$('drop').addEventListener(t,e=>{e.preventDefault();$('drop').classList.add('over')}));
@@ -181,7 +196,7 @@ async function handle(f){
   if(!f)return;
   if(!/^image\//.test(f.type)){alert('Please choose an image file.');return}
   const id=++runId;
-  baseName=f.name.replace(/\.[^.]+$/,'')||'image';
+  baseName=f.name.replace(/\.[^.]+$/,'')||'image';curFile=f;clearInterval(tmr);
   $('drop').style.display='none';$('work').style.display='block';
   $('opts').style.display='none';$('err').textContent='';
   $('after').style.display='none';$('afterBox').style.display='block';$('ph').textContent='Processing…';
@@ -194,7 +209,12 @@ async function handle(f){
       if(id!==runId)return;
       const p=t?g/t:0;
       setProgress(Math.min(70,Math.round(p*70)),t?'Downloading AI model… '+Math.round(p*100)+'% (first time only)':'Downloading AI model… '+(g/1048576).toFixed(1)+' MB (first time only)');
-    },()=>{if(id===runId)setProgress(85,'Removing background…')});
+    },()=>{
+      if(id!==runId)return;
+      setProgress(85,'Removing background…');t0=Date.now();clearInterval(tmr);
+      tmr=setInterval(()=>{$('status').textContent='Removing background… '+Math.round((Date.now()-t0)/1000)+'s'},500);
+    },+$('speed').value);
+    clearInterval(tmr);
     if(id!==runId)return;
     cutout=await loadImg(url);
     setProgress(100,'Done');
@@ -202,6 +222,7 @@ async function handle(f){
     $('afterBox').style.display='none';$('after').style.display='block';
     draw();$('opts').style.display='block';
   }catch(e){
+    clearInterval(tmr);
     if(id!==runId)return;
     console.error(e);
     $('bar').style.display='none';$('ph').textContent='Could not process';
