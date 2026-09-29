@@ -62,7 +62,7 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor
 <p class="sub">Erase the background from a photo automatically with AI. Your image stays on your device.</p>
 
 <div class="card">
-<div class="drop" id="drop"><div class="ico">✨</div><b>Click to choose an image, or drag and drop it here</b><small>JPG, PNG or WebP. Works best with people and portraits.</small></div>
+<div class="drop" id="drop"><div class="ico">✨</div><b>Click to choose an image, or drag and drop it here</b><small>JPG, PNG or WebP. Works on people, products, pets and objects.</small></div>
 <input type="file" id="pick" accept="image/*" hidden/>
 
 <div id="work">
@@ -87,14 +87,22 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor
 <div class="err" id="err"></div>
 </div>
 
-<div class="note">The first time you use this tool it downloads a small AI model (a few MB), so it can take a moment. After that it is cached by your browser and much faster. Nothing you upload is sent to a server.</div>
+<div class="note">The first time you use this tool it downloads an AI model (about 45 MB), so it can take a minute. Each image then takes roughly 10 to 30 seconds. After that it is cached by your browser and much faster. Nothing you upload is sent to a server.</div>
 </div>
 </main>
 
 <script>
 const $=id=>document.getElementById(id);
 const ORT='https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.1/dist/';
-const MODELS=['https://huggingface.co/Xenova/modnet/resolve/main/onnx/model_quantized.onnx','https://huggingface.co/Xenova/modnet/resolve/main/onnx/model.onnx'];
+// Which AI model to use:
+//  'rmbg'   = best quality, works on people/products/pets. BRIA RMBG-1.4 (NON-COMMERCIAL licence: check before using on a monetised site)
+//  'modnet' = portraits only, lower quality, Apache-2.0 licence (safe for commercial use)
+const USE='rmbg';
+const ENGINES={
+  rmbg:{urls:['https://huggingface.co/briaai/RMBG-1.4/resolve/main/onnx/model_quantized.onnx','https://huggingface.co/briaai/RMBG-1.4/resolve/main/onnx/model.onnx'],size:1024,mean:.5,std:1},
+  modnet:{urls:['https://huggingface.co/Xenova/modnet/resolve/main/onnx/model_quantized.onnx','https://huggingface.co/Xenova/modnet/resolve/main/onnx/model.onnx'],size:512,mean:.5,std:.5}
+};
+const ENG=ENGINES[USE];
 let sess=null;
 let lib=null,srcImg=null,simple=false,tolTimer,cutout=null,bg='transparent',baseName='image',runId=0;
 const readURL=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(b)});
@@ -121,25 +129,25 @@ async function getSession(cb){
   await loadScript(ORT+'ort.min.js');
   ort.env.wasm.wasmPaths=ORT;ort.env.wasm.numThreads=1;
   const errs=[];
-  for(const u of MODELS){
+  for(const u of ENG.urls){
     try{const buf=await fetchModel(u,cb);sess=await ort.InferenceSession.create(buf,{executionProviders:['wasm']});return sess}
     catch(e){errs.push((e&&e.message)||String(e))}
   }
   throw new Error(errs.join(' | '));
 }
 async function aiRemove(img,cb,onRun){
-  const s=await getSession(cb),S=512;
+  const s=await getSession(cb),S=ENG.size;
   const c=document.createElement('canvas');c.width=c.height=S;
   const x=c.getContext('2d');x.drawImage(img,0,0,S,S);
   const d=x.getImageData(0,0,S,S).data,f=new Float32Array(3*S*S),N=S*S;
-  for(let i=0;i<N;i++){f[i]=(d[i*4]/255-.5)/.5;f[N+i]=(d[i*4+1]/255-.5)/.5;f[2*N+i]=(d[i*4+2]/255-.5)/.5}
+  for(let i=0;i<N;i++){f[i]=(d[i*4]/255-ENG.mean)/ENG.std;f[N+i]=(d[i*4+1]/255-ENG.mean)/ENG.std;f[2*N+i]=(d[i*4+2]/255-ENG.mean)/ENG.std}
   onRun&&onRun();
   await new Promise(r=>setTimeout(r,30));
   const out=await s.run({[s.inputNames[0]]:new ort.Tensor('float32',f,[1,3,S,S])});
   const m=out[s.outputNames[0]].data;
   const mc=document.createElement('canvas');mc.width=mc.height=S;
   const mx=mc.getContext('2d'),mi=mx.createImageData(S,S);
-  for(let i=0;i<N;i++){const v=Math.max(0,Math.min(1,m[i]))*255;mi.data[i*4]=v;mi.data[i*4+1]=v;mi.data[i*4+2]=v;mi.data[i*4+3]=255}
+  for(let i=0;i<N;i++){const v=Math.max(0,Math.min(1,(m[i]-.08)/.84))*255;mi.data[i*4]=v;mi.data[i*4+1]=v;mi.data[i*4+2]=v;mi.data[i*4+3]=255}
   mx.putImageData(mi,0,0);
   const sc=Math.min(1,2500/Math.max(img.naturalWidth,img.naturalHeight));
   const W=Math.max(1,Math.round(img.naturalWidth*sc)),H=Math.max(1,Math.round(img.naturalHeight*sc));
