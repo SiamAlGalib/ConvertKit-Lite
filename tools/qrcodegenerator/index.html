@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QR Code Generator — ConvertKit Lite</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:#f2f6ff;font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}
+nav{display:flex;gap:32px;font-size:13px;color:#c4d6f4}nav a:hover{color:#fff}
+h1{font-size:36px;letter-spacing:-1.4px;margin:38px 0 8px}
+h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#c4d6ef;font-size:15px;margin:0 0 26px}
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;margin-bottom:40px;align-items:start}
+.card{border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);padding:24px}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{background:#0a2142;border:1px solid #194a84;color:#d8e6ff;padding:9px 18px;font-size:13px;border-radius:9px}
+.tab.active{border-color:#2d8cff;background:linear-gradient(145deg,#102d59,#091d3b);box-shadow:0 0 18px rgba(41,113,255,.25)}
+label{display:block;font-size:12px;color:#9bb8e0;margin:14px 0 8px;font-weight:600}
+label:first-child{margin-top:0}
+input[type=text],input[type=email],input[type=password],textarea,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+textarea{resize:vertical;min-height:90px}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#4b9cff}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+input[type=color]{width:100%;height:44px;padding:4px;border-radius:10px;border:1px solid #194a84;background:#061a35;cursor:pointer}
+input[type=range]{width:100%;accent-color:#7c3ff0}
+.rowv{display:flex;justify-content:space-between;font-size:12px;color:#9bb8e0}
+button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.primary{background:linear-gradient(100deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2);padding:12px 22px}
+.primary:disabled{opacity:.4;cursor:not-allowed}
+.ghost{background:#0a2142;border:1px solid #194a84;padding:12px 22px}
+.ghost:disabled{opacity:.4;cursor:not-allowed}
+.preview{text-align:center;position:sticky;top:90px}
+.qrbox{display:grid;place-items:center;min-height:280px;background:#061a35;border:1px dashed #2b5d97;border-radius:14px;padding:16px}
+canvas{max-width:100%;height:auto;border-radius:6px;display:none}
+#empty{color:#6f8fbd;font-size:13px}
+.dl{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+.err{color:#ff7b95;font-size:13px;margin-top:12px;min-height:18px}
+.pane{display:none}.pane.active{display:block}
+@media(max-width:860px){nav{display:none}.layout{grid-template-columns:1fr}.preview{position:static}h1{font-size:30px}}
+@media(max-width:480px){.container{width:calc(100% - 24px)}.opts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png"/>ConvertKit <span class="lite">Lite</span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="../../#about">About</a><a href="../../#faq">FAQ</a></nav>
+</div></header>
+
+<main class="container">
+<h1>QR Code <span>Generator</span></h1>
+<p class="sub">Create a QR code for a link, text, Wi-Fi or email. Runs in your browser, nothing is uploaded.</p>
+
+<div class="layout">
+<div class="card">
+<div class="tabs">
+<button class="tab active" data-t="text">Link / Text</button>
+<button class="tab" data-t="wifi">Wi-Fi</button>
+<button class="tab" data-t="email">Email</button>
+</div>
+
+<div class="pane active" id="p-text">
+<label for="txt">Enter a link or any text</label>
+<textarea id="txt" placeholder="https://example.com"></textarea>
+</div>
+
+<div class="pane" id="p-wifi">
+<label for="ssid">Network name (SSID)</label><input type="text" id="ssid" autocomplete="off"/>
+<label for="wpass">Password</label><input type="text" id="wpass" autocomplete="off"/>
+<label for="wtype">Security</label>
+<select id="wtype"><option value="WPA">WPA / WPA2 / WPA3</option><option value="WEP">WEP</option><option value="nopass">None</option></select>
+</div>
+
+<div class="pane" id="p-email">
+<label for="eto">Email address</label><input type="email" id="eto" placeholder="name@example.com"/>
+<label for="esub">Subject (optional)</label><input type="text" id="esub"/>
+<label for="ebody">Message (optional)</label><textarea id="ebody"></textarea>
+</div>
+
+<div class="opts">
+<div><label for="fg">QR color</label><input type="color" id="fg" value="#000000"/></div>
+<div><label for="bg">Background</label><input type="color" id="bg" value="#ffffff"/></div>
+<div><label for="ecc">Error correction</label>
+<select id="ecc"><option value="L">Low (7%)</option><option value="M" selected>Medium (15%)</option><option value="Q">Quartile (25%)</option><option value="H">High (30%)</option></select></div>
+<div><label for="size">Size</label><div class="rowv"><span id="sizeV">512 px</span></div><input type="range" id="size" min="200" max="1200" step="20" value="512"/></div>
+</div>
+<div class="err" id="err"></div>
+</div>
+
+<div class="card preview">
+<div class="qrbox"><canvas id="cv" aria-label="Generated QR code"></canvas><div id="empty">Your QR code will appear here</div></div>
+<div class="dl">
+<button class="primary" id="dlPng" disabled>Download PNG</button>
+<button class="ghost" id="dlSvg" disabled>Download SVG</button>
+</div>
+</div>
+</div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let mode='text',qr=null;
+
+function payload(){
+  if(mode==='text')return $('txt').value.trim();
+  if(mode==='wifi'){
+    const s=$('ssid').value;if(!s)return '';
+    const esc=v=>v.replace(/([\\;,:"])/g,'\\$1');
+    const t=$('wtype').value;
+    return `WIFI:T:${t==='nopass'?'nopass':t};S:${esc(s)};${t==='nopass'?'':'P:'+esc($('wpass').value)+';'};;`.replace(';;;',';;');
+  }
+  const to=$('eto').value.trim();if(!to)return '';
+  const q=[];
+  if($('esub').value)q.push('subject='+encodeURIComponent($('esub').value));
+  if($('ebody').value)q.push('body='+encodeURIComponent($('ebody').value));
+  return 'mailto:'+to+(q.length?'?'+q.join('&'):'');
+}
+
+function render(){
+  const cv=$('cv'),text=payload();
+  $('err').textContent='';qr=null;
+  if(!text){cv.style.display='none';$('empty').style.display='block';$('dlPng').disabled=$('dlSvg').disabled=true;return}
+  try{
+    const q=qrcode(0,$('ecc').value);
+    q.addData(unescape(encodeURIComponent(text))); // UTF-8 bytes
+    q.make();qr=q;
+  }catch(e){
+    cv.style.display='none';$('empty').style.display='block';$('dlPng').disabled=$('dlSvg').disabled=true;
+    $('err').textContent='Too much data for a QR code. Shorten the text or lower the error correction.';return;
+  }
+  const n=qr.getModuleCount(),quiet=4,cell=Math.max(1,Math.floor(+$('size').value/(n+quiet*2))),dim=cell*(n+quiet*2);
+  cv.width=cv.height=dim;
+  const c=cv.getContext('2d');
+  c.fillStyle=$('bg').value;c.fillRect(0,0,dim,dim);
+  c.fillStyle=$('fg').value;
+  for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(qr.isDark(r,k))c.fillRect((k+quiet)*cell,(r+quiet)*cell,cell,cell);
+  cv.style.display='block';cv.style.width=Math.min(dim,320)+'px';
+  $('empty').style.display='none';$('dlPng').disabled=$('dlSvg').disabled=false;
+}
+
+function save(blob,name){
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+$('dlPng').onclick=()=>$('cv').toBlob(b=>save(b,'qrcode.png'));
+$('dlSvg').onclick=()=>{
+  if(!qr)return;
+  const n=qr.getModuleCount(),quiet=4,t=n+quiet*2;let d='';
+  for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(qr.isDark(r,k))d+=`M${k+quiet} ${r+quiet}h1v1h-1z`;
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${t} ${t}" width="${$('size').value}" height="${$('size').value}" shape-rendering="crispEdges"><rect width="${t}" height="${t}" fill="${$('bg').value}"/><path d="${d}" fill="${$('fg').value}"/></svg>`;
+  save(new Blob([svg],{type:'image/svg+xml'}),'qrcode.svg');
+};
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  mode=b.dataset.t;
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  $('p-'+mode).classList.add('active');render();
+});
+['txt','ssid','wpass','wtype','eto','esub','ebody','fg','bg','ecc'].forEach(id=>$(id).addEventListener('input',render));
+$('size').addEventListener('input',()=>{$('sizeV').textContent=$('size').value+' px';render()});
+</script>
+</body>
+</html>
