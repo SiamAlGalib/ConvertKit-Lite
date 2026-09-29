@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Calculate your Body Mass Index (BMI) using height and weight in metric or imperial units."/>
+<title>BMI Calculator — ConvertKit Lite</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--bg:#020c1e;--panel:#071a35;--panel2:#0a2142;--border:#174b88;--muted:#9bb8e0;--white:#f2f6ff;--blue:#2c83ff;--purple:#a35cff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--white);font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10}
+.navbar{height:100%;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}.lite{color:#a46bff}
+nav{display:flex;gap:32px;font-size:13px;color:#c4d6f4}
+h1{font-size:36px;letter-spacing:-1.4px;margin:38px 0 8px}
+h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#c4d6ef;font-size:15px;line-height:1.6;margin:0 0 26px}
+.card{border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);padding:24px;margin-bottom:28px}
+label,.lbl{display:block;font-size:12px;color:#9bb8e0;margin-bottom:8px;font-weight:600}
+input,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+input:focus,select:focus{outline:none;border-color:#4b9cff;box-shadow:0 0 0 3px #2d82ff20}
+.unit-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px;padding:5px;background:#06152d;border:1px solid #173e6c;border-radius:12px}
+.unit-tabs button{border:0;border-radius:8px;padding:11px;background:transparent;color:#9bb8e0;font-weight:700;cursor:pointer}
+.unit-tabs button.active{color:white;background:linear-gradient(100deg,#2d82ff,#7c3ff0)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field small{display:block;color:#6f8fbd;font-size:11px;margin-top:7px}
+.btns{display:flex;gap:12px;margin-top:22px}
+button{border-radius:9px;font:inherit;font-weight:700;padding:12px 22px;cursor:pointer}
+.primary{border:0;color:#fff;background:linear-gradient(100deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.ghost{color:#fff;background:#0a2142;border:1px solid #194a84}
+.err{color:#ff7b95;font-size:13px;margin-top:14px;min-height:18px}
+#result{display:none;margin-top:22px}
+.result-top{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.metric{border:1px solid #2b5d97;border-radius:14px;background:#071a35;text-align:center;padding:20px 10px}
+.metric b{display:block;font-size:42px;font-weight:800;background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.metric small{color:#9bb8e0;font-size:12px}
+.status{display:inline-block;margin-top:10px;padding:7px 12px;border-radius:20px;background:#14365d;color:#b9d9ff;font-size:12px;font-weight:700}
+.scale{margin-top:18px}
+.scale-bar{display:flex;height:10px;border-radius:20px;overflow:hidden;background:#123}
+.scale-bar span:nth-child(1){width:25%;background:#4aa3ff}.scale-bar span:nth-child(2){width:25%;background:#20c997}.scale-bar span:nth-child(3){width:25%;background:#ffc044}.scale-bar span:nth-child(4){width:25%;background:#ff6b81}
+.scale-labels{display:flex;justify-content:space-between;gap:8px;color:#9bb8e0;font-size:10px;margin-top:7px}
+.note{border:1px solid #194a84;border-radius:12px;background:#0a2142;padding:15px;margin-top:16px;color:#c4d6ef;font-size:12px;line-height:1.65}
+.info{margin-bottom:42px;color:#b7cbea;font-size:13px;line-height:1.75}
+.info h2{font-size:19px;color:#f2f6ff;margin:26px 0 8px}
+footer{border-top:1px solid #12345d;padding:24px 0 30px;margin-top:28px;color:#9db7dd;font-size:11px}
+@media(max-width:700px){nav{display:none}h1{font-size:30px}.result-top{grid-template-columns:1fr 1fr}.metric b{font-size:34px}}
+@media(max-width:480px){.container{width:calc(100% - 24px)}.fields{grid-template-columns:1fr}.card{padding:18px}.scale-labels{font-size:9px}.btns button{flex:1;padding:12px 10px}}
+html[data-theme="light"] body{color:#0d1b33;background:radial-gradient(ellipse at 83% 15%,rgba(120,160,255,.25),transparent 40%),linear-gradient(135deg,#f7faff 0%,#eaf1fe 60%,#e2ebfc 100%)}
+html[data-theme="light"] header{background:rgba(255,255,255,.9);border-color:#d6e2f5}
+html[data-theme="light"] nav{color:#3c5478}
+html[data-theme="light"] .card{background:linear-gradient(145deg,#fff,#f1f5fe);border-color:#cfdcf1}
+html[data-theme="light"] input,html[data-theme="light"] select{background:#fff;color:#0d1b33;border-color:#cfdcf1;color-scheme:light}
+html[data-theme="light"] .unit-tabs{background:#eef4ff;border-color:#cfdcf1}
+html[data-theme="light"] .unit-tabs button{color:#50678b}
+html[data-theme="light"] .unit-tabs button.active{color:#fff}
+html[data-theme="light"] .ghost{background:#f5f8ff;color:#23406b;border-color:#cfdcf1}
+html[data-theme="light"] .metric{background:#fff;border-color:#cfdcf1}
+html[data-theme="light"] .note{background:#f5f8ff;border-color:#cfdcf1;color:#41587d}
+html[data-theme="light"] .info{color:#41587d}
+html[data-theme="light"] .info h2{color:#0d1b33}
+html[data-theme="light"] footer{border-color:#d6e2f5}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/>ConvertKit <span class="lite">Lite</span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="../../#about">About</a><a href="../../#faq">FAQ</a></nav>
+</div></header>
+<main class="narrow">
+<h1>BMI <span>Calculator</span></h1>
+<p class="sub">Calculate your Body Mass Index from your height and weight. Choose your weight and height units separately.</p>
+<section class="card" aria-label="BMI calculator">
+<div class="fields" style="margin-bottom:18px">
+<div class="field"><label for="weightUnit">Weight unit</label><select id="weightUnit"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select></div>
+<div class="field"><label for="heightUnit">Height unit</label><select id="heightUnit"><option value="cm">Centimetres (cm)</option><option value="ft">Feet and inches (ft / in)</option></select></div>
+</div>
+<div class="field" style="margin-bottom:16px"><label id="weightLabel" for="weightInput">Weight (kg)</label><input id="weightInput" type="number" min="1" max="500" step="any" placeholder="e.g. 70" inputmode="decimal"/></div>
+<div class="field" id="heightCmField"><label for="heightInput">Height (cm)</label><input id="heightInput" type="number" min="50" max="260" step="any" placeholder="e.g. 175" inputmode="decimal"/></div>
+<div class="field" id="heightFtField" style="display:none"><label>Height (feet and inches)</label><div class="fields" style="grid-template-columns:1fr 1fr;gap:8px"><input id="heightFt" type="number" min="1" max="8" step="1" placeholder="Feet" aria-label="Height feet"/><input id="heightIn" type="number" min="0" max="11.99" step="any" placeholder="Inches" aria-label="Height inches"/></div></div>
+<div class="btns"><button type="button" class="primary" id="calculate">Calculate BMI</button><button type="button" class="ghost" id="reset">Reset</button></div>
+<div class="err" id="error" role="alert"></div>
+<div id="result" aria-live="polite">
+<div class="result-top">
+<div class="metric"><b id="bmiValue">—</b><small>Your BMI</small><br/><span class="status" id="category">—</span></div>
+<div class="metric"><b id="healthyRange">—</b><small>Reference weight range</small></div>
+</div>
+<div class="scale"><div class="scale-bar"><span></span><span></span><span></span><span></span></div><div class="scale-labels"><span>Underweight<br/>below 18.5</span><span>Healthy range<br/>18.5–24.9</span><span>Overweight<br/>25–29.9</span><span>Obesity<br/>30+</span></div></div>
+<div class="note" id="interpretation"></div>
+</div>
+</section>
+<section class="info">
+<h2>How is BMI calculated?</h2>
+For adults, BMI is calculated by dividing weight in kilograms by height in metres squared. This tool converts imperial measurements automatically.
+<h2>Adult BMI categories</h2>
+For adults aged 20 and older, commonly used screening categories are: underweight below 18.5, healthy weight 18.5–24.9, overweight 25–29.9, and obesity 30 or above.
+<h2>Important note</h2>
+BMI is a screening measure, not a diagnosis. It does not directly measure body fat and may not describe health accurately for every person. Adult categories are not intended for children or teens, whose BMI is interpreted using age- and sex-specific percentiles. If you have concerns about your weight or health, consult a qualified healthcare professional.
+</section>
+</main>
+<footer><div class="container">© 2026 ConvertKit Lite. All rights reserved.</div></footer>
+<script>
+const $=id=>document.getElementById(id);
+function updateUnits(){
+  const wu=$('weightUnit').value, hu=$('heightUnit').value;
+  $('weightLabel').textContent=`Weight (${wu})`;
+  $('weightInput').placeholder=wu==='kg'?'e.g. 70':'e.g. 154';
+  $('heightCmField').style.display=hu==='cm'?'block':'none';
+  $('heightFtField').style.display=hu==='ft'?'block':'none';
+  $('error').textContent='';$('result').style.display='none';
+}
+$('weightUnit').addEventListener('change',updateUnits);
+$('heightUnit').addEventListener('change',updateUnits);
+$('calculate').addEventListener('click',()=>{
+  $('error').textContent='';$('result').style.display='none';
+  let weight=Number($('weightInput').value),height;
+  if(!$('weightInput').value||weight<=0){$('error').textContent='Enter a valid weight.';return;}
+  if($('weightUnit').value==='lb') weight*=0.45359237;
+  if($('heightUnit').value==='cm'){
+    const cm=Number($('heightInput').value);
+    if(!$('heightInput').value||cm<50||cm>260){$('error').textContent='Enter a valid height (50–260 cm).';return;}
+    height=cm/100;
+  }else{
+    const ft=Number($('heightFt').value||0),inch=Number($('heightIn').value||0);
+    if(!$('heightFt').value||ft<1||ft>8||inch<0||inch>=12){$('error').textContent='Enter valid height in feet and inches (inches must be below 12).';return;}
+    height=(ft*12+inch)*0.0254;
+  }
+  if(weight>500||height<=0||height>2.6){$('error').textContent='Enter a valid weight and height.';return;}
+  const bmi=weight/(height*height);
+  let category,detail;
+  if(bmi<18.5){category='Underweight';detail='Your BMI is below the standard adult reference range. Consider discussing your circumstances with a healthcare professional.'}
+  else if(bmi<25){category='Healthy weight range';detail='Your BMI falls within the standard healthy-weight reference range for adults. BMI alone cannot determine your overall health.'}
+  else if(bmi<30){category='Overweight';detail='Your BMI falls in the standard adult overweight screening category. BMI is only one measure and should be considered in context.'}
+  else{category='Obesity';detail='Your BMI falls in the standard adult obesity screening category. BMI is not a diagnosis; a healthcare professional can help interpret it in context.'}
+  const min=18.5*height*height,max=24.9*height*height;
+  const fmt=n=>n.toLocaleString(undefined,{maximumFractionDigits:1});
+  $('bmiValue').textContent=bmi.toFixed(1);
+  $('category').textContent=category;
+  const rangeInPounds=$('weightUnit').value==='lb';
+  $('healthyRange').textContent=rangeInPounds?`${fmt(min/0.45359237)}–${fmt(max/0.45359237)} lb`:`${fmt(min)}–${fmt(max)} kg`;
+  $('interpretation').textContent=detail+' Reference weight range is based on adult BMI 18.5–24.9 for your entered height.';
+  $('result').style.display='block';
+});
+$('reset').addEventListener('click',()=>{
+  ['weightInput','heightInput','heightFt','heightIn'].forEach(id=>$(id).value='');
+  $('error').textContent='';$('result').style.display='none';
+  updateUnits();
+});
+updateUnits();
+</script>
+</body>
+</html>
