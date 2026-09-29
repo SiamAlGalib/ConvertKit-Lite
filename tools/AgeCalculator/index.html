@@ -16,8 +16,26 @@ header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);
 .brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
 .brand img{width:34px;height:34px;object-fit:contain}
 .brand .lite{color:#a46bff}
-nav{display:flex;gap:32px;font-size:13px;color:#c4d6f4}
-nav a:hover{color:#fff}
+nav{display:flex;align-items:center;gap:8px;font-size:13px;color:#c4d6f4}
+nav a{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  padding:10px 16px;border:1px solid transparent;border-radius:11px;
+  color:#b9cbea;font-weight:600;letter-spacing:.15px;
+  transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+nav a::after{
+  content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transform-origin:center;
+  transition:transform .2s ease;
+}
+nav a:hover,nav a:focus-visible{
+  color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));
+  border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);
+  transform:translateY(-1px);outline:none;
+}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a:active{transform:translateY(0)}
+@media(max-width:700px){nav{display:none}}
 h1{font-size:36px;letter-spacing:-1.4px;margin:38px 0 8px}
 h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{color:#c4d6ef;font-size:15px;margin:0 0 26px}
@@ -50,6 +68,44 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;paddin
 .stats span{color:#9bb8e0}.stats strong{text-align:right}
 @media(max-width:700px){nav{display:none}.stats{grid-template-columns:1fr}.big.five{grid-template-columns:repeat(3,1fr)}.big b{font-size:28px}h1{font-size:30px}}
 @media(max-width:480px){.time{grid-template-columns:1fr 1fr}.container{width:calc(100% - 24px)}}
+
+.learn-section{margin:0 auto 54px}
+.learn-heading{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.learn-heading span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.learn-intro{color:#9bb8e0;font-size:14px;line-height:1.7;margin:0 0 18px}
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:block;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px;transition:transform .18s,border-color .18s}
+.article-card:hover{transform:translateY(-2px);border-color:#4b9cff}
+.article-tag{display:inline-block;color:#bda2ff;background:rgba(124,63,240,.14);border:1px solid rgba(164,107,255,.28);border-radius:999px;padding:4px 9px;font-size:10px;font-weight:700;margin-bottom:10px}
+.article-card h3{font-size:15px;margin:0 0 8px;color:#f2f6ff}
+.article-card p{font-size:12px;line-height:1.65;color:#9bb8e0;margin:0 0 12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}.learn-heading{font-size:23px}}
+
+
+nav a[href="#learn"]{color:#e6dcff}
+nav a[href="#learn"]::before{
+  content:"✦";font-size:10px;margin-right:7px;color:#ad83ff;
+}
+
+
+.related-tools{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-tools-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}
+.related-tools-title{font-size:25px;letter-spacing:-.6px;margin:0 0 7px}
+.related-tools-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.related-tools-intro{font-size:13px;line-height:1.7;color:#9bb8e0;margin:0;max-width:560px}
+.related-tools-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.related-tool-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.related-tool-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.related-tool-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22),0 0 22px rgba(46,139,255,.1)}
+.related-tool-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:16px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.related-tool-card h3{position:relative;font-size:15px;margin:0 0 8px;color:#f2f6ff}
+.related-tool-card p{position:relative;font-size:12px;line-height:1.65;color:#9bb8e0;margin:0 0 17px}
+.related-tool-link{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.related-tool-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+.related-tool-card.explore .related-tool-icon{color:#e3d4ff;background:linear-gradient(135deg,rgba(124,63,240,.25),rgba(173,91,255,.18));border-color:rgba(173,91,255,.35)}
+@media(max-width:700px){.related-tools-grid{grid-template-columns:1fr}.related-tools-head{display:block}.related-tools-title{font-size:23px}.related-tool-card{min-height:0}}
+
 </style>
 </head>
 <body>
@@ -57,7 +113,7 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;paddin
 <a class="brand" href="../../">
 <!-- LOGO: uses logo.png in your site root. To match the homepage exactly, you can instead paste the same data:image/png;base64,... src from your index.html -->
 <img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/>ConvertKit <span class="lite">Lite</span></a>
-<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="../../#about">About</a><a href="../../#faq">FAQ</a></nav>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="../../#faq">FAQ</a></nav>
 </div></header>
 
 <main class="narrow">
@@ -112,6 +168,120 @@ button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;paddin
 </div>
 </div>
 </main>
+
+
+<section class="narrow learn-section" id="learn">
+  <h2 class="learn-heading">Learn about <span>Age</span></h2>
+  <p class="learn-intro">Helpful articles and guides about age calculation. To add your own articles, edit the article cards below and change each card's title, description, and link.</p>
+  <div class="article-list">
+    <!-- ARTICLE 1: Replace href, title, and description with your article details. -->
+    <a class="article-card" href="../../articles/how-to-calculate-age/">
+      <span class="article-tag">AGE BASICS</span>
+      <h3>How to Calculate Your Exact Age</h3>
+      <p>Learn how years, months, and days are used to work out your exact age.</p>
+      <span class="article-read">Read article →</span>
+    </a>
+    <!-- ARTICLE 2 -->
+    <a class="article-card" href="../../articles/age-in-days-weeks-months/">
+      <span class="article-tag">AGE FACTS</span>
+      <h3>Age in Days, Weeks, and Months</h3>
+      <p>Understand the different ways to express your age beyond years.</p>
+      <span class="article-read">Read article →</span>
+    </a>
+    <!-- ARTICLE 3 -->
+    <a class="article-card" href="../../articles/leap-years-and-birthdays/">
+      <span class="article-tag">CALENDAR GUIDE</span>
+      <h3>Leap Years and Birthdays Explained</h3>
+      <p>See how calendar dates and leap years can affect date calculations.</p>
+      <span class="article-read">Read article →</span>
+    </a>
+    <!-- Duplicate an article-card block above to add more articles. -->
+  </div>
+</section>
+
+<section class="related-tools" aria-labelledby="related-tools-title">
+  <div class="related-tools-head">
+    <div>
+      <h2 class="related-tools-title" id="related-tools-title">Explore More <span>Tools</span></h2>
+      <p class="related-tools-intro">Keep going with these useful calculators, image tools, media converters, and PDF utilities.</p>
+    </div>
+  </div>
+  <div class="related-tools-grid">
+    <a class="related-tool-card" href="../../tools/faceage/">
+      <span class="related-tool-icon" aria-hidden="true">✦</span>
+      <h3>Face Age Estimator</h3>
+      <p>Estimate the apparent age of a face from a photo. Results are approximate.</p>
+      <span class="related-tool-link">Try tool →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/bmicalculator/">
+      <span class="related-tool-icon" aria-hidden="true">⚖</span>
+      <h3>BMI Calculator</h3>
+      <p>Calculate body mass index from height and weight.</p>
+      <span class="related-tool-link">Calculate BMI →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/qrcodegenerator/">
+      <span class="related-tool-icon" aria-hidden="true">▦</span>
+      <h3>QR Code Generator</h3>
+      <p>Create a QR code from text, a link, or other supported content.</p>
+      <span class="related-tool-link">Create QR code →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/imagecompressor/">
+      <span class="related-tool-icon" aria-hidden="true">▧</span>
+      <h3>Image Compressor &amp; Resizer</h3>
+      <p>Reduce image file size or resize images for easier sharing.</p>
+      <span class="related-tool-link">Optimize image →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/removebg/">
+      <span class="related-tool-icon" aria-hidden="true">◩</span>
+      <h3>Remove Background</h3>
+      <p>Remove an image background for a cleaner subject-focused picture.</p>
+      <span class="related-tool-link">Remove background →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/pngtojpg/">
+      <span class="related-tool-icon" aria-hidden="true">⇄</span>
+      <h3>PNG to JPG</h3>
+      <p>Convert PNG images to JPG format when you need a different file type.</p>
+      <span class="related-tool-link">Convert image →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/mp4togif/">
+      <span class="related-tool-icon" aria-hidden="true">▶</span>
+      <h3>MP4 to GIF</h3>
+      <p>Turn a video clip into a shareable animated GIF.</p>
+      <span class="related-tool-link">Convert video →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/mp4tomp3/">
+      <span class="related-tool-icon" aria-hidden="true">♫</span>
+      <h3>MP4 to MP3</h3>
+      <p>Extract audio from an MP4 video into an MP3 file.</p>
+      <span class="related-tool-link">Extract audio →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/compresspdf/">
+      <span class="related-tool-icon" aria-hidden="true">▤</span>
+      <h3>Compress PDF</h3>
+      <p>Reduce PDF file size to make documents easier to upload and share.</p>
+      <span class="related-tool-link">Compress PDF →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/mergepdf/">
+      <span class="related-tool-icon" aria-hidden="true">▥</span>
+      <h3>Merge PDF</h3>
+      <p>Combine multiple PDF documents into one file.</p>
+      <span class="related-tool-link">Merge files →</span>
+    </a>
+    <a class="related-tool-card" href="../../tools/splitpdf/">
+      <span class="related-tool-icon" aria-hidden="true">▦</span>
+      <h3>Split PDF</h3>
+      <p>Separate pages or sections from a PDF document.</p>
+      <span class="related-tool-link">Split PDF →</span>
+    </a>
+    <a class="related-tool-card explore" href="../../#tools">
+      <span class="related-tool-icon" aria-hidden="true">⌘</span>
+      <h3>Explore All Tools</h3>
+      <p>Browse the complete ConvertKit Lite collection to find more utilities.</p>
+      <span class="related-tool-link">Browse all tools →</span>
+    </a>
+  </div>
+</section>
+
 
 <script>
 const $=id=>document.getElementById(id);
@@ -211,5 +381,8 @@ $('reset').onclick=()=>{
   $('ap').value='AM';setTillNow();$('err').textContent='';$('result').style.display='none';
 };
 </script>
+
+
+
 </body>
 </html>
