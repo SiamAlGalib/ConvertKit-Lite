@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Age Calculator — ConvertKit Lite</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:#f2f6ff;font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand .lite{color:#a46bff}
+nav{display:flex;gap:32px;font-size:13px;color:#c4d6f4}
+nav a:hover{color:#fff}
+h1{font-size:36px;letter-spacing:-1.4px;margin:38px 0 8px}
+h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#c4d6ef;font-size:15px;margin:0 0 26px}
+.card{border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);padding:24px;margin-bottom:40px}
+label,.lbl{display:block;font-size:12px;color:#9bb8e0;margin-bottom:8px;font-weight:600}
+.opt{color:#6f8fbd;font-weight:400}
+input,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+input:focus,select:focus{outline:none;border-color:#4b9cff}
+.manual{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:12px}
+.or{display:flex;align-items:center;gap:12px;color:#6f8fbd;font-size:12px;margin:18px 0}
+.or:before,.or:after{content:"";flex:1;height:1px;background:#173e6c}
+.time{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.section{margin-top:20px}
+.until{display:grid;grid-template-columns:1fr auto;gap:12px}
+.until button{padding:12px 20px}
+.hint{font-size:11px;color:#6f8fbd;margin-top:8px}
+.btns{display:flex;gap:12px;margin-top:22px}
+button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;padding:12px 26px;cursor:pointer}
+.primary{background:linear-gradient(100deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.ghost{background:#0a2142;border:1px solid #194a84}
+.err{color:#ff7b95;font-size:13px;margin-top:14px;min-height:18px}
+#result{display:none;margin-top:8px}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.big.five{grid-template-columns:repeat(5,1fr)}
+.big div{border:1px solid #2b5d97;border-radius:14px;background:#071a35;text-align:center;padding:18px 6px}
+.big b{display:block;font-size:36px;font-weight:800;background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{color:#9bb8e0;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.stats div{display:flex;justify-content:space-between;gap:10px;border:1px solid #194a84;border-radius:10px;background:#0a2142;padding:12px 14px;font-size:13px}
+.stats span{color:#9bb8e0}.stats strong{text-align:right}
+@media(max-width:700px){nav{display:none}.stats{grid-template-columns:1fr}.big.five{grid-template-columns:repeat(3,1fr)}.big b{font-size:28px}h1{font-size:30px}}
+@media(max-width:480px){.time{grid-template-columns:1fr 1fr}.container{width:calc(100% - 24px)}}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+<a class="brand" href="../../">
+<!-- LOGO: uses logo.png in your site root. To match the homepage exactly, you can instead paste the same data:image/png;base64,... src from your index.html -->
+<img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/>ConvertKit <span class="lite">Lite</span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="../../#about">About</a><a href="../../#faq">FAQ</a></nav>
+</div></header>
+
+<main class="narrow">
+<h1>Age <span>Calculator</span></h1>
+<p class="sub">Type your date of birth or pick it from the calendar. Add your birth time if you want an even more exact result.</p>
+
+<div class="card">
+<span class="lbl">Type date of birth</span>
+<div class="manual">
+<input id="dd" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day"/>
+<input id="mm" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month"/>
+<input id="yyyy" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year"/>
+</div>
+<div class="or">or</div>
+<label for="cal">Pick from calendar</label>
+<input id="cal" type="date" min="1900-01-01"/>
+
+<div class="section">
+<span class="lbl">Birth time <span class="opt">(optional)</span></span>
+<div class="time">
+<select id="hh" aria-label="Hour"><option value="">Hour</option></select>
+<select id="mi" aria-label="Minute"><option value="">Minute</option></select>
+<select id="ap" aria-label="AM or PM"><option value="AM">AM</option><option value="PM">PM</option></select>
+</div>
+</div>
+
+<div class="section">
+<label for="until">Calculate age until</label>
+<div class="until"><input id="until" type="date" min="1900-01-01"/><button class="ghost" id="tillNow" type="button">Till now</button></div>
+<div class="hint" id="untilHint"></div>
+</div>
+
+<div class="btns"><button class="primary" id="calc">Calculate Age</button><button class="ghost" id="reset">Reset</button></div>
+<div class="err" id="err"></div>
+
+<div id="result">
+<div class="big" id="bigRow">
+<div><b id="y">0</b><small>Years</small></div>
+<div><b id="m">0</b><small>Months</small></div>
+<div><b id="d">0</b><small>Days</small></div>
+<div class="tp"><b id="h">0</b><small>Hours</small></div>
+<div class="tp"><b id="n">0</b><small>Minutes</small></div>
+</div>
+<div class="stats">
+<div><span>Total months</span><strong id="tm"></strong></div>
+<div><span>Total weeks</span><strong id="tw"></strong></div>
+<div><span>Total days</span><strong id="td"></strong></div>
+<div><span>Total hours</span><strong id="th"></strong></div>
+<div><span>Born on a</span><strong id="dow"></strong></div>
+<div><span>Next birthday</span><strong id="nb"></strong></div>
+</div>
+</div>
+</div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const fmt=n=>n.toLocaleString();
+
+// time dropdowns
+for(let i=1;i<=12;i++)$('hh').add(new Option(pad(i),i));
+for(let i=0;i<60;i++)$('mi').add(new Option(pad(i),i));
+const isoDate=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+$('cal').max=isoDate(new Date());
+function setTillNow(){$('until').value=isoDate(new Date());updateHint()}
+function updateHint(){$('untilHint').textContent=$('until').value===isoDate(new Date())?'Set to today (till now). Change it to find the age on any other date.':'Custom date selected. Press "Till now" to go back to today.'}
+$('until').addEventListener('input',updateHint);
+$('tillNow').onclick=setTillNow;
+setTillNow();
+
+// date validity
+function validDate(d,m,y){
+  if(!(d>=1&&m>=1&&m<=12&&y>=1900&&y<=9999))return false;
+  const t=new Date(y,m-1,d);
+  return t.getFullYear()===y&&t.getMonth()===m-1&&t.getDate()===d;
+}
+
+// manual -> calendar
+function manualToCal(){
+  const d=+$('dd').value,m=+$('mm').value,y=+$('yyyy').value;
+  $('cal').value=($('yyyy').value.length===4&&validDate(d,m,y))?`${y}-${pad(m)}-${pad(d)}`:'';
+}
+['dd','mm','yyyy'].forEach((id,i,arr)=>{
+  $(id).addEventListener('input',()=>{
+    $(id).value=$(id).value.replace(/\D/g,'');
+    if($(id).value.length===$(id).maxLength&&i<2)$(arr[i+1]).focus();
+    manualToCal();
+  });
+  $(id).addEventListener('keydown',e=>{
+    if(e.key==='Backspace'&&!$(id).value&&i>0)$(arr[i-1]).focus();
+  });
+});
+
+// calendar -> manual
+$('cal').addEventListener('input',()=>{
+  const v=$('cal').value;
+  if(!v)return;
+  const [y,m,d]=v.split('-');
+  $('yyyy').value=y;$('mm').value=m;$('dd').value=d;
+});
+
+$('calc').onclick=()=>{
+  $('err').textContent='';$('result').style.display='none';
+  const d=+$('dd').value,m=+$('mm').value,y=+$('yyyy').value;
+  if(!$('dd').value||!$('mm').value||!$('yyyy').value)return $('err').textContent='Please enter your full date of birth (or pick it from the calendar).';
+  if($('yyyy').value.length<4||!validDate(d,m,y))return $('err').textContent='That date does not look valid. Please check the day, month and year.';
+
+  // time is optional: needs both hour and minute; minute alone defaults hour, hour alone defaults minute
+  const hasTime=$('hh').value!==''||$('mi').value!=='';
+  let bh=0,bmin=0;
+  if(hasTime){
+    let h12=$('hh').value===''?12:+$('hh').value;
+    bmin=$('mi').value===''?0:+$('mi').value;
+    bh=(h12%12)+($('ap').value==='PM'?12:0);
+  }
+  const b=new Date(y,m-1,d,bh,bmin);
+  const now=new Date();
+  if(!$('until').value)return $('err').textContent='Please choose an end date, or press "Till now".';
+  const [uy,um,ud]=$('until').value.split('-').map(Number);
+  const isNow=$('until').value===isoDate(now);
+  const t=isNow&&hasTime?now:new Date(uy,um-1,ud);
+  if(b>t)return $('err').textContent=isNow?'Date of birth cannot be in the future.':'The end date cannot be before the date of birth.';
+
+  let Y=t.getFullYear()-b.getFullYear(),M=t.getMonth()-b.getMonth(),D=t.getDate()-b.getDate(),H=t.getHours()-b.getHours(),I=t.getMinutes()-b.getMinutes();
+  if(I<0){I+=60;H--}
+  if(H<0){H+=24;D--}
+  if(D<0){M--;D+=new Date(t.getFullYear(),t.getMonth(),0).getDate()}
+  if(M<0){M+=12;Y--}
+
+  const ms=t-b,totalDays=Math.floor(ms/864e5);
+  const today=new Date(t.getFullYear(),t.getMonth(),t.getDate());
+  let nx=new Date(today.getFullYear(),m-1,d);
+  if(nx<today)nx=new Date(today.getFullYear()+1,m-1,d);
+  const left=Math.round((nx-today)/864e5);
+
+  $('y').textContent=Y;$('m').textContent=M;$('d').textContent=D;$('h').textContent=H;$('n').textContent=I;
+  document.querySelectorAll('.tp').forEach(e=>e.style.display=hasTime?'':'none');
+  $('bigRow').className='big'+(hasTime?' five':'');
+  $('tm').textContent=fmt(Y*12+M);
+  $('tw').textContent=fmt(Math.floor(totalDays/7));
+  $('td').textContent=fmt(totalDays);
+  $('th').textContent=fmt(Math.floor(ms/36e5));
+  $('dow').textContent=new Date(y,m-1,d).toLocaleDateString(undefined,{weekday:'long'});
+  $('nb').textContent=left===0?'Today! 🎉':'in '+fmt(left)+' day'+(left===1?'':'s');
+  $('result').style.display='block';
+};
+
+$('reset').onclick=()=>{
+  ['dd','mm','yyyy','cal','hh','mi'].forEach(id=>$(id).value='');
+  $('ap').value='AM';setTillNow();$('err').textContent='';$('result').style.display='none';
+};
+</script>
+</body>
+</html>
