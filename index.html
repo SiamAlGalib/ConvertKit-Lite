@@ -7,6 +7,7 @@
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
 :root{--bg:#020c1e;--panel:#071a35;--panel2:#0a2142;--border:#174b88;--muted:#9bb8e0;--white:#f2f6ff;--blue:#2c83ff;--purple:#a35cff;}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:
 radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),
@@ -17,6 +18,9 @@ header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);
 .navbar{height:100%;display:flex;align-items:center;justify-content:space-between;gap:25px}
 .brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
 .brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;letter-spacing:0;text-transform:none;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
 nav{display:flex;align-items:center;gap:32px;font-size:13px;color:#c4d6f4}nav a{padding:27px 0 23px;border-bottom:2px solid transparent}nav a.active{color:white;border-color:#7257ff}
 .nav-actions{display:flex;align-items:center;gap:25px}
 .theme{width:40px;height:40px;border-radius:50%;border:1px solid #2b5d97;background:rgba(20,60,120,.35);color:#9ebef0;display:grid;place-items:center;cursor:pointer;padding:0;transition:transform .2s,background .2s,border-color .2s}
@@ -106,7 +110,7 @@ h1{font-size:43px;line-height:1.12;letter-spacing:-1.8px;margin:16px 0 13px}h1 .
 .tools-grid .tool-card:nth-child(5n) .tool-icon{background:linear-gradient(135deg,#287cff,#24b7ff)}
 .features{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #164d8b;border-radius:13px;background:#061a36;padding:19px 10px;margin:20px 0 32px}
 .feature{display:flex;align-items:center;gap:13px;padding:0 20px;border-right:1px solid #173e6c}.feature:last-child{border:0}.feature-icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#10347a;color:#5d9cff;font-size:23px;flex:0 0 auto}.feature b{display:block;font-size:11px}.feature small{display:block;color:#9db7dd;font-size:9px;margin-top:6px}
-footer{border-top:1px solid #12345d;padding:24px 0 30px;display:flex;align-items:center;justify-content:space-between;color:#9db7dd;font-size:11px}footer .brand{font-size:16px}footer .brand img{width:29px;height:29px}footer nav{gap:28px}footer nav a{border:0;padding:0;font-size:11px}
+footer{border-top:1px solid #12345d;padding:24px 0 30px;display:flex;align-items:center;justify-content:space-between;color:#9db7dd;font-size:11px}footer .brand{font-size:16px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px;top:calc(100% - 2px)}footer .brand{margin-bottom:6px}footer nav{gap:28px}footer nav a{border:0;padding:0;font-size:11px}
 .toast{position:fixed;bottom:22px;right:22px;background:#102c54;border:1px solid #347cff;border-radius:10px;padding:13px 18px;color:white;display:none;z-index:50;box-shadow:0 10px 35px #0005}
 @media(max-width:950px){.hero{grid-template-columns:1fr;gap:30px}.tools-grid{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(4,1fr)}.features{grid-template-columns:repeat(2,1fr);gap:20px}.feature:nth-child(2){border:0}nav{display:none}}
 @media(max-width:560px){.container{width:calc(100% - 24px)}h1{font-size:34px}.categories{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:1fr}.phase-header{align-items:flex-start}.phase-title{align-items:flex-start;flex-direction:column;gap:8px}.features{grid-template-columns:1fr}.feature{border:0}footer{flex-direction:column;gap:18px;text-align:center}}
@@ -119,6 +123,7 @@ html[data-theme="light"] header{background:rgba(255,255,255,.88);border-color:#d
 html[data-theme="light"] nav{color:#3c5478}
 html[data-theme="light"] nav a.active{color:#0d1b33}
 html[data-theme="light"] .theme{background:#fff;border-color:#c5d5ee;color:#c47a00}
+html[data-theme="light"] .brand .by{color:#0a8fb0;text-shadow:none}
 html[data-theme="light"] .kicker{border-color:#b9cdee;color:#2b4a7a}
 html[data-theme="light"] .hero-copy p{color:#41587d}
 html[data-theme="light"] .checks{color:#2b4a7a}
@@ -149,7 +154,7 @@ html[data-theme="light"] .toast{background:#fff;color:#0d1b33;border-color:#347c
 </head>
 <body>
 <header><div class="container navbar">
-<a class="brand" href="#"><img alt="ConvertKit Lite logo" src="logo.png"/>ConvertKit <span class="lite">Lite</span></a>
+<a class="brand" href="#"><img alt="ConvertKit Lite logo" src="logo.png"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
 <nav><a class="active" href="#">Home</a><a href="#tools">Tools</a><a href="#about">About</a><a href="#faq">FAQ</a></nav>
 <div class="nav-actions">
 <button class="theme" id="themeToggle" type="button" aria-label="Toggle light/dark mode">
@@ -224,24 +229,21 @@ html[data-theme="light"] .toast{background:#fff;color:#0d1b33;border-color:#347c
 <div class="feature"><span class="feature-icon">∞</span><div><b>Free to Use</b><small>No hidden fees. No registration needed.</small></div></div>
 </section>
 </main>
-<footer class="container" id="faq"><div class="brand"><img alt="ConvertKit Lite logo" src="logo.png"/>ConvertKit <span class="lite">Lite</span></div><div>© 2026 ConvertKit Lite. All rights reserved.</div></footer>
+<footer class="container" id="faq"><div class="brand"><img alt="ConvertKit Lite logo" src="logo.png"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></div><div>© 2026 ConvertKit Lite. All rights reserved.</div></footer>
 <div class="toast" id="toast"></div>
 <script>
 const sourceFormat=document.getElementById('sourceFormat');
 const outputFormat=document.getElementById('outputFormat');
-
 const conversionPairs=[
   ['MOV','MP4'],['JPG','PDF'],['PNG','WEBP'],['PDF','JPG'],
   ['DOCX','PDF'],['MP4','MP3'],['M4A','MP3'],['XLSX','CSV']
 ];
 let pairIndex=0;
 let pairTimer;
-
 function setConversionPair(pair){
   sourceFormat.textContent=pair[0];
   outputFormat.textContent=pair[1];
 }
-
 function startPairAnimation(){
   clearInterval(pairTimer);
   pairTimer=setInterval(()=>{
@@ -257,7 +259,6 @@ function startPairAnimation(){
     },180);
   },3200);
 }
-
 setConversionPair(conversionPairs[0]);
 startPairAnimation();
 
@@ -277,11 +278,7 @@ document.querySelectorAll('.category').forEach(btn=>btn.addEventListener('click'
   });
 }));
 
-// =====================================================
-// CONNECTED TOOLS
-// These are the tools that actually exist in /tools/
-// =====================================================
-
+// CONNECTED TOOLS (these exist in /tools/)
 const toolRoutes = {
   "Word to PDF": "tools/wordtopdf/",
   "Compress PDF": "tools/compresspdf/",
@@ -301,13 +298,10 @@ const toolRoutes = {
 
 function chooseTool(name) {
   const route = toolRoutes[name];
-
   if (route) {
     window.location.href = route;
     return;
   }
-
-  // Tool doesn't exist yet
   showToast(name + " is coming soon.");
 }
 
