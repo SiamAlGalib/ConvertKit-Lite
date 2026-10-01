@@ -2,579 +2,82 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MP4 to GIF Converter — ConvertKit Lite</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MP4 to GIF Converter — Free, Private | ConvertKit Lite</title>
+<meta name="description" content="Convert MP4 videos to animated GIFs directly in your browser. Adjust FPS, width and duration. Private and free.">
+<link rel="icon" href="../../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;min-height:100vh;font-family:Inter,Arial,sans-serif;color:#f5f8ff;
-  background:
-    radial-gradient(circle at 18% 18%,rgba(37,119,255,.12),transparent 30%),
-    radial-gradient(circle at 82% 72%,rgba(166,58,255,.13),transparent 34%),
-    linear-gradient(135deg,#020a19 0%,#03132b 58%,#071a39 100%);
-}
-body:after{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  background:linear-gradient(140deg,transparent 69%,rgba(76,45,220,.15) 69%,transparent 85%);
-}
-button,.upload{font:inherit}
-button{border:0}
-.topbar{
-  height:74px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.9);
-  backdrop-filter:blur(16px);display:flex;align-items:center;position:sticky;top:0;z-index:50;
-}
-.topbar-inner{width:min(1180px,calc(100% - 36px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:10px;color:#f4f7ff;text-decoration:none;font-size:21px;font-weight:800;letter-spacing:-.8px}
-.brand-mark{
-  width:38px;height:38px;border-radius:9px;display:grid;place-items:center;overflow:hidden;
-  background:#071832;border:1px solid #174b88;box-shadow:0 0 18px rgba(35,132,255,.14)
-}
-.brand-mark span{font-size:19px;color:#42a5ff;line-height:1}
-.brand .lite{color:#a46bff}
-.header-actions{display:flex;align-items:center;gap:10px}
-.back-link,.top-upload{
-  border:1px solid #1b4f8d;border-radius:9px;padding:10px 15px;background:#071a35;
-  color:#dbe9ff;text-decoration:none;font-weight:700;font-size:12px;cursor:pointer
-}
-.top-upload{background:linear-gradient(100deg,#2d82ff,#7c3ff0);border-color:transparent;color:#fff}
-input[type=file]{display:none}
-
-main{width:min(1180px,calc(100% - 36px));margin:24px auto 45px}
-.page-heading{text-align:center;margin:15px 0 22px}
-.page-heading .eyebrow{
-  display:inline-flex;align-items:center;gap:8px;border:1px solid #315d9d;
-  border-radius:20px;padding:6px 13px;color:#9ecaff;background:rgba(19,70,135,.2);
-  font-size:11px;font-weight:800
-}
-.page-heading h1{margin:13px 0 7px;font-size:34px;letter-spacing:-1.2px}
-.page-heading p{margin:0;color:#9eb8dc;font-size:13px}
-
-.converter-shell{
-  border:1px solid #164d8b;border-radius:20px;background:
-  linear-gradient(145deg,rgba(10,20,43,.97),rgba(4,12,29,.98));
-  box-shadow:0 18px 60px rgba(0,0,0,.3),0 0 45px rgba(37,119,255,.06);
-  padding:14px;
-}
-.toolbar{
-  background:linear-gradient(145deg,#0a2244,#071832);border:1px solid #194b84;
-  border-radius:14px;padding:10px;display:flex;gap:7px;align-items:center;flex-wrap:wrap;
-  box-shadow:0 8px 28px #0004
-}
-.toolbar .control{
-  border:1px solid #214f86;border-radius:9px;padding:9px 12px;background:#0b254a;
-  color:#dce9ff;font-weight:700;font-size:11px
-}
-.toolbar label{font-size:11px;font-weight:700;color:#a9c1e3;display:flex;align-items:center;gap:6px}
-.toolbar select,.toolbar input[type=number]{
-  padding:8px;border:1px solid #31537f;border-radius:7px;background:#071832;color:#fff;
-  font:inherit;font-size:11px
-}
-.toolbar select{min-width:96px}
-.toolbar input[type=number]{width:64px}
-.toolbar .spacer{flex:1}
-.convert-btn{
-  border-radius:9px;padding:10px 16px;background:linear-gradient(100deg,#2d82ff,#8a45f5);
-  color:#fff;font-weight:800;font-size:11px;cursor:pointer;box-shadow:0 7px 20px rgba(45,130,255,.18)
-}
-.convert-btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
-
-.hint{margin:10px 4px 2px;color:#7696bf;font-size:11px;text-align:center}
-
-.workspace{
-  margin-top:14px;display:grid;grid-template-columns:1fr 300px;gap:14px
-}
-.preview-panel,.settings-panel{
-  background:linear-gradient(145deg,#071b37,#051329);
-  border:1px solid #17477e;border-radius:15px
-}
-.preview-panel{padding:18px;min-height:570px;position:relative}
-.settings-panel{padding:15px}
-.panel-title{font-size:12px;font-weight:800;color:#dce9ff;margin:2px 0 13px}
-.preview-empty{
-  min-height:520px;display:flex;align-items:center;justify-content:center;padding:25px
-}
-.upload-card{
-  width:min(650px,100%);min-height:390px;border:1px solid #245ea3;border-radius:20px;
-  background:linear-gradient(145deg,rgba(13,17,37,.96),rgba(6,9,23,.98));
-  padding:13px;box-shadow:0 0 40px rgba(37,119,255,.08)
-}
-.upload-inner{
-  min-height:360px;border:1px dashed rgba(65,151,255,.6);border-radius:15px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:
-    radial-gradient(circle at 50% 45%,rgba(74,79,255,.13),transparent 32%),
-    radial-gradient(circle at 50% 55%,rgba(0,126,255,.08),transparent 58%);
-}
-.cloud{
-  width:78px;height:78px;border-radius:21px;border:1px solid #398dff;
-  display:grid;place-items:center;color:#57a4ff;font-size:34px;
-  box-shadow:0 0 28px rgba(45,130,255,.2),inset 0 0 18px rgba(45,130,255,.08);
-  margin-bottom:18px
-}
-.upload-inner h2{margin:0 0 8px;font-size:23px;letter-spacing:-.5px}
-.upload-inner p{margin:0 0 20px;color:#91acd1;font-size:12px;max-width:430px;line-height:1.6}
-.select-file{
-  display:inline-flex;align-items:center;gap:8px;border:0;border-radius:10px;padding:12px 22px;
-  background:linear-gradient(100deg,#2d82ff,#8a45f5);color:#fff;font-weight:800;font-size:12px;
-  cursor:pointer;box-shadow:0 10px 28px rgba(45,130,255,.2)
-}
-.drop-note{margin-top:13px!important;margin-bottom:0!important;color:#607fa9!important;font-size:10px!important}
-
-.video-wrap{
-  display:none;min-height:520px;align-items:center;justify-content:center;flex-direction:column;gap:13px
-}
-.video-frame{
-  width:min(760px,100%);border:1px solid #24568e;border-radius:13px;padding:8px;
-  background:#020a18;box-shadow:0 14px 40px #0008
-}
-video{width:100%;max-height:430px;display:block;border-radius:8px;background:#000}
-.file-name{font-size:11px;color:#9eb8dc;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.status{
-  width:min(760px,100%);padding:10px 12px;border:1px solid #17477e;border-radius:9px;
-  background:#06162d;color:#83a7d5;font-size:11px;text-align:center
-}
-.progress{
-  width:min(760px,100%);height:7px;border-radius:99px;background:#061329;overflow:hidden;
-  border:1px solid #173e6c;display:none
-}
-.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#2d82ff,#9b5cff);transition:width .15s}
-
-.settings-section{
-  border:1px solid #17477e;border-radius:11px;background:#06162d;padding:12px;margin-bottom:10px
-}
-.settings-section h4{margin:0 0 10px;font-size:11px;color:#cfe1fb}
-.option-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:9px 0}
-.option-row span{font-size:10px;color:#88a7ce}
-.option-row select,.option-row input{
-  width:105px;padding:7px;border:1px solid #31537f;border-radius:7px;background:#071832;color:#fff;font-size:10px
-}
-.option-row input[type=number]{width:78px}
-.check-row{display:flex;align-items:center;gap:8px;margin:9px 0;color:#88a7ce;font-size:10px}
-.check-row input{accent-color:#4b9cff}
-
-.output-card{
-  display:none;border:1px solid #2a619f;border-radius:12px;background:#071b37;padding:12px;margin-top:10px
-}
-.output-card h4{margin:0 0 8px;font-size:11px;color:#dce9ff}
-.output-meta{font-size:10px;color:#7898c0;line-height:1.7}
-.download{
-  width:100%;margin-top:10px;padding:10px;border-radius:8px;
-  background:linear-gradient(100deg,#2d82ff,#8a45f5);color:#fff;font-weight:800;font-size:11px;cursor:pointer
-}
-
-.features{
-  margin-top:16px;border:1px solid #164d8b;border-radius:14px;background:#061a36;
-  padding:14px 8px;display:grid;grid-template-columns:repeat(3,1fr)
-}
-.feature{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 16px;border-right:1px solid #173e6c}
-.feature:last-child{border:0}
-.feature-icon{
-  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
-  background:#10347a;color:#66a9ff;font-size:17px
-}
-.feature b{display:block;font-size:10px}.feature small{display:block;color:#7895bc;font-size:8px;margin-top:4px}
-
-#dropZone.dragover .upload-card{border-color:#56a6ff;box-shadow:0 0 45px rgba(45,130,255,.2)}
-.loading-note{font-size:10px;color:#6f94c1;text-align:center;margin-top:9px;line-height:1.5}
-
-@media(max-width:900px){
-  .workspace{grid-template-columns:1fr}
-  .settings-panel{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  .settings-panel .panel-title{grid-column:1/-1}
-  .settings-section{margin:0}
-  .output-card{grid-column:1/-1}
-}
-@media(max-width:650px){
-  main,.topbar-inner{width:calc(100% - 20px)}
-  .back-link{display:none}
-  .page-heading h1{font-size:27px}
-  .toolbar{gap:5px}
-  .toolbar .spacer{display:none}
-  .preview-empty{padding:12px;min-height:480px}
-  .upload-card{min-height:350px}
-  .upload-inner{min-height:320px}
-  .settings-panel{display:block}
-  .settings-section{margin-bottom:10px}
-  .features{grid-template-columns:1fr}
-  .feature{border:0;border-bottom:1px solid #173e6c}
-  .feature:last-child{border:0}
-}
+:root{--bg:#020a19;--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent:#7c6cff;--accent-2:#a46bff;--accent-blue:#2d82ff;--success:#22c55e;--danger:#f43f5e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}a{color:inherit;text-decoration:none}.container{width:min(1180px,calc(100% - 48px));margin:auto}.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}.brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;letter-spacing:0;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}nav{display:flex;align-items:center;gap:8px;font-size:13px}nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;transition:.2s}nav a:hover{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);transform:translateY(-1px)}nav a:after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}nav a:hover:after{transform:scaleX(1)}nav a[href="#learn"]{color:#e6dcff}nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c55e,#2d82ff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(45,130,255,.35)}h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}.trust-row div:before{content:"✓";color:var(--success);font-weight:700}
+.tool{margin-top:32px;margin-bottom:48px}.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:28px}.dropzone{border:2px dashed rgba(76,140,255,.45);border-radius:14px;background:rgba(45,130,255,.05);padding:44px 20px;text-align:center;cursor:pointer;transition:.2s}.dropzone:hover,.dropzone.over{border-color:var(--accent-blue);background:rgba(45,130,255,.1)}.dz-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 16px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);display:grid;place-items:center;font-size:24px}.dropzone h3{font-size:17px;font-weight:600;margin-bottom:6px}.dropzone p{color:var(--text-faint);font-size:13.5px}.dropzone input{display:none}
+.file-box{display:none;margin-top:18px;border:1px solid #194a84;border-radius:12px;background:var(--panel-2);padding:12px 14px;align-items:center;gap:12px}.file-icon{width:34px;height:34px;border-radius:8px;background:rgba(244,63,94,.15);color:#ff6680;display:grid;place-items:center;flex-shrink:0}.file-meta{min-width:0;flex:1}.file-name{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.file-size{font-size:11px;color:var(--text-faint);margin-top:3px}.clear{background:none;border:1px solid #194a84;color:var(--text-dim);border-radius:9px;padding:8px 12px;cursor:pointer;font-weight:600}
+.settings{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.setting{background:var(--panel-2);border:1px solid #194a84;border-radius:12px;padding:14px}.setting label{display:block;font-size:12px;color:var(--text-dim);font-weight:600;margin-bottom:9px}.setting select,.setting input[type=number]{width:100%;background:#061329;border:1px solid #31537f;color:#fff;border-radius:9px;padding:10px;font:inherit;font-size:12px}.setting input[type=checkbox]{accent-color:#2d82ff}.check{display:flex;align-items:center;gap:8px;color:var(--text-dim);font-size:12px;padding-top:7px}.hint{font-size:11.5px;color:var(--text-faint);margin-top:12px;line-height:1.6}.primary{width:100%;margin-top:18px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff;border:0;border-radius:12px;padding:15px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 8px 25px rgba(66,67,255,.2);display:flex;justify-content:center;align-items:center;gap:8px}.primary:disabled{opacity:.4;cursor:not-allowed}.spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite;display:none}.primary.loading .spinner{display:inline-block}@keyframes spin{to{transform:rotate(360deg)}}
+.progress-wrap{display:none;margin-top:16px}.progress-top{display:flex;justify-content:space-between;color:var(--text-faint);font-size:11px;margin-bottom:7px}.progress{height:7px;border-radius:99px;background:#061329;border:1px solid #173e6c;overflow:hidden}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,#2d82ff,#9b5cff);transition:width .15s}.status{margin-top:10px;color:var(--text-dim);font-size:12px;text-align:center;min-height:18px}.video-preview{display:none;margin-top:18px;border:1px solid #194a84;border-radius:14px;background:#061329;padding:10px}.video-preview video{display:block;width:100%;max-height:400px;background:#000;border-radius:9px}.result{display:none;margin-top:22px;text-align:center;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);border-radius:14px;padding:26px}.result-icon{width:52px;height:52px;border-radius:50%;margin:0 auto 14px;background:rgba(34,197,94,.15);color:var(--success);display:grid;place-items:center;font-size:24px}.result h3{font-size:17px;margin-bottom:6px}.result p{color:var(--text-dim);font-size:13.5px;margin-bottom:18px}.result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.download,.reset{padding:11px 22px;border-radius:10px;font-weight:600;font-size:13.5px;cursor:pointer}.download{background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff}.reset{background:none;border:1px solid #194a84;color:var(--text-dim)}.error{display:none;margin-top:16px;padding:12px 16px;border-radius:10px;background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);color:#fca5b5;font-size:13px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}.f-icon{font-size:20px;margin-bottom:8px}.feature h4{font-size:13.5px;margin-bottom:4px}.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}.how,.faq,.learn{margin-bottom:50px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}.step h3{font-size:14.5px;margin-bottom:6px}.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}details{border:1px solid #174b88;border-radius:12px;background:#071a35;margin-bottom:10px;padding:0 16px}summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}summary::-webkit-details-marker{display:none}summary:after{content:"+";color:#80baff;font-size:18px}details[open] summary:after{content:"–"}details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+.article-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}.article-card:hover{transform:translateY(-3px);border-color:#4b9cff}.article-banner{position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#123a78,#4a2a9c)}.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}.glyph{font-size:46px}.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}.article-body{padding:16px 18px 18px}.article-body h3{font-size:15px;margin-bottom:8px}.article-body p{font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.rt-card{position:relative;display:flex;flex-direction:column;padding:20px;border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}.rt-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}.rt-card h3{font-size:15px;margin-bottom:8px}.rt-card p{font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}.rt-card .go{margin-top:auto;color:#80baff;font-size:12px;font-weight:700}.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}footer .brand{font-size:16px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px;top:calc(100% - 2px)}
+@media(max-width:700px){nav{display:none}.steps,.related-grid,.features,.article-list{grid-template-columns:1fr}h1{font-size:30px}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}.settings{grid-template-columns:1fr}.card{padding:18px}}
+@media(max-width:520px){.hero{margin-top:35px}.trust-row{gap:10px;flex-direction:column}.dropzone{padding:38px 15px}}
 </style>
 </head>
-
 <body>
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <span class="brand-mark"><span>✦</span></span>
-      ConvertKit <span class="lite">Lite</span>
-    </a>
-    <div class="header-actions">
-      <a class="back-link" href="/">← Back to Tools</a>
-      <label class="top-upload"><input id="topFile" type="file" accept="video/mp4,video/*">Open MP4</label>
-    </div>
-  </div>
-</header>
-
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"><span class="brand-text"><span>ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+</div></header>
 <main>
-  <div class="page-heading">
-    <span class="eyebrow">✦ VIDEO TOOL</span>
-    <h1>MP4 to GIF Converter</h1>
-    <p>Convert your MP4 video into an animated GIF directly in your browser.</p>
-  </div>
-
-  <section class="converter-shell">
-    <div class="toolbar">
-      <div class="control">Input: MP4</div>
-      <div class="control">Output: GIF</div>
-      <div class="spacer"></div>
-      <button id="convertBtn" class="convert-btn" disabled>Convert to GIF</button>
-    </div>
-
-    <div class="hint">Choose an MP4, adjust the GIF settings, then convert. Your video stays on your device.</div>
-
-    <section class="workspace">
-      <section class="preview-panel" id="dropZone">
-        <div class="preview-empty" id="emptyState">
-          <div class="upload-card">
-            <div class="upload-inner">
-              <div class="cloud">▶</div>
-              <h2>Upload your MP4</h2>
-              <p>Drop your MP4 video here or choose a file from your device to turn it into an animated GIF.</p>
-              <label class="select-file">
-                <input id="mainFile" type="file" accept="video/mp4,video/*">
-                ↑ Select MP4
-              </label>
-              <p class="drop-note">MP4 video • Processing happens in your browser</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="video-wrap" id="videoWrap">
-          <div class="video-frame"><video id="previewVideo" controls playsinline></video></div>
-          <div class="file-name" id="fileName"></div>
-          <div class="status" id="status">Ready to convert.</div>
-          <div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div>
-        </div>
-      </section>
-
-      <aside class="settings-panel">
-        <div class="panel-title">GIF SETTINGS</div>
-
-        <div class="settings-section">
-          <h4>Quality</h4>
-          <div class="option-row">
-            <span>Frame rate</span>
-            <select id="fps">
-              <option value="8">8 FPS</option>
-              <option value="10" selected>10 FPS</option>
-              <option value="12">12 FPS</option>
-              <option value="15">15 FPS</option>
-              <option value="20">20 FPS</option>
-            </select>
-          </div>
-          <div class="option-row">
-            <span>Width</span>
-            <select id="width">
-              <option value="-1">Original</option>
-              <option value="320">320 px</option>
-              <option value="480" selected>480 px</option>
-              <option value="640">640 px</option>
-              <option value="800">800 px</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="settings-section">
-          <h4>Duration</h4>
-          <div class="option-row">
-            <span>Start (sec)</span>
-            <input id="start" type="number" min="0" step="0.1" value="0">
-          </div>
-          <div class="option-row">
-            <span>End (sec)</span>
-            <input id="end" type="number" min="0" step="0.1" placeholder="Auto">
-          </div>
-          <div class="check-row">
-            <input id="loop" type="checkbox" checked>
-            <label for="loop">Loop GIF continuously</label>
-          </div>
-        </div>
-
-        <div class="settings-section">
-          <h4>Tip</h4>
-          <div class="loading-note">
-            Short clips and smaller widths create GIFs faster and keep the output size smaller.
-          </div>
-        </div>
-
-        <div class="output-card" id="outputCard">
-          <h4>GIF READY</h4>
-          <div class="output-meta" id="outputMeta">Your converted GIF is ready.</div>
-          <button id="downloadBtn" class="download">↓ Download GIF</button>
-        </div>
-      </aside>
-    </section>
-  </section>
-
-  <div class="features">
-    <div class="feature">
-      <div class="feature-icon">⚡</div>
-      <div><b>Fast Conversion</b><small>Runs directly in your browser.</small></div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">♢</div>
-      <div><b>Secure &amp; Private</b><small>Your files stay on your device.</small></div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">∞</div>
-      <div><b>Works Everywhere</b><small>Use it on any modern browser.</small></div>
-    </div>
-  </div>
+<section class="hero"><div class="icon-badge">▶</div><h1>MP4 to GIF <span>Converter</span></h1><p>Convert MP4 videos to animated GIFs in seconds. Adjust quality, size and duration right in your browser.</p><div class="trust-row"><div>No registration required</div><div>Secure &amp; private</div><div>Works on any device</div></div></section>
+<div class="narrow tool">
+<div class="card">
+<div class="dropzone" id="drop"><div class="dz-icon">▶</div><h3>Drop an MP4 video here</h3><p>or click to browse — choose a video from your device</p><input id="pick" type="file" accept="video/mp4,video/*"></div>
+<div class="file-box" id="fileBox"><div class="file-icon">▶</div><div class="file-meta"><div class="file-name" id="fileName"></div><div class="file-size" id="fileSize"></div></div><button class="clear" id="clear" type="button">Clear</button></div>
+<div class="video-preview" id="videoPreview"><video id="video" controls playsinline></video></div>
+<div class="settings">
+<div class="setting"><label for="fps">Frame rate</label><select id="fps"><option value="8">8 FPS</option><option value="10" selected>10 FPS</option><option value="12">12 FPS</option><option value="15">15 FPS</option><option value="20">20 FPS</option></select></div>
+<div class="setting"><label for="width">GIF width</label><select id="width"><option value="-1">Original</option><option value="320">320 px</option><option value="480" selected>480 px</option><option value="640">640 px</option><option value="800">800 px</option></select></div>
+<div class="setting"><label>Loop</label><div class="check"><input id="loop" type="checkbox" checked><span>Loop GIF continuously</span></div></div>
+<div class="setting"><label for="start">Start time (sec)</label><input id="start" type="number" min="0" step="0.1" value="0"></div>
+<div class="setting"><label for="end">End time (sec)</label><input id="end" type="number" min="0" step="0.1" placeholder="Auto"></div>
+<div class="setting"><label>Tip</label><div class="hint" style="margin:0">Short clips and smaller widths create GIFs faster and keep output sizes smaller.</div></div>
+</div>
+<div class="hint">GIFs can become large. For the best balance, use 8–12 FPS and a width around 320–480 px for short clips.</div>
+<button class="primary" id="convert" disabled><span class="spinner"></span><span id="convertText">Convert to GIF</span></button>
+<div class="progress-wrap" id="progressWrap"><div class="progress-top"><span id="progressText">Preparing…</span><span id="percent">0%</span></div><div class="progress"><div class="progress-bar" id="bar"></div></div></div>
+<div class="status" id="status">Choose an MP4 video to begin.</div>
+<div class="error" id="error"></div>
+<div class="result" id="result"><div class="result-icon">✓</div><h3>Your GIF is ready</h3><p id="resultText">Animated GIF created successfully.</p><div class="result-actions"><button class="download" id="download">↓ Download GIF</button><button class="reset" id="reset">Convert another</button></div></div>
+</div>
+<div class="features"><div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your video is processed locally in your browser — nothing is uploaded.</p></div><div class="feature"><div class="f-icon">⚡</div><h4>Fast</h4><p>No server upload or waiting. Conversion runs directly on your device.</p></div><div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account, no watermark and no subscription required.</p></div></div>
+</div>
+<section class="narrow how"><h2 class="section-title">How to convert <span>MP4 to GIF</span></h2><p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p><div class="steps"><div class="step"><b>1</b><h3>Add your video</h3><p>Drag an MP4 onto the box above or click it to browse your files.</p></div><div class="step"><b>2</b><h3>Choose the settings</h3><p>Set the frame rate, GIF width and optional start and end times.</p></div><div class="step"><b>3</b><h3>Convert &amp; download</h3><p>Start the conversion, then download your animated GIF when it is ready.</p></div></div></section>
+<section class="narrow learn" id="learn"><h2 class="section-title">Learn about <span>Video &amp; GIFs</span></h2><p class="section-intro">Helpful guides on video conversion, GIF size and quality.</p><div class="article-list"><a class="article-card" href="../../articles/how-to-convert-mp4-to-gif/"><div class="article-banner"><span class="glyph">🎞️</span><span class="article-tag">HOW-TO</span></div><div class="article-body"><h3>How to Convert MP4 to GIF</h3><p>Learn how to turn a video clip into a shareable animated GIF.</p><span class="article-read">Read article →</span></div></a><a class="article-card" href="../../articles/gif-vs-video/"><div class="article-banner b2"><span class="glyph">⚖️</span><span class="article-tag">VIDEO GUIDE</span></div><div class="article-body"><h3>GIF vs Video: Which Should You Use?</h3><p>Understand the differences in size, compatibility and quality.</p><span class="article-read">Read article →</span></div></a><a class="article-card" href="../../articles/reduce-gif-file-size/"><div class="article-banner b3"><span class="glyph">📉</span><span class="article-tag">GIF TIPS</span></div><div class="article-body"><h3>How to Reduce GIF File Size</h3><p>Use fewer frames and a smaller width to make GIFs easier to share.</p><span class="article-read">Read article →</span></div></a></div></section>
+<section class="narrow faq" id="faq"><h2 class="section-title">Frequently asked <span>questions</span></h2><p class="section-intro">Quick answers about converting MP4 to GIF with ConvertKit Lite.</p><details><summary>Is it safe to convert my video here?</summary><p>Yes. The conversion runs in your browser. The video is not uploaded to a ConvertKit Lite server.</p></details><details><summary>Why can a GIF be much larger than the original video?</summary><p>GIF uses individual frames and a limited color palette, while modern video formats use much more efficient compression. Shorter clips, lower FPS and smaller widths help.</p></details><details><summary>What FPS should I use?</summary><p>8–12 FPS is a practical starting point for many GIFs. Higher FPS can look smoother but usually increases processing time and file size.</p></details><details><summary>Can I convert only part of a video?</summary><p>Yes. Set a start and end time before converting to create a GIF from a selected section.</p></details><details><summary>Does this work on mobile?</summary><p>It is designed for modern browsers on desktop and mobile, although very large videos may require more memory than a phone can provide.</p></details></section>
+<section class="related"><h2 class="section-title">Explore More <span>Tools</span></h2><p class="section-intro">More tools for converting and optimizing your media.</p><div class="related-grid"><a class="rt-card" href="../mp4tomp3/"><span class="rt-icon">🎵</span><h3>MP4 to MP3</h3><p>Extract audio from an MP4 video directly in your browser.</p><span class="go">Extract audio →</span></a><a class="rt-card" href="../compressimage/"><span class="rt-icon">▧</span><h3>Compress Image</h3><p>Reduce image file size for easier sharing and faster pages.</p><span class="go">Compress image →</span></a><a class="rt-card" href="../webptojpg/"><span class="rt-icon">🖼️</span><h3>WebP to JPG</h3><p>Convert modern WebP images into widely supported JPG files.</p><span class="go">Convert image →</span></a><a class="rt-card" href="../movtomp4/"><span class="rt-icon">▶</span><h3>MOV to MP4</h3><p>Convert MOV videos into MP4 for broader compatibility.</p><span class="go">Convert video →</span></a><a class="rt-card" href="../mkvtomp4/"><span class="rt-icon">▣</span><h3>MKV to MP4</h3><p>Convert MKV video files into MP4 format.</p><span class="go">Convert video →</span></a><a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection.</p><span class="go">Browse all tools →</span></a></div></section>
 </main>
-
-<!-- GIF encoder: no FFmpeg, no WASM conversion engine -->
+<footer class="container"><a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"><span class="brand-text"><span>ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a><div>© 2026 ConvertKit Lite. All rights reserved.</div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
 <script>
-const topFile = document.getElementById("topFile");
-const mainFile = document.getElementById("mainFile");
-const dropZone = document.getElementById("dropZone");
-const emptyState = document.getElementById("emptyState");
-const videoWrap = document.getElementById("videoWrap");
-const previewVideo = document.getElementById("previewVideo");
-const fileName = document.getElementById("fileName");
-const statusBox = document.getElementById("status");
-const progress = document.getElementById("progress");
-const progressBar = document.getElementById("progressBar");
-const convertBtn = document.getElementById("convertBtn");
-const outputCard = document.getElementById("outputCard");
-const outputMeta = document.getElementById("outputMeta");
-const downloadBtn = document.getElementById("downloadBtn");
-const fps = document.getElementById("fps");
-const width = document.getElementById("width");
-const start = document.getElementById("start");
-const end = document.getElementById("end");
-const loop = document.getElementById("loop");
-
-const WORKER_URL = "https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js";
-let currentFile = null;
-let videoUrl = null;
-let outputUrl = null;
-let outputBlob = null;
-let workerUrl = null;
-let converting = false;
-
-function status(text) { statusBox.textContent = text; }
-
-function resetOutput() {
-  outputCard.style.display = "none";
-  outputBlob = null;
-  if (outputUrl) {
-    URL.revokeObjectURL(outputUrl);
-    outputUrl = null;
-  }
-}
-
-async function getWorkerUrl() {
-  if (workerUrl) return workerUrl;
-  const response = await fetch(WORKER_URL, { mode: "cors", cache: "force-cache" });
-  if (!response.ok) throw new Error("GIF worker could not be downloaded (HTTP " + response.status + ").");
-  const source = await response.text();
-  workerUrl = URL.createObjectURL(new Blob([source], { type: "application/javascript" }));
-  return workerUrl;
-}
-
-function loadVideo(file) {
-  if (!file) return;
-  if (!file.type.startsWith("video/")) {
-    alert("Please choose an MP4/video file.");
-    return;
-  }
-  currentFile = file;
-  resetOutput();
-  if (videoUrl) URL.revokeObjectURL(videoUrl);
-  videoUrl = URL.createObjectURL(file);
-  previewVideo.src = videoUrl;
-  previewVideo.load();
-  emptyState.style.display = "none";
-  videoWrap.style.display = "flex";
-  fileName.textContent = file.name;
-  progress.style.display = "none";
-  progressBar.style.width = "0%";
-  convertBtn.disabled = false;
-  status("Video loaded. Choose settings and click Convert to GIF.");
-}
-
-mainFile.addEventListener("change", e => loadVideo(e.target.files[0]));
-topFile.addEventListener("change", e => loadVideo(e.target.files[0]));
-
-["dragenter", "dragover"].forEach(type => dropZone.addEventListener(type, e => {
-  e.preventDefault(); e.stopPropagation(); dropZone.classList.add("dragover");
-}));
-["dragleave", "drop"].forEach(type => dropZone.addEventListener(type, e => {
-  e.preventDefault(); e.stopPropagation(); dropZone.classList.remove("dragover");
-}));
-dropZone.addEventListener("drop", e => loadVideo(e.dataTransfer.files[0]));
-
-function seekTo(time) {
-  return new Promise((resolve, reject) => {
-    let done = false;
-    const cleanup = () => {
-      previewVideo.removeEventListener("seeked", onSeeked);
-      previewVideo.removeEventListener("error", onError);
-      clearTimeout(timer);
-    };
-    const onSeeked = () => { if (!done) { done=true; cleanup(); resolve(); } };
-    const onError = () => { if (!done) { done=true; cleanup(); reject(new Error("The video could not be read.")); } };
-    const timer = setTimeout(() => {
-      if (!done) { done=true; cleanup(); reject(new Error("Video seeking timed out.")); }
-    }, 15000);
-    previewVideo.addEventListener("seeked", onSeeked);
-    previewVideo.addEventListener("error", onError);
-    try { previewVideo.currentTime = time; }
-    catch (e) { done=true; cleanup(); reject(e); }
-  });
-}
-
-function nextVideoFrame() {
-  if (typeof previewVideo.requestVideoFrameCallback === "function") {
-    return new Promise(resolve => previewVideo.requestVideoFrameCallback(() => resolve()));
-  }
-  return new Promise(resolve => requestAnimationFrame(resolve));
-}
-
-function makeCanvas(targetWidth) {
-  const sw = previewVideo.videoWidth;
-  const sh = previewVideo.videoHeight;
-  if (!sw || !sh) throw new Error("Video dimensions could not be read.");
-  let w = targetWidth === -1 ? sw : targetWidth;
-  w = Math.max(2, Math.floor(w / 2) * 2);
-  let h = Math.max(2, Math.floor((sh / sw * w) / 2) * 2);
-  const canvas = document.createElement("canvas");
-  canvas.width = w; canvas.height = h;
-  const ctx = canvas.getContext("2d", { willReadFrequently: true });
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = "high";
-  return { canvas, ctx, w, h };
-}
-
-async function convertToGif() {
-  if (!currentFile || converting) return;
-  if (typeof GIF === "undefined") {
-    status("GIF encoder did not load. Please reload the page and try again.");
-    return;
-  }
-
-  converting = true;
-  convertBtn.disabled = true;
-  resetOutput();
-  progress.style.display = "block";
-  progressBar.style.width = "0%";
-
-  try {
-    if (!Number.isFinite(previewVideo.duration) || previewVideo.duration <= 0) {
-      throw new Error("The video duration could not be read.");
-    }
-
-    const videoDuration = previewVideo.duration;
-    const startTime = Math.max(0, Math.min(Number(start.value) || 0, videoDuration));
-    let endTime = Number(end.value);
-    if (!Number.isFinite(endTime) || endTime <= startTime) endTime = videoDuration;
-    endTime = Math.min(endTime, videoDuration);
-    if (endTime <= startTime) throw new Error("End time must be greater than start time.");
-
-    const duration = endTime - startTime;
-    let actualFps = Math.max(1, Math.min(20, Number(fps.value) || 10));
-    const maxFrames = 500;
-    if (duration * actualFps > maxFrames) {
-      actualFps = Math.max(1, Math.floor(maxFrames / duration));
-      status("Long clip: FPS adjusted to " + actualFps + " to keep browser memory safe.");
-    }
-
-    const frames = Math.max(1, Math.ceil(duration * actualFps));
-    const delay = 1000 / actualFps;
-    const targetWidth = Number(width.value);
-    const { canvas, ctx, w, h } = makeCanvas(targetWidth);
-
-    status("Preparing GIF encoder…");
-    const worker = await getWorkerUrl();
-
-    const gif = new GIF({
-      workers: 2,
-      workerScript: worker,
-      width: w,
-      height: h,
-      quality: 10,
-      repeat: loop.checked ? 0 : -1,
-      dither: "FloydSteinberg-serpentine"
-    });
-
-    gif.on("progress", p => {
-      const percent = 55 + Math.round(p * 45);
-      progressBar.style.width = percent + "%";
-      status("Encoding GIF… " + Math.round(p * 100) + "%");
-    });
-
-    for (let i = 0; i < frames; i++) {
-      const t = Math.min(endTime - 0.001, startTime + i / actualFps);
-      await seekTo(t);
-      await nextVideoFrame();
-      ctx.clearRect(0, 0, w, h);
-      ctx.drawImage(previewVideo, 0, 0, w, h);
-      gif.addFrame(canvas, { copy: true, delay });
-      const percent = Math.round(((i + 1) / frames) * 55);
-      progressBar.style.width = percent + "%";
-      status("Reading video frames… " + (i + 1) + " / " + frames);
-    }
-
-    status("Encoding GIF…");
-    const blob = await new Promise((resolve, reject) => {
-      gif.on("finished", resolve);
-      gif.on("abort", () => reject(new Error("GIF encoding was aborted.")));
-      try { gif.render(); } catch (e) { reject(e); }
-    });
-
-    if (!blob || blob.size < 100) throw new Error("The GIF encoder returned an empty file.");
-
-    outputBlob = blob;
-    outputUrl = URL.createObjectURL(blob);
-    const kb = blob.size / 1024;
-    outputMeta.textContent = "Animated GIF • " + (kb < 1024 ? kb.toFixed(0) + " KB" : (kb / 1024).toFixed(2) + " MB") + " • " + w + "×" + h + " • " + actualFps + " FPS";
-    outputCard.style.display = "block";
-    progressBar.style.width = "100%";
-    status("Conversion complete. Your GIF is ready.");
-  } catch (error) {
-    console.error(error);
-    status("Conversion failed: " + (error && error.message ? error.message : "Unknown browser error."));
-    progressBar.style.width = "0%";
-  } finally {
-    converting = false;
-    convertBtn.disabled = !currentFile;
-  }
-}
-
-convertBtn.addEventListener("click", convertToGif);
-
-downloadBtn.addEventListener("click", () => {
-  if (!outputUrl) return;
-  const a = document.createElement("a");
-  a.href = outputUrl;
-  a.download = (currentFile ? currentFile.name.replace(/\.[^.]+$/, "") : "converted") + ".gif";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-});
-
-previewVideo.addEventListener("loadedmetadata", () => {
-  const d = previewVideo.duration;
-  if (Number.isFinite(d)) {
-    start.max = d;
-    end.max = d;
-    end.value = d.toFixed(1);
-  }
-});
+const $=id=>document.getElementById(id);let currentFile=null,videoURL=null,outputURL=null,workerURL=null,converting=false;
+const pick=$('pick'),drop=$('drop'),video=$('video');
+function size(n){return n<1048576?(n/1024).toFixed(0)+' KB':(n/1048576).toFixed(2)+' MB'}
+function setStatus(t){$('status').textContent=t}
+function clearOutput(){if(outputURL){URL.revokeObjectURL(outputURL);outputURL=null} $('result').style.display='none'}
+function loadFile(f){if(!f)return;if(!f.type.startsWith('video/')&&!/\.mp4$/i.test(f.name)){showError('Please choose an MP4/video file.');return}currentFile=f;clearOutput();$('error').style.display='none';if(videoURL)URL.revokeObjectURL(videoURL);videoURL=URL.createObjectURL(f);video.src=videoURL;video.load();$('fileBox').style.display='flex';$('fileName').textContent=f.name;$('fileSize').textContent=size(f.size);$('videoPreview').style.display='block';$('convert').disabled=false;setStatus('Video loaded. Choose your settings and click Convert to GIF.')}
+function showError(t){$('error').textContent=t;$('error').style.display='block'}
+pick.onchange=e=>{loadFile(e.target.files[0]);pick.value=''};drop.onclick=()=>pick.click();$('clear').onclick=resetAll;
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over')}));['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over')}));drop.addEventListener('drop',e=>loadFile(e.dataTransfer.files[0]));
+video.addEventListener('loadedmetadata',()=>{if(Number.isFinite(video.duration)){ $('start').max=video.duration; $('end').max=video.duration; $('end').value=video.duration.toFixed(1)}});
+function seek(t){return new Promise((res,rej)=>{let done=false;const cleanup=()=>{video.removeEventListener('seeked',ok);video.removeEventListener('error',bad);clearTimeout(timer)};const ok=()=>{if(done)return;done=true;cleanup();res()};const bad=()=>{if(done)return;done=true;cleanup();rej(new Error('The video could not be read.'))};const timer=setTimeout(()=>{if(done)return;done=true;cleanup();rej(new Error('Video seeking timed out.'))},15000);video.addEventListener('seeked',ok);video.addEventListener('error',bad);try{video.currentTime=t}catch(e){done=true;cleanup();rej(e)}})}
+function nextFrame(){return typeof video.requestVideoFrameCallback==='function'?new Promise(r=>video.requestVideoFrameCallback(()=>r())):new Promise(r=>requestAnimationFrame(r))}
+async function getWorker(){if(workerURL)return workerURL;const r=await fetch('https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js',{mode:'cors',cache:'force-cache'});if(!r.ok)throw new Error('GIF worker could not be loaded. Check your internet connection.');const src=await r.text();workerURL=URL.createObjectURL(new Blob([src],{type:'application/javascript'}));return workerURL}
+function resetAll(){currentFile=null;clearOutput();if(videoURL){URL.revokeObjectURL(videoURL);videoURL=null}video.removeAttribute('src');video.load();$('fileBox').style.display='none';$('videoPreview').style.display='none';$('convert').disabled=true;$('progressWrap').style.display='none';$('bar').style.width='0%';$('percent').textContent='0%';$('error').style.display='none';setStatus('Choose an MP4 video to begin.')}
+async function convert(){if(!currentFile||converting)return;if(typeof GIF==='undefined'){showError('GIF encoder did not load. Please reload the page and try again.');return}converting=true;$('convert').disabled=true;$('convert').classList.add('loading');$('convertText').textContent='Converting…';clearOutput();$('error').style.display='none';$('progressWrap').style.display='block';try{if(!Number.isFinite(video.duration)||video.duration<=0)throw new Error('The video duration could not be read.');const dur=video.duration;const st=Math.max(0,Math.min(Number($('start').value)||0,dur));let en=Number($('end').value);if(!Number.isFinite(en)||en<=st)en=dur;en=Math.min(en,dur);if(en<=st)throw new Error('End time must be greater than start time.');const clip=en-st;let rate=Math.max(1,Math.min(20,Number($('fps').value)||10));const maxFrames=500;if(clip*rate>maxFrames){rate=Math.max(1,Math.floor(maxFrames/clip));setStatus('Long clip: FPS adjusted to '+rate+' to keep browser memory safe.')}const frames=Math.max(1,Math.ceil(clip*rate)),delay=1000/rate;const sw=video.videoWidth,sh=video.videoHeight;if(!sw||!sh)throw new Error('Video dimensions could not be read.');let w=Number($('width').value);if(w===-1)w=sw;w=Math.max(2,Math.floor(w/2)*2);const h=Math.max(2,Math.floor((sh/sw*w)/2)*2);const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';setStatus('Preparing GIF encoder…');const worker=await getWorker();const gif=new GIF({workers:2,workerScript:worker,width:w,height:h,quality:10,repeat:$('loop').checked?0:-1,dither:'FloydSteinberg-serpentine'});gif.on('progress',p=>{const pct=55+Math.round(p*45);$('bar').style.width=pct+'%';$('percent').textContent=pct+'%';$('progressText').textContent='Encoding GIF…'});for(let i=0;i<frames;i++){const t=Math.min(en-.001,st+i/rate);await seek(t);await nextFrame();ctx.clearRect(0,0,w,h);ctx.drawImage(video,0,0,w,h);gif.addFrame(canvas,{copy:true,delay});const pct=Math.round((i+1)/frames*55);$('bar').style.width=pct+'%';$('percent').textContent=pct+'%';$('progressText').textContent='Reading video frames… '+(i+1)+' / '+frames}setStatus('Encoding GIF…');const blob=await new Promise((resolve,reject)=>{gif.on('finished',resolve);gif.on('abort',()=>reject(new Error('GIF encoding was aborted.')));try{gif.render()}catch(e){reject(e)}});if(!blob||blob.size<100)throw new Error('The GIF encoder returned an empty file.');outputURL=URL.createObjectURL(blob);$('bar').style.width='100%';$('percent').textContent='100%';$('progressText').textContent='Conversion complete';$('resultText').textContent='Animated GIF • '+size(blob.size)+' • '+w+'×'+h+' • '+rate+' FPS';$('result').style.display='block';setStatus('Conversion complete. Your GIF is ready.')}catch(e){console.error(e);showError('Conversion failed: '+(e&&e.message?e.message:'Unknown browser error.'));$('bar').style.width='0%';$('percent').textContent='0%';setStatus('The conversion could not be completed.')}finally{converting=false;$('convert').disabled=!currentFile;$('convert').classList.remove('loading');$('convertText').textContent='Convert to GIF'}}
+$('convert').onclick=convert;$('download').onclick=()=>{if(!outputURL)return;const a=document.createElement('a');a.href=outputURL;a.download=(currentFile?currentFile.name.replace(/\.[^.]+$/,''):'converted')+'.gif';document.body.appendChild(a);a.click();a.remove()};$('reset').onclick=resetAll;
 </script>
-</body>
-</html>
+</body></html>
