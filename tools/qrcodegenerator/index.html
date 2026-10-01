@@ -1,63 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>QR Code Generator — ConvertKit Lite</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator — Link, Text, Wi-Fi &amp; Email | ConvertKit Lite</title>
+<meta name="description" content="Create a free QR code for a link, text, Wi-Fi or email. Customize colors and size, download PNG or SVG. Private, runs in your browser, no sign-up.">
+<link rel="canonical" href="https://convertkitlite.site/tools/qrcodegenerator/">
+<link rel="icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:title" content="QR Code Generator — Link, Text, Wi-Fi &amp; Email">
+<meta property="og:description" content="Create a QR code in your browser. Download PNG or SVG. Private and free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:#f2f6ff;font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+:root{--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent-blue:#2d82ff;--success:#22c55e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
 a{color:inherit;text-decoration:none}
-header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
 .container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+.wide{width:min(980px,calc(100% - 32px));margin:auto}
+
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
 .navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
 .brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
-.brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}
-nav{display:flex;gap:32px;font-size:13px;color:#c4d6f4}nav a:hover{color:#fff}
-h1{font-size:36px;letter-spacing:-1.4px;margin:38px 0 8px}
-h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:#c4d6ef;font-size:15px;margin:0 0 26px}
-.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;margin-bottom:40px;align-items:start}
-.card{border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);padding:24px}
-.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.tab{background:#0a2142;border:1px solid #194a84;color:#d8e6ff;padding:9px 18px;font-size:13px;border-radius:9px}
-.tab.active{border-color:#2d8cff;background:linear-gradient(145deg,#102d59,#091d3b);box-shadow:0 0 18px rgba(41,113,255,.25)}
-label{display:block;font-size:12px;color:#9bb8e0;margin:14px 0 8px;font-weight:600}
-label:first-child{margin-top:0}
-input[type=text],input[type=email],input[type=password],textarea,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;letter-spacing:.15px;transition:.2s}
+nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a[href="#learn"]{color:#e6dcff}
+nav a[href="#learn"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c55e,#2d82ff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(45,130,255,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+
+.tool{margin-top:32px;margin-bottom:48px}
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:26px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px;padding:5px;background:#06152d;border:1px solid #173e6c;border-radius:12px}
+.tab{border:0;border-radius:8px;padding:11px 8px;background:transparent;color:var(--text-dim);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+.tab:hover{color:#fff}
+.tab.active{color:#fff;background:linear-gradient(135deg,#2d82ff,#7c3ff0)}
+.card label{display:block;font-size:12.5px;color:var(--text-dim);margin:14px 0 8px;font-weight:600}
+.pane>label:first-child{margin-top:0}
+input[type=text],input[type=email],textarea,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
 textarea{resize:vertical;min-height:90px}
-input:focus,textarea:focus,select:focus{outline:none;border-color:#4b9cff}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--border-hover);box-shadow:0 0 0 3px #2d82ff20}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 input[type=color]{width:100%;height:44px;padding:4px;border-radius:10px;border:1px solid #194a84;background:#061a35;cursor:pointer}
-input[type=range]{width:100%;accent-color:#7c3ff0}
-.rowv{display:flex;justify-content:space-between;font-size:12px;color:#9bb8e0}
-button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor:pointer}
-.primary{background:linear-gradient(100deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2);padding:12px 22px}
-.primary:disabled{opacity:.4;cursor:not-allowed}
-.ghost{background:#0a2142;border:1px solid #194a84;padding:12px 22px}
-.ghost:disabled{opacity:.4;cursor:not-allowed}
-.preview{text-align:center;position:sticky;top:90px}
-.qrbox{display:grid;place-items:center;min-height:280px;background:#061a35;border:1px dashed #2b5d97;border-radius:14px;padding:16px}
-canvas{max-width:100%;height:auto;border-radius:6px;display:none}
-#empty{color:#6f8fbd;font-size:13px}
-.dl{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
-.err{color:#ff7b95;font-size:13px;margin-top:12px;min-height:18px}
+input[type=range]{width:100%;accent-color:var(--accent-blue);cursor:pointer}
+.rowv{display:flex;justify-content:space-between;font-size:12px;color:#80baff;font-weight:700}
 .pane{display:none}.pane.active{display:block}
-@media(max-width:860px){nav{display:none}.layout{grid-template-columns:1fr}.preview{position:static}h1{font-size:30px}}
-@media(max-width:480px){.container{width:calc(100% - 24px)}.opts{grid-template-columns:1fr}}
+.err{color:#fca5b5;font-size:13px;margin-top:12px;min-height:18px}
+button{border:0;border-radius:10px;color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:filter .2s,transform .1s}
+button:hover:not(:disabled){filter:brightness(1.1)}
+button:disabled{opacity:.4;cursor:not-allowed}
+.primary{background:linear-gradient(135deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2);padding:12px 22px;font-size:13.5px}
+.ghost{background:transparent;border:1px solid #194a84;color:var(--text-dim);padding:12px 22px;font-size:13.5px}
+.ghost:hover:not(:disabled){border-color:var(--border-hover);color:var(--text)}
+.preview{text-align:center;position:sticky;top:90px}
+.qrbox{display:grid;place-items:center;min-height:280px;background:var(--panel-2);border:2px dashed rgba(76,140,255,.45);border-radius:14px;padding:16px}
+canvas{max-width:100%;height:auto;border-radius:6px;display:none}
+#empty{color:var(--text-faint);font-size:13px}
+.dl{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin-bottom:4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq,.learn{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}
+.article-card:hover{transform:translateY(-3px);border-color:var(--border-hover);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-card h3{font-size:15px;margin-bottom:8px}
+.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+
+@media(max-width:860px){.layout{grid-template-columns:1fr}.preview{position:static}}
+@media(max-width:700px){
+  nav{display:none}h1{font-size:30px}
+  .steps,.related-grid,.features{grid-template-columns:1fr}
+  .rt-card{min-height:0}
+  footer{flex-direction:column;gap:18px;text-align:center}
+  .container{width:calc(100% - 24px)}
+}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}}
+@media(max-width:480px){.opts{grid-template-columns:1fr}.card{padding:20px}}
 </style>
 </head>
 <body>
+
 <header><div class="container navbar">
-<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png"/>ConvertKit <span class="lite">Lite</span></a>
-<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="../../#about">About</a><a href="../../#faq">FAQ</a></nav>
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
 </div></header>
 
-<main class="container">
-<h1>QR Code <span>Generator</span></h1>
-<p class="sub">Create a QR code for a link, text, Wi-Fi or email. Runs in your browser, nothing is uploaded.</p>
+<main>
+<section class="hero">
+  <div class="icon-badge">▦</div>
+  <h1>QR Code <span>Generator</span></h1>
+  <p>Create a QR code for a link, text, Wi-Fi or email. Runs in your browser, nothing is uploaded.</p>
+  <div class="trust-row"><div>No registration required</div><div>Secure &amp; private</div><div>Works on any device</div></div>
+</section>
 
+<div class="wide tool">
 <div class="layout">
 <div class="card">
 <div class="tabs">
@@ -102,7 +202,72 @@ canvas{max-width:100%;height:auto;border-radius:6px;display:none}
 </div>
 </div>
 </div>
+
+<div class="features">
+  <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your text, links and Wi-Fi details are turned into a code in your browser — nothing is uploaded.</p></div>
+  <div class="feature"><div class="f-icon">⚡</div><h4>Instant</h4><p>The QR code updates live as you type or change a setting.</p></div>
+  <div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account, no watermark, no limits. Download PNG or SVG.</p></div>
+</div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to create <span>a QR code</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Choose a type</h3><p>Pick Link / Text, Wi-Fi or Email, then fill in the details.</p></div>
+    <div class="step"><b>2</b><h3>Customize</h3><p>Set the colors, error correction level and size. The preview updates instantly.</p></div>
+    <div class="step"><b>3</b><h3>Download</h3><p>Save your QR code as a PNG image or a scalable SVG file.</p></div>
+  </div>
+</section>
+
+<section class="narrow learn" id="learn">
+  <h2 class="section-title">Learn about <span>QR Codes</span></h2>
+  <p class="section-intro">Helpful guides on creating, scanning and using QR codes.</p>
+  <div class="article-list">
+    <a class="article-card" href="../../articles/how-to-make-a-qr-code/">
+      <div class="article-banner"><span class="glyph">▦</span><img src="../../articles/how-to-make-a-qr-code/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">HOW-TO</span></div>
+      <div class="article-body"><h3>How to Make a QR Code for a Link</h3><p>Turn any web address into a scannable code in a few clicks.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/wifi-qr-code/">
+      <div class="article-banner b2"><span class="glyph">📶</span><img src="../../articles/wifi-qr-code/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">WI-FI</span></div>
+      <div class="article-body"><h3>How to Share Wi-Fi With a QR Code</h3><p>Let guests join your network by scanning instead of typing a password.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/qr-code-error-correction/">
+      <div class="article-banner b3"><span class="glyph">🛠️</span><img src="../../articles/qr-code-error-correction/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">QR GUIDE</span></div>
+      <div class="article-body"><h3>QR Code Error Correction Explained</h3><p>What Low, Medium, Quartile and High mean for scanning reliability.</p><span class="article-read">Read article →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite QR Code Generator.</p>
+  <details><summary>Is my data uploaded anywhere?</summary><p>No. The QR code is generated in your browser, so your links, text and Wi-Fi password are not sent to a server.</p></details>
+  <details><summary>Does the QR code expire?</summary><p>No. The code simply contains your text, so it works as long as the link or information inside it stays valid.</p></details>
+  <details><summary>Which error correction level should I use?</summary><p>Medium suits most uses. Choose a higher level if the code may get dirty or damaged, but it makes the code denser. Lower levels give simpler codes.</p></details>
+  <details><summary>PNG or SVG?</summary><p>PNG works everywhere. SVG stays sharp at any size, which is best for printing or resizing.</p></details>
+  <details><summary>Why does it say there is too much data?</summary><p>A QR code can only hold a limited amount of text. Shorten the text or choose a lower error correction level.</p></details>
+  <details><summary>Will my colors scan properly?</summary><p>Use a dark color on a light background with strong contrast. Light-on-dark or low-contrast combinations may not scan on every device.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these useful image and file tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images for easier sharing.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card" href="../removebg/"><span class="rt-icon">◩</span><h3>Remove Background</h3><p>Remove an image background for a cleaner subject-focused picture.</p><span class="go">Remove background →</span></a>
+    <a class="rt-card" href="../pngtojpg/"><span class="rt-icon">⇄</span><h3>PNG to JPG</h3><p>Convert PNG images to JPG format when you need a different file type.</p><span class="go">Convert image →</span></a>
+    <a class="rt-card" href="../mergepdf/"><span class="rt-icon">▥</span><h3>Merge PDF</h3><p>Combine multiple PDF documents into one file.</p><span class="go">Merge files →</span></a>
+    <a class="rt-card" href="../agecalculator/"><span class="rt-icon">🎂</span><h3>Age Calculator</h3><p>Find your exact age in years, months, days, hours and minutes.</p><span class="go">Calculate age →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
 </main>
+
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script>
