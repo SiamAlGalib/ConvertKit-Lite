@@ -1,19 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Face Age Estimator — ConvertKit Lite</title>
-<meta name="description" content="Estimate the apparent age in a face photo with an AI model running in your browser.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Face Age Estimator — How Old Do You Look? | ConvertKit Lite</title>
+<meta name="description" content="Estimate the apparent age in a face photo with an AI model running in your browser. Free, private, no sign-up.">
+<link rel="canonical" href="https://convertkitlite.site/tools/faceage/">
+<link rel="icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:title" content="Face Age Estimator — How Old Do You Look?">
+<meta property="og:description" content="Get a playful AI estimate of the apparent age in a face photo. Processed in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#020a19;--panel:#081b35;--panel2:#0a2245;--line:#174477;--text:#f2f6ff;--muted:#a9c1e4;--blue:#3994ff;--purple:#a46bff;--shadow:0 24px 80px rgba(0,0,0,.28)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,Arial,sans-serif;background:radial-gradient(ellipse at 82% 8%,rgba(87,48,174,.22),transparent 30%),radial-gradient(ellipse at 12% 38%,rgba(21,91,172,.18),transparent 34%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}a{color:inherit;text-decoration:none}.site-header{height:72px;border-bottom:1px solid rgba(41,91,151,.45);background:rgba(2,12,30,.84);backdrop-filter:blur(16px);position:sticky;top:0;z-index:10;display:flex;align-items:center}.nav{width:min(1120px,calc(100% - 40px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.7px}.brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}.back{font-size:13px;color:#c4d6f4;border:1px solid #1a416d;border-radius:10px;padding:9px 13px;transition:.2s}.back:hover{border-color:#559cff;background:#0a2245}.wrap{width:min(1120px,calc(100% - 40px));margin:auto;padding:52px 0 70px}.layout{display:grid;grid-template-columns:.92fr 1.08fr;gap:54px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #254b83;background:rgba(17,48,91,.56);color:#b9caff;border-radius:99px;padding:8px 13px;font-size:11px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase}.spark{width:7px;height:7px;border-radius:50%;background:#9d70ff;box-shadow:0 0 14px #9d70ff}.intro h1{font-size:clamp(38px,5.2vw,62px);line-height:1.06;letter-spacing:-2.7px;margin:22px 0 18px}.intro h1 span{background:linear-gradient(90deg,#45a1ff,#b36aff);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:16px;line-height:1.8;color:#b9cce8;max-width:490px;margin:0}.feature-list{display:grid;gap:14px;margin-top:30px}.feature{display:flex;gap:12px;align-items:flex-start;color:#dce8fb;font-size:13px;line-height:1.55}.feature-icon{width:34px;height:34px;flex:0 0 34px;border:1px solid #204d83;background:linear-gradient(145deg,#102d54,#0a1b35);border-radius:10px;display:grid;place-items:center;color:#78b6ff;font-size:16px}.feature b{display:block;font-size:13px;margin-bottom:2px}.feature span{color:#91add3}.card{border:1px solid #1b4b82;border-radius:22px;background:linear-gradient(145deg,rgba(10,34,69,.98),rgba(5,20,42,.98));padding:clamp(20px,3.2vw,30px);box-shadow:var(--shadow);position:relative;overflow:hidden}.card:before{content:"";position:absolute;width:230px;height:230px;right:-130px;top:-145px;border-radius:50%;background:rgba(91,101,255,.13);filter:blur(10px);pointer-events:none}.card-head{position:relative;margin-bottom:22px}.card-head h2{font-size:20px;letter-spacing:-.5px;margin:0 0 6px}.card-head p{font-size:13px;color:#9db7dc;margin:0;line-height:1.6}.upload{position:relative;border:1.5px dashed #2b5a91;border-radius:16px;min-height:228px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 18px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s;background:rgba(3,16,35,.5)}.upload:hover,.upload.drag{border-color:#65aaff;background:rgba(26,64,119,.3);transform:translateY(-1px)}.upload-icon{width:56px;height:56px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(48,145,255,.2),rgba(164,107,255,.2));border:1px solid #2a5d9b;color:#80baff;margin-bottom:14px}.upload-icon svg{width:27px;height:27px}.upload strong{font-size:15px}.upload .choose{color:#75b3ff}.upload small{color:#91add3;font-size:11px;margin-top:8px}.upload input{display:none}.preview{display:none;margin-top:18px;padding:10px;background:#04152b;border:1px solid #19416e;border-radius:15px}.preview img{display:block;max-width:100%;max-height:300px;object-fit:contain;border-radius:9px;margin:auto}.actions{display:flex;gap:10px;margin-top:16px}.btn{border:1px solid transparent;border-radius:11px;padding:13px 17px;font:inherit;font-size:13px;font-weight:750;cursor:pointer;transition:.2s}.primary{background:linear-gradient(100deg,#278cf5,#8660f6);color:white;flex:1;box-shadow:0 8px 22px rgba(54,112,238,.2)}.primary:hover:not(:disabled){filter:brightness(1.12);transform:translateY(-1px)}.secondary{background:#0b2546;color:#c5d9f5;border-color:#1e4777}.secondary:hover{border-color:#568bc9}.btn:disabled{opacity:.45;cursor:not-allowed}.status{margin-top:13px;color:#94b2d9;font-size:12px;text-align:center;min-height:20px;line-height:1.6}.result{display:none;margin-top:18px;border:1px solid #2c568d;background:linear-gradient(135deg,rgba(22,59,104,.78),rgba(34,30,84,.65));border-radius:16px;padding:22px;text-align:center}.result .label{font-size:10px;color:#a9c5eb;font-weight:800;text-transform:uppercase;letter-spacing:1.4px}.result .number{font-size:clamp(52px,8vw,70px);font-weight:800;letter-spacing:-3px;line-height:1.15;margin:6px 0;color:#fff}.result .number span{font-size:15px;letter-spacing:0;color:#a9c5eb;font-weight:600}.result p{color:#a9c5eb;font-size:12px;line-height:1.6;margin:7px auto 0;max-width:360px}.privacy{display:flex;gap:9px;align-items:flex-start;color:#89a8d1;font-size:11px;line-height:1.6;margin:17px 2px 0}.privacy svg{flex:0 0 16px;margin-top:1px;color:#6eafff}.tips{margin-top:25px;display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.tip{padding:17px 16px;border:1px solid rgba(35,79,130,.75);border-radius:14px;background:rgba(7,26,51,.7)}.tip .icon{font-size:17px;margin-bottom:9px}.tip b{display:block;font-size:12px;margin-bottom:5px}.tip p{font-size:11px;line-height:1.65;color:#91add3;margin:0}.footer{text-align:center;color:#6688b6;font-size:11px;margin-top:34px}@media(max-width:820px){.wrap{padding-top:34px}.layout{grid-template-columns:1fr;gap:30px}.intro h1{font-size:clamp(38px,8vw,54px)}.lead{max-width:650px}.feature-list{grid-template-columns:repeat(3,1fr);gap:10px}.feature{display:block}.feature-icon{margin-bottom:9px}.tips{gap:9px}}@media(max-width:560px){.nav,.wrap{width:calc(100% - 28px)}.site-header{height:64px}.brand{font-size:18px}.brand img{width:29px;height:29px}.back{font-size:12px;padding:8px 10px}.wrap{padding-top:28px}.intro h1{letter-spacing:-1.7px;margin-top:17px}.lead{font-size:14px}.feature-list{grid-template-columns:1fr;gap:12px;margin-top:22px}.feature{display:flex}.feature-icon{margin:0}.card{padding:18px;border-radius:18px}.upload{min-height:205px}.actions{flex-direction:column}.btn{width:100%}.tips{grid-template-columns:1fr}.tip{display:flex;gap:12px;align-items:flex-start}.tip .icon{margin:0}.tip p{margin-top:4px}}
-</style></head><body>
-<header class="site-header"><div class="nav"><a class="brand" href="../../"><img src="../../logo.png" alt=""><span>ConvertKit <span class="lite">Lite</span></span></a><a class="back" href="../../#tools">← All tools</a></div></header>
-<main class="wrap"><div class="layout"><section class="intro"><span class="eyebrow"><i class="spark"></i> AI PHOTO TOOL</span><h1>How old do you <span>look?</span></h1><p class="lead">Get a playful AI estimate of the apparent age in a face photo. Upload a clear picture and let the model analyze visible facial features in seconds.</p><div class="feature-list"><div class="feature"><div class="feature-icon">✧</div><div><b>Quick estimate</b><span>A simple age estimate from one photo.</span></div></div><div class="feature"><div class="feature-icon">⌁</div><div><b>Private by design</b><span>Your photo is processed in your browser.</span></div></div><div class="feature"><div class="feature-icon">◎</div><div><b>Easy to use</b><span>Works on desktop and mobile.</span></div></div></div></section>
-<section class="card"><div class="card-head"><h2>Try the age estimator</h2><p>For best results, use a well-lit, front-facing photo with one visible face.</p></div><label class="upload" id="dropArea" for="photoInput"><span class="upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/><path d="M12 8v5m-2-2 2-2 2 2"/></svg></span><strong><span class="choose">Choose a photo</span> or drag it here</strong><small>JPG, PNG or WebP · one face works best</small><input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp"></label>
-<div class="preview" id="preview"><img id="previewImg" alt="Selected photo preview"></div><div class="actions"><button class="btn primary" id="estimateBtn" disabled>✦ &nbsp; Estimate apparent age</button><button class="btn secondary" id="resetBtn" type="button">Reset</button></div><div class="status" id="status" role="status" aria-live="polite">Choose a photo to get started.</div><div class="result" id="result"><div class="label">Estimated apparent age</div><div class="number"><span id="ageValue">—</span><span> years</span></div><p>This is an approximate AI prediction from the photo, not the person's actual age.</p></div><p class="privacy"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 5 6v5c0 4.5 2.9 7.8 7 10 4.1-2.2 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg><span>Your selected photo is processed in your browser and is not uploaded to our server by this tool. The AI model loads from a public CDN.</span></p></section></div>
-<div class="tips"><div class="tip"><div class="icon">☼</div><div><b>Good lighting</b><p>Choose a bright, clear image without heavy filters or shadows.</p></div></div><div class="tip"><div class="icon">♙</div><div><b>One visible face</b><p>Use a single-person photo with the face looking toward the camera.</p></div></div><div class="tip"><div class="icon">ⓘ</div><div><b>Estimate only</b><p>Pose, image quality and model limitations can affect the result.</p></div></div></div><div class="footer">A fun estimate, not a verified age or identity check.</div></main>
+:root{--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent-blue:#2d82ff;--success:#22c55e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;letter-spacing:.15px;transition:.2s}
+nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a[href="#learn"]{color:#e6dcff}
+nav a[href="#learn"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c55e,#2d82ff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(45,130,255,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+
+.tool{margin-top:32px;margin-bottom:48px}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.upload{display:block;border:2px dashed rgba(76,140,255,.45);border-radius:14px;background:rgba(45,130,255,.05);padding:44px 20px;text-align:center;cursor:pointer;transition:.2s}
+.upload:hover,.upload.drag{border-color:var(--accent-blue);background:rgba(45,130,255,.1)}
+.upload input{display:none}
+.dz-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 16px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);display:grid;place-items:center;font-size:24px}
+.upload strong{display:block;font-size:17px;font-weight:600;margin-bottom:6px}
+.upload .choose{color:#75b3ff}
+.upload small{display:block;color:var(--text-faint);font-size:13px}
+.preview{display:none;margin-top:18px;padding:10px;background:#04152b;border:1px solid #19416e;border-radius:14px}
+.preview img{display:block;max-width:100%;max-height:300px;object-fit:contain;border-radius:9px;margin:auto}
+.actions{display:flex;gap:12px;margin-top:18px}
+.btn{border:0;border-radius:12px;color:#fff;font:inherit;font-weight:700;font-size:15px;padding:15px 22px;cursor:pointer;transition:filter .2s,transform .1s}
+.btn:hover:not(:disabled){filter:brightness(1.1)}
+.btn:active:not(:disabled){transform:scale(.99)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.primary{flex:1;background:linear-gradient(135deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.secondary{background:transparent;border:1px solid #194a84;color:var(--text-dim);font-size:13.5px;padding:15px 22px}
+.secondary:hover{border-color:var(--border-hover);color:var(--text)}
+.status{margin-top:14px;color:var(--text-dim);font-size:12.5px;text-align:center;min-height:20px;line-height:1.6}
+.result{display:none;margin-top:18px;text-align:center;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);border-radius:14px;padding:24px}
+.result .label{font-size:10.5px;color:var(--text-dim);font-weight:800;text-transform:uppercase;letter-spacing:1.4px}
+.result .number{font-size:clamp(52px,8vw,68px);font-weight:800;letter-spacing:-3px;line-height:1.15;margin:6px 0;background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.result .number .unit{font-size:15px;letter-spacing:0;font-weight:600;color:var(--text-dim);-webkit-text-fill-color:var(--text-dim)}
+.result p{color:var(--text-dim);font-size:12.5px;line-height:1.6;margin:7px auto 0;max-width:380px}
+.privacy{display:flex;gap:9px;align-items:flex-start;color:var(--text-faint);font-size:11.5px;line-height:1.6;margin:18px 2px 0}
+.privacy svg{flex:0 0 16px;margin-top:1px;color:#6eafff}
+
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin-bottom:4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq,.learn{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}
+.article-card:hover{transform:translateY(-3px);border-color:var(--border-hover);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-card h3{font-size:15px;margin-bottom:8px}
+.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+
+@media(max-width:700px){
+  nav{display:none}h1{font-size:30px}
+  .steps,.related-grid,.features{grid-template-columns:1fr}
+  .rt-card{min-height:0}
+  footer{flex-direction:column;gap:18px;text-align:center}
+  .container{width:calc(100% - 24px)}
+}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}}
+@media(max-width:480px){.card{padding:20px}.actions{flex-direction:column}.btn{width:100%}.upload{padding:34px 14px}}
+</style>
+</head>
+<body>
+
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<main>
+<section class="hero">
+  <div class="icon-badge">🧑</div>
+  <h1>How old do you <span>look?</span></h1>
+  <p>Get a playful AI estimate of the apparent age in a face photo. Upload a clear picture and let the model analyze visible facial features in seconds.</p>
+  <div class="trust-row"><div>No registration required</div><div>Photo stays in your browser</div><div>Works on any device</div></div>
+</section>
+
+<div class="narrow tool">
+<section class="card">
+<label class="upload" id="dropArea" for="photoInput">
+  <div class="dz-icon">📷</div>
+  <strong><span class="choose">Choose a photo</span> or drag it here</strong>
+  <small>JPG, PNG or WebP · one face works best</small>
+  <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
+</label>
+
+<div class="preview" id="preview"><img id="previewImg" alt="Selected photo preview"></div>
+<div class="actions"><button class="btn primary" id="estimateBtn" disabled>✦ Estimate apparent age</button><button class="btn secondary" id="resetBtn" type="button">Reset</button></div>
+<div class="status" id="status" role="status" aria-live="polite">Choose a photo to get started.</div>
+
+<div class="result" id="result">
+  <div class="label">Estimated apparent age</div>
+  <div class="number"><span id="ageValue">—</span><span class="unit"> years</span></div>
+  <p>This is an approximate AI prediction from the photo, not the person's actual age.</p>
+</div>
+
+<p class="privacy"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 5 6v5c0 4.5 2.9 7.8 7 10 4.1-2.2 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg><span>Your selected photo is processed in your browser and is not uploaded to our server by this tool. The AI model loads from a public CDN.</span></p>
+</section>
+
+<div class="features">
+  <div class="feature"><div class="f-icon">✧</div><h4>Quick Estimate</h4><p>A simple age estimate from one photo.</p></div>
+  <div class="feature"><div class="f-icon">🔒</div><h4>Private by Design</h4><p>Your photo is processed in your browser.</p></div>
+  <div class="feature"><div class="f-icon">◎</div><h4>Easy to Use</h4><p>Works on desktop and mobile.</p></div>
+</div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to <span>estimate your age</span></h2>
+  <p class="section-intro">Three quick steps. Your photo never leaves your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Add a photo</h3><p>Choose or drag in a well-lit, front-facing photo with one visible face.</p></div>
+    <div class="step"><b>2</b><h3>Estimate</h3><p>Press the button. The AI model loads the first time, then analyzes the face.</p></div>
+    <div class="step"><b>3</b><h3>See the result</h3><p>Get an approximate apparent age. Try another photo to compare.</p></div>
+  </div>
+</section>
+
+<section class="narrow learn" id="learn">
+  <h2 class="section-title">Learn about <span>Age Estimation</span></h2>
+  <p class="section-intro">Helpful guides on photos, lighting and how AI age estimates work.</p>
+  <div class="article-list">
+    <a class="article-card" href="../../articles/how-face-age-estimation-works/">
+      <div class="article-banner"><span class="glyph">🧠</span><img src="../../articles/how-face-age-estimation-works/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">HOW IT WORKS</span></div>
+      <div class="article-body"><h3>How AI Face Age Estimation Works</h3><p>A plain-English look at how a model guesses age from a photo.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/best-photo-for-age-estimate/">
+      <div class="article-banner b2"><span class="glyph">📸</span><img src="../../articles/best-photo-for-age-estimate/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">PHOTO TIPS</span></div>
+      <div class="article-body"><h3>Best Photo for an Age Estimate</h3><p>Lighting, angle and framing tips for a more reliable result.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/apparent-age-vs-real-age/">
+      <div class="article-banner b3"><span class="glyph">⏳</span><img src="../../articles/apparent-age-vs-real-age/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">AGE FACTS</span></div>
+      <div class="article-body"><h3>Apparent Age vs Real Age</h3><p>Why the age you look and the age you are can differ.</p><span class="article-read">Read article →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite Face Age Estimator.</p>
+  <details><summary>Is my photo uploaded to a server?</summary><p>No. Your photo is analyzed in your browser and is not uploaded to our server by this tool. The AI model files are downloaded from a public CDN the first time you estimate.</p></details>
+  <details><summary>How accurate is the estimate?</summary><p>It is approximate and meant for fun. Lighting, pose, image quality and model limitations can all change the result.</p></details>
+  <details><summary>Why does it say no face was detected?</summary><p>Try a clearer, front-facing photo with better lighting and no heavy filters or shadows covering the face.</p></details>
+  <details><summary>Why does it say more than one face was found?</summary><p>The estimator works on one person at a time. Crop the image so only one face is visible, then try again.</p></details>
+  <details><summary>Why is the first estimate slower?</summary><p>The AI model loads the first time you use it, so it needs an internet connection and a few extra seconds. Later estimates are faster.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these useful calculators and image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../agecalculator/"><span class="rt-icon">🎂</span><h3>Age Calculator</h3><p>Find your exact age in years, months, days, hours and minutes.</p><span class="go">Calculate age →</span></a>
+    <a class="rt-card" href="../bmicalculator/"><span class="rt-icon">⚖</span><h3>BMI Calculator</h3><p>Calculate body mass index from height and weight.</p><span class="go">Calculate BMI →</span></a>
+    <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images for easier sharing.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card" href="../removebg/"><span class="rt-icon">◩</span><h3>Remove Background</h3><p>Remove an image background for a cleaner subject-focused picture.</p><span class="go">Remove background →</span></a>
+    <a class="rt-card" href="../pngtojpg/"><span class="rt-icon">⇄</span><h3>PNG to JPG</h3><p>Convert PNG images to JPG format when you need a different file type.</p><span class="go">Convert image →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. A fun estimate, not a verified age or identity check.</div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.15/dist/face-api.js"></script>
 <script>
 const MODEL_URL='https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights';
@@ -25,4 +251,6 @@ function useFile(file){if(!file)return;if(!/^image\/(jpeg|png|webp)$/.test(file.
 input.addEventListener('change',e=>useFile(e.target.files[0]));for(const ev of ['dragenter','dragover'])drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag')});for(const ev of ['dragleave','drop'])drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag')});drop.addEventListener('drop',e=>useFile(e.dataTransfer.files[0]));
 estimateBtn.addEventListener('click',async()=>{if(!img.src)return;estimateBtn.disabled=true;result.style.display='none';try{await loadModel();status('Analyzing face…');const detections=await faceapi.detectAllFaces(img,new faceapi.TinyFaceDetectorOptions({inputSize:416,scoreThreshold:.35})).withAgeAndGender();if(!detections.length){status('No face detected. Try a clearer, front-facing photo with better lighting.');return}if(detections.length>1){status('More than one face detected. Please crop the image to show only one person, then try again.');return}const age=detections[0].age;ageValue.textContent=String(Math.round(age));result.style.display='block';status('Estimate complete.');}catch(err){console.error(err);status('Could not load the AI model or analyze this photo. Check your internet connection, then try again. Details: '+(err.message||'unknown error'))}finally{estimateBtn.disabled=!img.src}});
 resetBtn.addEventListener('click',()=>{input.value='';img.removeAttribute('src');preview.style.display='none';result.style.display='none';estimateBtn.disabled=true;ageValue.textContent='—';if(currentUrl){URL.revokeObjectURL(currentUrl);currentUrl=null}status('Choose a photo to get started.')});
-</script></body></html>
+</script>
+</body>
+</html>
