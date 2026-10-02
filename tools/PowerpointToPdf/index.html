@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerPoint to PDF Converter — Free Online | ConvertKit Lite</title>
+<meta property="og:url" content="https://www.convertkitlite.site/tools/ppttopdf/">
+<meta property="og:image" content="https://www.convertkitlite.site/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="Free PowerPoint to PDF converter. Turn PPTX presentations into PDF files with your choice of page size and quality. Private, runs in your browser, no upload.">
+<link rel="canonical" href="https://www.convertkitlite.site/tools/ppttopdf/">
+<link rel="icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:title" content="PowerPoint to PDF Converter — Free Online | ConvertKit Lite">
+<meta property="og:description" content="Convert PowerPoint to PDF. Free and private.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent-blue:#2d82ff;--success:#22c55e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;letter-spacing:.15px;transition:.2s}
+nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a[href="#learn"]{color:#e6dcff}
+nav a[href="#learn"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c1c3,#7c3ff0);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(124,63,240,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+.grad,h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+.tool{margin-top:32px;margin-bottom:48px}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+label,.lbl{display:block;font-size:12.5px;color:var(--text-dim);margin-bottom:8px;font-weight:600}
+select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+select:focus{outline:none;border-color:var(--border-hover)}
+select:disabled{opacity:.45;cursor:not-allowed}
+.drop{position:relative;display:block;text-align:center;border:2px dashed #2b5d97;border-radius:14px;background:var(--panel-2);padding:34px 16px;cursor:pointer;transition:.2s;margin-bottom:0}
+.drop:hover,.drop.over,.drop:focus-within{border-color:var(--border-hover);background:#08213f}
+.drop .d-icon{font-size:30px;margin-bottom:8px}
+.drop strong{display:block;font-size:15px;color:var(--text);margin-bottom:4px}
+.drop span{font-size:12px;color:var(--text-faint);font-weight:400}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.list{display:grid;gap:10px;margin-top:16px}
+.row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;border:1px solid #194a84;border-radius:12px;background:var(--panel-2);padding:10px 12px}
+.row .th{display:grid;place-items:center;font-size:24px;width:52px;height:52px;border-radius:8px;background:#04122a}
+.row .nm{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .sz{font-size:12px;color:var(--text-dim);margin-top:3px;line-height:1.5}
+.row .sz .save{color:var(--success);font-weight:700}
+.row .sz .note{color:#fbbf24;font-weight:600}
+.row .ac{display:flex;gap:6px}
+.row .ac button,.row .ac a{padding:8px 12px;font-size:12px;font-weight:700;border-radius:8px;border:1px solid #194a84;color:var(--text-dim);background:transparent;cursor:pointer}
+.row .ac button:hover,.row .ac a:hover{border-color:var(--border-hover);color:#fff}
+.row .ac a.dl{background:linear-gradient(135deg,#2d82ff,#7c3ff0);border:0;color:#fff}
+.count{font-size:12px;color:var(--text-dim);margin-top:14px;display:none}
+.hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
+.btns{display:flex;gap:12px;margin-top:22px}
+button{border:0;border-radius:10px;color:#fff;font:inherit;font-weight:700;padding:12px 26px;cursor:pointer;transition:filter .2s,transform .1s}
+button:hover{filter:brightness(1.1)}
+button:active{transform:scale(.99)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.primary{background:linear-gradient(135deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.btns .primary{flex:1;padding:15px;font-size:15px;border-radius:12px}
+.ghost{background:transparent;border:1px solid #194a84;color:var(--text-dim)}
+.ghost:hover{border-color:var(--border-hover);color:var(--text)}
+.err{color:#fca5b5;font-size:13px;margin-top:14px;min-height:18px}
+#progress{display:none;margin-top:16px}
+.bar{height:8px;border-radius:99px;background:#061a35;border:1px solid #194a84;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2e8bff,#ad5bff);transition:width .15s}
+#ptext{font-size:12px;color:var(--text-dim);margin-top:8px;text-align:center}
+#result{display:none;margin-top:16px;text-align:center;border:1px solid #2b5d97;border-radius:14px;background:var(--panel-2);padding:22px}
+#result h3{font-size:16px;margin-bottom:6px}
+#result p{font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin-bottom:4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq,.learn{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}
+.article-card:hover{transform:translateY(-3px);border-color:var(--border-hover);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-card h3{font-size:15px;margin-bottom:8px}
+.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+@media(max-width:700px){
+  .row{grid-template-columns:44px minmax(0,1fr)}.row .ac{grid-column:1/-1}
+  nav{display:none}h1{font-size:30px}
+  .steps,.related-grid,.features,.opts{grid-template-columns:1fr}
+  .rt-card{min-height:0}
+  footer{flex-direction:column;gap:18px;text-align:center}
+  .container{width:calc(100% - 24px)}
+}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}}
+@media(max-width:480px){.card{padding:20px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"PowerPoint to PDF Converter","description":"Free PowerPoint to PDF converter. Turn PPTX presentations into PDF files with your choice of page size and quality. Private, runs in your browser, no upload.","url":"https://www.convertkitlite.site/tools/ppttopdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertkitlite.site/"},{"@type":"ListItem","position":2,"name":"PowerPoint to PDF","item":"https://www.convertkitlite.site/tools/ppttopdf/"}]}]}</script>
+</head>
+<body>
+
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<main>
+<section class="hero">
+  <div class="icon-badge">📽️</div>
+  <h1>PowerPoint to <span>PDF</span></h1>
+  <p>Turn PowerPoint presentations into clean, ready-to-share PDF files. Choose the page size, orientation and quality. Everything happens in your browser.</p>
+  <div class="trust-row"><div>No registration required</div><div>Secure &amp; private</div><div>Works on any device</div></div>
+</section>
+
+<div class="narrow tool">
+<div class="card">
+<label class="drop" id="drop" for="file">
+  <div class="d-icon">📽️</div>
+  <strong>Choose PowerPoint files or drop them here</strong>
+  <span>PPTX files. Select several at once. Nothing leaves your device.</span>
+  <input id="file" type="file" accept=".pptx,.pptm,.ppsx,.potx,application/vnd.openxmlformats-officedocument.presentationml.presentation" multiple/>
+</label>
+<div class="count" id="count"></div>
+<div class="list" id="list"></div>
+
+<div class="opts">
+  <div><label for="page">Page size</label><select id="page"><option value="fit">Same as slides</option><option value="a4">A4</option><option value="letter">US Letter</option></select></div>
+  <div><label for="orient">Orientation</label><select id="orient" disabled><option value="auto">Match slides</option><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select></div>
+  <div><label for="quality">Quality</label><select id="quality"><option value="std">Standard (smaller file)</option><option value="high" selected>High</option><option value="max">Maximum (largest file)</option></select></div>
+  <div><label for="hidden">Hidden slides</label><select id="hidden"><option value="0">Skip hidden slides</option><option value="1">Include hidden slides</option></select></div>
+</div>
+<div class="hint">Every slide becomes one PDF page, drawn at the quality you choose. Text, pictures, shapes, tables, backgrounds and bullets are kept. Latin-script text stays searchable in the PDF. Charts, SmartArt, videos, animations and transitions are not included, and fonts that are not installed on your device are replaced with similar ones. Orientation applies only to A4 and US Letter.</div>
+
+<div class="btns"><button class="primary" id="convert" disabled>Convert to PDF</button><button class="ghost" id="reset">Reset</button></div>
+<div class="err" id="err"></div>
+
+<div id="progress"><div class="bar"><i id="pbar"></i></div><div id="ptext"></div></div>
+
+<div id="result">
+  <h3>Your PDF files are ready</h3>
+  <p id="rinfo"></p>
+  <button class="primary" id="zip" type="button">Download all (ZIP)</button>
+</div>
+</div>
+
+<div class="features">
+  <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your presentations are converted in your browser — nothing is uploaded.</p></div>
+  <div class="feature"><div class="f-icon">⚡</div><h4>Instant</h4><p>Slides convert on your device, with no waiting for uploads.</p></div>
+  <div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account and no limits on how often you use it.</p></div>
+</div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to convert <span>PowerPoint to PDF</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Add your PPTX files</h3><p>Click the upload area or drag one or more .pptx files onto it.</p></div>
+    <div class="step"><b>2</b><h3>Choose settings</h3><p>Pick the page size, orientation, quality and what to do with hidden slides.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each PDF or all of them as a ZIP.</p></div>
+  </div>
+</section>
+
+<section class="narrow learn" id="learn">
+  <h2 class="section-title">Learn about <span>Presentations</span></h2>
+  <p class="section-intro">Helpful guides about PowerPoint and PDF files.</p>
+  <div class="article-list">
+    <a class="article-card" href="../../articles/ppt-to-pdf-guide/">
+      <div class="article-banner"><span class="glyph">📽️</span><img src="../../articles/ppt-to-pdf-guide/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">PPT TO PDF</span></div>
+      <div class="article-body"><h3>How to Convert PowerPoint to PDF</h3><p>Learn the easiest ways to turn a presentation into a PDF.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/what-is-a-pptx-file/">
+      <div class="article-banner b2"><span class="glyph">📄</span><img src="../../articles/what-is-a-pptx-file/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">FILE FORMATS</span></div>
+      <div class="article-body"><h3>What Is a PPTX File?</h3><p>Understand what PowerPoint files contain and how they work.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/ppt-vs-pdf/">
+      <div class="article-banner b3"><span class="glyph">⚖️</span><img src="../../articles/ppt-vs-pdf/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">COMPARISON</span></div>
+      <div class="article-body"><h3>PowerPoint vs PDF</h3><p>Compare presentations and PDF files and pick the right one for sharing.</p><span class="article-read">Read article →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite PowerPoint to PDF tool.</p>
+  <details><summary>Are my files uploaded to a server?</summary><p>No. The PDF is created in your browser, so your presentations stay on your device.</p></details>
+  <details><summary>Will the PDF look exactly like my slides in PowerPoint?</summary><p>For most presentations it will be very close. Text, pictures, shapes, tables, backgrounds, bullets and numbering are all drawn. Some things are not supported: charts, SmartArt, videos, animations and transitions. If a slide contains objects that could not be drawn, the file list tells you how many were left out. For a pixel-perfect result on a complex deck, use File &gt; Export &gt; PDF inside PowerPoint.</p></details>
+  <details><summary>Why do some fonts look different?</summary><p>The conversion happens in your browser, which can only use fonts installed on your device. If your presentation uses a font you do not have, a similar font is used instead, so line breaks can shift slightly.</p></details>
+  <details><summary>Can I select and search the text in the PDF?</summary><p>Yes for Latin-script text. Each slide is drawn as a high-quality image so it looks the same everywhere, and the text is added on top as an invisible layer so you can search and copy it. Text in other scripts, such as Bengali, Arabic or Chinese, looks correct but is not searchable.</p></details>
+  <details><summary>Does it work with old .ppt files?</summary><p>No. Only the modern .pptx format (plus .pptm, .ppsx and .potx) is supported. To convert an old .ppt file, open it in PowerPoint, choose Save As and pick PowerPoint Presentation (.pptx), then add it here.</p></details>
+  <details><summary>How do I get a smaller PDF?</summary><p>Choose Standard quality. High and Maximum draw slides at a higher resolution, which looks sharper when zoomed or printed but makes the file larger.</p></details>
+  <details><summary>Can I convert many files at once?</summary><p>Yes. Add several presentations, convert them together, and download each PDF or one ZIP.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these useful document and image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../txttopdf/"><span class="rt-icon">📑</span><h3>TXT to PDF</h3><p>Turn plain text files into clean PDF documents.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../rtftopdf/"><span class="rt-icon">📝</span><h3>RTF to PDF</h3><p>Turn Rich Text files into PDF with selectable text.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../jpgtopdf/"><span class="rt-icon">🖼️</span><h3>JPG to PDF</h3><p>Combine images into a single PDF file.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../pdftoword/"><span class="rt-icon">📘</span><h3>PDF to Word</h3><p>Turn PDF files into editable Word documents.</p><span class="go">Convert PDF →</span></a>
+    <a class="rt-card" href="../docxtotxt/"><span class="rt-icon">📃</span><h3>DOCX to TXT</h3><p>Extract plain text from Word documents.</p><span class="go">Convert to TXT →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let items=[],uid=0;
+const size=b=>b>=1048576?(b/1048576).toFixed(2)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const base=n=>n.replace(/\.[^.]+$/,'');
+const ext=/\.(pptx|pptm|ppsx|potx)$/i;
+const MAX_BYTES=100*1048576;
+const EMU=12700;
+const NS_R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+const QUAL={std:{s:1.5,q:.85},high:{s:2,q:.92},max:{s:3,q:.95}};
+const tick=()=>new Promise(r=>setTimeout(r,0));
+
+/* ---------- XML helpers ---------- */
+const kid=(el,n)=>{if(!el)return null;for(const c of el.children)if(c.localName===n)return c;return null};
+const kids=(el,n)=>el?[...el.children].filter(c=>c.localName===n):[];
+const desc=(el,n)=>el?[...el.getElementsByTagNameNS('*',n)]:[];
+const num=(v,d=0)=>{const n=parseFloat(v);return isNaN(n)?d:n};
+const isTrue=v=>v==='1'||v==='true';
+
+/* ---------- package loading ---------- */
+function resolvePath(dir,t){
+  if(t[0]==='/')return t.slice(1);
+  const out=[];
+  for(const p of (dir+t).split('/')){if(p==='..')out.pop();else if(p&&p!=='.')out.push(p)}
+  return out.join('/');
+}
+async function getXml(pkg,path){
+  if(path in pkg.xml)return pkg.xml[path];
+  const f=pkg.z.file(path);let r=null;
+  if(f){
+    const doc=new DOMParser().parseFromString(await f.async('string'),'application/xml');
+    if(!doc.getElementsByTagName('parsererror').length)r=doc.documentElement;
+  }
+  return pkg.xml[path]=r;
+}
+async function getRels(pkg,part){
+  if(pkg.rels[part])return pkg.rels[part];
+  const i=part.lastIndexOf('/'),dir=part.slice(0,i+1),nm=part.slice(i+1);
+  const root=await getXml(pkg,dir+'_rels/'+nm+'.rels'),m={};
+  if(root)for(const r of kids(root,'Relationship')){
+    if(r.getAttribute('TargetMode')==='External')continue;
+    m[r.getAttribute('Id')]={type:r.getAttribute('Type'),path:resolvePath(dir,r.getAttribute('Target'))};
+  }
+  return pkg.rels[part]=m;
+}
+function defaultTheme(){
+  return{colors:{dk1:'000000',lt1:'FFFFFF',dk2:'44546A',lt2:'E7E6E6',accent1:'4472C4',accent2:'ED7D31',accent3:'A5A5A5',accent4:'FFC000',accent5:'5B9BD5',accent6:'70AD47',hlink:'0563C1',folHlink:'954F72'},clrMap:{bg1:'lt1',tx1:'dk1',bg2:'lt2',tx2:'dk2'},major:'Calibri',minor:'Calibri'};
+}
+async function getTheme(pkg,mp,mxml){
+  if(pkg.theme[mp])return pkg.theme[mp];
+  const th=defaultTheme();
+  const rel=await getRels(pkg,mp),tp=Object.values(rel).find(r=>/\/theme$/.test(r.type));
+  const tx=tp&&await getXml(pkg,tp.path);
+  if(tx){
+    const cs=desc(tx,'clrScheme')[0];
+    if(cs)for(const c of cs.children){const v=c.firstElementChild;if(v)th.colors[c.localName]=v.localName==='sysClr'?v.getAttribute('lastClr'):v.getAttribute('val')}
+    const mj=desc(tx,'majorFont')[0],mn=desc(tx,'minorFont')[0];
+    th.major=(kid(mj,'latin')&&kid(mj,'latin').getAttribute('typeface'))||th.major;
+    th.minor=(kid(mn,'latin')&&kid(mn,'latin').getAttribute('typeface'))||th.minor;
+  }
+  const cm=kid(mxml,'clrMap');
+  if(cm)for(const a of cm.attributes)th.clrMap[a.name]=a.value;
+  return pkg.theme[mp]=th;
+}
+async function loadPkg(file){
+  const z=await JSZip.loadAsync(await file.arrayBuffer());
+  const pkg={z,xml:{},rels:{},img:{},theme:{}};
+  const pres=await getXml(pkg,'ppt/presentation.xml');
+  if(!pres)throw new Error('invalid');
+  const sz=kid(pres,'sldSz');
+  pkg.W=num(sz&&sz.getAttribute('cx'),9144000)/EMU;
+  pkg.H=num(sz&&sz.getAttribute('cy'),6858000)/EMU;
+  pkg.defStyle=kid(pres,'defaultTextStyle');
+  const prels=await getRels(pkg,'ppt/presentation.xml');
+  pkg.slides=kids(kid(pres,'sldIdLst'),'sldId').map(s=>prels[s.getAttributeNS(NS_R,'id')]).filter(Boolean).map(r=>r.path);
+  return pkg;
+}
+async function loadSlide(pkg,path){
+  const xml=await getXml(pkg,path),rels=await getRels(pkg,path);
+  const S={slide:{xml,rels},lay:null,mas:null,th:defaultTheme()};
+  const lr=Object.values(rels).find(r=>/\/slideLayout$/.test(r.type));
+  if(lr){
+    S.lay={xml:await getXml(pkg,lr.path),rels:await getRels(pkg,lr.path)};
+    const mr=Object.values(S.lay.rels).find(r=>/\/slideMaster$/.test(r.type));
+    if(mr){
+      S.mas={xml:await getXml(pkg,mr.path),rels:await getRels(pkg,mr.path)};
+      if(S.mas.xml)S.th=await getTheme(pkg,mr.path,S.mas.xml);
+    }
+  }
+  return S;
+}
+async function loadImg(pkg,path){
+  const m=/\.(png|jpe?g|gif|bmp|webp|svg)$/i.exec(path);
+  if(!m)return null;
+  const f=pkg.z.file(path);if(!f)return null;
+  const e=m[1].toLowerCase(),type=e==='svg'?'image/svg+xml':'image/'+(e==='jpg'?'jpeg':e);
+  const url=URL.createObjectURL(new Blob([await f.async('uint8array')],{type}));
+  return new Promise(res=>{const im=new Image();im.onload=()=>{URL.revokeObjectURL(url);res(im)};im.onerror=()=>{URL.revokeObjectURL(url);res(null)};im.src=url});
+}
+async function preload(pkg,part){
+  if(!part||!part.xml)return;
+  for(const b of desc(part.xml,'blip')){
+    const r=part.rels[b.getAttributeNS(NS_R,'embed')];
+    if(r&&!(r.path in pkg.img))pkg.img[r.path]=await loadImg(pkg,r.path);
+  }
+}
+
+/* ---------- colours ---------- */
+const PRST={black:[0,0,0],white:[255,255,255],red:[255,0,0],green:[0,128,0],blue:[0,0,255],yellow:[255,255,0],gray:[128,128,128],grey:[128,128,128],orange:[255,165,0],purple:[128,0,128]};
+function h2r(h){h=(h||'000000').replace('#','');return[0,2,4].map(i=>parseInt(h.substr(i,2),16)||0)}
+function rgb2hsl(c){let[r,g,b]=c;r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h=0,s=0;const l=(mx+mn)/2;if(mx!==mn){const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6}return[h,s,l]}
+function hsl2rgb(c){const[h,s,l]=c;if(s===0){const v=Math.round(l*255);return[v,v,v]}const q=l<.5?l*(1+s):l+s-l*s,p=2*l-q;const f=t=>{if(t<0)t+=1;if(t>1)t-=1;return t<1/6?p+(q-p)*6*t:t<1/2?q:t<2/3?p+(q-p)*(2/3-t)*6:p};return[f(h+1/3),f(h),f(h-1/3)].map(v=>Math.round(v*255))}
+function clrBase(E,el,ph){
+  const n=el.localName,v=el.getAttribute('val');
+  if(n==='srgbClr')return h2r(v);
+  if(n==='sysClr')return h2r(el.getAttribute('lastClr')||'000000');
+  if(n==='prstClr')return(PRST[v]||[0,0,0]).slice();
+  if(n==='scrgbClr')return['r','g','b'].map(k=>Math.round(num(el.getAttribute(k))/1000*2.55));
+  if(n==='schemeClr'){
+    if(v==='phClr')return ph?ph.slice():[0,0,0];
+    const k=E.th.clrMap[v]||v;
+    return h2r(E.th.colors[k]);
+  }
+  return[0,0,0];
+}
+function colorOf(E,parent,ph){
+  if(!parent)return null;
+  const el=[...parent.children].find(x=>/Clr$/.test(x.localName));
+  if(!el)return null;
+  let rgb=clrBase(E,el,ph),a=1;
+  for(const m of el.children){
+    const v=num(m.getAttribute('val'))/100000;
+    switch(m.localName){
+      case'lumMod':{const h=rgb2hsl(rgb);h[2]=Math.min(1,h[2]*v);rgb=hsl2rgb(h);break}
+      case'lumOff':{const h=rgb2hsl(rgb);h[2]=Math.min(1,Math.max(0,h[2]+v));rgb=hsl2rgb(h);break}
+      case'satMod':{const h=rgb2hsl(rgb);h[1]=Math.min(1,h[1]*v);rgb=hsl2rgb(h);break}
+      case'tint':rgb=rgb.map(x=>Math.round(x*v+255*(1-v)));break;
+      case'shade':rgb=rgb.map(x=>Math.round(x*v));break;
+      case'alpha':a=v;break;
+      case'alphaMod':a*=v;break;
+    }
+  }
+  return{rgb,a,css:'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+','+a+')'};
+}
+function themeCol(E,name){
+  const k=E.th.clrMap[name]||name,rgb=h2r(E.th.colors[k]);
+  return{rgb,a:1,css:'rgb('+rgb.join(',')+')'};
+}
+
+/* ---------- fills and lines ---------- */
+const FILLN=['noFill','solidFill','gradFill','blipFill','pattFill','grpFill'];
+function fillFrom(E,f){
+  switch(f.localName){
+    case'solidFill':{const col=colorOf(E,f);return col?{kind:'solid',col}:null}
+    case'gradFill':{
+      const stops=kids(kid(f,'gsLst'),'gs').map(g=>({pos:num(g.getAttribute('pos'))/100000,col:colorOf(E,g)})).filter(s=>s.col);
+      if(!stops.length)return null;
+      const lin=kid(f,'lin');
+      return{kind:'grad',stops,ang:lin?num(lin.getAttribute('ang'))/60000:90};
+    }
+    case'blipFill':return{kind:'blip',f};
+    case'pattFill':{const col=colorOf(E,kid(f,'fgClr'));return col?{kind:'solid',col}:null}
+    default:return null;
+  }
+}
+function fillOf(E,list,style){
+  for(const sp of list){
+    if(!sp)continue;
+    const f=[...sp.children].find(c=>FILLN.includes(c.localName));
+    if(f)return fillFrom(E,f);
+  }
+  const fr=kid(style,'fillRef');
+  if(fr&&fr.getAttribute('idx')!=='0'){const col=colorOf(E,fr);if(col)return{kind:'solid',col}}
+  return null;
+}
+function drawBlip(E,bf,x,y,w,h){
+  const c=E.c,blip=kid(bf,'blip');
+  const r=blip&&E.part.rels[blip.getAttributeNS(NS_R,'embed')];
+  const im=r&&E.pkg.img[r.path];
+  if(!im){if(E.partKind==='slide')E.unsupported++;return}
+  const iw=im.naturalWidth||im.width||300,ih=im.naturalHeight||im.height||150;
+  const sr=kid(bf,'srcRect');
+  let sx=0,sy=0,sw=iw,sh=ih;
+  if(sr){
+    const l=num(sr.getAttribute('l'))/100000,t=num(sr.getAttribute('t'))/100000,rr=num(sr.getAttribute('r'))/100000,b=num(sr.getAttribute('b'))/100000;
+    sx=l*iw;sy=t*ih;sw=Math.max(1,iw*(1-l-rr));sh=Math.max(1,ih*(1-t-b));
+  }
+  c.save();
+  const am=kid(blip,'alphaModFix');
+  if(am)c.globalAlpha*=num(am.getAttribute('amt'),100000)/100000;
+  try{c.drawImage(im,sx,sy,sw,sh,x,y,w,h)}catch(e){}
+  c.restore();
+}
+function applyFill(E,fill,w,h){
+  const c=E.c;
+  if(!fill)return;
+  if(fill.kind==='solid'){c.fillStyle=fill.col.css;c.fill();return}
+  if(fill.kind==='grad'){
+    const a=fill.ang*Math.PI/180,dx=Math.cos(a),dy=Math.sin(a),len=Math.abs(w*dx)+Math.abs(h*dy),cx=w/2,cy=h/2;
+    const g=c.createLinearGradient(cx-dx*len/2,cy-dy*len/2,cx+dx*len/2,cy+dy*len/2);
+    fill.stops.forEach(s=>g.addColorStop(Math.min(1,Math.max(0,s.pos)),s.col.css));
+    c.fillStyle=g;c.fill();return;
+  }
+  if(fill.kind==='blip'){c.save();c.clip();drawBlip(E,fill.f,0,0,w,h);c.restore()}
+}
+function lineOf(E,list,style){
+  let col=null,w=0,dash=null,head=null,tail=null,none=false;
+  const lr=kid(style,'lnRef');
+  if(lr&&lr.getAttribute('idx')!=='0'){col=colorOf(E,lr);w=[0,.5,1,1.5][+lr.getAttribute('idx')]||1}
+  for(const sp of list){
+    const ln=kid(sp,'ln');
+    if(!ln)continue;
+    if(ln.hasAttribute('w'))w=num(ln.getAttribute('w'))/EMU;
+    const f=[...ln.children].find(c=>['noFill','solidFill','gradFill','pattFill'].includes(c.localName));
+    if(f){
+      if(f.localName==='noFill')none=true;
+      else{
+        const cc=f.localName==='gradFill'?colorOf(E,kid(kid(f,'gsLst'),'gs')):f.localName==='pattFill'?colorOf(E,kid(f,'fgClr')):colorOf(E,f);
+        if(cc){col=cc;none=false}
+      }
+    }
+    const d=kid(ln,'prstDash');if(d)dash=d.getAttribute('val');
+    const he=kid(ln,'headEnd'),te=kid(ln,'tailEnd');
+    if(he&&he.getAttribute('type')&&he.getAttribute('type')!=='none')head=true;
+    if(te&&te.getAttribute('type')&&te.getAttribute('type')!=='none')tail=true;
+    break;
+  }
+  if(none||!col)return null;
+  if(!w)w=.75;
+  return{col,w,dash,head,tail};
+}
+const DASH={dash:[4,3],sysDash:[3,1],dot:[1,1],sysDot:[1,1],lgDash:[8,3],dashDot:[4,3,1,3],lgDashDot:[8,3,1,3],sysDashDot:[3,1,1,1]};
+function strokeLn(E,ln){
+  const c=E.c;
+  c.lineWidth=Math.max(ln.w,.25);c.strokeStyle=ln.col.css;
+  const d=DASH[ln.dash];
+  c.setLineDash(d?d.map(v=>v*Math.max(ln.w,1)):[]);
+  c.stroke();c.setLineDash([]);
+}
+function arrowHead(c,x,y,ang,sz){
+  c.save();c.translate(x,y);c.rotate(ang);c.beginPath();c.moveTo(0,0);c.lineTo(-sz,sz/2);c.lineTo(-sz,-sz/2);c.closePath();c.fill();c.restore();
+}
+
+/* ---------- geometry ---------- */
+function presetPath(c,prst,w,h,av){
+  const a=(n,d)=>av[n]!=null?av[n]:d,ss=Math.min(w,h);
+  const poly=pts=>{pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath()};
+  switch(prst){
+    case'roundRect':case'round1Rect':case'round2SameRect':case'round2DiagRect':case'snipRoundRect':case'flowChartTerminator':{
+      let r=prst==='flowChartTerminator'?ss/2:ss*a('adj',a('adj1',16667))/100000;
+      r=Math.min(r,w/2,h/2);
+      c.moveTo(r,0);c.lineTo(w-r,0);c.arcTo(w,0,w,r,r);c.lineTo(w,h-r);c.arcTo(w,h,w-r,h,r);c.lineTo(r,h);c.arcTo(0,h,0,h-r,r);c.lineTo(0,r);c.arcTo(0,0,r,0,r);c.closePath();break;
+    }
+    case'ellipse':case'flowChartConnector':c.ellipse(w/2,h/2,Math.max(w/2,.01),Math.max(h/2,.01),0,0,Math.PI*2);break;
+    case'triangle':poly([[w*a('adj',50000)/100000,0],[w,h],[0,h]]);break;
+    case'rtTriangle':poly([[0,0],[0,h],[w,h]]);break;
+    case'diamond':case'flowChartDecision':poly([[w/2,0],[w,h/2],[w/2,h],[0,h/2]]);break;
+    case'parallelogram':{const o=ss*a('adj',25000)/100000;poly([[o,0],[w,0],[w-o,h],[0,h]]);break}
+    case'trapezoid':{const o=ss*a('adj',25000)/100000;poly([[o,0],[w-o,0],[w,h],[0,h]]);break}
+    case'hexagon':{const o=ss*a('adj',25000)/100000;poly([[o,0],[w-o,0],[w,h/2],[w-o,h],[o,h],[0,h/2]]);break}
+    case'rightArrow':{const sh=h*a('adj1',50000)/100000,hd=ss*a('adj2',50000)/100000,y1=(h-sh)/2;poly([[0,y1],[w-hd,y1],[w-hd,0],[w,h/2],[w-hd,h],[w-hd,h-y1],[0,h-y1]]);break}
+    case'leftArrow':{const sh=h*a('adj1',50000)/100000,hd=ss*a('adj2',50000)/100000,y1=(h-sh)/2;poly([[w,y1],[hd,y1],[hd,0],[0,h/2],[hd,h],[hd,h-y1],[w,h-y1]]);break}
+    case'chevron':{const o=ss*a('adj',50000)/100000;poly([[0,0],[w-o,0],[w,h/2],[w-o,h],[0,h],[o,h/2]]);break}
+    case'homePlate':{const o=ss*a('adj',50000)/100000;poly([[0,0],[w-o,0],[w,h/2],[w-o,h],[0,h]]);break}
+    default:c.rect(0,0,w,h);
+  }
+}
+function custPath(c,cust,w,h){
+  for(const path of kids(kid(cust,'pathLst'),'path')){
+    const pw=num(path.getAttribute('w'))||w,ph=num(path.getAttribute('h'))||h,sx=w/pw,sy=h/ph;
+    let cx=0,cy=0;
+    const pts=n=>kids(n,'pt').map(p=>[num(p.getAttribute('x')),num(p.getAttribute('y'))]);
+    for(const s of path.children){
+      switch(s.localName){
+        case'moveTo':{const p=pts(s)[0];if(!p)break;c.moveTo(p[0]*sx,p[1]*sy);cx=p[0];cy=p[1];break}
+        case'lnTo':{const p=pts(s)[0];if(!p)break;c.lineTo(p[0]*sx,p[1]*sy);cx=p[0];cy=p[1];break}
+        case'cubicBezTo':{const p=pts(s);if(p.length<3)break;c.bezierCurveTo(p[0][0]*sx,p[0][1]*sy,p[1][0]*sx,p[1][1]*sy,p[2][0]*sx,p[2][1]*sy);cx=p[2][0];cy=p[2][1];break}
+        case'quadBezTo':{const p=pts(s);if(p.length<2)break;c.quadraticCurveTo(p[0][0]*sx,p[0][1]*sy,p[1][0]*sx,p[1][1]*sy);cx=p[1][0];cy=p[1][1];break}
+        case'arcTo':{
+          const wR=num(s.getAttribute('wR')),hR=num(s.getAttribute('hR'));
+          const st=num(s.getAttribute('stAng'))/60000*Math.PI/180,sw=num(s.getAttribute('swAng'))/60000*Math.PI/180;
+          const ox=cx-wR*Math.cos(st),oy=cy-hR*Math.sin(st);
+          c.ellipse(ox*sx,oy*sy,Math.max(wR*sx,.01),Math.max(hR*sy,.01),0,st,st+sw,sw<0);
+          cx=ox+wR*Math.cos(st+sw);cy=oy+hR*Math.sin(st+sw);break;
+        }
+        case'close':c.closePath();break;
+      }
+    }
+  }
+}
+
+/* ---------- placeholders / transforms ---------- */
+const phOf=sp=>kid(kid(kid(sp,'nvSpPr'),'nvPr'),'ph');
+const normT=t=>({ctrTitle:'title',title:'title',subTitle:'body',body:'body',obj:'body',dt:'dt',ftr:'ftr',sldNum:'sldNum'}[t||'obj']||'body');
+const spTreeOf=p=>p&&p.xml?kid(kid(p.xml,'cSld'),'spTree'):null;
+function findPh(part,ph,isMaster){
+  const tree=spTreeOf(part);
+  if(!tree)return null;
+  const list=kids(tree,'sp').filter(s=>phOf(s));
+  const idx=ph.getAttribute('idx'),t=normT(ph.getAttribute('type'));
+  if(!isMaster&&idx!=null){const m=list.find(s=>phOf(s).getAttribute('idx')===idx);if(m)return m}
+  return list.find(s=>normT(phOf(s).getAttribute('type'))===t)||null;
+}
+function readXfrm(x,gm){
+  if(!x)return null;
+  const off=kid(x,'off'),ext=kid(x,'ext');
+  if(!off||!ext)return null;
+  return{x:num(off.getAttribute('x'))*gm.sx+gm.tx,y:num(off.getAttribute('y'))*gm.sy+gm.ty,w:num(ext.getAttribute('cx'))*gm.sx,h:num(ext.getAttribute('cy'))*gm.sy,rot:num(x.getAttribute('rot'))/60000,fh:isTrue(x.getAttribute('flipH')),fv:isTrue(x.getAttribute('flipV'))};
+}
+
+/* ---------- text ---------- */
+function faceCss(f){
+  f=(f||'Calibri').replace(/["']/g,'');
+  const serif=/times|georgia|garamond|cambria|palatino|book antiqua/i.test(f)&&!/sans/i.test(f);
+  const mono=/courier|consolas|mono/i.test(f);
+  return'"'+f+'", '+(/calibri/i.test(f)?'Carlito, ':'')+(serif?'serif':mono?'monospace':'Arial, sans-serif');
+}
+const fontStr=st=>(st.i?'italic ':'')+(st.b?'bold ':'')+st.size.toFixed(2)+'px '+faceCss(st.face);
+function mapSym(ch,f){
+  if(/wingdings/i.test(f))return{'§':'▪','ü':'✓','Ø':'➢','q':'❑','v':'❖','l':'●','n':'■','u':'◆','è':'→'}[ch]||'•';
+  return'•';
+}
+function alphaN(n){let s='';n=Math.max(1,n);while(n>0){const r=(n-1)%26;s=String.fromCharCode(65+r)+s;n=Math.floor((n-1)/26)}return s}
+function romanN(n){const m=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];let s='';for(const[v,r]of m)while(n>=v){s+=r;n-=v}return s}
+function fmtNum(n,t){
+  t=t||'arabicPeriod';let s;
+  if(/alphaLc/.test(t))s=alphaN(n).toLowerCase();
+  else if(/alphaUc/.test(t))s=alphaN(n);
+  else if(/romanLc/.test(t))s=romanN(n).toLowerCase();
+  else if(/romanUc/.test(t))s=romanN(n);
+  else s=String(n);
+  return s+(/Paren/.test(t)?')':/Period/.test(t)?'.':'');
+}
+function layoutText(E,tb,boxW,chain,fscale,defCol,hdr,wrap){
+  const c=E.c,th=E.th,paras=[],counters=[];
+  let height=0,has=false;
+  const lvKey=l=>'lvl'+(l+1)+'pPr';
+  for(const p of kids(tb,'p')){
+    const pPr=kid(p,'pPr');
+    const lvl=Math.min(8,Math.max(0,parseInt(pPr&&pPr.getAttribute('lvl'))||0));
+    const pa=n=>{
+      if(pPr&&pPr.hasAttribute(n))return pPr.getAttribute(n);
+      for(const ls of chain){const lp=kid(ls,lvKey(lvl));if(lp&&lp.hasAttribute(n))return lp.getAttribute(n)}
+      return null;
+    };
+    const pf=names=>{
+      const srcs=[pPr].concat(chain.map(ls=>kid(ls,lvKey(lvl))));
+      for(const s of srcs){if(!s)continue;const f=[...s.children].find(x=>names.includes(x.localName));if(f)return f}
+      return null;
+    };
+    const ra=(rPr,n)=>{
+      if(rPr&&rPr.hasAttribute(n))return rPr.getAttribute(n);
+      for(const ls of chain){const d=kid(kid(ls,lvKey(lvl)),'defRPr');if(d&&d.hasAttribute(n))return d.getAttribute(n)}
+      return null;
+    };
+    const rf=(rPr,names)=>{
+      const srcs=[rPr].concat(chain.map(ls=>kid(kid(ls,lvKey(lvl)),'defRPr')));
+      for(const s of srcs){if(!s)continue;const f=[...s.children].find(x=>names.includes(x.localName));if(f)return f}
+      return null;
+    };
+    const sty=rPr=>{
+      const sz=num(ra(rPr,'sz'),1800)/100*fscale;
+      const bl=num(ra(rPr,'baseline'));
+      const lat=rf(rPr,['latin']);
+      let face=lat?lat.getAttribute('typeface'):'+mn-lt';
+      if(face==='+mj-lt')face=th.major;else if(!face||face==='+mn-lt')face=th.minor;
+      const sf=rf(rPr,['solidFill']);
+      let col=(sf&&colorOf(E,sf))||(hdr?themeCol(E,'bg1'):defCol),u=ra(rPr,'u')&&ra(rPr,'u')!=='none';
+      if(rPr&&kid(rPr,'hlinkClick')){col=themeCol(E,'hlink');u=true}
+      return{size:bl?sz*.65:sz,dy:bl>0?sz*.35:bl<0?-sz*.12:0,b:hdr||isTrue(ra(rPr,'b')),i:isTrue(ra(rPr,'i')),u:!!u,s:!!(ra(rPr,'strike')&&ra(rPr,'strike')!=='noStrike'),col,face,cap:ra(rPr,'cap')==='all'};
+    };
+    const its=[];let endSt=null,hasText=false;
+    for(const ch of p.children){
+      const ln=ch.localName;
+      if(ln==='r'||ln==='fld'){
+        const st=sty(kid(ch,'rPr'));
+        let t=(kid(ch,'t')||{}).textContent||'';
+        if(ln==='fld'&&/slidenum/i.test(ch.getAttribute('type')||''))t=String(E.slideNo);
+        t=t.replace(/\t/g,'    ').replace(/[\r\n\v]+/g,' ');
+        if(st.cap)t=t.toUpperCase();
+        for(const tk of t.split(/(\s+)/))if(tk){its.push({t:tk,st,sp:/^\s+$/.test(tk)});if(!/^\s+$/.test(tk))hasText=true}
+      }else if(ln==='br')its.push({br:true,st:sty(kid(ch,'rPr'))});
+      else if(ln==='endParaRPr')endSt=sty(ch);
+    }
+    if(hasText)has=true;
+    const algn=pa('algn')||'l';
+    const mar=num(pa('marL'))/EMU,ind=num(pa('indent'))/EMU;
+    const firstSt=(its.find(x=>!x.br&&!x.sp)||its[0]||{}).st||endSt||sty(null);
+    /* bullet */
+    let bullet=null;
+    const bf=pf(['buNone','buChar','buAutoNum','buBlip']);
+    if(hasText&&bf&&(bf.localName==='buChar'||bf.localName==='buAutoNum')){
+      if(bf.localName==='buChar'){
+        let ch=bf.getAttribute('char')||'•';
+        const bfont=pf(['buFont']),ff=bfont?(bfont.getAttribute('typeface')||''):'';
+        if(/wingdings|symbol/i.test(ff))ch=mapSym(ch,ff);
+        bullet={t:ch};
+      }else{
+        counters[lvl]=counters[lvl]==null?num(bf.getAttribute('startAt'),1):counters[lvl]+1;
+        bullet={t:fmtNum(counters[lvl],bf.getAttribute('type'))};
+      }
+      const bc=pf(['buClr']),bs=pf(['buSzPct']);
+      bullet.col=(bc&&colorOf(E,bc))||firstSt.col;
+      bullet.st=Object.assign({},firstSt,{b:false,i:false,size:firstSt.size*(bs?num(bs.getAttribute('val'),100000)/100000:1)});
+      c.font=fontStr(bullet.st);
+      bullet.w=c.measureText(bullet.t).width;
+    }else counters[lvl]=null;
+    for(let k=lvl+1;k<9;k++)counters[k]=null;
+    let firstX,restX=mar,bx=0;
+    if(bullet){bx=Math.max(0,mar+ind);firstX=Math.max(mar,bx+bullet.w+3)}
+    else firstX=Math.max(0,mar+ind);
+    /* line breaking */
+    const lines=[];
+    let cur={it:[],w:0,tw:0,size:0};
+    const avail=()=>wrap?Math.max(10,boxW-(lines.length===0?firstX:restX)):Infinity;
+    const finish=()=>{cur.w-=cur.tw;lines.push(cur);cur={it:[],w:0,tw:0,size:0}};
+    for(const it of its){
+      if(it.br){if(!cur.size)cur.size=it.st.size;finish();continue}
+      c.font=fontStr(it.st);
+      it.w=c.measureText(it.t).width;
+      if(!it.sp&&cur.w+it.w>avail()&&cur.it.some(x=>!x.sp))finish();
+      if(it.sp&&cur.it.length===0&&lines.length>0)continue;
+      cur.it.push(it);cur.w+=it.w;cur.size=Math.max(cur.size,it.st.size);
+      cur.tw=it.sp?cur.tw+it.w:0;
+    }
+    if(!cur.size)cur.size=(endSt||firstSt).size;
+    finish();
+    /* spacing */
+    let pct=1,fixed=null;
+    const ls=pf(['lnSpc']);
+    if(ls){const sp=kid(ls,'spcPct'),pt=kid(ls,'spcPts');if(sp)pct=num(sp.getAttribute('val'))/100000;else if(pt)fixed=num(pt.getAttribute('val'))/100}
+    lines.forEach(l=>{l.lh=fixed!=null?fixed:l.size*1.2*pct});
+    const spc=names=>{
+      const s=pf(names);if(!s)return 0;
+      const sp=kid(s,'spcPts'),pc=kid(s,'spcPct');
+      if(sp)return num(sp.getAttribute('val'))/100;
+      if(pc)return num(pc.getAttribute('val'))/100000*lines[0].size*1.2;
+      return 0;
+    };
+    const sb=spc(['spcBef']),sa=spc(['spcAft']);
+    const para={lines,algn,firstX,restX,bx,bullet,sb:paras.length?sb:0,sa};
+    paras.push(para);
+    height+=para.sb+para.sa+lines.reduce((a,l)=>a+l.lh,0);
+  }
+  return{paras,height,has};
+}
+function paintText(E,L,x0,y0,w,h,anchor,abs){
+  const c=E.c;
+  let y=anchor==='ctr'?y0+(h-L.height)/2:anchor==='b'?y0+h-L.height:y0;
+  c.textBaseline='alphabetic';c.textAlign='left';
+  for(const p of L.paras){
+    y+=p.sb;
+    p.lines.forEach((ln,li)=>{
+      const left=li===0?p.firstX:p.restX,av=w-left;
+      let x=x0+left;
+      if(p.algn==='ctr')x+=(av-ln.w)/2;else if(p.algn==='r')x+=av-ln.w;
+      const base=y+ln.lh-ln.size*.25;
+      if(li===0&&p.bullet){c.font=fontStr(p.bullet.st);c.fillStyle=p.bullet.col.css;c.fillText(p.bullet.t,x0+p.bx,base)}
+      let cx=x;
+      for(const it of ln.it){
+        c.font=fontStr(it.st);c.fillStyle=it.st.col.css;
+        if(!it.sp){
+          c.fillText(it.t,cx,base-it.st.dy);
+          if(it.st.u)c.fillRect(cx,base+it.st.size*.1,it.w,Math.max(.5,it.st.size/16));
+          if(it.st.s)c.fillRect(cx,base-it.st.size*.3,it.w,Math.max(.5,it.st.size/18));
+          if(abs)E.log.push({t:it.t,x:abs.x+cx,y:abs.y+base,size:it.st.size});
+        }
+        cx+=it.w;
+      }
+      y+=ln.lh;
+    });
+    y+=p.sa;
+  }
+}
+
+/* ---------- shapes ---------- */
+function drawSp(E,sp,gm,isCxn){
+  const c=E.c;
+  const cnv=kid(kid(sp,isCxn?'nvCxnSpPr':'nvSpPr'),'cNvPr');
+  if(cnv&&isTrue(cnv.getAttribute('hidden')))return;
+  const ph=isCxn?null:phOf(sp);
+  if(ph&&E.partKind!=='slide')return;
+  const spPr=kid(sp,'spPr'),style=kid(sp,'style'),tb=kid(sp,'txBody');
+  let lph=null,mph=null;
+  if(ph){lph=E.lay?findPh(E.lay,ph,false):null;mph=E.mas?findPh(E.mas,ph,true):null}
+  const list=[spPr,lph&&kid(lph,'spPr'),mph&&kid(mph,'spPr')];
+  const xf=list.map(s=>s&&kid(s,'xfrm')).find(Boolean);
+  const r=readXfrm(xf,gm);
+  if(!r)return;
+  const pg=list.map(s=>s&&kid(s,'prstGeom')).find(Boolean);
+  const prst=pg?pg.getAttribute('prst'):(kid(spPr,'custGeom')?null:'rect');
+  const cust=kid(spPr,'custGeom');
+  const av={};
+  if(pg)kids(kid(pg,'avLst'),'gd').forEach(g=>{const m=/val\s+(-?\d+)/.exec(g.getAttribute('fmla')||'');if(m)av[g.getAttribute('name')]=+m[1]});
+  const isLine=isCxn||/^(line|straightConnector1|bentConnector\d|curvedConnector\d)$/.test(prst||'');
+  const fill=isLine?null:fillOf(E,list,style);
+  const ln=lineOf(E,list,style);
+  c.save();
+  c.translate(r.x+r.w/2,r.y+r.h/2);
+  if(r.rot)c.rotate(r.rot*Math.PI/180);
+  c.save();
+  c.scale(r.fh?-1:1,r.fv?-1:1);
+  c.translate(-r.w/2,-r.h/2);
+  c.beginPath();
+  if(isLine){c.moveTo(0,0);c.lineTo(r.w,r.h)}
+  else if(cust)custPath(c,cust,r.w,r.h);
+  else presetPath(c,prst,r.w,r.h,av);
+  if(fill)applyFill(E,fill,r.w,r.h);
+  if(ln){
+    strokeLn(E,ln);
+    if(isLine&&(ln.head||ln.tail)){
+      c.fillStyle=ln.col.css;
+      const ang=Math.atan2(r.h,r.w),sz=Math.max(5,ln.w*3.5);
+      if(ln.tail)arrowHead(c,r.w,r.h,ang,sz);
+      if(ln.head)arrowHead(c,0,0,ang+Math.PI,sz);
+    }
+  }
+  c.restore();
+  if(tb){
+    c.translate(-r.w/2,-r.h/2);
+    const own=kid(tb,'lstStyle');
+    let chain;
+    if(ph){
+      const t=normT(ph.getAttribute('type'));
+      const tx=E.mas?kid(kid(E.mas.xml,'txStyles'),t==='title'?'titleStyle':t==='body'?'bodyStyle':'otherStyle'):null;
+      chain=[own,lph&&kid(kid(lph,'txBody'),'lstStyle'),mph&&kid(kid(mph,'txBody'),'lstStyle'),tx,E.pkg.defStyle];
+    }else chain=[own,E.pkg.defStyle];
+    chain=chain.filter(Boolean);
+    const bps=[kid(tb,'bodyPr'),lph&&kid(kid(lph,'txBody'),'bodyPr'),mph&&kid(kid(mph,'txBody'),'bodyPr')];
+    const ba=n=>{for(const b of bps)if(b&&b.hasAttribute(n))return b.getAttribute(n);return null};
+    const na=bps.map(b=>kid(b,'normAutofit')).find(Boolean);
+    const fscale=na?num(na.getAttribute('fontScale'),100000)/100000:1;
+    const li=num(ba('lIns'),91440)/EMU,ri=num(ba('rIns'),91440)/EMU,ti=num(ba('tIns'),45720)/EMU,bi=num(ba('bIns'),45720)/EMU;
+    const def=colorOf(E,kid(style,'fontRef'))||themeCol(E,'tx1');
+    const vert=ba('vert'),rotV=vert==='vert270'||vert==='vert';
+    const bw=rotV?r.h:r.w,bh=rotV?r.w:r.h;
+    const L=layoutText(E,tb,Math.max(1,bw-li-ri),chain,fscale,def,false,ba('wrap')!=='none');
+    if(L.has){
+      c.save();
+      if(vert==='vert270'){c.translate(0,r.h);c.rotate(-Math.PI/2)}
+      else if(vert==='vert'){c.translate(r.w,0);c.rotate(Math.PI/2)}
+      paintText(E,L,li,ti,bw-li-ri,bh-ti-bi,ba('anchor')||'t',(r.rot||rotV)?null:{x:r.x,y:r.y});
+      c.restore();
+    }
+  }
+  c.restore();
+}
+function drawPic(E,pic,gm){
+  const c=E.c;
+  const cnv=kid(kid(pic,'nvPicPr'),'cNvPr');
+  if(cnv&&isTrue(cnv.getAttribute('hidden')))return;
+  const spPr=kid(pic,'spPr'),r=readXfrm(kid(spPr,'xfrm'),gm);
+  if(!r)return;
+  const bf=kid(pic,'blipFill');
+  const pg=kid(spPr,'prstGeom'),prst=pg?pg.getAttribute('prst'):'rect';
+  const av={};
+  if(pg)kids(kid(pg,'avLst'),'gd').forEach(g=>{const m=/val\s+(-?\d+)/.exec(g.getAttribute('fmla')||'');if(m)av[g.getAttribute('name')]=+m[1]});
+  c.save();
+  c.translate(r.x+r.w/2,r.y+r.h/2);
+  if(r.rot)c.rotate(r.rot*Math.PI/180);
+  c.scale(r.fh?-1:1,r.fv?-1:1);
+  c.translate(-r.w/2,-r.h/2);
+  if(prst&&prst!=='rect'){c.beginPath();presetPath(c,prst,r.w,r.h,av);c.save();c.clip();drawBlip(E,bf,0,0,r.w,r.h);c.restore()}
+  else drawBlip(E,bf,0,0,r.w,r.h);
+  const ln=lineOf(E,[spPr],null);
+  if(ln){c.beginPath();presetPath(c,prst||'rect',r.w,r.h,av);strokeLn(E,ln)}
+  c.restore();
+}
+function drawGrp(E,g,gm){
+  const gp=kid(g,'grpSpPr'),x=kid(gp,'xfrm');
+  if(!x){drawChildren(E,g,gm);return}
+  const off=kid(x,'off'),ext=kid(x,'ext'),co=kid(x,'chOff'),ce=kid(x,'chExt');
+  if(!off||!ext||!co||!ce){drawChildren(E,g,gm);return}
+  const ex=num(ext.getAttribute('cx')),ey=num(ext.getAttribute('cy')),cx=num(ce.getAttribute('cx')),cy=num(ce.getAttribute('cy'));
+  const rx=cx?ex/cx:1,ry=cy?ey/cy:1;
+  const ox=num(off.getAttribute('x')),oy=num(off.getAttribute('y')),cox=num(co.getAttribute('x')),coy=num(co.getAttribute('y'));
+  drawChildren(E,g,{sx:gm.sx*rx,sy:gm.sy*ry,tx:gm.tx+gm.sx*(ox-cox*rx),ty:gm.ty+gm.sy*(oy-coy*ry)});
+}
+function drawTable(E,gf,gm,tbl){
+  const c=E.c,r=readXfrm(kid(gf,'xfrm'),gm);
+  if(!r)return;
+  const cols=kids(kid(tbl,'tblGrid'),'gridCol').map(g=>num(g.getAttribute('w'))*gm.sx);
+  const tblPr=kid(tbl,'tblPr'),styled=!!kid(tblPr,'tableStyleId');
+  const fr=!!tblPr&&isTrue(tblPr.getAttribute('firstRow')),bd=!!tblPr&&isTrue(tblPr.getAttribute('bandRow'));
+  const acc=themeCol(E,'accent1');
+  const mix=(rgb,p)=>'rgb('+rgb.map(x=>Math.round(x*(1-p)+255*p)).join(',')+')';
+  const trs=kids(tbl,'tr');
+  const rh=trs.map(t=>num(t.getAttribute('h'))*gm.sy);
+  const cells=trs.map((tr,ri)=>kids(tr,'tc').map((tc,k)=>{
+    const tcPr=kid(tc,'tcPr');
+    const span=parseInt(tc.getAttribute('gridSpan'))||1,rs=parseInt(tc.getAttribute('rowSpan'))||1;
+    const skip=isTrue(tc.getAttribute('hMerge'))||isTrue(tc.getAttribute('vMerge'));
+    let w=0;for(let q=0;q<span;q++)w+=cols[k+q]||0;
+    const x=cols.slice(0,k).reduce((a,b)=>a+b,0);
+    const hdr=styled&&fr&&ri===0;
+    const ml=num(tcPr&&tcPr.getAttribute('marL'),91440)/EMU,mr=num(tcPr&&tcPr.getAttribute('marR'),91440)/EMU,mt=num(tcPr&&tcPr.getAttribute('marT'),45720)/EMU,mb=num(tcPr&&tcPr.getAttribute('marB'),45720)/EMU;
+    const tb=kid(tc,'txBody');
+    let L=null,need=0;
+    if(tb&&!skip){
+      L=layoutText(E,tb,Math.max(1,w-ml-mr),[kid(tb,'lstStyle'),E.pkg.defStyle].filter(Boolean),1,themeCol(E,'tx1'),hdr,true);
+      need=L.height+mt+mb;
+    }
+    return{tcPr,rs,skip,w,x,hdr,ml,mr,mt,mb,L,need};
+  }));
+  const hs=trs.map((_,ri)=>Math.max(rh[ri],...cells[ri].filter(q=>!q.skip&&q.rs===1).map(q=>q.need),0));
+  let y=r.y;
+  cells.forEach((row,ri)=>{
+    row.forEach(q=>{
+      if(q.skip)return;
+      let h=0;for(let k=0;k<q.rs;k++)h+=hs[ri+k]||0;
+      const x0=r.x+q.x;
+      const sf=kid(q.tcPr,'solidFill');
+      let fillCss=null;
+      if(sf){const col=colorOf(E,sf);if(col)fillCss=col.css}
+      else if(!kid(q.tcPr,'noFill')&&styled){
+        if(q.hdr)fillCss=acc.css;
+        else{const di=ri-(fr?1:0);fillCss=mix(acc.rgb,bd&&di%2===0?.6:.8)}
+      }
+      if(fillCss){c.fillStyle=fillCss;c.fillRect(x0,y,q.w,h)}
+      if(styled){c.strokeStyle='#fff';c.lineWidth=1;c.strokeRect(x0,y,q.w,h)}
+      [['lnL',x0,y,x0,y+h],['lnR',x0+q.w,y,x0+q.w,y+h],['lnT',x0,y,x0+q.w,y],['lnB',x0,y+h,x0+q.w,y+h]].forEach(s=>{
+        const ln=lineOf(E,[q.tcPr&&{children:[kid(q.tcPr,s[0])].filter(Boolean),ln:null}].filter(Boolean),null);
+        const el=kid(q.tcPr,s[0]);
+        if(!el)return;
+        const l2=lineOf(E,[{children:[],_:1,get ln(){return el}}],null);
+        void ln;void l2;
+        const f=[...el.children].find(cc=>cc.localName==='solidFill');
+        const col=f&&colorOf(E,f);
+        if(col){c.beginPath();c.moveTo(s[1],s[2]);c.lineTo(s[3],s[4]);c.strokeStyle=col.css;c.lineWidth=Math.max(.25,num(el.getAttribute('w'),12700)/EMU);c.stroke()}
+      });
+      if(q.L&&q.L.has){
+        c.save();c.translate(x0,y);
+        paintText(E,q.L,q.ml,q.mt,q.w-q.ml-q.mr,h-q.mt-q.mb,(q.tcPr&&q.tcPr.getAttribute('anchor'))||'t',{x:x0,y:y});
+        c.restore();
+      }
+    });
+    y+=hs[ri];
+  });
+}
+function drawFrame(E,gf,gm){
+  const tbl=desc(gf,'tbl')[0];
+  if(tbl){drawTable(E,gf,gm,tbl);return}
+  if(E.partKind==='slide'&&desc(gf,'graphicData').length)E.unsupported++;
+}
+function drawChildren(E,tree,gm){
+  for(const el of tree.children){
+    switch(el.localName){
+      case'sp':drawSp(E,el,gm,false);break;
+      case'cxnSp':drawSp(E,el,gm,true);break;
+      case'pic':drawPic(E,el,gm);break;
+      case'grpSp':drawGrp(E,el,gm);break;
+      case'graphicFrame':drawFrame(E,el,gm);break;
+      case'AlternateContent':{const ch=kid(el,'Fallback')||kid(el,'Choice');if(ch)drawChildren(E,ch,gm);break}
+    }
+  }
+}
+function drawTree(E,part,kind,gm){
+  const tree=spTreeOf(part);
+  if(!tree)return;
+  E.part=part;E.partKind=kind;
+  drawChildren(E,tree,gm);
+}
+const bgOf=part=>part&&part.xml?kid(kid(part.xml,'cSld'),'bg'):null;
+function drawBg(E,part,W,H){
+  const bg=bgOf(part);
+  E.part=part;E.partKind='bg';
+  const bgPr=kid(bg,'bgPr');
+  let fill=null;
+  if(bgPr)fill=fillOf(E,[bgPr],null);
+  else{const col=colorOf(E,kid(bg,'bgRef'));if(col)fill={kind:'solid',col}}
+  if(!fill)return;
+  E.c.beginPath();E.c.rect(0,0,W,H);
+  applyFill(E,fill,W,H);
+}
+
+/* ---------- slide -> canvas ---------- */
+async function renderSlide(pkg,S,slideNo,scale){
+  const W=pkg.W,H=pkg.H;
+  const canvas=document.createElement('canvas');
+  canvas.width=Math.max(1,Math.round(W*scale));canvas.height=Math.max(1,Math.round(H*scale));
+  const c=canvas.getContext('2d');
+  const E={pkg,c,th:S.th,slideNo,lay:S.lay,mas:S.mas,unsupported:0,log:[],part:null,partKind:''};
+  for(const p of[S.slide,S.lay,S.mas])await preload(pkg,p);
+  c.scale(scale,scale);
+  c.fillStyle='#fff';c.fillRect(0,0,W,H);
+  const bgPart=[S.slide,S.lay,S.mas].find(p=>bgOf(p));
+  if(bgPart)drawBg(E,bgPart,W,H);
+  const gm={sx:1/EMU,sy:1/EMU,tx:0,ty:0};
+  const slideShows=S.slide.xml.getAttribute('showMasterSp')!=='0';
+  if(S.mas&&slideShows&&(!S.lay||S.lay.xml.getAttribute('showMasterSp')!=='0'))drawTree(E,S.mas,'master',gm);
+  if(S.lay&&slideShows)drawTree(E,S.lay,'layout',gm);
+  drawTree(E,S.slide,'slide',gm);
+  return{canvas,E};
+}
+
+/* ---------- PPTX -> PDF ---------- */
+async function pptToPdf(file,o,prog){
+  if(file.size>MAX_BYTES)throw new Error('toolarge');
+  let pkg;
+  try{pkg=await loadPkg(file)}catch(e){console.error(e);throw new Error('invalid')}
+  if(!pkg.slides.length)throw new Error('empty');
+  const{jsPDF}=window.jspdf;
+  const Q=QUAL[o.quality]||QUAL.high;
+  const scale=Math.min(Q.s,5000/Math.max(pkg.W,pkg.H));
+  let format,orient;
+  if(o.page==='fit'){format=[pkg.W,pkg.H];orient=pkg.W>=pkg.H?'l':'p'}
+  else{
+    format=o.page;
+    const land=o.orient==='auto'?pkg.W>=pkg.H:o.orient==='landscape';
+    orient=land?'l':'p';
+  }
+  let doc=null,pw=0,ph=0,pages=0,skipped=0,hidden=0;
+  const N=pkg.slides.length;
+  for(let i=0;i<N;i++){
+    const S=await loadSlide(pkg,pkg.slides[i]);
+    if(!S.slide.xml)continue;
+    if(!o.hidden&&S.slide.xml.getAttribute('show')==='0'){hidden++;continue}
+    prog(i,N);
+    await tick();
+    const{canvas,E}=await renderSlide(pkg,S,i+1,scale);
+    skipped+=E.unsupported;
+    if(!doc){
+      doc=new jsPDF({unit:'pt',format,orientation:orient,compress:true});
+      doc.setProperties({title:base(file.name),creator:'ConvertKit Lite'});
+      pw=doc.internal.pageSize.getWidth();ph=doc.internal.pageSize.getHeight();
+    }else doc.addPage(format,orient);
+    const s=o.page==='fit'?1:Math.min(pw/pkg.W,ph/pkg.H);
+    const dw=pkg.W*s,dh=pkg.H*s,x=(pw-dw)/2,y=(ph-dh)/2;
+    doc.addImage(canvas.toDataURL('image/jpeg',Q.q),'JPEG',x,y,dw,dh,undefined,'FAST');
+    canvas.width=canvas.height=0;
+    try{
+      doc.setFont('helvetica','normal');
+      for(const t of E.log){
+        if(!/^[\x20-\x7E\xA1-\xFF]+$/.test(t.t))continue;
+        doc.setFontSize(Math.max(1,t.size*s));
+        doc.text(t.t,x+t.x*s,y+t.y*s,{renderingMode:'invisible'});
+      }
+    }catch(e){console.error(e)}
+    pages++;
+  }
+  if(!doc)throw new Error('empty');
+  const blob=doc.output('blob');
+  return{blob,size:blob.size,pages,skipped,hidden};
+}
+
+/* ---------- UI ---------- */
+function addFiles(files){
+  $('err').textContent='';$('result').style.display='none';
+  let skipped=0,old=0;
+  for(const f of files){
+    if(/\.ppt$/i.test(f.name)){old++;continue}
+    if(!ext.test(f.name)){skipped++;continue}
+    items.push({id:++uid,file:f,name:f.name,out:null,bad:''});
+  }
+  const msgs=[];
+  if(old)msgs.push(old+' old .ppt file'+(old===1?' was':'s were')+' skipped. Save as .pptx in PowerPoint first.');
+  if(skipped)msgs.push(skipped+' file'+(skipped===1?' was':'s were')+' skipped. Please choose .pptx files.');
+  $('err').textContent=msgs.join(' ');
+  render();
+}
+function render(){
+  const list=$('list');list.innerHTML='';
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='row';
+    d.innerHTML='<div class="th">📽️</div><div><div class="nm"></div><div class="sz"></div></div><div class="ac"></div>';
+    const nm=d.querySelector('.nm');nm.textContent=it.name;nm.title=it.name;
+    const sz=d.querySelector('.sz'),ac=d.querySelector('.ac');
+    if(it.bad){sz.textContent=it.bad;sz.style.color='#fca5b5'}
+    else if(it.out){
+      sz.innerHTML=size(it.file.size)+' → <b>'+size(it.out.size)+'</b> · <span class="save">'+it.out.pages+' page'+(it.out.pages===1?'':'s')+'</span>'+(it.out.skipped?' · <span class="note">'+it.out.skipped+' object'+(it.out.skipped===1?'':'s')+' not shown (chart, SmartArt or unsupported image)</span>':'');
+      const a=document.createElement('a');a.className='dl';a.textContent='Download';a.href=it.out.url;a.download=base(it.name)+'.pdf';ac.appendChild(a);
+    }else sz.textContent=size(it.file.size);
+    const x=document.createElement('button');x.type='button';x.textContent='Remove';
+    x.onclick=()=>{if(it.out)URL.revokeObjectURL(it.out.url);items.splice(i,1);render()};
+    ac.appendChild(x);list.appendChild(d);
+  });
+  $('count').style.display=items.length?'block':'none';
+  $('count').textContent=items.length+' file'+(items.length===1?'':'s');
+  $('convert').disabled=!items.length;
+  if(!items.length)$('result').style.display='none';
+}
+$('file').onchange=e=>{addFiles([...e.target.files]);e.target.value=''};
+const drop=$('drop');
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
+$('page').onchange=()=>{$('orient').disabled=$('page').value==='fit'};
+function progress(p,t){$('progress').style.display='block';$('pbar').style.width=p+'%';$('ptext').textContent=t}
+
+$('convert').onclick=async()=>{
+  $('err').textContent='';$('result').style.display='none';
+  if(!items.length)return;
+  if(!window.JSZip||!window.jspdf)return $('err').textContent='Could not load the converter. Check your internet connection and reload the page.';
+  $('convert').disabled=true;
+  const o={page:$('page').value,orient:$('orient').value,quality:$('quality').value,hidden:$('hidden').value==='1'};
+  try{
+    for(let i=0;i<items.length;i++){
+      const it=items[i];it.bad='';
+      progress(Math.round(i/items.length*100),'Converting '+(i+1)+' of '+items.length+'…');
+      await tick();
+      try{
+        const out=await pptToPdf(it.file,o,(s,n)=>progress(Math.round((i+s/n)/items.length*100),'Converting file '+(i+1)+' of '+items.length+' — slide '+(s+1)+' of '+n+'…'));
+        if(it.out)URL.revokeObjectURL(it.out.url);
+        out.url=URL.createObjectURL(out.blob);
+        it.out=out;
+      }catch(e){
+        console.error(e);
+        it.bad=e.message==='empty'?'This presentation has no slides to convert.':e.message==='toolarge'?'This file is too large (100 MB maximum).':e.message==='invalid'?'This is not a valid .pptx file (or it is password protected).':'Could not convert this file.';
+      }
+    }
+    render();
+    const ok=items.filter(i=>i.out);
+    if(ok.length){
+      const pg=ok.reduce((s,i)=>s+i.out.pages,0),sk=ok.reduce((s,i)=>s+i.out.skipped,0);
+      $('rinfo').textContent=ok.length+' PDF file'+(ok.length===1?'':'s')+' · '+pg.toLocaleString()+' page'+(pg===1?'':'s')+' in total'+(sk?'. '+sk+' object'+(sk===1?' was':'s were')+' not drawn (charts, SmartArt or unsupported images).':'');
+      $('zip').style.display=ok.length>1?'':'none';$('result').style.display='block';
+    }else $('err').textContent='No file could be converted.';
+  }finally{$('convert').disabled=!items.length;$('progress').style.display='none'}
+};
+$('zip').onclick=async()=>{
+  const z=new JSZip(),used={};
+  items.forEach(it=>{if(!it.out)return;let n=base(it.name),k=n;used[k]=(used[k]||0)+1;if(used[k]>1)n+='-'+used[k];z.file(n+'.pdf',it.out.blob)});
+  const blob=await z.generateAsync({type:'blob'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='powerpoint-to-pdf.zip';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('reset').onclick=()=>{
+  items.forEach(i=>{if(i.out)URL.revokeObjectURL(i.out.url)});items=[];
+  $('err').textContent='';$('result').style.display='none';$('progress').style.display='none';
+  $('page').value='fit';$('orient').value='auto';$('orient').disabled=true;$('quality').value='high';$('hidden').value='0';render();
+};
+render();
+</script>
+</body>
+</html>
