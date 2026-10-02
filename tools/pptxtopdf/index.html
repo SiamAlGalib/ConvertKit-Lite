@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPTX to PDF Converter — Free Online | ConvertKit Lite</title>
+<meta property="og:url" content="https://www.convertkitlite.site/tools/pptxtopdf/">
+<meta property="og:image" content="https://www.convertkitlite.site/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="Free PPTX to PDF converter. Turn every PowerPoint slide into a PDF page. Private, runs in your browser, no upload.">
+<link rel="canonical" href="https://www.convertkitlite.site/tools/pptxtopdf/">
+<link rel="icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:title" content="PPTX to PDF Converter — Free Online | ConvertKit Lite">
+<meta property="og:description" content="Convert PPTX to PDF. Free and private.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent-blue:#2d82ff;--success:#22c55e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;letter-spacing:.15px;transition:.2s}
+nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a[href="#learn"]{color:#e6dcff}
+nav a[href="#learn"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#ff8a3d,#ad5bff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(173,91,255,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+.grad,h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+
+.tool{margin-top:32px;margin-bottom:48px}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+label,.lbl{display:block;font-size:12.5px;color:var(--text-dim);margin-bottom:8px;font-weight:600}
+select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+select:focus{outline:none;border-color:var(--border-hover)}
+select:disabled{opacity:.5;cursor:not-allowed}
+.drop{position:relative;display:block;text-align:center;border:2px dashed #2b5d97;border-radius:14px;background:var(--panel-2);padding:34px 16px;cursor:pointer;transition:.2s;margin-bottom:0}
+.drop:hover,.drop.over,.drop:focus-within{border-color:var(--border-hover);background:#08213f}
+.drop .d-icon{font-size:30px;margin-bottom:8px}
+.drop strong{display:block;font-size:15px;color:var(--text);margin-bottom:4px}
+.drop span{font-size:12px;color:var(--text-faint);font-weight:400}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.list{display:grid;gap:10px;margin-top:16px}
+.row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;border:1px solid #194a84;border-radius:12px;background:var(--panel-2);padding:10px 12px}
+.row .th{display:grid;place-items:center;font-size:24px;width:52px;height:52px;border-radius:8px;background:#04122a center/cover no-repeat}
+.row .nm{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .sz{font-size:12px;color:var(--text-dim);margin-top:3px}
+.row .sz .save{color:var(--success);font-weight:700}
+.row .ac{display:flex;gap:6px}
+.row .ac button,.row .ac a{padding:8px 12px;font-size:12px;font-weight:700;border-radius:8px;border:1px solid #194a84;color:var(--text-dim);background:transparent;cursor:pointer}
+.row .ac button:hover,.row .ac a:hover{border-color:var(--border-hover);color:#fff}
+.row .ac a.dl{background:linear-gradient(135deg,#2d82ff,#7c3ff0);border:0;color:#fff}
+.count{font-size:12px;color:var(--text-dim);margin-top:14px;display:none}
+.hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
+.btns{display:flex;gap:12px;margin-top:22px}
+button{border:0;border-radius:10px;color:#fff;font:inherit;font-weight:700;padding:12px 26px;cursor:pointer;transition:filter .2s,transform .1s}
+button:hover{filter:brightness(1.1)}
+button:active{transform:scale(.99)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.primary{background:linear-gradient(135deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.btns .primary{flex:1;padding:15px;font-size:15px;border-radius:12px}
+.ghost{background:transparent;border:1px solid #194a84;color:var(--text-dim)}
+.ghost:hover{border-color:var(--border-hover);color:var(--text)}
+.err{color:#fca5b5;font-size:13px;margin-top:14px;min-height:18px}
+#progress{display:none;margin-top:16px}
+.bar{height:8px;border-radius:99px;background:#061a35;border:1px solid #194a84;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2e8bff,#ad5bff);transition:width .15s}
+#ptext{font-size:12px;color:var(--text-dim);margin-top:8px;text-align:center}
+#result{display:none;margin-top:16px;text-align:center;border:1px solid #2b5d97;border-radius:14px;background:var(--panel-2);padding:22px}
+#result h3{font-size:16px;margin-bottom:6px}
+#result p{font-size:13px;color:var(--text-dim);margin-bottom:14px}
+
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin-bottom:4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq,.learn{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}
+.article-card:hover{transform:translateY(-3px);border-color:var(--border-hover);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-card h3{font-size:15px;margin-bottom:8px}
+.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+
+@media(max-width:700px){
+  .row{grid-template-columns:44px minmax(0,1fr)}.row .ac{grid-column:1/-1}
+  nav{display:none}h1{font-size:30px}
+  .steps,.related-grid,.features,.opts{grid-template-columns:1fr}
+  .rt-card{min-height:0}
+  footer{flex-direction:column;gap:18px;text-align:center}
+  .container{width:calc(100% - 24px)}
+}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}}
+@media(max-width:480px){.card{padding:20px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PPTX to PDF Converter", "description": "Free PPTX to PDF converter. Turn every PowerPoint slide into a PDF page. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/pptxtopdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PPTX to PDF", "item": "https://www.convertkitlite.site/tools/pptxtopdf/"}]}]}</script>
+</head>
+<body>
+
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<main>
+<section class="hero">
+  <div class="icon-badge">📑</div>
+  <h1>PPTX to <span>PDF</span></h1>
+  <p>Turn every PowerPoint slide into a PDF page. Pick the image quality and download. Everything happens in your browser.</p>
+  <div class="trust-row"><div>No registration required</div><div>Secure &amp; private</div><div>Works on any device</div></div>
+</section>
+
+<div class="narrow tool">
+<div class="card">
+<label class="drop" id="drop" for="file">
+  <div class="d-icon">📊</div>
+  <strong>Choose PPTX files or drop them here</strong>
+  <span>PPTX files only. Select several at once. Nothing leaves your device.</span>
+  <input id="file" type="file" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation" multiple/>
+</label>
+<div class="count" id="count"></div>
+<div class="list" id="list"></div>
+
+<div class="opts">
+  <div><label for="quality">Page quality</label><select id="quality"><option value="96">Small file (96 DPI)</option><option value="144" selected>Standard (144 DPI)</option><option value="192">High (192 DPI)</option></select></div>
+  <div><label for="fmt">Image format</label><select id="fmt"><option value="jpeg">JPEG (smaller file)</option><option value="png">PNG (sharper text)</option></select></div>
+</div>
+<div class="hint" id="modehint">Each slide is drawn in your browser and placed on one PDF page of the same size. Text, shapes and pictures are kept. Charts, SmartArt, tables, animations and some fonts may look different from PowerPoint, and the PDF pages are images, so text cannot be selected.</div>
+
+<div class="btns"><button class="primary" id="convert" disabled>Convert to PDF</button><button class="ghost" id="reset">Reset</button></div>
+<div class="err" id="err"></div>
+
+<div id="progress"><div class="bar"><i id="pbar"></i></div><div id="ptext"></div></div>
+
+<div id="result">
+  <h3>Your PDF is ready</h3>
+  <p id="rinfo"></p>
+  <button class="primary" id="zip" type="button">Download all (ZIP)</button>
+</div>
+</div>
+
+<div class="features">
+  <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your presentations are converted in your browser — nothing is uploaded.</p></div>
+  <div class="feature"><div class="f-icon">⚡</div><h4>Instant</h4><p>Files convert on your device, with no waiting for uploads.</p></div>
+  <div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account and no limits on how often you use it.</p></div>
+</div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to convert <span>PPTX to PDF</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Add your PPTX files</h3><p>Click the upload area or drag one or more .pptx files onto it.</p></div>
+    <div class="step"><b>2</b><h3>Choose quality</h3><p>Pick a smaller file for sharing or a higher DPI for sharper slides.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each PDF or all of them as a ZIP.</p></div>
+  </div>
+</section>
+
+<section class="narrow learn" id="learn">
+  <h2 class="section-title">Learn about <span>Documents</span></h2>
+  <p class="section-intro">Helpful guides about PowerPoint and PDF files.</p>
+  <div class="article-list">
+    <a class="article-card" href="../../articles/pptx-to-pdf-guide/">
+      <div class="article-banner"><span class="glyph">📑</span><img src="../../articles/pptx-to-pdf-guide/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">PPTX TO PDF</span></div>
+      <div class="article-body"><h3>How to Convert PPTX to PDF</h3><p>Learn the easiest ways to turn a presentation into a PDF.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/what-is-a-pdf-file/">
+      <div class="article-banner b2"><span class="glyph">📄</span><img src="../../articles/what-is-a-pdf-file/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">FILE FORMATS</span></div>
+      <div class="article-body"><h3>What Is a PDF File?</h3><p>Understand what PDF files are and when to use them.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/pdf-vs-pptx/">
+      <div class="article-banner b3"><span class="glyph">⚖️</span><img src="../../articles/pdf-vs-pptx/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">COMPARISON</span></div>
+      <div class="article-body"><h3>PDF vs PPTX</h3><p>Compare both formats and pick the right one for sharing.</p><span class="article-read">Read article →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite PPTX to PDF tool.</p>
+  <details><summary>Are my presentations uploaded to a server?</summary><p>No. The PDF is created in your browser, so your PPTX files stay on your device.</p></details>
+  <details><summary>Will the PDF look exactly like PowerPoint?</summary><p>It is a close copy for most slides. Text, shapes, colors and pictures are drawn using the slide layout. Charts, SmartArt, tables, gradients, animations and special effects may look different. For a pixel-perfect result, use Export as PDF inside PowerPoint.</p></details>
+  <details><summary>Why does the text look different?</summary><p>Fonts that are not installed on your device are replaced by a similar one, such as Arial. Spacing can shift slightly when that happens.</p></details>
+  <details><summary>Can I select text in the PDF?</summary><p>No. Each slide becomes a high-quality image on a PDF page, which keeps the design but makes the text non-selectable.</p></details>
+  <details><summary>Can I convert password-protected or old .ppt files?</summary><p>No. Only modern .pptx files are supported. Save older .ppt files as .pptx and remove any password in PowerPoint first.</p></details>
+  <details><summary>Can I convert many files at once?</summary><p>Yes. Add several PPTX files, convert them together, and download each PDF or one ZIP.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these useful calculators and image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../pdftopptx/"><span class="rt-icon">📊</span><h3>PDF to PPTX</h3><p>Turn PDF pages into PowerPoint slides.</p><span class="go">Convert to PPTX →</span></a>
+    <a class="rt-card" href="../rtftopdf/"><span class="rt-icon">📝</span><h3>RTF to PDF</h3><p>Turn Rich Text documents into PDF files.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../jpgtopdf/"><span class="rt-icon">🖼️</span><h3>JPG to PDF</h3><p>Combine images into a single PDF file.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images for easier sharing.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card" href="../qrcodegenerator/"><span class="rt-icon">▦</span><h3>QR Code Generator</h3><p>Create a QR code from text, a link, or other supported content.</p><span class="go">Create QR code →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let items=[],uid=0;
+const size=b=>b>=1048576?(b/1048576).toFixed(2)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const base=n=>n.replace(/\.[^.]+$/,'');
+const MAXPX=4096;
+
+/* ---- tiny XML helpers ---- */
+const X=s=>new DOMParser().parseFromString(s,'application/xml');
+const ch=(e,n)=>(e&&[...e.children].find(c=>c.nodeName===n))||null;
+const first=(e,n)=>(e&&e.getElementsByTagName(n)[0])||null;
+const num=(e,a,d=0)=>e&&e.getAttribute(a)!=null?+e.getAttribute(a):d;
+function resolve(b,t){if(t[0]==='/')return t.slice(1);const p=b.split('/');p.pop();for(const s of t.split('/')){if(s==='..')p.pop();else if(s!=='.')p.push(s)}return p.join('/')}
+async function rels(zip,part){
+  const d=part.split('/'),f=d.pop(),z=zip.file(d.join('/')+'/_rels/'+f+'.rels'),m={};
+  if(!z)return m;
+  for(const r of X(await z.async('string')).getElementsByTagName('Relationship'))m[r.getAttribute('Id')]={t:resolve(part,r.getAttribute('Target')),ty:r.getAttribute('Type')||''};
+  return m;
+}
+const readX=async(zip,p)=>{const f=p&&zip.file(p);return f?X(await f.async('string')):null};
+
+/* ---- theme colours ---- */
+function loadTheme(x){
+  const t={},cs=first(x,'a:clrScheme');
+  if(cs)for(const c of cs.children){const v=c.firstElementChild;if(v)t[c.nodeName.slice(2)]=v.getAttribute('lastClr')||v.getAttribute('val')}
+  return t;
+}
+function color(sf,th){
+  const c=sf&&sf.firstElementChild;if(!c)return null;
+  const al={tx1:'dk1',bg1:'lt1',tx2:'dk2',bg2:'lt2'};
+  let v=c.getAttribute('val');
+  if(c.nodeName==='a:sysClr')v=c.getAttribute('lastClr');
+  else if(c.nodeName==='a:schemeClr')v=th[al[v]||v];
+  if(!v||!/^[0-9a-f]{6}$/i.test(v))return null;
+  let r=parseInt(v.slice(0,2),16),g=parseInt(v.slice(2,4),16),b=parseInt(v.slice(4,6),16),a=1;
+  for(const m of c.children){
+    const n=m.nodeName,k=num(m,'val')/100000;
+    if(n==='a:lumMod'){r*=k;g*=k;b*=k}
+    else if(n==='a:lumOff'){r+=(255-r)*k;g+=(255-g)*k;b+=(255-b)*k}
+    else if(n==='a:tint'){r=255-(255-r)*k;g=255-(255-g)*k;b=255-(255-b)*k}
+    else if(n==='a:shade'){r*=k;g*=k;b*=k}
+    else if(n==='a:alpha')a=k;
+  }
+  return 'rgba('+[r,g,b].map(q=>Math.max(0,Math.min(255,q|0))).join(',')+','+a+')';
+}
+
+/* ---- placeholder inheritance ---- */
+const normT=t=>t==='ctrTitle'?'title':t;
+function findPh(root,ph){
+  if(!root||!ph)return null;
+  const idx=ph.getAttribute('idx'),ty=normT(ph.getAttribute('type')||'body'),sps=[...root.getElementsByTagName('p:sp')];
+  return sps.find(s=>{const p=first(s,'p:ph');return p&&idx!==null&&p.getAttribute('idx')===idx})||sps.find(s=>{const p=first(s,'p:ph');return p&&normT(p.getAttribute('type')||'body')===ty})||null;
+}
+function xfOf(e,env){
+  const g=s=>{const sp=ch(s,'p:spPr');return sp&&ch(sp,'a:xfrm')};
+  let x=g(e);if(x)return x;
+  const ph=first(e,'p:ph');if(!ph)return null;
+  const l=findPh(env.layout,ph);x=l&&g(l);if(x)return x;
+  const m=findPh(env.master,ph);return m&&g(m);
+}
+function lvlNodes(e,env,lvl){
+  const k='a:lvl'+(lvl+1)+'pPr',ph=first(e,'p:ph'),ts=first(env.master,'p:txStyles');
+  const lst=s=>{const t=s&&ch(s,'p:txBody'),l=t&&ch(t,'a:lstStyle');return l&&ch(l,k)};
+  const out=[lst(e)];
+  let grp='p:otherStyle';
+  if(ph){
+    out.push(lst(findPh(env.layout,ph)),lst(findPh(env.master,ph)));
+    const ty=ph.getAttribute('type')||'body';
+    grp=/title/i.test(ty)?'p:titleStyle':/body|subTitle|obj/.test(ty)?'p:bodyStyle':'p:otherStyle';
+  }
+  const g=ts&&ch(ts,grp);out.push(g&&ch(g,k));
+  return out.filter(Boolean);
+}
+
+/* ---- text ---- */
+function drawText(ctx,e,env,x,y,w,h,S,defCol){
+  const tb=ch(e,'p:txBody');if(!tb)return;
+  const PT=12700*S,ph=first(e,'p:ph'),bp=ch(tb,'a:bodyPr'),bps=[bp];
+  if(ph)for(const r of [findPh(env.layout,ph),findPh(env.master,ph)]){const t=r&&ch(r,'p:txBody');bps.push(t&&ch(t,'a:bodyPr'))}
+  const ba=a=>{const n=bps.find(b=>b&&b.getAttribute(a)!=null);return n?n.getAttribute(a):null};
+  const L=(ba('lIns')!=null?+ba('lIns'):91440)*S,R=(ba('rIns')!=null?+ba('rIns'):91440)*S,Tp=(ba('tIns')!=null?+ba('tIns'):45720)*S,B=(ba('bIns')!=null?+ba('bIns'):45720)*S;
+  const anc=ba('anchor')||'t',af=bp&&first(bp,'a:normAutofit'),fs=af&&af.getAttribute('fontScale')?+af.getAttribute('fontScale')/100000:1;
+  const W=w-L-R,lns=[];
+  for(const p of [...tb.children].filter(c=>c.nodeName==='a:p')){
+    const pPr=ch(p,'a:pPr'),nodes=[pPr,...lvlNodes(e,env,num(pPr,'lvl'))].filter(Boolean);
+    const at=a=>{const n=nodes.find(n=>n.getAttribute(a)!=null);return n?n.getAttribute(a):null};
+    const algn=at('algn')||'l',marL=(+at('marL')||0)*S,ind=(+at('indent')||0)*S;
+    const bu=nodes.find(n=>ch(n,'a:buNone')||ch(n,'a:buChar')||ch(n,'a:buAutoNum')),hasBu=!!bu&&!ch(bu,'a:buNone');
+    const ls=nodes.map(n=>ch(n,'a:lnSpc')).find(Boolean),lp=ls&&ch(ls,'a:spcPct'),lsp=lp?num(lp,'val')/100000:1;
+    const sb=nodes.map(n=>ch(n,'a:spcBef')).find(Boolean),sp2=sb&&ch(sb,'a:spcPts'),sbp=sp2?num(sp2,'val')/100*PT:0;
+    const ep=ch(p,'a:endParaRPr'),endSz=(num(ep,'sz')||1800)/100*fs*PT;
+    const words=[];
+    for(const r of [...p.children].filter(c=>/^a:(r|br|fld)$/.test(c.nodeName))){
+      if(r.nodeName==='a:br'){words.push({br:1});continue}
+      const rn=[ch(r,'a:rPr'),...nodes.map(n=>ch(n,'a:defRPr'))].filter(Boolean);
+      const g=a=>{const n=rn.find(n=>n.getAttribute(a)!=null);return n?n.getAttribute(a):null};
+      const sz=(+g('sz')||1800)/100*fs*PT,fill=rn.map(n=>ch(n,'a:solidFill')).find(Boolean),lat=rn.map(n=>ch(n,'a:latin')).find(Boolean);
+      let face=(lat&&lat.getAttribute('typeface'))||'Arial';if(face[0]==='+')face='Arial';
+      const t=r.nodeName==='a:fld'&&/slidenum/i.test(r.getAttribute('type')||'')?String(env.n):((ch(r,'a:t')||{}).textContent||'');
+      const font=(g('i')==='1'?'italic ':'')+(g('b')==='1'?'bold ':'')+sz+'px "'+face+'",Arial,sans-serif',col=color(fill,env.th)||defCol;
+      ctx.font=font;
+      for(const s of (t.match(/\S+\s*|\s+/g)||[]))words.push({t:s,font,col,sz,w:ctx.measureText(s).width});
+    }
+    let cur={ws:[],w:0,sz:0},fl=true;
+    const avail=W-marL;
+    const push=()=>{lns.push({ws:cur.ws,w:cur.w,sz:cur.sz||endSz,algn,marL,ind,avail,lsp,hb:fl&&hasBu&&cur.ws.length>0,sb:fl?sbp:0});fl=false;cur={ws:[],w:0,sz:0}};
+    for(const wd of words){
+      if(wd.br){push();continue}
+      if(cur.w+wd.w>avail&&cur.ws.length)push();
+      cur.ws.push(wd);cur.w+=wd.w;cur.sz=Math.max(cur.sz,wd.sz);
+    }
+    push();
+  }
+  const tot=lns.reduce((a,l)=>a+l.sz*1.2*l.lsp+l.sb,0);
+  let cy=anc==='ctr'?y+(h-tot)/2:anc==='b'?y+h-B-tot:y+Tp;
+  ctx.textBaseline='top';
+  for(const l of lns){
+    cy+=l.sb;
+    const lh=l.sz*1.2*l.lsp,x0=x+L+l.marL;
+    let xx=x0;if(l.algn==='ctr')xx=x0+(l.avail-l.w)/2;else if(l.algn==='r')xx=x0+l.avail-l.w;
+    const ty=cy+(lh-l.sz)/2;
+    if(l.hb){const f=l.ws[0];ctx.font=f.font;ctx.fillStyle=f.col;ctx.fillText('•',x+L+l.marL+(l.ind<0?l.ind:0),ty)}
+    for(const wd of l.ws){ctx.font=wd.font;ctx.fillStyle=wd.col;ctx.fillText(wd.t,xx,ty);xx+=wd.w}
+    cy+=lh;
+  }
+}
+
+/* ---- shapes & pictures ---- */
+async function img(env,path){
+  if(env.cache[path]!==undefined)return env.cache[path];
+  let r=null;
+  try{r=await createImageBitmap(await env.zip.file(path).async('blob'))}catch(e){}
+  return env.cache[path]=r;
+}
+async function drawNode(e,T,env,ctx){
+  const xf=xfOf(e,env);if(!xf)return;
+  const o=ch(xf,'a:off'),s=ch(xf,'a:ext');if(!o||!s)return;
+  const n=e.nodeName,x=num(o,'x')*T.sx+T.tx,y=num(o,'y')*T.sy+T.ty,w=num(s,'cx')*T.sx,h=num(s,'cy')*T.sy;
+  ctx.save();
+  const rot=num(xf,'rot')/60000;
+  if(rot){ctx.translate(x+w/2,y+h/2);ctx.rotate(rot*Math.PI/180);ctx.translate(-(x+w/2),-(y+h/2))}
+  if(n==='p:pic'){
+    if(xf.getAttribute('flipH')==='1'){ctx.translate(2*x+w,0);ctx.scale(-1,1)}
+    const bl=first(e,'a:blip'),rid=bl&&bl.getAttribute('r:embed'),rel=rid&&env.rels[rid],im=rel&&await img(env,rel.t);
+    if(im){
+      const sr=first(e,'a:srcRect'),l=num(sr,'l')/1e5,t=num(sr,'t')/1e5,r=num(sr,'r')/1e5,b=num(sr,'b')/1e5;
+      ctx.drawImage(im,im.width*l,im.height*t,im.width*(1-l-r),im.height*(1-t-b),x,y,w,h);
+    }
+    ctx.restore();return;
+  }
+  const sp=ch(e,'p:spPr'),st=ch(e,'p:style'),th=env.th;
+  const geom=sp&&ch(sp,'a:prstGeom'),pr=geom?geom.getAttribute('prst'):'rect';
+  let fill=null;
+  if(sp&&!ch(sp,'a:noFill')){
+    const gf=ch(sp,'a:gradFill'),sf=ch(sp,'a:solidFill')||(gf&&first(gf,'a:gs'));
+    if(sf)fill=color(sf,th);
+    else if(st){const fr=ch(st,'a:fillRef');if(num(fr,'idx')>0)fill=color(fr,th)}
+  }
+  const ln=sp&&ch(sp,'a:ln');let stroke=null;
+  if(!(ln&&ch(ln,'a:noFill'))){
+    stroke=(ln&&color(ch(ln,'a:solidFill'),th))||null;
+    if(!stroke&&st){const lr=ch(st,'a:lnRef');if(num(lr,'idx')>0)stroke=color(lr,th)}
+  }
+  const lw=Math.max(1,(ln?num(ln,'w',12700):12700)*T.sx);
+  if(n==='p:cxnSp'){
+    if(stroke){const fv=xf.getAttribute('flipV')==='1';ctx.beginPath();ctx.moveTo(x,fv?y+h:y);ctx.lineTo(x+w,fv?y:y+h);ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke()}
+  }else{
+    if(fill||stroke){
+      ctx.beginPath();
+      if(pr==='ellipse')ctx.ellipse(x+w/2,y+h/2,w/2,h/2,0,0,Math.PI*2);
+      else if(pr==='roundRect'){const av=geom&&first(geom,'a:gd'),a=av?+(av.getAttribute('fmla')||'').replace(/\D/g,''):16667;ctx.roundRect(x,y,w,h,Math.min(w,h)*a/100000)}
+      else if(pr==='triangle'){ctx.moveTo(x+w/2,y);ctx.lineTo(x+w,y+h);ctx.lineTo(x,y+h);ctx.closePath()}
+      else ctx.rect(x,y,w,h);
+      if(fill){ctx.fillStyle=fill;ctx.fill()}
+      if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke()}
+    }
+    const fr=st&&ch(st,'a:fontRef');
+    drawText(ctx,e,env,x,y,w,h,T.sx,color(fr,th)||('#'+(th.dk1||'000000')));
+  }
+  ctx.restore();
+}
+async function walk(node,T,env,ctx,skipPh){
+  for(const e of node.children){
+    const n=e.nodeName;
+    if(n==='p:grpSp'){
+      const g=ch(e,'p:grpSpPr'),x=g&&ch(g,'a:xfrm');let T2=T;
+      if(x){
+        const o=ch(x,'a:off'),s=ch(x,'a:ext'),co=ch(x,'a:chOff'),ce=ch(x,'a:chExt');
+        if(o&&s&&co&&ce&&num(ce,'cx')&&num(ce,'cy')){
+          const kx=num(s,'cx')/num(ce,'cx'),ky=num(s,'cy')/num(ce,'cy');
+          T2={sx:T.sx*kx,sy:T.sy*ky,tx:T.tx+T.sx*(num(o,'x')-num(co,'x')*kx),ty:T.ty+T.sy*(num(o,'y')-num(co,'y')*ky)};
+        }
+      }
+      await walk(e,T2,env,ctx,skipPh);
+    }else if(/^p:(sp|pic|cxnSp)$/.test(n)){
+      if(skipPh&&first(e,'p:ph'))continue;
+      try{await drawNode(e,T,env,ctx)}catch(err){console.warn(err)}
+    }
+  }
+}
+function bgOf(root,th){
+  const b=first(root,'p:bg');if(!b)return null;
+  const pr=ch(b,'p:bgPr');
+  if(pr){const g=ch(pr,'a:gradFill');return color(ch(pr,'a:solidFill')||(g&&first(g,'a:gs')),th)}
+  return color(ch(b,'p:bgRef'),th);
+}
+
+/* ---- PPTX -> PDF ---- */
+const bad=m=>{const e=new Error('bad');e.kind=m;return e};
+async function convertPptx(it,fmt,dpi,onSlide){
+  let zip;
+  try{zip=await JSZip.loadAsync(await it.file.arrayBuffer())}
+  catch(e){throw bad('This is not a valid .pptx file. Old .ppt and password-protected files are not supported.')}
+  const pres=await readX(zip,'ppt/presentation.xml');
+  if(!pres)throw bad('This is not a valid .pptx file.');
+  const sz=first(pres,'p:sldSz'),cx=num(sz,'cx',9144000),cy=num(sz,'cy',5143500);
+  const pr=await rels(zip,'ppt/presentation.xml');
+  const ids=[...pres.getElementsByTagName('p:sldId')].map(s=>pr[s.getAttribute('r:id')]).filter(Boolean).map(r=>r.t);
+  if(!ids.length)throw bad('This presentation has no slides.');
+  const tx=await readX(zip,'ppt/theme/theme1.xml'),th=tx?loadTheme(tx):{};
+  const S=Math.min(dpi/914400,MAXPX/Math.max(cx,cy)),T={sx:S,sy:S,tx:0,ty:0};
+  const wpt=cx/12700,hpt=cy/12700,ori=wpt>=hpt?'l':'p',cache={},mime=fmt==='png'?'image/png':'image/jpeg';
+  const pdf=new window.jspdf.jsPDF({orientation:ori,unit:'pt',format:[wpt,hpt],compress:true});
+  let pages=0;
+  for(let i=0;i<ids.length;i++){
+    onSlide(i+1,ids.length);
+    await new Promise(r=>setTimeout(r));
+    const sl=await readX(zip,ids[i]);if(!sl)continue;
+    const root=first(sl,'p:sld');if(root&&root.getAttribute('show')==='0')continue;
+    const srel=await rels(zip,ids[i]),lr=Object.values(srel).find(r=>/slideLayout$/.test(r.ty));
+    const layout=lr?await readX(zip,lr.t):null,lrel=lr?await rels(zip,lr.t):{};
+    const mr=Object.values(lrel).find(r=>/slideMaster$/.test(r.ty));
+    const master=mr?await readX(zip,mr.t):null,mrel=mr?await rels(zip,mr.t):{};
+    const env={zip,th,cache,layout,master,rels:srel,n:i+1};
+    const cv=document.createElement('canvas');
+    cv.width=Math.ceil(cx*S);cv.height=Math.ceil(cy*S);
+    const ctx=cv.getContext('2d');
+    ctx.fillStyle=bgOf(sl,th)||bgOf(layout,th)||bgOf(master,th)||'#ffffff';
+    ctx.fillRect(0,0,cv.width,cv.height);
+    const showM=!(layout&&first(layout,'p:sldLayout').getAttribute('showMasterSp')==='0');
+    if(master&&showM)await walk(first(master,'p:spTree'),T,{...env,rels:mrel},ctx,true);
+    if(layout)await walk(first(layout,'p:spTree'),T,{...env,rels:lrel},ctx,true);
+    await walk(first(sl,'p:spTree'),T,env,ctx,false);
+    if(pages>0)pdf.addPage([wpt,hpt],ori);
+    pdf.addImage(cv.toDataURL(mime,.92),fmt==='png'?'PNG':'JPEG',0,0,wpt,hpt,undefined,'FAST');
+    cv.width=cv.height=0;pages++;
+  }
+  if(!pages)throw bad('No visible slides were found in this file.');
+  return {blob:pdf.output('blob'),pages};
+}
+
+/* ---- UI ---- */
+function addFiles(files){
+  $('err').textContent='';$('result').style.display='none';
+  let skipped=0;
+  for(const f of files){
+    if(!/\.pptx$/i.test(f.name)){skipped++;continue}
+    items.push({id:++uid,file:f,name:f.name,out:null,bad:''});
+  }
+  if(skipped)$('err').textContent=skipped+' file'+(skipped===1?' was':'s were')+' skipped. Please choose .pptx files.';
+  render();
+}
+function render(){
+  const list=$('list');list.innerHTML='';
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='row';
+    d.innerHTML='<div class="th">📊</div><div><div class="nm"></div><div class="sz"></div></div><div class="ac"></div>';
+    const nm=d.querySelector('.nm');nm.textContent=it.name;nm.title=it.name;
+    const sz=d.querySelector('.sz'),ac=d.querySelector('.ac');
+    if(it.bad){sz.textContent=it.bad;sz.style.color='#fca5b5'}
+    else if(it.out){
+      sz.innerHTML=size(it.file.size)+' → <b>'+size(it.out.size)+'</b> · <span class="save">'+it.out.pages+' page'+(it.out.pages===1?'':'s')+'</span>';
+      const a=document.createElement('a');a.className='dl';a.textContent='Download';a.href=it.out.url;a.download=base(it.name)+'.pdf';ac.appendChild(a);
+    }else sz.textContent=size(it.file.size);
+    const x=document.createElement('button');x.type='button';x.textContent='Remove';
+    x.onclick=()=>{if(it.out)URL.revokeObjectURL(it.out.url);items.splice(i,1);render()};
+    ac.appendChild(x);list.appendChild(d);
+  });
+  $('count').style.display=items.length?'block':'none';
+  $('count').textContent=items.length+' file'+(items.length===1?'':'s');
+  $('convert').disabled=!items.length;
+  if(!items.length)$('result').style.display='none';
+}
+$('file').onchange=e=>{addFiles([...e.target.files]);e.target.value=''};
+const drop=$('drop');
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
+function progress(p,t){$('progress').style.display='block';$('pbar').style.width=p+'%';$('ptext').textContent=t}
+
+$('convert').onclick=async()=>{
+  $('err').textContent='';$('result').style.display='none';
+  if(!items.length)return;
+  if(!window.JSZip||!window.jspdf)return $('err').textContent='Could not load the converter. Check your internet connection and reload the page.';
+  $('convert').disabled=true;
+  const fmt=$('fmt').value,dpi=+$('quality').value;
+  try{
+    for(let i=0;i<items.length;i++){
+      const it=items[i];it.bad='';
+      progress(Math.round(i/items.length*100),'Converting file '+(i+1)+' of '+items.length+'…');
+      await new Promise(r=>setTimeout(r));
+      try{
+        const res=await convertPptx(it,fmt,dpi,(p,n)=>progress(Math.round((i+(p-1)/n)/items.length*100),'File '+(i+1)+' of '+items.length+' · slide '+p+' of '+n+'…'));
+        if(it.out)URL.revokeObjectURL(it.out.url);
+        it.out={size:res.blob.size,pages:res.pages,blob:res.blob,url:URL.createObjectURL(res.blob)};
+      }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file.'}
+    }
+    render();
+    const ok=items.filter(i=>i.out);
+    if(ok.length){
+      $('rinfo').textContent=ok.length+' PDF file'+(ok.length===1?'':'s')+' · '+ok.reduce((s,i)=>s+i.out.pages,0)+' pages in total';
+      $('zip').style.display=ok.length>1?'':'none';$('result').style.display='block';
+    }else $('err').textContent='No file could be converted.';
+  }finally{$('convert').disabled=!items.length;$('progress').style.display='none'}
+};
+$('zip').onclick=async()=>{
+  if(!window.JSZip)return $('err').textContent='Could not load the ZIP library. Download the files one by one instead.';
+  const z=new JSZip(),used={};
+  items.forEach(it=>{if(!it.out)return;let n=base(it.name),k=n;used[k]=(used[k]||0)+1;if(used[k]>1)n+='-'+used[k];z.file(n+'.pdf',it.out.blob)});
+  const blob=await z.generateAsync({type:'blob'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='pptx-to-pdf.zip';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('reset').onclick=()=>{
+  items.forEach(i=>{if(i.out)URL.revokeObjectURL(i.out.url)});items=[];
+  $('err').textContent='';$('result').style.display='none';$('progress').style.display='none';
+  $('quality').value='144';$('fmt').value='jpeg';render();
+};
+render();
+</script>
+</body>
+</html>
