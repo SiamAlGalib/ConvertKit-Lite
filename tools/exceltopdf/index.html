@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel to PDF Converter — Free Online | ConvertKit Lite</title>
+<meta property="og:url" content="https://www.convertkitlite.site/tools/exceltopdf/">
+<meta property="og:image" content="https://www.convertkitlite.site/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="Free Excel to PDF converter. Turn XLSX, XLS and CSV spreadsheets into neat PDF tables, one section per sheet. Private, runs in your browser, no upload.">
+<link rel="canonical" href="https://www.convertkitlite.site/tools/exceltopdf/">
+<link rel="icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:title" content="Excel to PDF Converter — Free Online | ConvertKit Lite">
+<meta property="og:description" content="Convert Excel to PDF. Free and private.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent-blue:#2d82ff;--success:#22c55e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;letter-spacing:.15px;transition:.2s}
+nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a[href="#learn"]{color:#e6dcff}
+nav a[href="#learn"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#ff8a3d,#ad5bff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(173,91,255,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+.grad,h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+
+.tool{margin-top:32px;margin-bottom:48px}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+label,.lbl{display:block;font-size:12.5px;color:var(--text-dim);margin-bottom:8px;font-weight:600}
+select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+select:focus{outline:none;border-color:var(--border-hover)}
+.drop{position:relative;display:block;text-align:center;border:2px dashed #2b5d97;border-radius:14px;background:var(--panel-2);padding:34px 16px;cursor:pointer;transition:.2s;margin-bottom:0}
+.drop:hover,.drop.over,.drop:focus-within{border-color:var(--border-hover);background:#08213f}
+.drop .d-icon{font-size:30px;margin-bottom:8px}
+.drop strong{display:block;font-size:15px;color:var(--text);margin-bottom:4px}
+.drop span{font-size:12px;color:var(--text-faint);font-weight:400}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.list{display:grid;gap:10px;margin-top:16px}
+.row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;border:1px solid #194a84;border-radius:12px;background:var(--panel-2);padding:10px 12px}
+.row .th{display:grid;place-items:center;font-size:24px;width:52px;height:52px;border-radius:8px;background:#04122a}
+.row .nm{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .sz{font-size:12px;color:var(--text-dim);margin-top:3px}
+.row .sz .save{color:var(--success);font-weight:700}
+.row .ac{display:flex;gap:6px}
+.row .ac button,.row .ac a{padding:8px 12px;font-size:12px;font-weight:700;border-radius:8px;border:1px solid #194a84;color:var(--text-dim);background:transparent;cursor:pointer}
+.row .ac button:hover,.row .ac a:hover{border-color:var(--border-hover);color:#fff}
+.row .ac a.dl{background:linear-gradient(135deg,#2d82ff,#7c3ff0);border:0;color:#fff}
+.count{font-size:12px;color:var(--text-dim);margin-top:14px;display:none}
+.hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
+.btns{display:flex;gap:12px;margin-top:22px}
+button{border:0;border-radius:10px;color:#fff;font:inherit;font-weight:700;padding:12px 26px;cursor:pointer;transition:filter .2s,transform .1s}
+button:hover{filter:brightness(1.1)}
+button:active{transform:scale(.99)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.primary{background:linear-gradient(135deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.btns .primary{flex:1;padding:15px;font-size:15px;border-radius:12px}
+.ghost{background:transparent;border:1px solid #194a84;color:var(--text-dim)}
+.ghost:hover{border-color:var(--border-hover);color:var(--text)}
+.err{color:#fca5b5;font-size:13px;margin-top:14px;min-height:18px}
+#progress{display:none;margin-top:16px}
+.bar{height:8px;border-radius:99px;background:#061a35;border:1px solid #194a84;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2e8bff,#ad5bff);transition:width .15s}
+#ptext{font-size:12px;color:var(--text-dim);margin-top:8px;text-align:center}
+#result{display:none;margin-top:16px;text-align:center;border:1px solid #2b5d97;border-radius:14px;background:var(--panel-2);padding:22px}
+#result h3{font-size:16px;margin-bottom:6px}
+#result p{font-size:13px;color:var(--text-dim);margin-bottom:14px}
+
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin-bottom:4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq,.learn{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}
+.article-card:hover{transform:translateY(-3px);border-color:var(--border-hover);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-card h3{font-size:15px;margin-bottom:8px}
+.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+
+@media(max-width:700px){
+  .row{grid-template-columns:44px minmax(0,1fr)}.row .ac{grid-column:1/-1}
+  nav{display:none}h1{font-size:30px}
+  .steps,.related-grid,.features,.opts{grid-template-columns:1fr}
+  .rt-card{min-height:0}
+  footer{flex-direction:column;gap:18px;text-align:center}
+  .container{width:calc(100% - 24px)}
+}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}}
+@media(max-width:480px){.card{padding:20px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Excel to PDF Converter", "description": "Free Excel to PDF converter. Turn XLSX, XLS and CSV spreadsheets into neat PDF tables, one section per sheet. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/exceltopdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Excel to PDF", "item": "https://www.convertkitlite.site/tools/exceltopdf/"}]}]}</script>
+</head>
+<body>
+
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<main>
+<section class="hero">
+  <div class="icon-badge">📗</div>
+  <h1>Excel to <span>PDF</span></h1>
+  <p>Turn Excel spreadsheets into neat PDF tables. Supports XLSX, XLS and CSV, with one section per sheet. Everything happens in your browser.</p>
+  <div class="trust-row"><div>No registration required</div><div>Secure &amp; private</div><div>Works on any device</div></div>
+</section>
+
+<div class="narrow tool">
+<div class="card">
+<label class="drop" id="drop" for="file">
+  <div class="d-icon">📊</div>
+  <strong>Choose Excel files or drop them here</strong>
+  <span>XLSX, XLS or CSV files. Select several at once. Nothing leaves your device.</span>
+  <input id="file" type="file" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv" multiple/>
+</label>
+<div class="count" id="count"></div>
+<div class="list" id="list"></div>
+
+<div class="opts">
+  <div><label for="orient">Page orientation</label><select id="orient"><option value="auto">Auto (best fit per sheet)</option><option value="p">Portrait</option><option value="l">Landscape</option></select></div>
+  <div><label for="psize">Page size</label><select id="psize"><option value="a4">A4</option><option value="letter">Letter</option><option value="legal">Legal</option><option value="a3">A3</option></select></div>
+  <div><label for="sheets">Sheets to include</label><select id="sheets"><option value="all">All sheets</option><option value="first">First sheet only</option></select></div>
+  <div><label for="grid">Table style</label><select id="grid"><option value="grid">Grid lines</option><option value="striped">Striped rows</option><option value="plain">Plain</option></select></div>
+</div>
+<div class="hint" id="modehint">Each sheet starts on a new page, with its name as a heading. Wide sheets continue on extra pages. Cell colors and charts are not kept.</div>
+
+<div class="btns"><button class="primary" id="convert" disabled>Convert to PDF</button><button class="ghost" id="reset">Reset</button></div>
+<div class="err" id="err"></div>
+
+<div id="progress"><div class="bar"><i id="pbar"></i></div><div id="ptext"></div></div>
+
+<div id="result">
+  <h3>Your PDF is ready</h3>
+  <p id="rinfo"></p>
+  <button class="primary" id="zip" type="button">Download all (ZIP)</button>
+</div>
+</div>
+
+<div class="features">
+  <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your spreadsheets are converted in your browser — nothing is uploaded.</p></div>
+  <div class="feature"><div class="f-icon">⚡</div><h4>Instant</h4><p>Files convert on your device, with no waiting for uploads.</p></div>
+  <div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account and no limits on how often you use it.</p></div>
+</div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to convert <span>Excel to PDF</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Add your Excel files</h3><p>Click the upload area or drag one or more .xlsx, .xls or .csv files onto it.</p></div>
+    <div class="step"><b>2</b><h3>Choose options</h3><p>Pick the page size, orientation, which sheets to include and the table style.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each PDF or all of them as a ZIP.</p></div>
+  </div>
+</section>
+
+<section class="narrow learn" id="learn">
+  <h2 class="section-title">Learn about <span>Spreadsheets</span></h2>
+  <p class="section-intro">Helpful guides about Excel and PDF files.</p>
+  <div class="article-list">
+    <a class="article-card" href="../../articles/excel-to-pdf-guide/">
+      <div class="article-banner"><span class="glyph">📗</span><img src="../../articles/excel-to-pdf-guide/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">EXCEL TO PDF</span></div>
+      <div class="article-body"><h3>How to Convert Excel to PDF</h3><p>Learn the easiest ways to turn a spreadsheet into a shareable PDF.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/what-is-an-xlsx-file/">
+      <div class="article-banner b2"><span class="glyph">📄</span><img src="../../articles/what-is-an-xlsx-file/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">FILE FORMATS</span></div>
+      <div class="article-body"><h3>What Is an XLSX File?</h3><p>Understand what Excel files are and how they store your data.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/excel-vs-pdf/">
+      <div class="article-banner b3"><span class="glyph">⚖️</span><img src="../../articles/excel-vs-pdf/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">COMPARISON</span></div>
+      <div class="article-body"><h3>Excel vs PDF</h3><p>Compare both formats and pick the right one for sharing.</p><span class="article-read">Read article →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite Excel to PDF tool.</p>
+  <details><summary>Are my spreadsheets uploaded to a server?</summary><p>No. The PDF is created in your browser, so your Excel files stay on your device.</p></details>
+  <details><summary>What is kept from the Excel file?</summary><p>Cell values as they are displayed (dates, numbers and currency), and the sheet names. Cell colors, fonts, charts, images, merged-cell layout and formulas are not kept. The PDF shows a clean table of the results.</p></details>
+  <details><summary>What happens with wide sheets?</summary><p>Columns that do not fit on one page continue on the following pages, and the header row is repeated so the data stays readable. Auto orientation switches to landscape for sheets with many columns.</p></details>
+  <details><summary>Why do some characters show as question marks?</summary><p>The PDF uses standard Latin fonts. Letters from other scripts, such as Bengali, Arabic, Chinese or Cyrillic, cannot be drawn and are replaced with a question mark. For these files, use Excel's own Save as PDF.</p></details>
+  <details><summary>Can I convert password-protected files?</summary><p>No. Remove the password in Excel first, then add the file again.</p></details>
+  <details><summary>Can I convert many files at once?</summary><p>Yes. Add several files, convert them together, and download each PDF or one ZIP.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these useful document and image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../docxtohtml/"><span class="rt-icon">🌐</span><h3>DOCX to HTML</h3><p>Turn Word documents into clean HTML.</p><span class="go">Convert to HTML →</span></a>
+    <a class="rt-card" href="../pdftopptx/"><span class="rt-icon">📊</span><h3>PDF to PPTX</h3><p>Turn every PDF page into a PowerPoint slide.</p><span class="go">Convert to PPTX →</span></a>
+    <a class="rt-card" href="../rtftopdf/"><span class="rt-icon">📝</span><h3>RTF to PDF</h3><p>Turn Rich Text documents into PDF files.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../jpgtopdf/"><span class="rt-icon">🖼️</span><h3>JPG to PDF</h3><p>Combine images into a single PDF file.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images for easier sharing.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let items=[],uid=0;
+const size=b=>b>=1048576?(b/1048576).toFixed(2)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const base=n=>n.replace(/\.[^.]+$/,'');
+const wait=()=>new Promise(r=>setTimeout(r));
+
+/* Standard PDF fonts only draw Latin text: tidy common symbols, replace the rest */
+let replaced=0;
+function clean(v){
+  let s=String(v==null?'':v)
+    .replace(/[\u2018\u2019]/g,"'").replace(/[\u201C\u201D]/g,'"')
+    .replace(/[\u2013\u2014]/g,'-').replace(/\u2026/g,'...').replace(/\u20AC/g,'EUR ')
+    .replace(/[\r\n\t]+/g,' ');
+  return s.replace(/[^\u0020-\u007E\u00A0-\u00FF]/g,()=>{replaced++;return '?'});
+}
+
+async function convertBook(it,o,onStep){
+  const buf=new Uint8Array(await it.file.arrayBuffer());
+  let wb;
+  try{wb=XLSX.read(buf,{type:'array',cellDates:true})}
+  catch(e){e.kind=/password|encrypt/i.test(e.message||'')?'This file is password protected.':'This is not a valid Excel file.';throw e}
+  let names=wb.SheetNames.slice();
+  if(o.sheets==='first')names=names.slice(0,1);
+  if(!names.length){const e=new Error('empty');e.kind='No sheets were found in this file.';throw e}
+  replaced=0;
+  const {jsPDF}=window.jspdf;
+  let doc=null,used=0;
+  for(let s=0;s<names.length;s++){
+    onStep(s,names.length);await wait();
+    const ws=wb.Sheets[names[s]];
+    let rows=XLSX.utils.sheet_to_json(ws,{header:1,raw:false,defval:'',blankrows:false});
+    rows=rows.map(r=>r.map(clean)).filter(r=>r.some(c=>c.trim()!==''));
+    if(!rows.length)continue;
+    const cols=Math.max(...rows.map(r=>r.length));
+    rows=rows.map(r=>{while(r.length<cols)r.push('');return r});
+    const orient=o.orient==='auto'?(cols>6?'l':'p'):o.orient;
+    if(!doc)doc=new jsPDF({orientation:orient,unit:'pt',format:o.psize});
+    else doc.addPage(o.psize,orient);
+    used++;
+    const fs=cols<=6?9:cols<=12?8:7;
+    doc.setFont('helvetica','bold');doc.setFontSize(13);doc.setTextColor(30,36,48);
+    doc.text(clean(names[s]),36,40);
+    const theme=o.grid==='grid'?'grid':o.grid==='striped'?'striped':'plain';
+    doc.autoTable({
+      head:[rows[0]],body:rows.slice(1),startY:52,theme,
+      margin:{top:36,right:36,bottom:36,left:36},
+      styles:{font:'helvetica',fontSize:fs,cellPadding:3,overflow:'linebreak',textColor:[30,36,48],lineColor:[200,208,224],lineWidth:o.grid==='grid'?.4:0},
+      headStyles:{fillColor:[45,98,216],textColor:255,fontStyle:'bold'},
+      alternateRowStyles:{fillColor:[243,246,252]},
+      horizontalPageBreak:true,horizontalPageBreakRepeat:0,
+      showHead:'everyPage'
+    });
+  }
+  if(!doc){const e=new Error('empty');e.kind='This file has no data to convert.';throw e}
+  /* page numbers */
+  const n=doc.getNumberOfPages();
+  for(let p=1;p<=n;p++){
+    doc.setPage(p);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(130,140,160);
+    const w=doc.internal.pageSize.getWidth(),h=doc.internal.pageSize.getHeight();
+    doc.text(p+' / '+n,w-36,h-18,{align:'right'});
+  }
+  doc.setProperties({title:base(it.name),creator:'ConvertKit Lite'});
+  return {blob:doc.output('blob'),pages:n,sheets:used,replaced};
+}
+
+/* ---- UI ---- */
+function addFiles(files){
+  $('err').textContent='';$('result').style.display='none';
+  let skipped=0;
+  for(const f of files){
+    if(!/\.(xlsx|xls|csv)$/i.test(f.name)){skipped++;continue}
+    items.push({id:++uid,file:f,name:f.name,out:null,bad:''});
+  }
+  if(skipped)$('err').textContent=skipped+' file'+(skipped===1?' was':'s were')+' skipped. Please choose .xlsx, .xls or .csv files.';
+  render();
+}
+function render(){
+  const list=$('list');list.innerHTML='';
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='row';
+    d.innerHTML='<div class="th">📗</div><div><div class="nm"></div><div class="sz"></div></div><div class="ac"></div>';
+    const nm=d.querySelector('.nm');nm.textContent=it.name;nm.title=it.name;
+    const sz=d.querySelector('.sz'),ac=d.querySelector('.ac');
+    if(it.bad){sz.textContent=it.bad;sz.style.color='#fca5b5'}
+    else if(it.out){
+      sz.innerHTML=size(it.file.size)+' → <b>'+size(it.out.size)+'</b> · <span class="save">'+it.out.pages+' page'+(it.out.pages===1?'':'s')+'</span>'+(it.out.replaced?' · <span style="color:#fcd34d">'+it.out.replaced+' unsupported character'+(it.out.replaced===1?'':'s')+' replaced</span>':'');
+      const a=document.createElement('a');a.className='dl';a.textContent='Download';a.href=it.out.url;a.download=base(it.name)+'.pdf';ac.appendChild(a);
+    }else sz.textContent=size(it.file.size);
+    const x=document.createElement('button');x.type='button';x.textContent='Remove';
+    x.onclick=()=>{if(it.out)URL.revokeObjectURL(it.out.url);items.splice(i,1);render()};
+    ac.appendChild(x);list.appendChild(d);
+  });
+  $('count').style.display=items.length?'block':'none';
+  $('count').textContent=items.length+' file'+(items.length===1?'':'s');
+  $('convert').disabled=!items.length;
+  if(!items.length)$('result').style.display='none';
+}
+const drop=$('drop');
+$('file').onchange=e=>{addFiles([...e.target.files]);e.target.value=''};
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
+function progress(p,t){$('progress').style.display='block';$('pbar').style.width=p+'%';$('ptext').textContent=t}
+
+$('convert').onclick=async()=>{
+  $('err').textContent='';$('result').style.display='none';
+  if(!items.length)return;
+  if(!window.XLSX||!window.jspdf)return $('err').textContent='Could not load the converter. Check your internet connection and reload the page.';
+  $('convert').disabled=true;
+  const o={orient:$('orient').value,psize:$('psize').value,sheets:$('sheets').value,grid:$('grid').value};
+  try{
+    for(let i=0;i<items.length;i++){
+      const it=items[i];it.bad='';
+      progress(Math.round(i/items.length*100),'Converting file '+(i+1)+' of '+items.length+'…');
+      await wait();
+      try{
+        const res=await convertBook(it,o,(s,n)=>progress(Math.round((i+s/n)/items.length*100),'File '+(i+1)+' of '+items.length+' · sheet '+(s+1)+' of '+n+'…'));
+        if(it.out)URL.revokeObjectURL(it.out.url);
+        it.out={size:res.blob.size,pages:res.pages,replaced:res.replaced,blob:res.blob,url:URL.createObjectURL(res.blob)};
+      }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file.'}
+    }
+    render();
+    const ok=items.filter(i=>i.out);
+    if(ok.length){
+      $('rinfo').textContent=ok.length+' PDF file'+(ok.length===1?'':'s')+' · '+ok.reduce((s,i)=>s+i.out.pages,0)+' pages in total';
+      $('zip').style.display=ok.length>1?'':'none';$('result').style.display='block';
+    }else $('err').textContent='No file could be converted.';
+  }finally{$('convert').disabled=!items.length;$('progress').style.display='none'}
+};
+$('zip').onclick=async()=>{
+  if(!window.JSZip)return $('err').textContent='Could not load the ZIP library. Download the files one by one instead.';
+  const z=new JSZip(),used={};
+  items.forEach(it=>{if(!it.out)return;let n=base(it.name),k=n;used[k]=(used[k]||0)+1;if(used[k]>1)n+='-'+used[k];z.file(n+'.pdf',it.out.blob)});
+  const blob=await z.generateAsync({type:'blob'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='excel-to-pdf.zip';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('reset').onclick=()=>{
+  items.forEach(i=>{if(i.out)URL.revokeObjectURL(i.out.url)});items=[];
+  $('err').textContent='';$('result').style.display='none';$('progress').style.display='none';
+  $('orient').value='auto';$('psize').value='a4';$('sheets').value='all';$('grid').value='grid';render();
+};
+render();
+</script>
+</body>
+</html>
