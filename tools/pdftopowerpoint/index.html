@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PDF to PowerPoint Converter — Free PDF to PPTX | ConvertKit Lite</title>
-<meta property="og:url" content="https://www.convertkitlite.site/tools/PdfToPowerPoint/">
+<meta property="og:url" content="https://www.convertkitlite.site/tools/pdftopowerpoint/">
 <meta property="og:image" content="https://www.convertkitlite.site/logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="description" content="Free PDF to PowerPoint converter. Turn every PDF page into a PPTX slide. Private, runs in your browser, no upload.">
-<link rel="canonical" href="https://www.convertkitlite.site/tools/PdfToPowerPoint/">
+<link rel="canonical" href="https://www.convertkitlite.site/tools/pdftopowerpoint/">
 <link rel="icon" href="../../favicon.ico">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -269,11 +269,45 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <div>© 2026 ConvertKit Lite. All rights reserved.</div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PptxGenJS/3.12.0/pptxgen.bundle.js"></script>
 <script>
 const $=id=>document.getElementById(id);
-if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+function loadScript(urls){
+  return new Promise((resolve,reject)=>{
+    let i=0;
+    (function next(){
+      if(i>=urls.length)return reject(new Error('load failed'));
+      const url=urls[i++],s=document.createElement('script');
+      s.src=url;
+      s.onload=()=>resolve(url);
+      s.onerror=()=>{s.remove();next()};
+      document.head.appendChild(s);
+    })();
+  });
+}
+
+let libsPromise=null;
+function ensureLibs(){
+  if(libsPromise)return libsPromise;
+  libsPromise=(async()=>{
+    if(!window.pdfjsLib){
+      const url=await loadScript([
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js'
+      ]).catch(()=>{throw new Error('pdfjs')});
+      pdfjsLib.GlobalWorkerOptions.workerSrc=url.replace('pdf.min.js','pdf.worker.min.js');
+    }
+    if(!window.PptxGenJS){
+      await loadScript([
+        'https://cdnjs.cloudflare.com/ajax/libs/PptxGenJS/3.12.0/pptxgen.bundle.js',
+        'https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js'
+      ]).catch(()=>{throw new Error('pptxgen')});
+    }
+  })().catch(e=>{libsPromise=null;throw e});
+  return libsPromise;
+}
+ensureLibs().catch(()=>{}); // preload on page open
+
 let pdfFile=null,outBlobName='',lastPptx=null;
 
 const hints={image:'Each page becomes a picture on its slide, so the design stays identical to the PDF.',text:'Text is rebuilt as editable text boxes. Images, shapes and complex layouts are not kept.'};
@@ -300,8 +334,11 @@ function progress(p,t){$('progress').style.display='block';$('pbar').style.width
 $('convert').onclick=async()=>{
   $('err').textContent='';$('result').style.display='none';
   if(!pdfFile)return;
-  if(!window.pdfjsLib||!window.PptxGenJS)return $('err').textContent='Could not load the converter. Check your internet connection and reload the page.';
   $('convert').disabled=true;
+  try{await ensureLibs()}catch(e){
+    $('convert').disabled=false;
+    return $('err').textContent='Could not load the '+(e.message==='pptxgen'?'PowerPoint (PptxGenJS)':'PDF reader (pdf.js)')+' library. Disable ad blockers for this site, check your connection, and reload.';
+  }
   try{
     const data=new Uint8Array(await pdfFile.arrayBuffer());
     const pdf=await pdfjsLib.getDocument({data}).promise;
