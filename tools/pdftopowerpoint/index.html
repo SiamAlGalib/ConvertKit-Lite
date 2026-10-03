@@ -15,6 +15,7 @@
 <meta property="og:site_name" content="ConvertKit Lite">
 <meta property="og:title" content="PDF to PowerPoint Converter — Free PDF to PPTX | ConvertKit Lite">
 <meta property="og:description" content="Convert PDF to PowerPoint slides. Free and private.">
+<script>if(/\/index\.html?$/i.test(location.pathname))history.replaceState(null,'',location.pathname.replace(/index\.html?$/i,'')+location.search+location.hash);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -295,7 +296,10 @@ function ensureLibs(){
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
         'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js'
       ]).catch(()=>{throw new Error('pdfjs')});
-      pdfjsLib.GlobalWorkerOptions.workerSrc=url.replace('pdf.min.js','pdf.worker.min.js');
+      const workerUrl=url.replace('pdf.min.js','pdf.worker.min.js');
+      pdfjsLib.GlobalWorkerOptions.workerSrc=workerUrl;
+      // Also load the worker as a normal script: if the browser blocks Web Workers, pdf.js falls back to this copy on the main thread
+      await loadScript([workerUrl]).catch(()=>{});
     }
     if(!window.PptxGenJS){
       await loadScript([
@@ -341,7 +345,7 @@ $('convert').onclick=async()=>{
   }
   try{
     const data=new Uint8Array(await pdfFile.arrayBuffer());
-    const pdf=await pdfjsLib.getDocument({data}).promise;
+    const pdf=await pdfjsLib.getDocument({data,verbosity:0}).promise;
     const mode=$('mode').value,scale=+$('quality').value;
     const first=await pdf.getPage(1),v0=first.getViewport({scale:1});
     const W=v0.width>=v0.height?13.333:10,H=W*v0.height/v0.width;
