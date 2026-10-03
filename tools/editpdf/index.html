@@ -2,396 +2,440 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PDF Editor — ConvertKit Lite</title>
-<meta name="description" content="Edit or create PDF files online for free, right in your browser. Private, no sign-up and no watermark.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if(/\/index\.html?$/i.test(location.pathname))history.replaceState(null,'',location.pathname.replace(/index\.html?$/i,'')+location.search+location.hash);</script>
+<title>Edit or Create PDF — Free Online PDF Editor | ConvertKit Lite</title>
+<meta name="description" content="Free online PDF editor. Add text, draw, add or delete pages and download. Private, runs in your browser, no watermark.">
 <link rel="canonical" href="https://www.convertkitlite.site/tools/editpdf/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ConvertKit Lite">
-<meta property="og:title" content="PDF Editor — ConvertKit Lite">
-<meta property="og:description" content="Edit or create PDF files online for free, right in your browser. Private, no sign-up and no watermark.">
+<meta property="og:title" content="Edit or Create PDF — Free Online PDF Editor | ConvertKit Lite">
+<meta property="og:description" content="Edit or create PDF files online for free. Private, no sign-up and no watermark.">
 <meta property="og:url" content="https://www.convertkitlite.site/tools/editpdf/">
 <meta property="og:image" content="https://www.convertkitlite.site/logo.png">
 <meta name="twitter:card" content="summary">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<link rel="icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}
+:root{--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--success:#22c55e}
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  margin:0;min-height:100vh;font-family:Inter,Arial,sans-serif;color:#f5f8ff;
-  background:
-    radial-gradient(circle at 18% 18%,rgba(37,119,255,.12),transparent 30%),
-    radial-gradient(circle at 82% 72%,rgba(166,58,255,.13),transparent 34%),
-    linear-gradient(135deg,#020a19 0%,#03132b 58%,#071a39 100%);
-}
-body:after{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  background:linear-gradient(140deg,transparent 69%,rgba(76,45,220,.15) 69%,transparent 85%);
-}
-button,.upload{font:inherit}
-button{border:0}
-.topbar{
-  height:74px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.9);
-  backdrop-filter:blur(16px);display:flex;align-items:center;position:sticky;top:0;z-index:50;
-}
-.topbar-inner{width:min(1180px,calc(100% - 36px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:10px;color:#f4f7ff;text-decoration:none;font-size:21px;font-weight:800;letter-spacing:-.8px}
-.brand-mark{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;overflow:hidden;background:#000;border:1px solid #174b88;box-shadow:0 0 18px rgba(35,132,255,.14)} .brand-mark img{width:100%;height:100%;object-fit:contain;display:block}
-.brand-mark span{font-size:20px;color:#27a9ff;line-height:1}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}
 .brand .lite{color:#a46bff}
-.header-actions{display:flex;align-items:center;gap:10px}
-.back-link,.top-upload{border:1px solid #1b4f8d;border-radius:9px;padding:10px 15px;background:#071a35;color:#dbe9ff;text-decoration:none;font-weight:700;font-size:12px;cursor:pointer}
-.top-upload{background:linear-gradient(100deg,#2d82ff,#7c3ff0);border-color:transparent;color:#fff}
-input[type=file]{display:none}
-
-main{width:min(1180px,calc(100% - 36px));margin:24px auto 45px}
-.page-heading{text-align:center;margin:15px 0 22px}
-.page-heading .eyebrow{
-  display:inline-flex;align-items:center;gap:8px;border:1px solid #7c3154;
-  border-radius:20px;padding:6px 13px;color:#ffb6d0;background:rgba(94,20,55,.25);
-  font-size:11px;font-weight:800
-}
-.page-heading h1{margin:13px 0 7px;font-size:34px;letter-spacing:-1.2px}
-.page-heading p{margin:0;color:#9eb8dc;font-size:13px}
-
-.editor-shell{
-  border:1px solid #7d2349;border-radius:20px;background:
-  linear-gradient(145deg,rgba(10,20,43,.97),rgba(4,12,29,.98));
-  box-shadow:0 18px 60px rgba(0,0,0,.3),0 0 45px rgba(255,44,125,.06);
-  padding:14px;
-}
-.toolbar{
-  background:linear-gradient(145deg,#0a2244,#071832);border:1px solid #194b84;
-  border-radius:14px;padding:10px;display:flex;gap:7px;align-items:center;flex-wrap:wrap;
-  box-shadow:0 8px 28px #0004
-}
-.toolbar button,.toolbar .control{
-  border:1px solid #214f86;border-radius:9px;padding:9px 12px;background:#0b254a;
-  color:#dce9ff;font-weight:700;font-size:11px;cursor:pointer
-}
-.toolbar button:hover,.toolbar .control:hover{border-color:#4b9cff;background:#10315d}
-.toolbar button.primary{background:linear-gradient(100deg,#ff3976,#c34dff);border-color:transparent;color:#fff;box-shadow:0 7px 20px rgba(255,57,118,.18)}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;transition:.2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);outline:none}
+.hero{text-align:center;max-width:680px;margin:40px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#ff3976,#ad5bff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(173,91,255,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+.tool{margin:28px auto 48px}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:16px;padding:14px}
+button{border:0;border-radius:9px;color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:filter .2s,transform .1s}
+button:hover{filter:brightness(1.12)}
+button:active{transform:scale(.98)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.primary{background:linear-gradient(135deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.toolbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;background:var(--panel-2);border:1px solid #194a84;border-radius:12px;padding:9px}
+.toolbar button{padding:9px 12px;font-size:12px;background:#0b254a;border:1px solid #214f86;color:#dce9ff}
+.toolbar button:hover{border-color:var(--border-hover)}
+.toolbar button.on{background:linear-gradient(135deg,#ff3976,#c34dff);border-color:transparent;color:#fff}
+.toolbar button.primary{background:linear-gradient(135deg,#2d82ff,#7c3ff0);border-color:transparent}
 .toolbar button.danger{background:#351522;border-color:#733044;color:#ffb4c7}
-.toolbar label{font-size:11px;font-weight:700;color:#a9c1e3;display:flex;align-items:center;gap:6px}
-.toolbar input[type=color]{width:35px;height:31px;padding:2px;border:1px solid #31537f;border-radius:7px;background:#071832}
-.toolbar input[type=number]{width:62px;padding:8px;border:1px solid #31537f;border-radius:7px;background:#071832;color:#fff}
+.toolbar label{font-size:11.5px;font-weight:600;color:var(--text-dim);display:flex;align-items:center;gap:6px}
+.toolbar input[type=number]{width:58px;padding:7px;border:1px solid #31537f;border-radius:7px;background:#061a35;color:#fff;font:inherit}
+.toolbar input[type=color]{width:34px;height:30px;padding:2px;border:1px solid #31537f;border-radius:7px;background:#061a35}
+.sep{width:1px;height:24px;background:#194a84;margin:0 3px}
 .zoom{display:flex;align-items:center;gap:5px;margin-left:auto}
-.zoom-label{min-width:42px;text-align:center;color:#9eb8dc;font-size:11px}
-
-.hint{margin:10px 4px 2px;color:#7696bf;font-size:11px;text-align:center}
-
-.workspace{margin-top:14px;display:grid;grid-template-columns:205px 1fr;gap:14px}
-.sidebar,.canvas-area{background:linear-gradient(145deg,#071b37,#051329);border:1px solid #17477e;border-radius:15px}
-.sidebar{padding:11px;min-height:620px;overflow-y:auto}
-.sidebar h3{margin:4px 5px 12px;font-size:12px;color:#dce9ff}
+#zl{min-width:44px;text-align:center;color:var(--text-dim);font-size:12px}
+.info{display:flex;justify-content:space-between;gap:12px;margin:10px 4px 0;font-size:11.5px;color:var(--text-faint)}
+.err{color:#fca5b5;font-size:13px;margin:10px 4px 0;min-height:0;line-height:1.5}
+.err:empty{display:none}
+.workspace{margin-top:12px;display:grid;grid-template-columns:180px 1fr;gap:12px}
+.sidebar,.canvas-area{background:linear-gradient(145deg,#071b37,#051329);border:1px solid #17477e;border-radius:13px}
+.sidebar{padding:10px;height:640px;overflow-y:auto}
+.sidebar h3{font-size:12px;margin:3px 4px 10px;color:#dce9ff}
 .thumbs{display:flex;flex-direction:column;gap:10px}
 .thumb{border:1px solid #234f83;border-radius:9px;padding:5px;background:#071932;cursor:pointer;transition:.2s}
-.thumb:hover{background:#0c2548;border-color:#4b9cff}
-.thumb.active{border-color:#ff3976;box-shadow:0 0 0 2px rgba(255,57,118,.18)}
-.thumb canvas{width:100%;display:block;background:#fff;border-radius:5px}
+.thumb:hover{border-color:var(--border-hover)}
+.thumb.active{border-color:#ff3976;box-shadow:0 0 0 2px rgba(255,57,118,.2)}
+.thumb canvas{width:100%;display:block;background:#fff;border-radius:4px}
 .thumb small{display:block;font-size:10px;color:#8ca8cf;margin-top:5px;text-align:center;font-weight:600}
-
-.canvas-area{padding:18px;overflow:auto;min-height:620px;position:relative}
-.empty{
-  min-height:580px;display:flex;align-items:center;justify-content:center;padding:35px;
-}
-.upload-card{
-  width:min(650px,100%);min-height:390px;border:1px solid #7d2349;border-radius:20px;
-  background:linear-gradient(145deg,rgba(13,17,37,.96),rgba(6,9,23,.98));
-  padding:13px;box-shadow:0 0 40px rgba(255,37,113,.08)
-}
-.upload-inner{
-  min-height:360px;border:1px dashed rgba(255,57,118,.55);border-radius:15px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:
-    radial-gradient(circle at 50% 45%,rgba(193,60,255,.13),transparent 32%),
-    radial-gradient(circle at 50% 55%,rgba(0,126,255,.08),transparent 58%);
-}
-.cloud{
-  width:78px;height:78px;border-radius:21px;border:1px solid #ff3976;
-  display:grid;place-items:center;color:#ff5b91;font-size:37px;
-  box-shadow:0 0 28px rgba(255,57,118,.2),inset 0 0 18px rgba(255,57,118,.08);
-  margin-bottom:18px
-}
-.upload-inner h2{margin:0 0 8px;font-size:23px;letter-spacing:-.5px}
-.upload-inner p{margin:0 0 20px;color:#91acd1;font-size:12px;max-width:430px;line-height:1.6}
-.select-file{
-  display:inline-flex;align-items:center;gap:8px;border:0;border-radius:10px;padding:12px 22px;
-  background:linear-gradient(100deg,#ff3976,#c34dff);color:#fff;font-weight:800;font-size:12px;
-  cursor:pointer;box-shadow:0 10px 28px rgba(255,57,118,.2)
-}
-.drop-note{margin-top:13px!important;margin-bottom:0!important;color:#607fa9!important;font-size:10px!important}
-
-.page-wrap{position:relative;margin:0 auto 20px;width:max-content;background:white;box-shadow:0 12px 40px #0008}
-.page-wrap canvas{display:block}
-.overlay{position:absolute;inset:0}
-.overlay-item{position:absolute;user-select:none;cursor:move;white-space:pre-wrap}
-.text-item{font-weight:500}
-.draw-layer{position:absolute;inset:0;pointer-events:none}
-
-.features{
-  margin-top:16px;border:1px solid #164d8b;border-radius:14px;background:#061a36;
-  padding:14px 8px;display:grid;grid-template-columns:repeat(3,1fr)
-}
-.feature{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 16px;border-right:1px solid #173e6c}
-.feature:last-child{border:0}
-.feature-icon{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#10347a;color:#66a9ff;font-size:17px}
-.feature b{display:block;font-size:10px}.feature small{display:block;color:#7895bc;font-size:8px;margin-top:4px}
-
-@media(max-width:850px){
-  .workspace{grid-template-columns:1fr}
-  .sidebar{min-height:auto;max-height:210px}
-  .thumbs{flex-direction:row;overflow-x:auto}
-  .thumb{min-width:100px;flex-shrink:0}
-  .features{grid-template-columns:1fr}
-  .feature{border:0;border-bottom:1px solid #173e6c}
-  .feature:last-child{border:0}
-}
-@media(max-width:560px){
-  main,.topbar-inner{width:calc(100% - 20px)}
-  .back-link{display:none}
-  .page-heading h1{font-size:27px}
-  .toolbar{gap:5px}
-  .zoom{margin-left:0}
-  .empty{padding:12px;min-height:480px}
-  .upload-card{min-height:350px}
-  .upload-inner{min-height:320px}
-}
+.canvas-area{height:640px;overflow:auto;padding:18px;position:relative}
+.empty{height:100%;min-height:420px;display:flex;align-items:center;justify-content:center}
+.drop{display:block;width:min(560px,100%);text-align:center;border:2px dashed #2b5d97;border-radius:14px;background:var(--panel-2);padding:46px 16px;cursor:pointer;transition:.2s}
+.drop:hover,.drop.over{border-color:var(--border-hover);background:#08213f}
+.drop .d-icon{font-size:34px;margin-bottom:8px}
+.drop strong{display:block;font-size:16px;margin-bottom:4px}
+.drop span{font-size:12px;color:var(--text-faint)}
+.drop-btns{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.drop-btns button{padding:11px 20px;font-size:13px}
+input[type=file]{display:none}
+.page-wrap{position:relative;margin:0 auto;background:#fff;box-shadow:0 12px 40px #0008}
+.page-wrap>canvas{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+.ink{touch-action:none;pointer-events:none}
+.page-wrap.drawing .ink{pointer-events:auto;cursor:crosshair}
+.layer{position:absolute;inset:0;pointer-events:none}
+.ti{position:absolute;pointer-events:auto;line-height:1.2;font-family:Helvetica,Arial,sans-serif}
+.page-wrap.drawing .ti{pointer-events:none}
+.tx{min-width:20px;white-space:pre-wrap;outline:none;padding:0 2px;border:1px dashed transparent;cursor:text}
+.ti:hover .tx,.tx:focus{border-color:#ff3976}
+.hd{position:absolute;top:-18px;display:none;width:18px;height:18px;border-radius:5px;font-size:11px;line-height:18px;text-align:center;color:#fff;font-family:Inter,Arial,sans-serif;font-weight:700}
+.ti:hover .hd,.ti:focus-within .hd{display:block}
+.mv{left:0;background:#2d82ff;cursor:move;touch-action:none}
+.rm{left:22px;background:#c0264f;cursor:pointer}
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:170px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+@media(max-width:850px){.workspace{grid-template-columns:1fr}.sidebar{height:auto}.thumbs{flex-direction:row;overflow-x:auto}.thumb{min-width:96px;flex-shrink:0}.canvas-area{height:560px}}
+@media(max-width:700px){nav{display:none}h1{font-size:30px}.steps,.related-grid{grid-template-columns:1fr}.rt-card{min-height:0}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}.zoom{margin-left:0}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PDF Editor", "description": "PDF Editor - free online tool", "url": "https://www.convertkitlite.site/tools/editpdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PDF Editor", "item": "https://www.convertkitlite.site/tools/editpdf/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Edit or Create PDF","description":"Free online PDF editor. Add text, draw and manage pages in your browser.","url":"https://www.convertkitlite.site/tools/editpdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertkitlite.site/"},{"@type":"ListItem","position":2,"name":"Edit or Create PDF","item":"https://www.convertkitlite.site/tools/editpdf/"}]}]}</script>
 </head>
 <body>
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <span class="brand-mark"><img src="data:image/png;base64,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" alt="ConvertKit Lite logo"></span>
-      ConvertKit <span class="lite">Lite</span>
-    </a>
-    <div class="header-actions">
-      <a class="back-link" href="/">← Back to Tools</a>
-      <label class="top-upload"><input id="fileInput" type="file" accept="application/pdf">Open PDF</label>
-    </div>
-  </div>
-</header>
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#faq">FAQ</a></nav>
+</div></header>
 
 <main>
-  <div class="page-heading">
-    <span class="eyebrow">✦ PDF TOOL</span>
-    <h1>Edit &amp; Create PDF</h1>
-    <p>Edit your PDF, add text, draw, manage pages, and download the finished file.</p>
+<section class="hero">
+  <div class="icon-badge">✏️</div>
+  <h1>Edit or Create <span>PDF</span></h1>
+  <p>Open a PDF or start a blank one. Add text, draw, manage pages and download. Everything happens in your browser.</p>
+  <div class="trust-row"><div>No registration required</div><div>No watermark</div><div>Secure &amp; private</div></div>
+</section>
+
+<div class="container tool">
+<div class="card">
+  <div class="toolbar">
+    <button id="open">Open PDF</button>
+    <button id="newPdf">New PDF</button>
+    <span class="sep"></span>
+    <button id="addText">Add Text</button>
+    <button id="draw">Draw</button>
+    <button id="undo">Undo</button>
+    <label>Size <input id="fontSize" type="number" min="6" max="120" value="20"></label>
+    <label>Color <input id="color" type="color" value="#111827"></label>
+    <label>Brush <input id="brush" type="number" min="1" max="30" value="2"></label>
+    <span class="sep"></span>
+    <button id="addPage">Add Page</button>
+    <button id="up" title="Move page up">↑</button>
+    <button id="down" title="Move page down">↓</button>
+    <button id="delPage" class="danger">Delete Page</button>
+    <div class="zoom"><button id="zOut">−</button><span id="zl">100%</span><button id="zIn">+</button></div>
+    <button id="save" class="primary">Download PDF</button>
   </div>
+  <div class="info"><span id="st">Open a PDF or create a new one to start.</span><span id="pg"></span></div>
+  <div class="err" id="err"></div>
 
-  <section class="editor-shell">
-    <div class="toolbar">
-      <button id="addText">Add Text</button>
-      <button id="draw">Draw</button>
-      <button id="erase">Erase</button>
-      <button id="addPage">Add Blank Page</button>
-      <button id="deletePage" class="danger">Delete Page</button>
-      <label>Text size <input id="fontSize" type="number" min="8" max="96" value="20"></label>
-      <label>Color <input id="color" type="color" value="#111827"></label>
-      <div class="zoom"><button id="zoomOut">−</button><span id="zoomLabel" class="zoom-label">100%</span><button id="zoomIn">+</button></div>
-      <button class="primary" id="newPdf">New PDF</button>
-      <button class="primary" id="savePdf">Download PDF</button>
-    </div>
-
-    <div class="hint">Upload a PDF to start editing, or create a new blank PDF.</div>
-
-    <section class="workspace">
-      <aside class="sidebar">
-        <h3>Pages</h3>
-        <div id="thumbs" class="thumbs"></div>
-      </aside>
-
-      <section id="canvasArea" class="canvas-area">
-        <div class="empty" id="empty">
-          <div class="upload-card">
-            <div class="upload-inner">
-              <div class="cloud">☁</div>
-              <h2>Upload your PDF</h2>
-              <p>Drop your PDF here or choose a file from your device to start editing.</p>
-              <label class="select-file">
-                <input id="emptyUpload" type="file" accept="application/pdf">
-                ↑ Select PDF
-              </label>
-              <p class="drop-note">PDF files only • Your file stays in your browser</p>
-            </div>
-          </div>
-        </div>
-      </section>
+  <div class="workspace">
+    <aside class="sidebar"><h3>Pages</h3><div id="thumbs" class="thumbs"></div></aside>
+    <section class="canvas-area" id="area">
+      <div class="empty" id="empty">
+        <label class="drop" id="drop" for="file">
+          <div class="d-icon">📄</div>
+          <strong>Choose a PDF or drop it here</strong>
+          <span>PDF files only. Your file never leaves your device.</span>
+          <div class="drop-btns"><button class="primary" type="button" id="open2">Select PDF</button><button type="button" id="new2" style="background:#0b254a;border:1px solid #214f86">Create blank PDF</button></div>
+        </label>
+      </div>
     </section>
-  </section>
-
-  <div class="features">
-    <div class="feature"><div class="feature-icon">⚡</div><div><b>Fast Conversion</b><small>Runs directly in your browser.</small></div></div>
-    <div class="feature"><div class="feature-icon">♢</div><div><b>Secure &amp; Private</b><small>Your files stay on your device.</small></div></div>
-    <div class="feature"><div class="feature-icon">∞</div><div><b>Works Everywhere</b><small>Use it on any modern browser.</small></div></div>
   </div>
-<style>.ck-rel{width:min(900px,calc(100% - 32px));margin:48px auto 58px}.ck-rel h2{font-size:25px;letter-spacing:-.6px;margin:0 0 8px;color:#f2f6ff}.ck-rel .ck-intro{color:#9bb8e0;font-size:14px;line-height:1.7;margin:0 0 18px}.ck-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.ck-card{display:flex;flex-direction:column;padding:20px;border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);color:#f2f6ff;text-decoration:none;transition:.2s}.ck-card:hover{transform:translateY(-4px);border-color:#5c8fff}.ck-card h3{font-size:15px;margin:0 0 8px}.ck-card .d{font-size:12px;line-height:1.65;color:#9bb8e0;margin-bottom:16px}.ck-card .go{margin-top:auto;color:#80baff;font-size:12px;font-weight:700}@media(max-width:700px){.ck-grid{grid-template-columns:1fr}}</style><section class="ck-rel" aria-label="Related tools"><h2>Explore More Tools</h2><p class="ck-intro">Keep going with these related PDF and image tools.</p><div class="ck-grid"><a class="ck-card" href="../mergepdf/"><h3>Merge PDF</h3><span class="d">Combine multiple PDF documents into one file.</span><span class="go">Merge files →</span></a><a class="ck-card" href="../splitpdf/"><h3>Split PDF</h3><span class="d">Extract pages or split a PDF into separate files.</span><span class="go">Split PDF →</span></a><a class="ck-card" href="../compresspdf/"><h3>Compress PDF</h3><span class="d">Reduce PDF file size right in your browser.</span><span class="go">Compress PDF →</span></a><a class="ck-card" href="../wordtopdf/"><h3>Word to PDF</h3><span class="d">Convert Word documents to PDF format.</span><span class="go">Convert file →</span></a><a class="ck-card" href="../imagecompressor/"><h3>Image Compressor &amp; Resizer</h3><span class="d">Reduce image file size or resize images.</span><span class="go">Optimize image →</span></a><a class="ck-card" href="../../#tools"><h3>Explore All Tools</h3><span class="d">Browse the complete ConvertKit Lite collection.</span><span class="go">Browse all tools →</span></a></div></section>
+  <input id="file" type="file" accept="application/pdf,.pdf"/>
+</div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to edit a <span>PDF</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Open or create</h3><p>Open a PDF, or start a blank A4 page with New PDF.</p></div>
+    <div class="step"><b>2</b><h3>Edit it</h3><p>Add text, draw, and add, move or delete pages. Use Undo if you slip.</p></div>
+    <div class="step"><b>3</b><h3>Download</h3><p>Press Download PDF to save your edited file.</p></div>
+  </div>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite PDF editor.</p>
+  <details><summary>Is my PDF uploaded to a server?</summary><p>No. Editing happens entirely in your browser, so your file stays on your device.</p></details>
+  <details><summary>Can I change the existing text in a PDF?</summary><p>No. This editor adds new text and drawings on top of a page. It cannot rewrite text that is already in the PDF.</p></details>
+  <details><summary>How do I move, edit or delete text I added?</summary><p>Click the text to type. Drag the blue handle above it to move it, and use the red × to remove it.</p></details>
+  <details><summary>Which characters and fonts are supported?</summary><p>Added text uses Helvetica with Latin characters. Other characters, such as Arabic or Chinese, are replaced with a question mark when you download.</p></details>
+  <details><summary>Why are edits misplaced on some pages?</summary><p>Pages that are rotated inside the PDF can place text and drawings in the wrong spot. Check the downloaded file if your PDF has rotated pages.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these related PDF and image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../mergepdf/"><h3>Merge PDF</h3><p>Combine multiple PDF documents into one file.</p><span class="go">Merge files →</span></a>
+    <a class="rt-card" href="../splitpdf/"><h3>Split PDF</h3><p>Extract pages or split a PDF into separate files.</p><span class="go">Split PDF →</span></a>
+    <a class="rt-card" href="../compresspdf/"><h3>Compress PDF</h3><p>Reduce PDF file size right in your browser.</p><span class="go">Compress PDF →</span></a>
+    <a class="rt-card" href="../wordtopdf/"><h3>Word to PDF</h3><p>Convert Word documents to PDF format.</p><span class="go">Convert file →</span></a>
+    <a class="rt-card" href="../imagecompressor/"><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card explore" href="../../#tools"><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
 </main>
 
-<script type="module">
-
-import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
-pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
-
-const {PDFDocument,rgb,StandardFonts}=PDFLib;
-const fileInput=document.getElementById("fileInput"), thumbs=document.getElementById("thumbs"), area=document.getElementById("canvasArea");
-const empty=document.getElementById("empty"), fontSize=document.getElementById("fontSize"), color=document.getElementById("color"), zoomLabel=document.getElementById("zoomLabel");
-let pdfDoc=null, sourceBytes=null, pages=[], current=0, zoom=1, mode="select";
-
-function hexRgb(h){return [parseInt(h.slice(1,3),16)/255,parseInt(h.slice(3,5),16)/255,parseInt(h.slice(5,7),16)/255]}
-function blankPage(){return {width:595,height:842,source:null,items:[],draws:[]}}
-function setMode(m){mode=m; document.querySelectorAll(".toolbar button").forEach(b=>b.classList.remove("primary")); if(m==="text")document.getElementById("addText").classList.add("primary"); if(m==="draw")document.getElementById("draw").classList.add("primary")}
-
-async function renderThumbs(){
-  thumbs.innerHTML="";
-  for(let i=0;i<pages.length;i++){
-    const p=pages[i];
-    const d=document.createElement("div");
-    d.className="thumb"+(i===current?" active":"");
-    const canvas=document.createElement("canvas");
-    canvas.width=200;
-    canvas.height=280;
-    
-    // Render page content to thumbnail
-    const scale=200/p.width;
-    canvas.height=p.height*scale;
-    const ctx=canvas.getContext("2d");
-    
-    if(p.source && sourceBytes && pdfDoc){
-      try{
-        const src=await pdfDoc.getPage(p.source);
-        const vp=src.getViewport({scale});
-        canvas.width=vp.width;
-        canvas.height=vp.height;
-        await src.render({canvasContext:ctx,viewport:vp}).promise;
-      }catch(e){}
-    }else{
-      ctx.fillStyle="#fff";
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-      ctx.strokeStyle="#e3e8f1";
-      ctx.lineWidth=1;
-      ctx.strokeRect(0,0,canvas.width,canvas.height);
-    }
-    
-    // Draw text items on thumbnail
-    p.items.forEach(it=>{
-      ctx.font=`${Math.max(8,it.size*scale/2)}px Arial`;
-      ctx.fillStyle=it.color||"#000";
-      ctx.fillText(it.text.substring(0,20),it.x*scale,it.y*scale);
-    });
-    
-    // Draw lines on thumbnail
-    p.draws.forEach(d=>{
-      ctx.strokeStyle=d.color||"#000";
-      ctx.lineWidth=Math.max(1,d.width*scale);
-      ctx.beginPath();
-      ctx.moveTo(d.x1*scale,d.y1*scale);
-      ctx.lineTo(d.x2*scale,d.y2*scale);
-      ctx.stroke();
-    });
-    
-    d.appendChild(canvas);
-    const small=document.createElement("small");
-    small.textContent=`Page ${i+1}`;
-    d.appendChild(small);
-    d.onclick=()=>{current=i;render();renderThumbs()};
-    thumbs.appendChild(d);
-  }
-}
-
-async function render(){
-  empty.style.display=pages.length?"none":"block"; if(!pages.length)return;
-  area.querySelectorAll(".page-wrap").forEach(x=>x.remove());
-  const p=pages[current], wrap=document.createElement("div");wrap.className="page-wrap";
-  const canvas=document.createElement("canvas"); const scale=zoom; canvas.width=p.width*scale;canvas.height=p.height*scale;
-  wrap.appendChild(canvas); const overlay=document.createElement("div");overlay.className="overlay";wrap.appendChild(overlay); area.appendChild(wrap);
-  if(p.source){
-    try{
-      const src=await pdfDoc.getPage(p.source); const vp=src.getViewport({scale}); canvas.width=vp.width;canvas.height=vp.height; wrap.style.width=vp.width+"px";
-      await src.render({canvasContext:canvas.getContext("2d"),viewport:vp}).promise;
-    }catch(e){}
-  }else{
-    const ctx=canvas.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,canvas.width,canvas.height);
-  }
-  p.items.forEach((it,idx)=>{
-    const el=document.createElement("div");el.className="overlay-item text-item";el.textContent=it.text;
-    el.style.left=(it.x*zoom)+"px";el.style.top=(it.y*zoom)+"px";el.style.fontSize=(it.size*zoom)+"px";el.style.color=it.color;
-    el.title="Drag to move • Double-click to edit";
-    el.ondblclick=()=>{const v=prompt("Edit text",it.text);if(v!==null){it.text=v;render();renderThumbs()}};
-    let sx,sy,ox,oy;el.onpointerdown=e=>{sx=e.clientX;sy=e.clientY;ox=it.x;oy=it.y;el.setPointerCapture(e.pointerId)};
-    el.onpointermove=e=>{if(e.buttons!==1)return;it.x=ox+(e.clientX-sx)/zoom;it.y=oy+(e.clientY-sy)/zoom;el.style.left=it.x*zoom+"px";el.style.top=it.y*zoom+"px"};
-    overlay.appendChild(el);
-  });
-  if(mode==="draw"){
-    const draw=document.createElement("canvas");draw.className="draw-layer";draw.width=canvas.width;draw.height=canvas.height;draw.style.pointerEvents="auto";overlay.appendChild(draw);
-    const ctx=draw.getContext("2d");ctx.lineWidth=2*zoom;ctx.lineCap="round";ctx.strokeStyle=color.value;
-    let drawing=false,last=null;
-    draw.onpointerdown=e=>{drawing=true;last=[e.offsetX,e.offsetY];};
-    draw.onpointermove=e=>{if(!drawing)return;ctx.beginPath();ctx.moveTo(last[0],last[1]);ctx.lineTo(e.offsetX,e.offsetY);ctx.stroke();p.draws.push({x1:last[0]/zoom,y1:last[1]/zoom,x2:e.offsetX/zoom,y2:e.offsetY/zoom,color:color.value,width:2});last=[e.offsetX,e.offsetY]};
-    draw.onpointerup=()=>{drawing=false;renderThumbs()};
-    draw.onpointerleave=()=>drawing=false;
-  }
-}
-async function loadPdf(file){
-  sourceBytes=await file.arrayBuffer();pdfDoc=await pdfjsLib.getDocument({data:sourceBytes.slice(0)}).promise;pages=[];
-  for(let i=1;i<=pdfDoc.numPages;i++){const pg=await pdfDoc.getPage(i);const v=pg.getViewport({scale:1});pages.push({width:v.width,height:v.height,source:i,items:[],draws:[]})}
-  current=0;zoom=1;updateZoom();renderThumbs();render();
-}
-async function createNew(){pdfDoc=null;sourceBytes=null;pages=[blankPage()];current=0;zoom=1;updateZoom();renderThumbs();render()}
-function updateZoom(){zoomLabel.textContent=Math.round(zoom*100)+"%"}
-fileInput.onchange=e=>{if(e.target.files[0])loadPdf(e.target.files[0])};
-document.getElementById("newPdf").onclick=createNew;
-document.getElementById("addText").onclick=()=>{setMode("text");if(!pages.length)render();const p=pages[current];p.items.push({text:"New text",x:50,y:60,size:+fontSize.value,color:color.value});setMode("select");render();renderThumbs()};
-document.getElementById("draw").onclick=()=>{setMode(mode==="draw"?"select":"draw");render()};
-document.getElementById("erase").onclick=()=>{if(!pages.length)return;pages[current].items.pop();pages[current].draws.pop();render();renderThumbs()};
-document.getElementById("addPage").onclick=()=>{pages.splice(current+1,0,blankPage());current++;renderThumbs();render()};
-document.getElementById("deletePage").onclick=()=>{if(pages.length<=1){alert("A PDF needs at least one page.");return}pages.splice(current,1);current=Math.max(0,current-1);renderThumbs();render()};
-document.getElementById("zoomIn").onclick=()=>{zoom=Math.min(2.5,zoom+.1);updateZoom();render()};
-document.getElementById("zoomOut").onclick=()=>{zoom=Math.max(.5,zoom-.1);updateZoom();render()};
-
-async function save(){
-  if(!pages.length){alert("Open a PDF or create a new one first.");return}
-  const out=await PDFDocument.create();
-  const font=await out.embedFont(StandardFonts.Helvetica);
-  for(const p of pages){
-    let page;
-    if(p.source && sourceBytes){
-      const src=await PDFDocument.load(sourceBytes);
-      const copied=await out.copyPages(src,[p.source-1]); page=copied[0];out.addPage(page);
-    }else page=out.addPage([p.width,p.height]);
-    const [r,g,b]=hexRgb(color.value);
-    for(const it of p.items){
-      const [ir,ig,ib]=hexRgb(it.color||color.value);
-      page.drawText(it.text,{x:it.x,y:p.height-it.y-it.size,size:it.size,font,color:rgb(ir,ig,ib)});
-    }
-    for(const d of p.draws){
-      const [dr,dg,db]=hexRgb(d.color||color.value);
-      page.drawLine({start:{x:d.x1,y:p.height-d.y1},end:{x:d.x2,y:p.height-d.y2},thickness:d.width,color:rgb(dr,dg,db)});
-    }
-  }
-  const bytes=await out.save();const blob=new Blob([bytes],{type:"application/pdf"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="edited-document.pdf";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-}
-document.getElementById("savePdf").onclick=save;
-createNew();
-
-</script>
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
 
 <script>
-const emptyUpload=document.getElementById("emptyUpload");
-const mainFileInput=document.getElementById("fileInput");
-if(emptyUpload && mainFileInput){
-  emptyUpload.addEventListener("change",e=>{
-    if(e.target.files[0]){
-      const dt=new DataTransfer();
-      dt.items.add(e.target.files[0]);
-      mainFileInput.files=dt.files;
-      mainFileInput.dispatchEvent(new Event("change",{bubbles:true}));
+const $=id=>document.getElementById(id);
+function loadScript(urls){return new Promise((res,rej)=>{let i=0;(function next(){if(i>=urls.length)return rej(new Error('load failed'));const s=document.createElement('script');s.src=urls[i++];s.onload=()=>res(s.src);s.onerror=()=>{s.remove();next()};document.head.appendChild(s)})()})}
+let libsP=null;
+function ensureLibs(){
+  if(libsP)return libsP;
+  libsP=(async()=>{
+    if(!window.pdfjsLib){
+      const u=await loadScript(['https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js','https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js']).catch(()=>{throw new Error('pdfjs')});
+      const w=u.replace('pdf.min.js','pdf.worker.min.js');
+      pdfjsLib.GlobalWorkerOptions.workerSrc=w;
+      await loadScript([w]).catch(()=>{});
     }
+    if(!window.PDFLib)await loadScript(['https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js','https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js','https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js']).catch(()=>{throw new Error('pdflib')});
+  })().catch(e=>{libsP=null;throw e});
+  return libsP;
+}
+ensureLibs().catch(()=>{});
+const libMsg=e=>'Could not load the '+(e.message==='pdflib'?'PDF writer (pdf-lib)':'PDF reader (pdf.js)')+' library. Disable ad blockers for this site, check your connection, and reload.';
+
+const DPR=Math.min(window.devicePixelRatio||1,2);
+let pages=[],cur=0,zoom=1,mode='select',srcDoc=null,srcBytes=null,baseName='document',sel=null,hist=[],dirty=false,tok=0,bc=null;
+const S=()=>zoom*1.3333,area=$('area');
+const blank=()=>({w:595,h:842,src:null,items:[],strokes:[]});
+const hexRgb=h=>[parseInt(h.slice(1,3),16)/255,parseInt(h.slice(3,5),16)/255,parseInt(h.slice(5,7),16)/255];
+const setSt=t=>$('st').textContent=t, err=t=>$('err').textContent=t||'';
+function info(){$('pg').textContent=pages.length?'Page '+(cur+1)+' of '+pages.length:'';$('zl').textContent=Math.round(zoom*100)+'%'}
+function setMode(m){mode=m;$('draw').classList.toggle('on',m==='draw')}
+
+async function baseRender(p,c,scale){
+  if(p.src){
+    const pg=await srcDoc.getPage(p.src),vp=pg.getViewport({scale});
+    c.width=Math.round(vp.width);c.height=Math.round(vp.height);
+    await pg.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+  }else{
+    c.width=Math.round(p.w*scale);c.height=Math.round(p.h*scale);
+    const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);
+  }
+}
+async function bitmap(p,scale){
+  if(bc&&bc.p===p&&bc.scale===scale)return bc.c;
+  const c=document.createElement('canvas');await baseRender(p,c,scale);bc={p,scale,c};return c;
+}
+function drawStrokes(x,p){
+  x.lineCap='round';x.lineJoin='round';
+  for(const s of p.strokes){
+    x.strokeStyle=s.color;x.lineWidth=s.width;x.beginPath();
+    s.pts.forEach((q,i)=>i?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));
+    if(s.pts.length===1)x.lineTo(s.pts[0][0]+.01,s.pts[0][1]);
+    x.stroke();
+  }
+}
+
+async function drawThumb(p,c){
+  const k=150/p.w;
+  if(!p.base){const b=document.createElement('canvas');try{await baseRender(p,b,k)}catch(e){b.width=150;b.height=Math.round(p.h*k)}p.base=b}
+  c.width=p.base.width;c.height=p.base.height;
+  const x=c.getContext('2d');x.drawImage(p.base,0,0);
+  x.save();x.setTransform(k,0,0,k,0,0);drawStrokes(x,p);
+  p.items.forEach(it=>{x.fillStyle=it.color;x.font=it.size+'px Helvetica,Arial,sans-serif';x.textBaseline='top';it.text.split('\n').forEach((l,j)=>x.fillText(l,it.x,it.y+j*it.size*1.2))});
+  x.restore();
+}
+function touchThumb(){const c=$('thumbs').children[cur]&&$('thumbs').children[cur].querySelector('canvas');if(c)drawThumb(pages[cur],c)}
+function renderThumbs(){
+  const box=$('thumbs');box.innerHTML='';
+  pages.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='thumb'+(i===cur?' active':'');
+    const c=document.createElement('canvas'),sm=document.createElement('small');sm.textContent='Page '+(i+1);
+    d.append(c,sm);d.onclick=()=>{if(i!==cur){cur=i;sel=null;renderThumbs();render()}};
+    box.appendChild(d);drawThumb(p,c);
   });
 }
+
+function makeItem(p,it,layer,s){
+  const d=document.createElement('div');d.className='ti';
+  const place=()=>{d.style.left=it.x*s+'px';d.style.top=it.y*s+'px'};
+  d.style.fontSize=it.size*s+'px';d.style.color=it.color;place();
+  const mv=document.createElement('div');mv.className='hd mv';mv.textContent='✥';mv.title='Drag to move';
+  const rm=document.createElement('div');rm.className='hd rm';rm.textContent='×';rm.title='Delete text';
+  const tx=document.createElement('div');tx.className='tx';tx.contentEditable='true';tx.spellcheck=false;tx.textContent=it.text;
+  tx.onfocus=()=>{sel=it;$('fontSize').value=it.size;$('color').value=it.color};
+  tx.oninput=()=>{it.text=tx.innerText.replace(/\n$/,'');dirty=true;touchThumb()};
+  let sx,sy,ox,oy;
+  mv.onpointerdown=e=>{sx=e.clientX;sy=e.clientY;ox=it.x;oy=it.y;mv.setPointerCapture(e.pointerId)};
+  mv.onpointermove=e=>{if(!(e.buttons&1))return;it.x=ox+(e.clientX-sx)/s;it.y=oy+(e.clientY-sy)/s;place();dirty=true};
+  mv.onpointerup=()=>touchThumb();
+  rm.onclick=()=>{p.items.splice(p.items.indexOf(it),1);hist=hist.filter(h=>h.it!==it);sel=null;dirty=true;render();touchThumb()};
+  d.append(mv,rm,tx);layer.appendChild(d);it._el=d;
+}
+function bindInk(ink,x,p,s){
+  let st=null;
+  ink.onpointerdown=e=>{if(mode!=='draw')return;ink.setPointerCapture(e.pointerId);st={pts:[[e.offsetX/s,e.offsetY/s]],color:$('color').value,width:+$('brush').value||2}};
+  ink.onpointermove=e=>{
+    if(!st)return;const q=[e.offsetX/s,e.offsetY/s],l=st.pts[st.pts.length-1];st.pts.push(q);
+    x.lineCap='round';x.strokeStyle=st.color;x.lineWidth=st.width;x.beginPath();x.moveTo(l[0],l[1]);x.lineTo(q[0],q[1]);x.stroke();
+  };
+  const end=()=>{if(!st)return;p.strokes.push(st);hist.push({p,st});dirty=true;st=null;touchThumb()};
+  ink.onpointerup=end;ink.onpointercancel=end;
+}
+async function render(){
+  const t=++tok;info();
+  if(!pages.length){$('empty').style.display='flex';area.querySelectorAll('.page-wrap').forEach(x=>x.remove());return}
+  $('empty').style.display='none';
+  const p=pages[cur],s=S();
+  const wrap=document.createElement('div');wrap.className='page-wrap'+(mode==='draw'?' drawing':'');
+  wrap.style.width=p.w*s+'px';wrap.style.height=p.h*s+'px';
+  let base;
+  try{base=await bitmap(p,s*DPR)}catch(e){err('Could not draw this page.');return}
+  if(t!==tok)return;
+  const cv=document.createElement('canvas');cv.width=base.width;cv.height=base.height;cv.getContext('2d').drawImage(base,0,0);
+  const ink=document.createElement('canvas');ink.className='ink';ink.width=Math.round(p.w*s*DPR);ink.height=Math.round(p.h*s*DPR);
+  const x=ink.getContext('2d');x.setTransform(DPR*s,0,0,DPR*s,0,0);drawStrokes(x,p);
+  const layer=document.createElement('div');layer.className='layer';
+  p.items.forEach(it=>makeItem(p,it,layer,s));
+  wrap.append(cv,ink,layer);bindInk(ink,x,p,s);
+  area.querySelectorAll('.page-wrap').forEach(el=>el.remove());area.appendChild(wrap);
+}
+
+async function loadFile(f){
+  if(!f)return;err('');
+  if(!(f.type==='application/pdf'||/\.pdf$/i.test(f.name)))return err('Please choose a PDF file.');
+  if(dirty&&!confirm('Discard your current edits?'))return;
+  try{
+    setSt('Loading…');await ensureLibs();
+    const bytes=await f.arrayBuffer();
+    const doc=await pdfjsLib.getDocument({data:bytes.slice(0),verbosity:0}).promise;
+    const np=[];
+    for(let i=1;i<=doc.numPages;i++){const v=(await doc.getPage(i)).getViewport({scale:1});np.push({w:v.width,h:v.height,src:i,items:[],strokes:[]})}
+    srcDoc=doc;srcBytes=bytes;pages=np;cur=0;zoom=1;hist=[];sel=null;dirty=false;bc=null;
+    baseName=f.name.replace(/\.pdf$/i,'');setSt(f.name+' · '+np.length+' page'+(np.length===1?'':'s'));
+    renderThumbs();render();
+  }catch(e){
+    console.error(e);setSt('Open a PDF or create a new one to start.');
+    err(e&&(e.message==='pdfjs'||e.message==='pdflib')?libMsg(e):e&&e.name==='PasswordException'?'This PDF is password protected. Remove the password and try again.':'Could not open that PDF. It may be damaged.');
+  }
+}
+function newDoc(){
+  if(dirty&&!confirm('Discard your current edits?'))return;
+  err('');srcDoc=null;srcBytes=null;pages=[blank()];cur=0;zoom=1;hist=[];sel=null;dirty=false;bc=null;baseName='new-document';
+  setSt('New blank PDF');renderThumbs();render();
+}
+
+$('file').onchange=e=>{loadFile(e.target.files[0]);e.target.value=''};
+['open','open2'].forEach(id=>$(id).onclick=e=>{e.preventDefault();$('file').click()});
+$('newPdf').onclick=newDoc;$('new2').onclick=e=>{e.preventDefault();newDoc()};
+['dragenter','dragover'].forEach(ev=>area.addEventListener(ev,e=>{e.preventDefault();$('drop').classList.add('over')}));
+['dragleave','drop'].forEach(ev=>area.addEventListener(ev,e=>{e.preventDefault();$('drop').classList.remove('over')}));
+area.addEventListener('drop',e=>loadFile(e.dataTransfer.files[0]));
+
+$('addText').onclick=()=>{
+  if(!pages.length)return err('Open a PDF or create a new one first.');
+  const p=pages[cur],it={text:'Your text',x:50,y:60+(p.items.length%10)*28,size:+$('fontSize').value||20,color:$('color').value};
+  p.items.push(it);hist.push({p,it});dirty=true;setMode('select');sel=it;
+  render().then(()=>{const tx=it._el&&it._el.querySelector('.tx');if(tx){tx.focus();document.execCommand('selectAll')}});touchThumb();
+};
+$('draw').onclick=()=>{if(!pages.length)return err('Open a PDF or create a new one first.');setMode(mode==='draw'?'select':'draw');render()};
+function undo(){
+  const h=hist.pop();if(!h)return;
+  const a=h.it?h.p.items:h.p.strokes,i=a.indexOf(h.it||h.st);if(i>=0)a.splice(i,1);
+  if(sel===h.it)sel=null;
+  if(pages[cur]===h.p)render();touchThumb();
+}
+$('undo').onclick=undo;
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='z'&&!e.target.isContentEditable&&e.target.tagName!=='INPUT'){e.preventDefault();undo()}});
+$('fontSize').oninput=e=>{if(sel&&sel._el){sel.size=Math.max(6,+e.target.value||20);sel._el.style.fontSize=sel.size*S()+'px';dirty=true;touchThumb()}};
+$('color').oninput=e=>{if(sel&&sel._el){sel.color=e.target.value;sel._el.style.color=sel.color;dirty=true;touchThumb()}};
+$('addPage').onclick=()=>{if(!pages.length)return err('Open a PDF or create a new one first.');pages.splice(cur+1,0,blank());cur++;dirty=true;renderThumbs();render()};
+$('delPage').onclick=()=>{
+  if(!pages.length)return;
+  if(pages.length<=1)return err('A PDF needs at least one page.');
+  if(!confirm('Delete page '+(cur+1)+'?'))return;
+  err('');pages.splice(cur,1);cur=Math.min(cur,pages.length-1);dirty=true;renderThumbs();render();
+};
+function move(d){const j=cur+d;if(j<0||j>=pages.length)return;[pages[cur],pages[j]]=[pages[j],pages[cur]];cur=j;dirty=true;renderThumbs();render()}
+$('up').onclick=()=>move(-1);$('down').onclick=()=>move(1);
+$('zIn').onclick=()=>{zoom=Math.min(2.5,+(zoom+.1).toFixed(1));render()};
+$('zOut').onclick=()=>{zoom=Math.max(.5,+(zoom-.1).toFixed(1));render()};
+
+$('save').onclick=async()=>{
+  if(!pages.length)return err('Open a PDF or create a new one first.');
+  const btn=$('save');btn.disabled=true;err('');setSt('Building PDF…');
+  try{
+    await ensureLibs();
+    const {PDFDocument,rgb,StandardFonts,LineCapStyle}=PDFLib;
+    const out=await PDFDocument.create(),font=await out.embedFont(StandardFonts.Helvetica);
+    const src=srcBytes?await PDFDocument.load(srcBytes,{ignoreEncryption:true}):null;
+    let lossy=false;
+    for(const p of pages){
+      let pg;
+      if(p.src&&src){[pg]=await out.copyPages(src,[p.src-1]);out.addPage(pg)}else pg=out.addPage([p.w,p.h]);
+      for(const it of p.items){
+        const t=it.text.replace(/[^\x20-\x7E\xA0-\xFF\n]/g,'?');
+        if(t!==it.text)lossy=true;
+        if(!t.trim())continue;
+        pg.drawText(t,{x:it.x,y:p.h-it.y-it.size*.96,size:it.size,font,color:rgb(...hexRgb(it.color)),lineHeight:it.size*1.2});
+      }
+      for(const s of p.strokes){
+        const c=rgb(...hexRgb(s.color)),P=s.pts.length===1?[s.pts[0],s.pts[0]]:s.pts;
+        for(let i=1;i<P.length;i++)pg.drawLine({start:{x:P[i-1][0],y:p.h-P[i-1][1]},end:{x:P[i][0],y:p.h-P[i][1]},thickness:s.width,color:c,lineCap:LineCapStyle.Round});
+      }
+    }
+    const blob=new Blob([await out.save()],{type:'application/pdf'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=baseName+'-edited.pdf';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+    dirty=false;setSt('Downloaded '+baseName+'-edited.pdf');
+    if(lossy)err('Some characters are not supported in the PDF text and were replaced with "?".');
+  }catch(e){
+    console.error(e);setSt('Download failed');
+    err(e&&(e.message==='pdfjs'||e.message==='pdflib')?libMsg(e):'Something went wrong while building the PDF. If the file is encrypted or damaged, try another copy.');
+  }finally{btn.disabled=false}
+};
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
+info();
 </script>
 </body>
 </html>
