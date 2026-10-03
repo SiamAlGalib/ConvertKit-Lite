@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPG to PNG Converter — Free Online | ConvertKit Lite</title>
+<meta property="og:url" content="https://www.convertkitlite.site/tools/jpgtopng/">
+<meta property="og:image" content="https://www.convertkitlite.site/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="Free JPG to PNG converter. Convert JPG and JPEG images to lossless PNG, with optional resize and white background removal. Private, runs in your browser, no upload.">
+<link rel="canonical" href="https://www.convertkitlite.site/tools/jpgtopng/">
+<link rel="icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:title" content="JPG to PNG Converter — Free Online | ConvertKit Lite">
+<meta property="og:description" content="Convert JPG to PNG. Free and private.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent-blue:#2d82ff;--success:#22c55e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;letter-spacing:.15px;transition:.2s}
+nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a[href="#learn"]{color:#e6dcff}
+nav a[href="#learn"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c55e,#2d82ff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(45,130,255,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+.grad,h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+
+.tool{margin-top:32px;margin-bottom:48px}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+label,.lbl{display:block;font-size:12.5px;color:var(--text-dim);margin-bottom:8px;font-weight:600}
+select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;background:#061a35;color:#fff;font:inherit;font-size:14px;color-scheme:dark}
+select:focus{outline:none;border-color:var(--border-hover)}
+.drop{position:relative;display:block;text-align:center;border:2px dashed #2b5d97;border-radius:14px;background:var(--panel-2);padding:34px 16px;cursor:pointer;transition:.2s;margin-bottom:0}
+.drop:hover,.drop.over,.drop:focus-within{border-color:var(--border-hover);background:#08213f}
+.drop .d-icon{font-size:30px;margin-bottom:8px}
+.drop strong{display:block;font-size:15px;color:var(--text);margin-bottom:4px}
+.drop span{font-size:12px;color:var(--text-faint);font-weight:400}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.file{display:none;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;border:1px solid #194a84;border-radius:10px;background:var(--panel-2);padding:12px 14px;font-size:13px}
+.file b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file span{color:var(--text-dim);white-space:nowrap}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.list{display:grid;gap:10px;margin-top:16px}
+.row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;border:1px solid #194a84;border-radius:12px;background:var(--panel-2);padding:10px 12px}
+.row .th{display:grid;place-items:center;font-size:24px;width:52px;height:52px;border-radius:8px;background:#04122a center/cover no-repeat}
+.row .nm{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .sz{font-size:12px;color:var(--text-dim);margin-top:3px}
+.row .sz .save{color:var(--success);font-weight:700}
+.row .ac{display:flex;gap:6px}
+.row .ac button,.row .ac a{padding:8px 12px;font-size:12px;font-weight:700;border-radius:8px;border:1px solid #194a84;color:var(--text-dim);background:transparent;cursor:pointer}
+.row .ac button:hover,.row .ac a:hover{border-color:var(--border-hover);color:#fff}
+.row .ac a.dl{background:linear-gradient(135deg,#2d82ff,#7c3ff0);border:0;color:#fff}
+input[type=range]{width:100%;accent-color:#7c3ff0;margin-top:6px}
+.qv{color:#80baff;font-weight:700}
+.count{font-size:12px;color:var(--text-dim);margin-top:14px;display:none}
+.hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
+.btns{display:flex;gap:12px;margin-top:22px}
+button{border:0;border-radius:10px;color:#fff;font:inherit;font-weight:700;padding:12px 26px;cursor:pointer;transition:filter .2s,transform .1s}
+button:hover{filter:brightness(1.1)}
+button:active{transform:scale(.99)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.primary{background:linear-gradient(135deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2)}
+.btns .primary{flex:1;padding:15px;font-size:15px;border-radius:12px}
+.ghost{background:transparent;border:1px solid #194a84;color:var(--text-dim)}
+.ghost:hover{border-color:var(--border-hover);color:var(--text)}
+.err{color:#fca5b5;font-size:13px;margin-top:14px;min-height:18px}
+#progress{display:none;margin-top:16px}
+.bar{height:8px;border-radius:99px;background:#061a35;border:1px solid #194a84;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2e8bff,#ad5bff);transition:width .15s}
+#ptext{font-size:12px;color:var(--text-dim);margin-top:8px;text-align:center}
+#result{display:none;margin-top:16px;text-align:center;border:1px solid #2b5d97;border-radius:14px;background:var(--panel-2);padding:22px}
+#result h3{font-size:16px;margin-bottom:6px}
+#result p{font-size:13px;color:var(--text-dim);margin-bottom:14px}
+
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin-bottom:4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq,.learn{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}
+.article-card:hover{transform:translateY(-3px);border-color:var(--border-hover);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-card h3{font-size:15px;margin-bottom:8px}
+.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+
+@media(max-width:700px){
+  .row{grid-template-columns:44px minmax(0,1fr)}.row .ac{grid-column:1/-1}
+  nav{display:none}h1{font-size:30px}
+  .steps,.related-grid,.features,.opts{grid-template-columns:1fr}
+  .rt-card{min-height:0}
+  footer{flex-direction:column;gap:18px;text-align:center}
+  .container{width:calc(100% - 24px)}
+}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}}
+@media(max-width:480px){.card{padding:20px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "JPG to PNG Converter", "description": "Free JPG to PNG converter. Convert JPG and JPEG images to lossless PNG, with optional resize and white background removal. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/jpgtopng/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "JPG to PNG", "item": "https://www.convertkitlite.site/tools/jpgtopng/"}]}]}</script>
+</head>
+<body>
+
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<main>
+<section class="hero">
+  <div class="icon-badge">🖼️</div>
+  <h1>JPG to <span>PNG</span></h1>
+  <p>Convert JPG and JPEG images to lossless PNG. Optionally resize them or remove a white background. Everything happens in your browser.</p>
+  <div class="trust-row"><div>No registration required</div><div>Secure &amp; private</div><div>Works on any device</div></div>
+</section>
+
+<div class="narrow tool">
+<div class="card">
+<label class="drop" id="drop" for="file">
+  <div class="d-icon">🖼️</div>
+  <strong>Choose JPG files or drop them here</strong>
+  <span>JPG and JPEG files only. Select several at once. Nothing leaves your device.</span>
+  <input id="file" type="file" accept=".jpg,.jpeg,image/jpeg" multiple/>
+</label>
+<div class="count" id="count"></div>
+<div class="list" id="list"></div>
+
+<div class="opts">
+  <div><label for="scale">Output size</label><select id="scale"><option value="1" selected>Original size</option><option value="0.75">75%</option><option value="0.5">50%</option><option value="0.25">25%</option></select></div>
+  <div><label for="bg">Background</label><select id="bg"><option value="keep" selected>Keep as is</option><option value="white">Make white transparent</option></select></div>
+</div>
+<div class="hint">PNG is lossless, so the converted file is usually larger than the JPG. "Make white transparent" turns near-white pixels clear, including white areas inside the picture.</div>
+
+<div class="btns"><button class="primary" id="convert" disabled>Convert to PNG</button><button class="ghost" id="reset">Reset</button></div>
+<div class="err" id="err"></div>
+
+<div id="progress"><div class="bar"><i id="pbar"></i></div><div id="ptext"></div></div>
+
+<div id="result">
+  <h3>Your PNG files are ready</h3>
+  <p id="rinfo"></p>
+  <button class="primary" id="zip" type="button">Download all (ZIP)</button>
+</div>
+</div>
+</div>
+
+<div class="features">
+  <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your images are converted in your browser — nothing is uploaded.</p></div>
+  <div class="feature"><div class="f-icon">⚡</div><h4>Instant</h4><p>Files convert on your device, with no waiting for uploads.</p></div>
+  <div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account and no limits on how often you use it.</p></div>
+</div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to convert <span>JPG to PNG</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Add your JPG files</h3><p>Click the upload area or drag one or more .jpg or .jpeg files onto it.</p></div>
+    <div class="step"><b>2</b><h3>Choose options</h3><p>Keep the original size or shrink it, and decide whether to make white transparent.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each PNG or all of them as a ZIP.</p></div>
+  </div>
+</section>
+
+<section class="narrow learn" id="learn">
+  <h2 class="section-title">Learn about <span>Images</span></h2>
+  <p class="section-intro">Helpful guides about JPG and PNG images.</p>
+  <div class="article-list">
+    <a class="article-card" href="../../articles/jpg-to-png-guide/">
+      <div class="article-banner"><span class="glyph">🖼️</span><img src="../../articles/jpg-to-png-guide/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">JPG TO PNG</span></div>
+      <div class="article-body"><h3>How to Convert JPG to PNG</h3><p>Learn the easiest ways to turn JPG photos into PNG images.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/what-is-a-png-file/">
+      <div class="article-banner b2"><span class="glyph">📄</span><img src="../../articles/what-is-a-png-file/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">FILE FORMATS</span></div>
+      <div class="article-body"><h3>What Is a PNG File?</h3><p>Understand what PNG is and when to use it.</p><span class="article-read">Read article →</span></div>
+    </a>
+    <a class="article-card" href="../../articles/jpg-vs-png/">
+      <div class="article-banner b3"><span class="glyph">⚖️</span><img src="../../articles/jpg-vs-png/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">COMPARISON</span></div>
+      <div class="article-body"><h3>JPG vs PNG</h3><p>Compare both formats and pick the right one for your images.</p><span class="article-read">Read article →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite JPG to PNG tool.</p>
+  <details><summary>Are my images uploaded to a server?</summary><p>No. The PNG is created in your browser, so your files stay on your device.</p></details>
+  <details><summary>Will converting JPG to PNG improve the quality?</summary><p>No. A JPG has already lost some detail, and PNG cannot bring it back. PNG keeps the image exactly as it is from now on, with no further loss.</p></details>
+  <details><summary>Why is the PNG larger than the JPG?</summary><p>PNG is lossless, so it stores more data than JPG, which compresses with loss. Photos can become several times larger.</p></details>
+  <details><summary>How does "Make white transparent" work?</summary><p>Pixels that are white or almost white become transparent, with a soft edge for light grays. It works best on logos and drawings with a plain white background. White areas inside the picture also become transparent.</p></details>
+  <details><summary>Can I convert many files at once?</summary><p>Yes. Add several JPG files, convert them together, and download each PNG or one ZIP.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these useful calculators and image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../jpgtowebp/"><span class="rt-icon">🗜️</span><h3>JPG to WebP</h3><p>Convert images to smaller WebP files.</p><span class="go">Convert to WebP →</span></a>
+    <a class="rt-card" href="../jpgtopdf/"><span class="rt-icon">📄</span><h3>JPG to PDF</h3><p>Combine images into a single PDF file.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images for easier sharing.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card" href="../qrcodegenerator/"><span class="rt-icon">▦</span><h3>QR Code Generator</h3><p>Create a QR code from text, a link, or other supported content.</p><span class="go">Create QR code →</span></a>
+    <a class="rt-card" href="../rtftopdf/"><span class="rt-icon">📝</span><h3>RTF to PDF</h3><p>Turn Rich Text documents into PDF files.</p><span class="go">Convert to PDF →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let items=[],uid=0;
+const size=b=>b>=1048576?(b/1048576).toFixed(2)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const base=n=>n.replace(/\.[^.]+$/,'');
+const MAXPIXELS=100e6;
+
+function loadImage(url){
+  return new Promise((res,rej)=>{
+    const img=new Image();
+    img.onload=()=>res(img);
+    img.onerror=()=>rej(new Error('decode'));
+    img.src=url;
+  });
+}
+
+async function convertOne(it,scale,removeWhite){
+  const img=await loadImage(it.thumb);
+  const w=Math.max(1,Math.round(img.naturalWidth*scale)),h=Math.max(1,Math.round(img.naturalHeight*scale));
+  if(w*h>MAXPIXELS){const e=new Error('big');e.kind='This image is too large to convert in the browser.';throw e}
+  const c=document.createElement('canvas');
+  c.width=w;c.height=h;
+  const ctx=c.getContext('2d',{willReadFrequently:removeWhite});
+  ctx.imageSmoothingQuality='high';
+  ctx.drawImage(img,0,0,w,h);
+  if(removeWhite){
+    const d=ctx.getImageData(0,0,w,h),a=d.data;
+    for(let i=0;i<a.length;i+=4){
+      const m=Math.min(a[i],a[i+1],a[i+2]);
+      if(m>=250)a[i+3]=0;
+      else if(m>=230)a[i+3]=Math.round(255*(250-m)/20);
+    }
+    ctx.putImageData(d,0,0);
+  }
+  const blob=await new Promise(r=>c.toBlob(r,'image/png'));
+  c.width=c.height=0;
+  if(!blob){const e=new Error('blob');e.kind='Could not create the PNG.';throw e}
+  return {blob,w,h};
+}
+
+/* ---- UI ---- */
+function addFiles(files){
+  $('err').textContent='';$('result').style.display='none';
+  let skipped=0;
+  for(const f of files){
+    if(!/\.jpe?g$/i.test(f.name)&&f.type!=='image/jpeg'){skipped++;continue}
+    items.push({id:++uid,file:f,name:f.name,out:null,bad:'',thumb:URL.createObjectURL(f)});
+  }
+  if(skipped)$('err').textContent=skipped+' file'+(skipped===1?' was':'s were')+' skipped. Please choose .jpg or .jpeg files.';
+  render();
+}
+function render(){
+  const list=$('list');list.innerHTML='';
+  items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='row';
+    d.innerHTML='<div class="th"></div><div><div class="nm"></div><div class="sz"></div></div><div class="ac"></div>';
+    d.querySelector('.th').style.backgroundImage='url("'+it.thumb+'")';
+    const nm=d.querySelector('.nm');nm.textContent=it.name;nm.title=it.name;
+    const sz=d.querySelector('.sz'),ac=d.querySelector('.ac');
+    if(it.bad){sz.textContent=it.bad;sz.style.color='#fca5b5'}
+    else if(it.out){
+      sz.innerHTML=size(it.file.size)+' → <b>'+size(it.out.size)+'</b> · <span class="save">'+it.out.w+' × '+it.out.h+' px</span>';
+      const a=document.createElement('a');a.className='dl';a.textContent='Download';a.href=it.out.url;a.download=base(it.name)+'.png';ac.appendChild(a);
+    }else sz.textContent=size(it.file.size);
+    const x=document.createElement('button');x.type='button';x.textContent='Remove';
+    x.onclick=()=>{if(it.out)URL.revokeObjectURL(it.out.url);URL.revokeObjectURL(it.thumb);items.splice(i,1);render()};
+    ac.appendChild(x);list.appendChild(d);
+  });
+  $('count').style.display=items.length?'block':'none';
+  $('count').textContent=items.length+' file'+(items.length===1?'':'s');
+  $('convert').disabled=!items.length;
+  if(!items.length)$('result').style.display='none';
+}
+$('file').onchange=e=>{addFiles([...e.target.files]);e.target.value=''};
+const drop=$('drop');
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
+function progress(p,t){$('progress').style.display='block';$('pbar').style.width=p+'%';$('ptext').textContent=t}
+
+$('convert').onclick=async()=>{
+  $('err').textContent='';$('result').style.display='none';
+  if(!items.length)return;
+  $('convert').disabled=true;
+  const scale=+$('scale').value,removeWhite=$('bg').value==='white';
+  try{
+    for(let i=0;i<items.length;i++){
+      const it=items[i];it.bad='';
+      progress(Math.round(i/items.length*100),'Converting '+(i+1)+' of '+items.length+'…');
+      await new Promise(r=>setTimeout(r));
+      try{
+        const res=await convertOne(it,scale,removeWhite);
+        if(it.out)URL.revokeObjectURL(it.out.url);
+        it.out={size:res.blob.size,w:res.w,h:res.h,blob:res.blob,url:URL.createObjectURL(res.blob)};
+      }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file. It may be damaged.'}
+    }
+    render();
+    const ok=items.filter(i=>i.out);
+    if(ok.length){
+      $('rinfo').textContent=ok.length+' PNG file'+(ok.length===1?'':'s')+' · '+size(ok.reduce((s,i)=>s+i.out.size,0))+' in total';
+      $('zip').style.display=ok.length>1?'':'none';$('result').style.display='block';
+    }else $('err').textContent='No file could be converted.';
+  }finally{$('convert').disabled=!items.length;$('progress').style.display='none'}
+};
+$('zip').onclick=async()=>{
+  if(!window.JSZip)return $('err').textContent='Could not load the ZIP library. Download the files one by one instead.';
+  const z=new JSZip(),used={};
+  items.forEach(it=>{if(!it.out)return;let n=base(it.name),k=n;used[k]=(used[k]||0)+1;if(used[k]>1)n+='-'+used[k];z.file(n+'.png',it.out.blob)});
+  const blob=await z.generateAsync({type:'blob'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='jpg-to-png.zip';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('reset').onclick=()=>{
+  items.forEach(i=>{if(i.out)URL.revokeObjectURL(i.out.url);URL.revokeObjectURL(i.thumb)});items=[];
+  $('err').textContent='';$('result').style.display='none';$('progress').style.display='none';
+  $('scale').value='1';$('bg').value='keep';render();
+};
+render();
+</script>
+</body>
+</html>
