@@ -4,12 +4,12 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "PASTE_HERE",
-  authDomain: "PASTE_HERE",
-  projectId: "PASTE_HERE",
-  storageBucket: "PASTE_HERE",
-  messagingSenderId: "PASTE_HERE",
-  appId: "PASTE_HERE"
+  apiKey: "AIzaSyBDDL4zLulL93bs9T710bXIeKCN3qHys4M",
+  authDomain: "onvertkitlite.firebaseapp.com",
+  projectId: "onvertkitlite",
+  storageBucket: "onvertkitlite.firebasestorage.app",
+  messagingSenderId: "469104121288",
+  appId: "1:469104121288:web:fb31e363777fab7ba75cfd"
 };
 
 export const ADMIN_EMAILS = ["anowar531237@gmail.com"];
