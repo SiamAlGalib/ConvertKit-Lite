@@ -213,19 +213,20 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">Learn about <span>Documents</span></h2>
   <p class="section-intro">Helpful guides about PDF and Word files.</p>
   <div class="article-list">
-    <a class="article-card" href="../../articles/pdf-to-word-guide/">
-      <div class="article-banner"><span class="glyph">📘</span><img src="../../articles/pdf-to-word-guide/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">PDF TO WORD</span></div>
-      <div class="article-body"><h3>How to Convert PDF to Word</h3><p>Learn the easiest ways to turn PDFs into editable Word documents.</p><span class="article-read">Read article →</span></div>
-    </a>
-    <a class="article-card" href="../../articles/what-is-a-docx-file/">
-      <div class="article-banner b2"><span class="glyph">📄</span><img src="../../articles/what-is-a-docx-file/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">FILE FORMATS</span></div>
-      <div class="article-body"><h3>What Is a DOCX File?</h3><p>Understand what DOCX is and when to use it.</p><span class="article-read">Read article →</span></div>
-    </a>
-    <a class="article-card" href="../../articles/rtf-vs-docx-vs-pdf/">
-      <div class="article-banner b3"><span class="glyph">⚖️</span><img src="../../articles/rtf-vs-docx-vs-pdf/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">COMPARISON</span></div>
-      <div class="article-body"><h3>RTF vs DOCX vs PDF</h3><p>Compare the most common document formats and pick the right one.</p><span class="article-read">Read article →</span></div>
-    </a>
-  </div>
+  <a class="article-card" href="articles/pdf-to-word-guide/">
+    <div class="article-banner"><span class="glyph">📘</span><img data-b="img1" alt="" loading="lazy"/><span class="article-tag">PDF TO WORD</span></div>
+    <div class="article-body"><h3>How to Convert PDF to Word</h3><p>Learn the easiest ways to turn PDFs into editable Word documents.</p><span class="article-read">Read article →</span></div>
+  </a>
+  <a class="article-card" href="articles/what-is-a-docx-file/">
+    <div class="article-banner b2"><span class="glyph">📄</span><img data-b="img2" alt="" loading="lazy"/><span class="article-tag">FILE FORMATS</span></div>
+    <div class="article-body"><h3>What Is a DOCX File?</h3><p>Understand what DOCX is and when to use it.</p><span class="article-read">Read article →</span></div>
+  </a>
+  <a class="article-card" href="articles/rtf-vs-docx-vs-pdf/">
+    <div class="article-banner b3"><span class="glyph">⚖️</span><img data-b="img3" alt="" loading="lazy"/><span class="article-tag">COMPARISON</span></div>
+    <div class="article-body"><h3>RTF vs DOCX vs PDF</h3><p>Compare the most common document formats and pick the right one.</p><span class="article-read">Read article →</span></div>
+  </a>
+</div>
+<script>document.querySelectorAll('.article-list img[data-b]').forEach(i=>{const b=i.dataset.b,e=['.jpg','.png','.webp','.jpeg',''];let n=0;i.onerror=()=>{n++;n<e.length?i.src=b+e[n]:i.remove()};i.src=b+e[0]})</script>
 </section>
 
 <section class="narrow faq" id="faq">
