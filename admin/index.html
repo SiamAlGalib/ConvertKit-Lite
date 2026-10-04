@@ -324,7 +324,13 @@ function refresh() {
 }
 
 $("title").oninput = () => { if (!editingId && !$("slug").dataset.manual) $("slug").value = slugify($("title").value); refresh(); };
-$("slug").oninput = () => { $("slug").dataset.manual = "1"; $("slug").value = slugify($("slug").value); refresh(); };
+// FIX: don't strip trailing hyphens while typing, so you can type "my-slug".
+// Full cleanup (slugify) happens once on save.
+$("slug").oninput = () => {
+  $("slug").dataset.manual = "1";
+  $("slug").value = $("slug").value.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-");
+  refresh();
+};
 ["excerpt", "metaTitle", "metaDescription", "coverImageUrl"].forEach(id => $(id).oninput = refresh);
 
 const snippets = {
@@ -345,8 +351,10 @@ $("saveDraftBtn").onclick = () => savePost("draft");
 $("publishBtn").onclick = () => savePost("published");
 
 async function savePost(status) {
-  const title = $("title").value.trim(), slug = $("slug").value.trim();
+  // FIX: clean the slug once here (trims stray hyphens, etc.)
+  const title = $("title").value.trim(), slug = slugify($("slug").value);
   if (!title || !slug) return toast("Title and slug are required.");
+  $("slug").value = slug; refresh();
   const existing = editingId ? posts.find(p => p.id === editingId) : null;
   const data = {
     title, slug,
