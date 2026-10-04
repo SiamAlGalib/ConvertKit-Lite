@@ -333,6 +333,24 @@ html[data-theme="light"] .no-results{color:#5b6f92;border-color:#b9cdee}
 .tips b{color:#fff}
 html[data-theme="light"] .tips b{color:#0d1b33}
 html[data-theme="light"] .security .seo-grid article a{color:#2c6fe0}
+/* ===== Latest from the blog ===== */
+.blog-strip{margin:0 0 26px}
+.blog-strip[hidden]{display:none}
+.blog-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.blog-head h2{font-size:22px;letter-spacing:-.5px;margin:0}
+.blog-head a{color:#66a9ff;font-size:13px;font-weight:600}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.blog-card{display:block;border:1px solid #194a84;border-radius:12px;background:linear-gradient(145deg,#0b254a,#071a35);overflow:hidden;transition:transform .2s,border-color .2s}
+.blog-card:hover{transform:translateY(-3px);border-color:#4b9cff}
+.blog-card img,.blog-card .ph{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#0a2142}
+.blog-card .bc{padding:14px}
+.blog-card h3{font-size:15px;line-height:1.35;margin:0 0 6px}
+.blog-card p{margin:0;color:#9db7dd;font-size:12.5px;line-height:1.55}
+@media(max-width:950px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.blog-grid{grid-template-columns:1fr}}
+html[data-theme="light"] .blog-card{background:#fff;border-color:#cfdcf1}
+html[data-theme="light"] .blog-card p{color:#5b6f92}
+html[data-theme="light"] .blog-head a{color:#2c6fe0}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/"}, {"@type": "Organization", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "logo": "https://www.convertkitlite.site/logo.png"}, {"@type": "WebApplication", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "description": "Free online file converter with 39 tools: merge, split and compress PDF, PDF to Word, JPG to PNG, HEIC to JPG, MP4 to MP3, remove backgrounds and more. No sign-up needed.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is ConvertKit Lite really free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All the converters and utilities on ConvertKit Lite are free to use, and you don't need to create an account or register to use them."}}, {"@type": "Question", "name": "Do I need to sign up or install anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. ConvertKit Lite runs in your web browser, so there is nothing to download or install and no registration is required. Open a tool, add your file and convert."}}, {"@type": "Question", "name": "Are my files safe on ConvertKit Lite?", "acceptedAnswer": {"@type": "Answer", "text": "We built ConvertKit Lite with data security in mind. The site uses a secure HTTPS connection, you don't need an account, and your files are handled only to complete the conversion you ask for. For highly sensitive documents such as IDs or financial records, use your own judgment about what you upload to any online tool."}}, {"@type": "Question", "name": "Do you need my personal information to convert a file?", "acceptedAnswer": {"@type": "Answer", "text": "No. You don't need to register, create a profile or provide an email address to use the converters and utilities on ConvertKit Lite."}}, {"@type": "Question", "name": "How can I keep my documents safe when using online converters?", "acceptedAnswer": {"@type": "Answer", "text": "Use trusted websites that load over HTTPS (look for the padlock in your browser), avoid uploading highly confidential files on public Wi-Fi, remove passwords or personal details you don't need to share, and delete downloaded results from shared computers when you are done."}}, {"@type": "Question", "name": "Which file formats can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "You can work with PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), RTF and TXT documents, image formats such as JPG, PNG, WebP and HEIC, audio formats such as MP3 and WAV, and video formats such as MOV, MP4 and GIF. See the full tool list above for every supported conversion."}}, {"@type": "Question", "name": "How do I merge, split or compress a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Open the Merge PDF, Split PDF or Compress PDF tool, add your PDF file or files, and follow the on-screen steps. Merge combines several PDFs into one, Split separates a PDF into smaller files, and Compress reduces the file size so it is easier to share or upload."}}, {"@type": "Question", "name": "Can I convert HEIC photos from my iPhone to JPG?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The HEIC to JPG tool converts photos taken on iPhone and iPad into widely supported JPG images that open on almost any device and website."}}, {"@type": "Question", "name": "Does ConvertKit Lite work on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The site is designed to work on phones, tablets and desktop computers, in any modern browser."}}, {"@type": "Question", "name": "What if the tool I need is marked as coming soon?", "acceptedAnswer": {"@type": "Answer", "text": "We keep adding new converters. If you click a tool that is not live yet, you will see a short notice that it is coming soon. Check back later or browse the other tools in the same category."}}]}]}</script>
 </head>
@@ -394,6 +412,10 @@ html[data-theme="light"] .security .seo-grid article a{color:#2c6fe0}
 </div>
 </div>
 </section>
+<section class="blog-strip" id="blog-latest" hidden>
+<div class="blog-head"><h2>Latest from the blog</h2><a href="blog/">View all posts →</a></div>
+<div class="blog-grid" id="blogGrid"></div>
+</section
 <div class="categories" id="tools">
 <button class="category active" data-filter="all"><span class="cat-icon">▦</span><b>All Tools</b></button>
 <button class="category" data-filter="image"><span class="cat-icon">▱</span><b>Image</b></button>
@@ -626,5 +648,28 @@ function showToast(message){
   setTimeout(()=>t.style.display='none',2600);
 }
 </script>
+<script type="module">
+import { db, COL } from "./blog/firebase.js";
+import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const esc = v => { const d = document.createElement("div"); d.textContent = v ?? ""; return d.innerHTML; };
+const ms = v => v?.toMillis ? v.toMillis() : (Number(v) || Date.parse(v) || 0);
+try {
+  const snap = await getDocs(query(collection(db, COL), where("status", "==", "published")));
+  const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => ms(b.publishedAt || b.updatedAt) - ms(a.publishedAt || a.updatedAt))
+    .slice(0, 3);
+  if (posts.length) {
+    document.getElementById("blogGrid").innerHTML = posts.map(p => `
+      <a class="blog-card" href="blog/post.html?slug=${encodeURIComponent(p.id)}">
+        ${p.coverImageUrl ? `<img src="${esc(p.coverImageUrl)}" alt="" loading="lazy">` : `<div class="ph"></div>`}
+        <div class="bc"><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p></div>
+      </a>`).join("");
+    document.getElementById("blog-latest").hidden = false;
+  }
+} catch (e) {
+  console.warn("Blog preview unavailable", e);
+}
+</script>
+ 
 </body>
 </html>
