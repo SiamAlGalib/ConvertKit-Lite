@@ -179,6 +179,8 @@ textarea#excerpt{min-height:75px;resize:vertical}
       <div class="panel-card">
         <h2>Publishing</h2>
         <div class="field"><label>Status</label><select id="status"><option value="draft">Draft</option><option value="published">Published</option></select></div>
+        <div class="field"><label>Tool page path (shown above the article)</label><input id="toolUrl" placeholder="/tools/age-calculator/">
+          <div class="hint">Optional. Leave empty to post the article now, and fill it in later when the tool is ready.</div></div>
         <div class="field"><label>Tags</label><input id="tags" placeholder="pdf, tips, how-to"></div>
         <div class="field"><label>Cover image URL</label><input id="coverImageUrl" placeholder="https://...">
           <div class="cover-preview" id="coverPreview"><span class="placeholder">No image URL yet</span></div></div>
@@ -298,6 +300,7 @@ function openEditor(id) {
   $("status").value = p?.status || "draft";
   $("tags").value = Array.isArray(p?.tags) ? p.tags.join(", ") : "";
   $("coverImageUrl").value = p?.coverImageUrl || "";
+  $("toolUrl").value = p?.toolUrl || "";
   $("metaTitle").value = p?.metaTitle || "";
   $("metaDescription").value = p?.metaDescription || "";
   $("deleteBtn").style.display = p ? "inline-flex" : "none";
@@ -363,6 +366,7 @@ async function savePost(status) {
     status,
     tags: $("tags").value.split(",").map(x => x.trim()).filter(Boolean),
     coverImageUrl: $("coverImageUrl").value.trim(),
+    toolUrl: $("toolUrl").value.trim(),
     metaTitle: $("metaTitle").value.trim(),
     metaDescription: $("metaDescription").value.trim(),
     updatedAt: serverTimestamp()
