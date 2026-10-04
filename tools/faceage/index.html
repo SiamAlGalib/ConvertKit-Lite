@@ -104,17 +104,15 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:.18s}
 .article-card:hover{transform:translateY(-3px);border-color:var(--border-hover);box-shadow:0 14px 30px rgba(0,0,0,.25)}
 .article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
-.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
-.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
 .article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
 .article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .article-card:hover .article-banner img{transform:scale(1.07)}
 .article-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
-.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
 .article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
 .article-card h3{font-size:15px;margin-bottom:8px}
 .article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
 .article-read{font-size:12px;color:#79b7ff;font-weight:700}
+.article-card.blog .article-banner::after{display:none}
 
 .related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
 .related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -200,17 +198,9 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">Learn about <span>Age Estimation</span></h2>
   <p class="section-intro">Helpful guides on photos, lighting and how AI age estimates work.</p>
   <div class="article-list">
-    <a class="article-card" href="../../articles/how-face-age-estimation-works/">
-      <div class="article-banner"><span class="glyph">🧠</span><img src="../../articles/how-face-age-estimation-works/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">HOW IT WORKS</span></div>
-      <div class="article-body"><h3>How AI Face Age Estimation Works</h3><p>A plain-English look at how a model guesses age from a photo.</p><span class="article-read">Read article →</span></div>
-    </a>
-    <a class="article-card" href="../../articles/best-photo-for-age-estimate/">
-      <div class="article-banner b2"><span class="glyph">📸</span><img src="../../articles/best-photo-for-age-estimate/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">PHOTO TIPS</span></div>
-      <div class="article-body"><h3>Best Photo for an Age Estimate</h3><p>Lighting, angle and framing tips for a more reliable result.</p><span class="article-read">Read article →</span></div>
-    </a>
-    <a class="article-card" href="../../articles/apparent-age-vs-real-age/">
-      <div class="article-banner b3"><span class="glyph">⏳</span><img src="../../articles/apparent-age-vs-real-age/banner.jpg" alt="" loading="lazy" onerror="this.remove()"/><span class="article-tag">AGE FACTS</span></div>
-      <div class="article-body"><h3>Apparent Age vs Real Age</h3><p>Why the age you look and the age you are can differ.</p><span class="article-read">Read article →</span></div>
+    <a class="article-card blog" href="../../blog/post.html?slug=face-age-estimator-how-old-do-you-look">
+      <div class="article-banner"><span class="glyph">🧑</span><img src="https://raw.githubusercontent.com/solus-stay-focused/ConvertKit-Lite/refs/heads/main/blog/BannerImage/face-age-estimator-how-old-do-you-look.png" alt="Face Age Estimator cover" loading="lazy" onerror="this.remove()"/></div>
+      <div class="article-body"><h3>Face Age Estimator: How Old Do You Look?</h3><p>Upload a photo and get an AI estimate of your apparent age. Free, private, runs in your browser.</p><span class="article-read">Read article →</span></div>
     </a>
   </div>
 </section>
