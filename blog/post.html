@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog — ConvertKit Lite</title>
+<meta name="description" content="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--blue:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1220;--card:#121a2c;--text:#e8edf6;--muted:#93a0b8;--line:#223049;--blue:#5b8cff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Poppins,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:auto;padding:0 20px}
+.top{background:var(--card);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-weight:700;font-size:18px}.logo b{color:var(--blue)}
+.top nav a{margin-left:18px;color:var(--muted);font-size:14px}
+.top nav a:hover{color:var(--blue)}
+h1.page{font-size:32px;margin:40px 0 4px;line-height:1.2}
+.sub{color:var(--muted);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;padding-bottom:60px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.card:hover{border-color:var(--blue)}
+.card img,.card .ph{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--line)}
+.card .b{padding:16px}
+.card h2{font-size:17px;line-height:1.35;margin:0 0 8px}
+.card p{color:var(--muted);font-size:14px;line-height:1.55;margin:0 0 10px}
+.meta{color:var(--muted);font-size:12px}
+.msg{color:var(--muted);text-align:center;padding:60px 0;grid-column:1/-1}
+article{max-width:760px;margin:0 auto;padding:36px 20px 70px}
+article h1{font-size:34px;line-height:1.25;margin:0 0 10px}
+.cover{width:100%;border-radius:14px;margin:20px 0}
+.body h2{margin-top:2em}
+.body img{max-width:100%;border-radius:10px}
+.body a{color:var(--blue);text-decoration:underline}
+.tags span{font-size:12px;background:var(--line);padding:2px 10px;border-radius:20px;margin-right:6px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/">ConvertKit <b>Lite</b></a>
+  <nav><a href="/">Tools</a><a href="/blog/">Blog</a></nav>
+</div></header>
+
+<article id="post"><p class="sub">Loading…</p></article>
+
+<script type="module">
+import { db, COL } from "./firebase.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const el = document.getElementById("post");
+const esc = v => { const d = document.createElement("div"); d.textContent = v ?? ""; return d.innerHTML; };
+const ms = v => v?.toMillis ? v.toMillis() : (Number(v) || Date.parse(v) || 0);
+const missing = () => { el.innerHTML = `<h1>Post not found</h1><p class="sub">It may have been removed. <a href="/blog/" style="color:var(--blue)">Back to the blog</a></p>`; };
+
+const slug = new URLSearchParams(location.search).get("slug");
+if (!slug) missing();
+else try {
+  const snap = await getDoc(doc(db, COL, slug));
+  const p = snap.exists() ? snap.data() : null;
+  if (!p || p.status !== "published") missing();
+  else {
+    const desc = p.metaDescription || p.excerpt || "";
+    document.title = (p.metaTitle || p.title) + " — ConvertKit Lite";
+    document.querySelector('meta[name="description"]').content = desc;
+    const link = document.createElement("link");
+    link.rel = "canonical";
+    link.href = "https://www.convertkitlite.site/blog/post.html?slug=" + encodeURIComponent(slug);
+    document.head.appendChild(link);
+
+    const t = ms(p.publishedAt || p.updatedAt);
+    const date = t ? new Date(t).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) : "";
+    el.innerHTML = `
+      <div class="meta"><a href="/blog/" style="color:var(--blue)">← Blog</a> &nbsp; ${date}</div>
+      <h1>${esc(p.title)}</h1>
+      ${p.coverImageUrl ? `<img class="cover" src="${esc(p.coverImageUrl)}" alt="${esc(p.title)}">` : ""}
+      <div class="body">${p.content || ""}</div>
+      <div class="tags" style="margin-top:30px">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>`;
+  }
+} catch (e) {
+  console.error(e);
+  el.innerHTML = `<h1>Couldn't load this post</h1><p class="sub">Please refresh the page.</p>`;
+}
+</script>
+</body>
+</html>
