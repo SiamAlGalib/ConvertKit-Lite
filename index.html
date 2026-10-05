@@ -696,7 +696,7 @@ const KEY = "ck-home-blog-v1";
 function show(posts) {
   if (!posts.length) { $("blog-latest").hidden = true; return; }
   $("blogGrid").innerHTML = posts.map(p =>
-    '<a class="blog-card" href="blog/post.html?slug=' + encodeURIComponent(p.id) + '">' +
+    '<a class="blog-card" href="blog/' + encodeURIComponent(p.id) + '/">' +
     (p.coverImageUrl ? '<img src="' + esc(p.coverImageUrl) + '" alt="" loading="lazy" decoding="async">' : '<div class="ph"></div>') +
     '<div class="bc"><h3>' + esc(p.title) + '</h3><p>' + esc(p.excerpt) + '</p></div></a>').join("");
   $("blog-latest").hidden = false;

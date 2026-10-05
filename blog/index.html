@@ -156,7 +156,7 @@ function render() {
   const list = posts.filter(p => !q || [p.title, p.excerpt, p.metaDescription, ...(p.tags || [])].join(" ").toLowerCase().includes(q));
   $("count").textContent = list.length + (list.length === 1 ? " ARTICLE" : " ARTICLES");
   $("grid").innerHTML = list.map(p => `
-    <a class="card" href="post.html?slug=${encodeURIComponent(p.id)}">
+    <a class="card" href="${encodeURIComponent(p.id)}/">
       <span class="accent"></span>
       ${p.coverImageUrl ? `<div class="cover"><img src="${esc(p.coverImageUrl)}" alt="${esc(p.title)}" loading="lazy" decoding="async"></div>` : `<div class="cover ph"></div>`}
       <div class="cb">
