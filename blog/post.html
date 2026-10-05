@@ -10,6 +10,12 @@
 <meta property="og:image" content="https://www.convertkitlite.site/logo.png">
 <link rel="icon" href="/logo.png">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<!-- speed: open connections and start downloading the Firebase code immediately -->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="modulepreload" href="./firebase.js">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap">
 <style>
@@ -62,7 +68,7 @@ footer:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;backg
 @media(max-width:950px){.foot-top{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
 @media(max-width:560px){footer{padding:30px 18px 20px}.foot-bottom{flex-direction:column;text-align:center}}
 
-article{max-width:780px;margin:0 auto;padding:50px 0 10px}
+article{max-width:780px;margin:0 auto;padding:50px 0 10px;min-height:70vh}
 .back{display:inline-block;color:var(--link);font-size:13px;font-weight:600;margin-bottom:20px}
 .back:hover{text-decoration:underline}
 article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px;margin:14px 0 14px}
@@ -78,6 +84,15 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
 .cta{margin:46px 0 0;padding:26px 28px;border:1px solid var(--line);border-radius:16px;background:var(--card);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .cta h3{margin:0 0 6px;font-size:19px}.cta p{margin:0;color:var(--soft);font-size:14px}
 .pstate{text-align:center;color:var(--mut);padding:80px 0}
+
+/* skeleton shown while the very first load fetches the post */
+.sk{border-radius:10px;background:linear-gradient(90deg,var(--chip) 25%,rgba(120,160,255,.22) 50%,var(--chip) 75%);background-size:200% 100%;animation:sk 1.2s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.sk-tag{width:90px;height:22px;border-radius:999px;margin-bottom:16px}
+.sk-h{height:42px;margin-bottom:12px}.sk-h.s{width:70%}
+.sk-meta{width:160px;height:14px;margin:16px 0 24px}
+.sk-cover{height:280px;border-radius:16px;margin-bottom:26px}
+.sk-line{height:14px;margin-bottom:14px}.sk-line.s{width:80%}
 </style>
 </head>
 <body id="top">
@@ -91,7 +106,10 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
 </button>
 <a class="primary" href="/#tools">Get Started</a></div>
 </div></header>
-<main class="container"><article id="post"><p class="pstate">Loading…</p></article></main>
+<main class="container"><article id="post">
+<div class="sk sk-tag"></div><div class="sk sk-h"></div><div class="sk sk-h s"></div><div class="sk sk-meta"></div><div class="sk sk-cover"></div>
+<div class="sk sk-line"></div><div class="sk sk-line"></div><div class="sk sk-line s"></div><div class="sk sk-line"></div><div class="sk sk-line s"></div>
+</article></main>
 <footer>
 <div class="foot-top">
 <div class="foot-brand"><a class="brand" href="/"><img alt="ConvertKit Lite logo" src="/logo.png" onerror="this.style.display='none'"><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a><p>Free online file converter and tools. Convert PDF, images, audio and video in your browser, with no sign-up.</p></div>
@@ -103,8 +121,7 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
 </footer>
 
 <script type="module">
-import { db, COL } from "./firebase.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// No static imports: the cached post paints first, Firebase loads in parallel and only refreshes it.
 const el = document.getElementById("post");
 const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]));
 const ms = v => v?.toMillis ? v.toMillis() : (Number(v) || Date.parse(v) || 0);
@@ -112,37 +129,71 @@ const mins = h => Math.max(1, Math.round((h || "").replace(/<[^>]*>/g, " ").spli
 const missing = (t, m) => { el.innerHTML = `<h1>${t}</h1><p class="pstate" style="padding:20px 0">${m} <a class="back" href="/blog/">← Back to the blog</a></p>`; };
 
 const slug = new URLSearchParams(location.search).get("slug");
+const KEY = "ck-post:" + slug;
+const readCache = () => { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } };
+const writeCache = o => { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} };
+const clearCache = () => { try { localStorage.removeItem(KEY); } catch (e) {} };
+
+// create or update a <head> tag so re-rendering never duplicates it
+function setHead(sel, tag, attrs) {
+  let n = document.head.querySelector(sel);
+  if (!n) { n = document.createElement(tag); document.head.appendChild(n); }
+  Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+}
+
+function render(p) {
+  const desc = p.metaDescription || p.excerpt || "";
+  const title = (p.metaTitle || p.title) + " — ConvertKit Lite";
+  const url = "https://www.convertkitlite.site/blog/post.html?slug=" + encodeURIComponent(slug);
+  document.title = title;
+  document.querySelector('meta[name="description"]').content = desc;
+  setHead('link[rel="canonical"]', "link", { rel: "canonical", href: url });
+  setHead('meta[property="og:title"]', "meta", { property: "og:title", content: title });
+  setHead('meta[property="og:description"]', "meta", { property: "og:description", content: desc });
+  setHead('meta[property="og:url"]', "meta", { property: "og:url", content: url });
+  if (p.coverImageUrl) setHead('meta[property="og:image"][data-post]', "meta", { property: "og:image", content: p.coverImageUrl, "data-post": "1" });
+  const t = p.t;
+  const date = t ? new Date(t).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) : "";
+  el.innerHTML = `
+    <a class="back" href="/blog/">← All articles</a>
+    <div class="tags">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
+    <h1>${esc(p.title)}</h1>
+    <div class="meta"><span>${date}</span><i></i><span>${mins(p.content)} min read</span></div>
+    ${p.coverImageUrl ? `<img class="cover" src="${esc(p.coverImageUrl)}" alt="${esc(p.title)}" fetchpriority="high" decoding="async">` : ""}
+    <div class="prose">${p.content || ""}</div>
+    <div class="cta"><div><h3>Need to convert a file?</h3><p>Try our free PDF, image, audio and video tools. No sign-up needed.</p></div><a class="primary" href="/#tools">Browse all tools</a></div>`;
+}
+
 if (!slug) missing("Post not found", "No article was selected.");
-else try {
-  const snap = await getDoc(doc(db, COL, slug));
-  const p = snap.exists() ? snap.data() : null;
-  if (!p || p.status !== "published") missing("Post not found", "It may have been removed.");
-  else {
-    const desc = p.metaDescription || p.excerpt || "";
-    const title = (p.metaTitle || p.title) + " — ConvertKit Lite";
-    const url = "https://www.convertkitlite.site/blog/post.html?slug=" + encodeURIComponent(slug);
-    document.title = title;
-    document.querySelector('meta[name="description"]').content = desc;
-    const add = (tag, attrs) => { const n = document.createElement(tag); Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v)); document.head.appendChild(n); };
-    add("link", { rel: "canonical", href: url });
-    add("meta", { property: "og:title", content: title });
-    add("meta", { property: "og:description", content: desc });
-    add("meta", { property: "og:url", content: url });
-    if (p.coverImageUrl) add("meta", { property: "og:image", content: p.coverImageUrl });
-    const t = ms(p.publishedAt || p.updatedAt);
-    const date = t ? new Date(t).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) : "";
-    el.innerHTML = `
-      <a class="back" href="/blog/">← All articles</a>
-      <div class="tags">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
-      <h1>${esc(p.title)}</h1>
-      <div class="meta"><span>${date}</span><i></i><span>${mins(p.content)} min read</span></div>
-      ${p.coverImageUrl ? `<img class="cover" src="${esc(p.coverImageUrl)}" alt="${esc(p.title)}">` : ""}
-      <div class="prose">${p.content || ""}</div>
-      <div class="cta"><div><h3>Need to convert a file?</h3><p>Try our free PDF, image, audio and video tools. No sign-up needed.</p></div><a class="primary" href="/#tools">Browse all tools</a></div>`;
+else {
+  // 1) instant paint from the last visit
+  const cached = readCache();
+  if (cached) render(cached);
+
+  // 2) fetch the latest in the background (SDK downloads in parallel)
+  try {
+    const [{ db, COL }, { doc, getDoc }] = await Promise.all([
+      import("./firebase.js"),
+      import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")
+    ]);
+    const snap = await getDoc(doc(db, COL, slug));
+    const d = snap.exists() ? snap.data() : null;
+    if (!d || d.status !== "published") {
+      clearCache();
+      missing("Post not found", "It may have been removed.");
+    } else {
+      const fresh = {
+        title: d.title, metaTitle: d.metaTitle, metaDescription: d.metaDescription, excerpt: d.excerpt,
+        coverImageUrl: d.coverImageUrl, tags: d.tags || [], content: d.content || "",
+        t: ms(d.publishedAt || d.updatedAt)
+      };
+      // only touch the page if something actually changed (no flicker)
+      if (JSON.stringify(fresh) !== JSON.stringify(cached)) { render(fresh); writeCache(fresh); }
+    }
+  } catch (e) {
+    console.error(e);
+    if (!cached) missing("Couldn't load this post", "Please refresh the page.");
   }
-} catch (e) {
-  console.error(e);
-  missing("Couldn't load this post", "Please refresh the page.");
 }
 </script>
 <script>
