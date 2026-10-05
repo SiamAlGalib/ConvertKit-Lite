@@ -144,7 +144,7 @@ function setHead(sel, tag, attrs) {
 function render(p) {
   const desc = p.metaDescription || p.excerpt || "";
   const title = (p.metaTitle || p.title) + " — ConvertKit Lite";
-  const url = "https://www.convertkitlite.site/blog/post.html?slug=" + encodeURIComponent(slug);
+  const url = "https://www.convertkitlite.site/blog/" + encodeURIComponent(slug) + "/";
   document.title = title;
   document.querySelector('meta[name="description"]').content = desc;
   setHead('link[rel="canonical"]', "link", { rel: "canonical", href: url });
