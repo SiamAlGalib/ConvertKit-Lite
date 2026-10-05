@@ -1,4 +1,3 @@
-cat > stats.js <<'EOF'
 import { db, rtdb } from "/blog/firebase.js";
 import { doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { ref, push, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -23,4 +22,3 @@ export async function trackUse(tool) {
     await setDoc(doc(db, "toolStats", "d_" + day), { [tool]: increment(1), total: increment(1) }, { merge: true });
   } catch (e) {}
 }
-EOF
