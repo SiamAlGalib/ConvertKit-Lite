@@ -22,6 +22,8 @@
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="modulepreload" href="./blog/firebase.js">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap">
 <style>
 
@@ -359,6 +361,9 @@ header nav a:hover{color:#fff}
 html[data-theme="light"] header nav a:hover{color:#0d1b33}
 @media(prefers-reduced-motion:reduce){.nav-ind{transition:none}}
 
+.blog-card.sk{height:330px;animation:skPulse 1.4s ease-in-out infinite}
+@keyframes skPulse{0%,100%{opacity:1}50%{opacity:.55}}
+@media(prefers-reduced-motion:reduce){.blog-card.sk{animation:none}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/"}, {"@type": "Organization", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "logo": "https://www.convertkitlite.site/logo.png"}, {"@type": "WebApplication", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "description": "Free online file converter with 39 tools: merge, split and compress PDF, PDF to Word, JPG to PNG, HEIC to JPG, MP4 to MP3, remove backgrounds and more. No sign-up needed.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is ConvertKit Lite really free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All the converters and utilities on ConvertKit Lite are free to use, and you don't need to create an account or register to use them."}}, {"@type": "Question", "name": "Do I need to sign up or install anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. ConvertKit Lite runs in your web browser, so there is nothing to download or install and no registration is required. Open a tool, add your file and convert."}}, {"@type": "Question", "name": "Are my files safe on ConvertKit Lite?", "acceptedAnswer": {"@type": "Answer", "text": "We built ConvertKit Lite with data security in mind. The site uses a secure HTTPS connection, you don't need an account, and your files are handled only to complete the conversion you ask for. For highly sensitive documents such as IDs or financial records, use your own judgment about what you upload to any online tool."}}, {"@type": "Question", "name": "Do you need my personal information to convert a file?", "acceptedAnswer": {"@type": "Answer", "text": "No. You don't need to register, create a profile or provide an email address to use the converters and utilities on ConvertKit Lite."}}, {"@type": "Question", "name": "How can I keep my documents safe when using online converters?", "acceptedAnswer": {"@type": "Answer", "text": "Use trusted websites that load over HTTPS (look for the padlock in your browser), avoid uploading highly confidential files on public Wi-Fi, remove passwords or personal details you don't need to share, and delete downloaded results from shared computers when you are done."}}, {"@type": "Question", "name": "Which file formats can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "You can work with PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), RTF and TXT documents, image formats such as JPG, PNG, WebP and HEIC, audio formats such as MP3 and WAV, and video formats such as MOV, MP4 and GIF. See the full tool list above for every supported conversion."}}, {"@type": "Question", "name": "How do I merge, split or compress a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Open the Merge PDF, Split PDF or Compress PDF tool, add your PDF file or files, and follow the on-screen steps. Merge combines several PDFs into one, Split separates a PDF into smaller files, and Compress reduces the file size so it is easier to share or upload."}}, {"@type": "Question", "name": "Can I convert HEIC photos from my iPhone to JPG?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The HEIC to JPG tool converts photos taken on iPhone and iPad into widely supported JPG images that open on almost any device and website."}}, {"@type": "Question", "name": "Does ConvertKit Lite work on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The site is designed to work on phones, tablets and desktop computers, in any modern browser."}}, {"@type": "Question", "name": "What if the tool I need is marked as coming soon?", "acceptedAnswer": {"@type": "Answer", "text": "We keep adding new converters. If you click a tool that is not live yet, you will see a short notice that it is coming soon. Check back later or browse the other tools in the same category."}}]}]}</script>
 </head>
@@ -420,9 +425,9 @@ html[data-theme="light"] header nav a:hover{color:#0d1b33}
 </div>
 </div>
 </section>
-<section class="blog-strip" id="blog-latest" hidden>
+<section class="blog-strip" id="blog-latest">
 <div class="blog-head"><h2>Latest from the blog</h2><a href="blog/">View all posts →</a></div>
-<div class="blog-grid" id="blogGrid"></div>
+<div class="blog-grid" id="blogGrid"><div class="blog-card sk"></div><div class="blog-card sk"></div><div class="blog-card sk"></div></div>
 </section>
 <div class="categories" id="tools">
 <button class="category active" data-filter="all"><span class="cat-icon">▦</span><b>All Tools</b></button>
@@ -657,25 +662,42 @@ function showToast(message){
 }
 </script>
 <script type="module">
-import { db, COL } from "./blog/firebase.js";
-import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const $ = id => document.getElementById(id);
 const esc = v => { const d = document.createElement("div"); d.textContent = v ?? ""; return d.innerHTML; };
 const ms = v => v?.toMillis ? v.toMillis() : (Number(v) || Date.parse(v) || 0);
+const KEY = "ck-home-blog-v1";
+
+function show(posts) {
+  if (!posts.length) { $("blog-latest").hidden = true; return; }
+  $("blogGrid").innerHTML = posts.map(p =>
+    '<a class="blog-card" href="blog/post.html?slug=' + encodeURIComponent(p.id) + '">' +
+    (p.coverImageUrl ? '<img src="' + esc(p.coverImageUrl) + '" alt="" loading="lazy" decoding="async" width="640" height="360">' : '<div class="ph"></div>') +
+    '<div class="bc"><h3>' + esc(p.title) + '</h3><p>' + esc(p.excerpt) + '</p></div></a>').join("");
+  $("blog-latest").hidden = false;
+}
+
+// 1) instant render from cache (repeat visits)
 try {
+  const cached = JSON.parse(localStorage.getItem(KEY) || "null");
+  if (cached && cached.length) show(cached);
+} catch (e) {}
+
+// 2) fetch fresh posts in the background
+try {
+  const { db, COL } = await import("./blog/firebase.js");
+  const { collection, query, where, getDocs } =
+    await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
   const snap = await getDocs(query(collection(db, COL), where("status", "==", "published")));
-  const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-    .sort((a, b) => ms(b.publishedAt || b.updatedAt) - ms(a.publishedAt || a.updatedAt))
-    .slice(0, 3);
-  if (posts.length) {
-    document.getElementById("blogGrid").innerHTML = posts.map(p => `
-      <a class="blog-card" href="blog/post.html?slug=${encodeURIComponent(p.id)}">
-        ${p.coverImageUrl ? `<img src="${esc(p.coverImageUrl)}" alt="" loading="lazy">` : `<div class="ph"></div>`}
-        <div class="bc"><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p></div>
-      </a>`).join("");
-    document.getElementById("blog-latest").hidden = false;
-  }
+  const posts = snap.docs
+    .map(d => { const x = d.data(); return { id: d.id, title: x.title, excerpt: x.excerpt || x.metaDescription || "", coverImageUrl: x.coverImageUrl, _t: ms(x.publishedAt || x.updatedAt) }; })
+    .sort((a, b) => b._t - a._t)
+    .slice(0, 3)
+    .map(({ _t, ...p }) => p);
+  try { localStorage.setItem(KEY, JSON.stringify(posts)); } catch (e) {}
+  show(posts);
 } catch (e) {
   console.warn("Blog preview unavailable", e);
+  if (!localStorage.getItem(KEY)) $("blog-latest").hidden = true;
 }
 </script>
 
