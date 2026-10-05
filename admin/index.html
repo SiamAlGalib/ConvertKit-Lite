@@ -151,6 +151,7 @@ textarea#excerpt{min-height:75px;resize:vertical}
     <div class="stats">
       <div class="stat-card"><div class="stat-label"><span class="live-dot"></span>Online now</div><div class="stat-number" id="onlineNow">0</div></div>
       <div class="stat-card"><div class="stat-label">Total conversions</div><div class="stat-number" id="totalConv">0</div></div>
+      <div class="stat-card"><div class="stat-label">Total downloads</div><div class="stat-number" id="totalDl">0</div></div>
     </div>
     <div class="posts-panel">
       <div class="posts-panel-head"><div class="posts-panel-title">Conversions by tool</div></div>
@@ -254,14 +255,21 @@ function startLiveStats() {
   if (liveStarted) return; liveStarted = true;
   onValue(ref(rtdb, "presence"), s => { $("onlineNow").textContent = s.size; },
     e => console.error("PRESENCE ERROR:", e));
-  onSnapshot(doc(db, "toolStats", "totals"), snap => {
-    const { total = 0, ...tools } = snap.data() || {};
+  let conv = {}, dl = {};
+  const render = () => {
+    const { total = 0, ...tools } = conv;
+    const { total: dlTotal = 0, ...dlTools } = dl;
     $("totalConv").textContent = total.toLocaleString();
-    const rows = Object.entries(tools).sort((a, b) => b[1] - a[1]);
-    $("toolTable").innerHTML = rows.length
-      ? rows.map(([n, c]) => `<div class="tool-row"><span>${esc(n)}</span><strong>${c.toLocaleString()}</strong></div>`).join("")
+    $("totalDl").textContent = dlTotal.toLocaleString();
+    const names = [...new Set([...Object.keys(tools), ...Object.keys(dlTools)])]
+      .sort((a, b) => (tools[b] || 0) - (tools[a] || 0));
+    $("toolTable").innerHTML = names.length
+      ? `<div class="tool-row"><span><b>Tool</b></span><span><b>Conversions / Downloads</b></span></div>` +
+        names.map(n => `<div class="tool-row"><span>${esc(n)}</span><strong>${(tools[n] || 0).toLocaleString()} / ${(dlTools[n] || 0).toLocaleString()}</strong></div>`).join("")
       : `<div class="empty-state">No conversions yet.</div>`;
-  }, e => console.error("STATS ERROR:", e));
+  };
+  onSnapshot(doc(db, "toolStats", "totals"), snap => { conv = snap.data() || {}; render(); }, e => console.error("STATS ERROR:", e));
+  onSnapshot(doc(db, "toolStats", "dl_totals"), snap => { dl = snap.data() || {}; render(); }, e => console.error("DL STATS ERROR:", e));
 }
 
 /* ---------- AUTH ---------- */
