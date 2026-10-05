@@ -247,5 +247,6 @@ estimateBtn.addEventListener('click',async()=>{if(!img.src)return;estimateBtn.di
 resetBtn.addEventListener('click',()=>{input.value='';img.removeAttribute('src');preview.style.display='none';result.style.display='none';estimateBtn.disabled=true;ageValue.textContent='—';if(currentUrl){URL.revokeObjectURL(currentUrl);currentUrl=null}status('Choose a photo to get started.')});
 </script>
 <script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
+<script type="module" src="/geo-track.js"></script>
 </body>
 </html>

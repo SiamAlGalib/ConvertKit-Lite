@@ -90,4 +90,5 @@ async function convert(){if(!currentFile||converting)return;if(typeof GIF==='und
 $('convert').onclick=convert;$('download').onclick=()=>{if(!outputURL)return;const a=document.createElement('a');a.href=outputURL;a.download=(currentFile?currentFile.name.replace(/\.[^.]+$/,''):'converted')+'.gif';document.body.appendChild(a);a.click();a.remove()};$('reset').onclick=resetAll;
 </script>
 <script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
+<script type="module" src="/geo-track.js"></script>
 </body></html>
