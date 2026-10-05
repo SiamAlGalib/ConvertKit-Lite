@@ -439,6 +439,27 @@ document.querySelectorAll("[data-i]").forEach(b => b.onclick = () => {
   t.focus(); t.selectionStart = t.selectionEnd = s + html.length;
 });
 
+/* ---------- AUTO-REBUILD OF STATIC BLOG PAGES (GitHub Actions) ---------- */
+const GH_REPO = "SiamAlGalib/ConvertKit-Lite";  // change if the site repo is under another account
+const GH_WORKFLOW = "static.yml";               // file name of your workflow in .github/workflows
+async function triggerSiteBuild() {
+  let t = localStorage.getItem("gh_build_token");
+  if (!t) {
+    t = prompt("Paste your GitHub token to auto-publish pages (Cancel to skip):");
+    if (!t) return;
+    localStorage.setItem("gh_build_token", t.trim());
+  }
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${GH_WORKFLOW}/dispatches`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${t}`, Accept: "application/vnd.github+json" },
+      body: JSON.stringify({ ref: "main" })
+    });
+    if (r.status === 204) toast("Site rebuild started (about 1 min)");
+    else { if (r.status === 401) localStorage.removeItem("gh_build_token"); toast("Couldn't start rebuild (" + r.status + ")"); }
+  } catch (e) { toast("Rebuild request failed"); }
+}
+
 /* ---------- SAVE / DELETE ---------- */
 $("saveDraftBtn").onclick = () => savePost("draft");
 $("publishBtn").onclick = () => savePost("published");
@@ -473,6 +494,8 @@ async function savePost(status) {
     $("saveStatus").style.display = "inline";
     toast(status === "published" ? "Published ✓" : "Draft saved ✓");
     await loadPosts();
+    // rebuild static pages only when the public site is affected
+    if (status === "published" || existing?.status === "published") triggerSiteBuild();
   } catch (e) {
     console.error("SAVE ERROR:", e);
     toast("Couldn't save. Check Firestore rules.");
@@ -481,10 +504,12 @@ async function savePost(status) {
 
 $("deleteBtn").onclick = async () => {
   if (!editingId || !confirm("Delete this post? This can't be undone.")) return;
+  const wasPublished = posts.find(p => p.id === editingId)?.status === "published";
   try {
     await deleteDoc(doc(db, COL, editingId));
     toast("Post deleted"); editingId = null;
     await loadPosts(); show("dashboard");
+    if (wasPublished) triggerSiteBuild();
   } catch (e) { console.error(e); toast("Couldn't delete post."); }
 };
 </script>
