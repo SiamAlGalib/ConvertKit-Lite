@@ -239,7 +239,7 @@ function styleDoc(r){
   r.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(h=>{h.style.pageBreakAfter='avoid';h.style.lineHeight='1.25'});
 }
 function save(){
-  const a=document.createElement('a');a.href=URL.createObjectURL(pdfBlob);a.download=outName;
+  const a=document.createElement('a');a.href=URL.createObjectURL(pdfBlob);a.download=outName;import("/stats.js").then(m=>m.trackUse());
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
 function clearAll(){
@@ -310,5 +310,6 @@ $('convert').onclick=async()=>{
 $('again').onclick=()=>{if(pdfBlob)save()};
 $('reset').onclick=()=>{if(!busy)clearAll()};
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

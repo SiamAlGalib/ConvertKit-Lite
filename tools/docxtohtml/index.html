@@ -295,7 +295,8 @@ async function convertDocx(it,mode,imgs){
   if(!html.trim()){const e=new Error('empty');e.kind='No content was found in this document.';throw e}
   let out=html.trim()+'\n';
   if(mode==='page'){
-    out='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+esc(base(it.name))+'</title>\n<style>'+PAGE_CSS+'</style>\n</head>\n<body>\n'+out+'</body>\n</html>\n';
+    out='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+esc(base(it.name))+'</title>\n<style>'+PAGE_CSS+'</style>\n</head>\n<body>\n'+out+'<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
+</body>\n</html>\n';
   }
   const text=out.replace(/<[^>]+>/g,' ').trim();
   return {blob:new Blob([out],{type:'text/html;charset=utf-8'}),words:text?text.split(/\s+/).length:0};
@@ -360,7 +361,7 @@ $('convert').onclick=async()=>{
       try{
         const res=await convertDocx(it,mode,imgs);
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:res.blob.size,words:res.words,blob:res.blob,url:URL.createObjectURL(res.blob)};
+        it.out={size:res.blob.size,words:res.words,blob:res.blob,url:URL.createObjectURL(res.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file.'}
     }
     render();
@@ -386,5 +387,6 @@ $('reset').onclick=()=>{
 };
 syncMode();render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

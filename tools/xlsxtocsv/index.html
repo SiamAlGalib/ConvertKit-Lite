@@ -273,7 +273,7 @@ const ext=/\.(xlsx|xlsm|xls)$/i;
 
 function dlBlob(blob,name){
   const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download=name;
+  a.href=URL.createObjectURL(blob);a.download=name;import("/stats.js").then(m=>m.trackUse());
   document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
@@ -405,5 +405,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

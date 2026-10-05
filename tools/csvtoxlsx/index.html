@@ -426,7 +426,7 @@ $('convert').onclick=async()=>{
       try{
         const out=await csvToXlsx(it.file,o);
         if(it.out)URL.revokeObjectURL(it.out.url);
-        out.url=URL.createObjectURL(out.blob);
+        out.url=URL.createObjectURL(out.blob); import("/stats.js").then(m=>m.trackUse());
         it.out=out;
       }catch(e){
         console.error(e);
@@ -456,5 +456,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

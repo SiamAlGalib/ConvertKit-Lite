@@ -478,7 +478,7 @@ $('convert').onclick=async()=>{
       try{
         const res=await convertPdf(it,mode,scale,(p,n)=>progress(Math.round((i+(p-1)/n)/items.length*100),'File '+(i+1)+' of '+items.length+' · page '+p+' of '+n+'…'));
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:res.blob.size,pages:res.pages,blob:res.blob,url:URL.createObjectURL(res.blob)};
+        it.out={size:res.blob.size,pages:res.pages,blob:res.blob,url:URL.createObjectURL(res.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file.'}
     }
     render();
@@ -504,5 +504,6 @@ $('reset').onclick=()=>{
 };
 syncMode();render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

@@ -309,7 +309,7 @@ function render(){
 }
 
 function save(blob,name){
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;import("/stats.js").then(m=>m.trackUse());
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
 $('dlPng').onclick=()=>$('cv').toBlob(b=>save(b,'qrcode.png'));
@@ -330,5 +330,6 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
 ['txt','ssid','wpass','wtype','eto','esub','ebody','fg','bg','ecc'].forEach(id=>$(id).addEventListener('input',render));
 $('size').addEventListener('input',()=>{$('sizeV').textContent=$('size').value+' px';render()});
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

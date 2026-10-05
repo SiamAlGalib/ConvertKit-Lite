@@ -392,7 +392,7 @@ $('convert').onclick=async()=>{
       try{
         const res=await convertBook(it,o,(s,n)=>progress(Math.round((i+s/n)/items.length*100),'File '+(i+1)+' of '+items.length+' · sheet '+(s+1)+' of '+n+'…'));
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:res.blob.size,pages:res.pages,replaced:res.replaced,blob:res.blob,url:URL.createObjectURL(res.blob)};
+        it.out={size:res.blob.size,pages:res.pages,replaced:res.replaced,blob:res.blob,url:URL.createObjectURL(res.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file.'}
     }
     render();
@@ -418,5 +418,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

@@ -352,7 +352,7 @@ $('convertBtn').addEventListener('click',async()=>{
 
     const blob=new Blob(parts,{type:'audio/mpeg'});
     if(outUrl)URL.revokeObjectURL(outUrl);
-    outUrl=URL.createObjectURL(blob);
+    outUrl=URL.createObjectURL(blob); import('/stats.js').then(m=>m.trackUse());
     outName=file.name.replace(/\.[^.]+$/,'')+'.mp3';
     $('player').src=outUrl;
     $('downloadLink').href=outUrl;$('downloadLink').download=outName;
@@ -372,5 +372,6 @@ $('convertBtn').addEventListener('click',async()=>{
   }
 });
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

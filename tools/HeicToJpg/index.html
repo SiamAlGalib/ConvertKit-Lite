@@ -361,7 +361,7 @@ $('convert').onclick=async()=>{
       try{
         const blob=await heicToJpg(it.file,q,max);
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={blob,size:blob.size,url:URL.createObjectURL(blob)};
+        it.out={blob,size:blob.size,url:URL.createObjectURL(blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad=e.message==='nothic'?'This is not a valid HEIC file.':e.message==='lib'?'Could not load the HEIC decoder. Check your connection and try again.':'Could not convert this file.'}
     }
     render();
@@ -386,5 +386,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

@@ -386,7 +386,7 @@ el.btn.addEventListener('click', async () => {
     el.statOrig.textContent=fmt(orig);
     if (saved > 0){
       if(blobUrl) URL.revokeObjectURL(blobUrl);
-      blobUrl = URL.createObjectURL(new Blob([out],{type:'application/pdf'}));
+      blobUrl = URL.createObjectURL(new Blob([out],{type:'application/pdf'})); import('/stats.js').then(m=>m.trackUse());
       el.dl.href=blobUrl; el.dl.download=baseName()+'-compressed.pdf'; el.dl.style.display='inline-flex';
       el.resultIcon.textContent='✓'; el.resultTitle.textContent='Your PDF is ready';
       el.statNew.textContent=fmt(now); el.statSaved.textContent=pct.toFixed(1)+'%';
@@ -425,5 +425,6 @@ function resetAll(){
 el.fileRemove.addEventListener('click',resetAll);
 el.reset.addEventListener('click',resetAll);
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

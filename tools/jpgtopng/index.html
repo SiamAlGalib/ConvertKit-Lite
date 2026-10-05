@@ -366,7 +366,7 @@ $('convert').onclick=async()=>{
       try{
         const res=await convertOne(it,scale,removeWhite);
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:res.blob.size,w:res.w,h:res.h,blob:res.blob,url:URL.createObjectURL(res.blob)};
+        it.out={size:res.blob.size,w:res.w,h:res.h,blob:res.blob,url:URL.createObjectURL(res.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file. It may be damaged.'}
     }
     render();
@@ -392,5 +392,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

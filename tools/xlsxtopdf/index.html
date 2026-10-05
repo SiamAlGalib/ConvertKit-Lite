@@ -395,7 +395,7 @@ $('convert').onclick=async()=>{
         catch(e){const k=new Error('bad');k.kind='This is not a valid Excel file.';throw k}
         const res=build(wb,fmt,orient,useHead,showGrid);
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:res.blob.size,pages:res.pages,blob:res.blob,url:URL.createObjectURL(res.blob)};
+        it.out={size:res.blob.size,pages:res.pages,blob:res.blob,url:URL.createObjectURL(res.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file.'}
     }
     render();
@@ -421,5 +421,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

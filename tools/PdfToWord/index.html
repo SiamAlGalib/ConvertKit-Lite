@@ -389,7 +389,7 @@ function render(){
     if(it.bad){sz.textContent=it.bad;sz.style.color='#fca5b5'}
     else if(it.out){
       sz.innerHTML=size(it.file.size)+' → <b>'+size(it.out.size)+'</b> · <span class="save">'+it.out.pages+' page'+(it.out.pages===1?'':'s')+'</span>'+(it.out.imgPages?' · '+it.out.imgPages+' as image'+(it.out.imgPages===1?'':'s'):'');
-      const a=document.createElement('a');a.className='dl';a.textContent='Download';a.href=it.out.url;a.download=base(it.name)+'.docx';ac.appendChild(a);
+      const a=document.createElement('a');a.className='dl';a.textContent='Download';a.href=it.out.url;a.download=base(it.name)+'.docx';a.onclick=()=>import('/stats.js').then(m=>m.trackUse());ac.appendChild(a);
     }else sz.textContent=size(it.file.size);
     const x=document.createElement('button');x.type='button';x.textContent='Remove';
     x.onclick=()=>{if(it.out)URL.revokeObjectURL(it.out.url);items.splice(i,1);render()};
@@ -449,5 +449,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

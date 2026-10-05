@@ -410,7 +410,7 @@ $('convert').onclick=async()=>{
       try{
         const r=await convertImage(it,fmt,q,bg);
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:r.blob.size,w:r.w,h:r.h,ext:FMT[fmt].ext,blob:r.blob,url:URL.createObjectURL(r.blob)};
+        it.out={size:r.blob.size,w:r.w,h:r.h,ext:FMT[fmt].ext,blob:r.blob,url:URL.createObjectURL(r.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.out=null;it.bad=e.kind||'Could not convert this image.'}
     }
     render();
@@ -436,5 +436,6 @@ $('reset').onclick=()=>{
 };
 syncMode();render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

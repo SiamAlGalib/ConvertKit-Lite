@@ -425,7 +425,7 @@ $('save').onclick=async()=>{
       }
     }
     const blob=new Blob([await out.save()],{type:'application/pdf'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=baseName+'-edited.pdf';
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=baseName+'-edited.pdf';import("/stats.js").then(m=>m.trackUse());
     document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
     dirty=false;setSt('Downloaded '+baseName+'-edited.pdf');
     if(lossy)err('Some characters are not supported in the PDF text and were replaced with "?".');
@@ -437,5 +437,6 @@ $('save').onclick=async()=>{
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
 info();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

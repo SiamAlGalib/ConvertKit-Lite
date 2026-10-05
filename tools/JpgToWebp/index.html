@@ -346,7 +346,7 @@ $('convert').onclick=async()=>{
       c.width=c.height=0;
       if(!blob||blob.type!=='image/webp')throw new Error('nowebp');
       if(it.out)URL.revokeObjectURL(it.out.url);
-      it.out={blob,size:blob.size,url:URL.createObjectURL(blob)};
+      it.out={blob,size:blob.size,url:URL.createObjectURL(blob)}; import("/stats.js").then(m=>m.trackUse());
       await new Promise(r=>setTimeout(r));
     }
     render();
@@ -378,5 +378,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

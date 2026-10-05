@@ -596,7 +596,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
       const blob = new Blob([mergedBytes], { type: 'application/pdf' });
 
       if (downloadUrl) URL.revokeObjectURL(downloadUrl);
-      downloadUrl = URL.createObjectURL(blob);
+      downloadUrl = URL.createObjectURL(blob); import('/stats.js').then(m=>m.trackUse());
 
       downloadLink.href = downloadUrl;
       resultMeta.textContent =
@@ -641,5 +641,6 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 
 })();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

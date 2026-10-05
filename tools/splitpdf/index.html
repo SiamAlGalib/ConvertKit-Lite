@@ -749,7 +749,7 @@ nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:
       }
 
       if (downloadUrl) URL.revokeObjectURL(downloadUrl);
-      downloadUrl = URL.createObjectURL(output.blob);
+      downloadUrl = URL.createObjectURL(output.blob); import('/stats.js').then(m=>m.trackUse());
       downloadLink.href = downloadUrl;
       downloadLink.download = output.filename;
 
@@ -822,5 +822,6 @@ nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 
 })();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

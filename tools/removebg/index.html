@@ -306,10 +306,11 @@ $('custom').addEventListener('input',()=>{
 });
 $('dl').onclick=()=>{
   $('after').toBlob(b=>{
-    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=baseName+'-no-bg.png';
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=baseName+'-no-bg.png';import("/stats.js").then(m=>m.trackUse());
     document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1500);
   },'image/png');
 };
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

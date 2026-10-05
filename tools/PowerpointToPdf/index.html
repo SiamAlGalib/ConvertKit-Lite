@@ -1068,7 +1068,7 @@ $('convert').onclick=async()=>{
       try{
         const out=await pptToPdf(it.file,o,(s,n)=>progress(Math.round((i+s/n)/items.length*100),'Converting file '+(i+1)+' of '+items.length+' — slide '+(s+1)+' of '+n+'…'));
         if(it.out)URL.revokeObjectURL(it.out.url);
-        out.url=URL.createObjectURL(out.blob);
+        out.url=URL.createObjectURL(out.blob); import("/stats.js").then(m=>m.trackUse());
         it.out=out;
       }catch(e){
         console.error(e);
@@ -1098,5 +1098,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

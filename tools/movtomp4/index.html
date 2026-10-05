@@ -392,7 +392,7 @@ $('convert').onclick=async()=>{
         if(it.file.size>BIG){const e=new Error('big');e.kind='This file is too large for the browser. Try a file under 1.5 GB.';throw e}
         const res=await convertOne(it,mode,crf,t=>progress(Math.round(i/items.length*100),t));
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:res.blob.size,reenc:res.reenc,blob:res.blob,url:URL.createObjectURL(res.blob)};
+        it.out={size:res.blob.size,reenc:res.reenc,blob:res.blob,url:URL.createObjectURL(res.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad=e.kind||'Could not convert this file. It may be damaged or too large.'}
     }
     onProg=null;
@@ -419,5 +419,6 @@ $('reset').onclick=()=>{
 };
 syncMode();render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

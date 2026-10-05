@@ -48,6 +48,14 @@ main{max-width:1180px;margin:auto;padding:32px 24px 80px}
 .stat-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:15px}
 .stat-label{color:var(--muted);font:10px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.04em}
 .stat-number{margin-top:6px;font-size:26px;font-weight:800}
+
+/* LIVE ACTIVITY */
+.activity{margin-bottom:26px}
+.activity .stats{grid-template-columns:repeat(2,1fr)}
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#34d399;margin-right:6px;box-shadow:0 0 8px #34d399}
+.tool-row{display:flex;justify-content:space-between;padding:11px 18px;border-bottom:1px solid rgba(25,74,132,.5);font-size:13px}
+.tool-row:last-child{border-bottom:0}
+
 .posts-panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .posts-panel-head{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
 .posts-panel-title{font-weight:700;font-size:15px}
@@ -101,7 +109,7 @@ textarea#excerpt{min-height:75px;resize:vertical}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(max-width:900px){.table-head,.post-item{grid-template-columns:1.8fr .7fr 1fr}.table-head div:nth-child(2),.table-head div:nth-child(4),.post-author,.post-date{display:none}}
-@media(max-width:800px){.stats{grid-template-columns:1fr}.editor-grid{grid-template-columns:1fr}.table-head{display:none}.post-item{grid-template-columns:1fr auto}.post-item>div:nth-child(3){display:none}}
+@media(max-width:800px){.stats{grid-template-columns:1fr}.activity .stats{grid-template-columns:1fr 1fr}.editor-grid{grid-template-columns:1fr}.table-head{display:none}.post-item{grid-template-columns:1fr auto}.post-item>div:nth-child(3){display:none}}
 @media(max-width:600px){.topnav-inner{padding:12px 14px}.admin-tag,.view-blog{display:none}main{padding:25px 14px 70px}.dashboard-head h1{font-size:24px}.posts-panel-head{align-items:flex-start;flex-direction:column}.posts-controls{width:100%}.posts-controls button,.posts-controls select{flex:1}.post-cover{width:64px;height:42px;flex-basis:64px}}
 </style>
 </head>
@@ -138,6 +146,18 @@ textarea#excerpt{min-height:75px;resize:vertical}
     <div><h1>Blog Administration</h1><p>Write and publish posts. Published posts appear on your blog right away.</p></div>
     <button class="btn btn-primary" id="newPostBtn">+ New post</button>
   </div>
+
+  <div class="activity">
+    <div class="stats">
+      <div class="stat-card"><div class="stat-label"><span class="live-dot"></span>Online now</div><div class="stat-number" id="onlineNow">0</div></div>
+      <div class="stat-card"><div class="stat-label">Total conversions</div><div class="stat-number" id="totalConv">0</div></div>
+    </div>
+    <div class="posts-panel">
+      <div class="posts-panel-head"><div class="posts-panel-title">Conversions by tool</div></div>
+      <div id="toolTable"><div class="empty-state">No conversions yet.</div></div>
+    </div>
+  </div>
+
   <div class="stats">
     <div class="stat-card"><div class="stat-label">Total Posts</div><div class="stat-number" id="totalPosts">0</div></div>
     <div class="stat-card"><div class="stat-label">Published</div><div class="stat-number" id="publishedPosts">0</div></div>
@@ -210,9 +230,10 @@ textarea#excerpt{min-height:75px;resize:vertical}
 <div id="toast"></div>
 
 <script type="module">
-import { auth, db, COL, ADMIN_EMAILS } from "../blog/firebase.js";
+import { auth, db, rtdb, COL, ADMIN_EMAILS } from "../blog/firebase.js";
 import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { collection, getDocs, doc, setDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { collection, getDocs, doc, setDoc, deleteDoc, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const $ = id => document.getElementById(id);
 const esc = v => { const d = document.createElement("div"); d.textContent = v == null ? "" : String(v); return d.innerHTML; };
@@ -227,12 +248,29 @@ function toast(msg) {
   clearTimeout(toast.timer); toast.timer = setTimeout(() => t.classList.remove("show"), 2600);
 }
 
+/* ---------- LIVE STATS (online now + conversions) ---------- */
+let liveStarted = false;
+function startLiveStats() {
+  if (liveStarted) return; liveStarted = true;
+  onValue(ref(rtdb, "presence"), s => { $("onlineNow").textContent = s.size; },
+    e => console.error("PRESENCE ERROR:", e));
+  onSnapshot(doc(db, "toolStats", "totals"), snap => {
+    const { total = 0, ...tools } = snap.data() || {};
+    $("totalConv").textContent = total.toLocaleString();
+    const rows = Object.entries(tools).sort((a, b) => b[1] - a[1]);
+    $("toolTable").innerHTML = rows.length
+      ? rows.map(([n, c]) => `<div class="tool-row"><span>${esc(n)}</span><strong>${c.toLocaleString()}</strong></div>`).join("")
+      : `<div class="empty-state">No conversions yet.</div>`;
+  }, e => console.error("STATS ERROR:", e));
+}
+
 /* ---------- AUTH ---------- */
 onAuthStateChanged(auth, async user => {
   $("signOutBtn").style.display = user ? "inline-flex" : "none";
   if (!user) return show("loginScreen");
   if (!ADMIN_EMAILS.includes(user.email)) { $("notAdminEmail").textContent = user.email; return show("notAdminBanner"); }
   show("dashboard");
+  startLiveStats();
   await loadPosts();
 });
 $("googleSignInBtn").onclick = async () => {

@@ -370,7 +370,7 @@ function render(){
 }
 
 function save(blob,name){
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;import("/stats.js").then(m=>m.trackUse());
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1500);
 }
 $('out').addEventListener('click',e=>{
@@ -384,5 +384,6 @@ $('zip').onclick=async()=>{
   save(await z.generateAsync({type:'blob'}),'converted-images.zip');
 };
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

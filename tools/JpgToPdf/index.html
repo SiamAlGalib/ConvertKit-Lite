@@ -344,7 +344,7 @@ $('convert').onclick=async()=>{
     }
     progress(100,'Creating PDF…');
     lastDoc=doc;lastName=items.length===1?items[0].name.replace(/\.[^.]+$/,'')+'.pdf':'images.pdf';
-    doc.save(lastName);
+    doc.save(lastName); import('/stats.js').then(m=>m.trackUse());
     $('rinfo').textContent=items.length+' page'+(items.length===1?'':'s')+' · '+lastName;
     $('result').style.display='block';
   }catch(e){
@@ -364,5 +364,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>

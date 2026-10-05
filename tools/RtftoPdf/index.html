@@ -499,7 +499,7 @@ $('convert').onclick=async()=>{
         if(!/^\s*\{\\rtf/.test(txt)){it.bad='This is not a valid RTF file.';continue}
         const res=build(parseRtf(txt),format,m);
         if(it.out)URL.revokeObjectURL(it.out.url);
-        it.out={size:res.blob.size,pages:res.pages,blob:res.blob,url:URL.createObjectURL(res.blob)};
+        it.out={size:res.blob.size,pages:res.pages,blob:res.blob,url:URL.createObjectURL(res.blob)}; import("/stats.js").then(m=>m.trackUse());
       }catch(e){console.error(e);it.bad='Could not convert this file.'}
     }
     render();
@@ -525,5 +525,6 @@ $('reset').onclick=()=>{
 };
 render();
 </script>
+<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
 </body>
 </html>
