@@ -14,16 +14,19 @@
 <link rel="icon" href="/logo.png">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap">
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="modulepreload" href="./firebase.js">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap">
 <style>
 :root{--txt:#f2f6ff;--mut:#9db7dd;--soft:#c4d6ef;--line:#194a84;--hl:#12345d;--card:linear-gradient(145deg,#0b254a,#071a35);--hdr:rgba(2,12,30,.92);--fbg:linear-gradient(160deg,rgba(10,33,66,.85),rgba(5,16,36,.92));--link:#66a9ff;--chip:rgba(44,131,255,.12)}
 html[data-theme=light]{--txt:#0d1b33;--mut:#5b6f92;--soft:#41587d;--line:#cfdcf1;--hl:#d6e2f5;--card:#fff;--hdr:rgba(255,255,255,.88);--fbg:#fff;--link:#2c6fe0;--chip:#eaf2ff;color-scheme:light}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:#020a19;color:var(--txt);font-family:Inter,Arial,sans-serif;min-height:100vh}
 body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(80,140,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(80,140,255,.07) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 25%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 80% 60% at 50% 25%,#000 20%,transparent 75%)}
-body:after{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;background:radial-gradient(600px 420px at 85% 8%,rgba(44,131,255,.38),transparent 70%),radial-gradient(520px 420px at 8% 22%,rgba(163,92,255,.28),transparent 70%),radial-gradient(700px 500px at 62% 100%,rgba(0,200,255,.14),transparent 70%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%);animation:bgDrift 22s ease-in-out infinite alternate}
+body:after{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;background:radial-gradient(600px 420px at 85% 8%,rgba(44,131,255,.38),transparent 70%),radial-gradient(520px 420px at 8% 22%,rgba(163,92,255,.28),transparent 70%),radial-gradient(700px 500px at 62% 100%,rgba(0,200,255,.14),transparent 70%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%);animation:bgDrift 22s ease-in-out infinite alternate;will-change:transform}
 @keyframes bgDrift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-2%,2%,0) scale(1.06)}}
 @media(prefers-reduced-motion:reduce){body:after{animation:none}}
+@media(max-width:700px){body:after{animation:none}}
 html[data-theme=light] body{background:#f4f8ff}
 html[data-theme=light] body:before{background-image:linear-gradient(rgba(60,110,220,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(60,110,220,.08) 1px,transparent 1px)}
 html[data-theme=light] body:after{background:radial-gradient(600px 420px at 85% 8%,rgba(90,150,255,.35),transparent 70%),radial-gradient(520px 420px at 8% 22%,rgba(170,120,255,.25),transparent 70%),linear-gradient(135deg,#f7faff 0%,#eaf1fe 60%,#e2ebfc 100%)}
@@ -92,13 +95,20 @@ html[data-theme=light] .eyebrow{color:#0a8fb0}
 .cb .meta b{margin-left:auto;color:var(--link);font-weight:700}
 .state{text-align:center;color:var(--mut);padding:70px 20px;border:1px dashed var(--line);border-radius:16px}
 .state[hidden]{display:none}
+/* skeleton placeholders shown until posts load */
+.sk{height:380px;border:1px solid var(--line);border-radius:16px;background:var(--card);position:relative;overflow:hidden}
+.sk:before{content:"";position:absolute;left:0;right:0;top:0;height:200px;background:rgba(120,160,230,.10)}
+.sk:after{content:"";position:absolute;left:18px;right:18px;top:226px;height:84px;border-radius:8px;background:repeating-linear-gradient(transparent 0 14px,rgba(120,160,230,.12) 14px 26px)}
+.sk{animation:skPulse 1.4s ease-in-out infinite}
+@keyframes skPulse{0%,100%{opacity:1}50%{opacity:.55}}
+@media(prefers-reduced-motion:reduce){.sk{animation:none}}
 @media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){main{padding:40px 0 10px}.grid{grid-template-columns:1fr}.tools{flex-direction:column;align-items:stretch}#search{width:100%}}
 </style>
 </head>
 <body id="top">
 <header><div class="container navbar">
-<a class="brand" href="/"><img alt="ConvertKit Lite logo" src="/logo.png" onerror="this.style.display='none'"><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<a class="brand" href="/"><img alt="ConvertKit Lite logo" src="/logo.png" width="34" height="34" onerror="this.style.display='none'"><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
 <nav><a href="/">Home</a><a href="/#tools">Tools</a><a href="/#about">About</a><a href="/#faq">FAQ</a><a class="active" href="/blog/">Blog</a></nav>
 <div class="nav-actions">
 <button class="theme" id="themeToggle" type="button" aria-label="Toggle light/dark mode">
@@ -115,13 +125,15 @@ html[data-theme=light] .eyebrow{color:#0a8fb0}
 <div class="rule"></div>
 </div>
 <div class="tools"><span id="count">LOADING ARTICLES…</span><input id="search" type="search" placeholder="Search articles…" aria-label="Search articles"></div>
-<div id="loading" class="state">Loading articles…</div>
+<div id="loading" class="state" hidden>Loading articles…</div>
 <div id="empty" class="state" hidden>No articles found.</div>
-<section id="grid" class="grid" aria-label="ConvertKit Lite blog posts"></section>
+<section id="grid" class="grid" aria-label="ConvertKit Lite blog posts">
+<div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div>
+</section>
 </main>
 <footer>
 <div class="foot-top">
-<div class="foot-brand"><a class="brand" href="/"><img alt="ConvertKit Lite logo" src="/logo.png" onerror="this.style.display='none'"><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a><p>Free online file converter and tools. Convert PDF, images, audio and video in your browser, with no sign-up.</p></div>
+<div class="foot-brand"><a class="brand" href="/"><img alt="ConvertKit Lite logo" src="/logo.png" width="34" height="34" onerror="this.style.display='none'"><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a><p>Free online file converter and tools. Convert PDF, images, audio and video in your browser, with no sign-up.</p></div>
 <div class="foot-col"><h4>Company</h4><a href="/about/">About Us</a><a href="/careers/">Careers</a><a href="/contact/">Contact Us</a><a href="/blog/">Blog</a></div>
 <div class="foot-col"><h4>Support</h4><a href="/#faq">FAQ</a><a href="/contact/">Request a Tool</a><a href="/contact/">Report a Problem</a><a href="/sitemap.xml">Sitemap</a></div>
 <div class="foot-col"><h4>Legal</h4><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/cookies/">Cookie Policy</a><a href="/disclaimer/">Disclaimer</a></div>
@@ -130,46 +142,64 @@ html[data-theme=light] .eyebrow{color:#0a8fb0}
 </footer>
 
 <script type="module">
-import { db, COL } from "./firebase.js";
-import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const $ = id => document.getElementById(id);
 const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]));
 const ms = v => v?.toMillis ? v.toMillis() : (Number(v) || Date.parse(v) || 0);
 const date = v => { const t = ms(v); return t ? new Date(t).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" }) : ""; };
 const mins = h => Math.max(1, Math.round((h || "").replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length / 200));
+
+const CACHE_KEY = "ck-blog-v1";
 let posts = [];
 
 function render() {
   const q = $("search").value.trim().toLowerCase();
-  const list = posts.filter(p => !q || [p.title, p.excerpt, p.metaDescription, p.content, ...(p.tags || [])].join(" ").toLowerCase().includes(q));
+  const list = posts.filter(p => !q || [p.title, p.excerpt, p.metaDescription, ...(p.tags || [])].join(" ").toLowerCase().includes(q));
   $("count").textContent = list.length + (list.length === 1 ? " ARTICLE" : " ARTICLES");
   $("grid").innerHTML = list.map(p => `
     <a class="card" href="post.html?slug=${encodeURIComponent(p.id)}">
       <span class="accent"></span>
-      ${p.coverImageUrl ? `<div class="cover"><img src="${esc(p.coverImageUrl)}" alt="${esc(p.title)}" loading="lazy"></div>` : `<div class="cover ph"></div>`}
+      ${p.coverImageUrl ? `<div class="cover"><img src="${esc(p.coverImageUrl)}" alt="${esc(p.title)}" loading="lazy" decoding="async"></div>` : `<div class="cover ph"></div>`}
       <div class="cb">
         <div class="tags">${(p.tags || []).slice(0, 3).map(t => `<span>${esc(t)}</span>`).join("")}</div>
         <h2>${esc(p.title || "Untitled")}</h2>
         <p>${esc(p.excerpt || p.metaDescription || "")}</p>
-        <div class="meta"><span>${date(p.publishedAt || p.updatedAt)}</span><i></i><span>${mins(p.content)} min read</span><b>Read →</b></div>
+        <div class="meta"><span>${date(p.publishedAt || p.updatedAt)}</span><i></i><span>${p.readMins || 1} min read</span><b>Read →</b></div>
       </div>
     </a>`).join("");
   $("empty").hidden = list.length > 0;
 }
 
+$("search").addEventListener("input", render);
+
+// 1) Instant render from cache (repeat visits)
 try {
+  const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+  if (cached?.length) { posts = cached; $("loading").hidden = true; render(); }
+} catch {}
+
+// 2) Load Firebase in the background, then refresh
+try {
+  const { db, COL } = await import("./firebase.js");
+  const { collection, query, where, getDocs } =
+    await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
   const snap = await getDocs(query(collection(db, COL), where("status", "==", "published")));
-  posts = snap.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => ms(b.publishedAt || b.updatedAt) - ms(a.publishedAt || a.updatedAt));
+  posts = snap.docs.map(d => {
+    const { content, ...rest } = d.data();   // drop the heavy article body
+    return { id: d.id, ...rest, readMins: mins(content) };
+  }).sort((a, b) => ms(b.publishedAt || b.updatedAt) - ms(a.publishedAt || a.updatedAt));
+  try { localStorage.setItem(CACHE_KEY, JSON.stringify(posts)); } catch {}
   $("loading").hidden = true;
   render();
 } catch (e) {
   console.error(e);
   $("loading").hidden = true;
-  $("count").textContent = "";
-  $("empty").hidden = false;
-  $("empty").textContent = "Couldn't load articles. Please refresh and try again.";
+  if (!posts.length) {
+    $("grid").innerHTML = "";
+    $("count").textContent = "";
+    $("empty").hidden = false;
+    $("empty").textContent = "Couldn't load articles. Please refresh and try again.";
+  }
 }
-$("search").addEventListener("input", render);
 </script>
 <script>
 (function(){
