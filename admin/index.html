@@ -163,6 +163,18 @@ textarea#excerpt{min-height:75px;resize:vertical}
         <div style="position:relative;height:260px;padding:14px"><canvas id="chartTools"></canvas></div>
       </div>
     </div>
+    <div class="posts-panel" style="margin-bottom:16px">
+      <div class="posts-panel-head">
+        <div class="posts-panel-title">Visitors by continent</div>
+        <div class="posts-controls"><select id="geoRange">
+          <option value="1">Today</option><option value="7" selected>Last 7 days</option><option value="30">Last 30 days</option>
+        </select></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;padding:14px">
+        <div style="position:relative;height:260px"><canvas id="chartGeo"></canvas></div>
+        <div id="geoCountries"></div>
+      </div>
+    </div>
     <div class="posts-panel">
       <div class="posts-panel-head"><div class="posts-panel-title">Conversions by tool</div></div>
       <div id="toolTable"><div class="empty-state">No conversions yet.</div></div>
@@ -310,7 +322,29 @@ function startLiveStats() {
       { label: "Conversions", data: top.map(n => tools[n] || 0), backgroundColor: "#2d82ff", borderRadius: 4 },
       { label: "Downloads", data: top.map(n => dlTools[n] || 0), backgroundColor: "#9b5cff", borderRadius: 4 }
     ] }, options: axes({ indexAxis: "y" }) });
+    renderGeo();
   };
+  const GEO_COLORS = { Asia:"#2d82ff", Europe:"#9b5cff", NorthAmerica:"#3ee7ff", SouthAmerica:"#34d399", Africa:"#ffb84d", Oceania:"#f472b6", Antarctica:"#9db7dd", Unknown:"#64748b" };
+  const nice = n => n.replace(/([a-z])([A-Z])/g, "$1 $2");
+  const regionName = cc => { try { return new Intl.DisplayNames(undefined, { type: "region" }).of(cc) || cc; } catch (e) { return cc; } };
+  const renderGeo = () => {
+    const days = Number($("geoRange").value) || 7, cont = {}, ctry = {};
+    for (let i = 0; i < days; i++) {
+      const d = docs["geo_d_" + new Date(Date.now() - i * 864e5).toISOString().slice(0, 10)];
+      if (!d) continue;
+      for (const [n, v] of Object.entries(d.continents || {})) cont[n] = (cont[n] || 0) + v;
+      for (const [n, v] of Object.entries(d.countries || {})) ctry[n] = (ctry[n] || 0) + v;
+    }
+    const names = Object.keys(cont).sort((a, b) => cont[b] - cont[a]);
+    mk("chartGeo", { type: "doughnut", data: { labels: names.map(nice), datasets: [{
+      data: names.map(n => cont[n]), backgroundColor: names.map(n => GEO_COLORS[n] || "#64748b"), borderColor: "#071a35" }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "right", labels: { color: TXT } } } } });
+    const top = Object.entries(ctry).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    $("geoCountries").innerHTML = top.length
+      ? top.map(([cc, v]) => `<div class="tool-row"><span>${esc(regionName(cc))}</span><strong>${v.toLocaleString()}</strong></div>`).join("")
+      : `<div class="empty-state">No visitor data yet.</div>`;
+  };
+  $("geoRange").onchange = renderGeo;
   onSnapshot(collection(db, "toolStats"), snap => {
     docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render();
   }, e => console.error("STATS ERROR:", e));
