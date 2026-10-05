@@ -40,8 +40,8 @@ nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-ra
 nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
 nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
 nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
-nav a[href="#learn"]{color:#e6dcff}
-nav a[href="#learn"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+nav a[href="/blog/"]{color:#e6dcff}
+nav a[href="/blog/"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
 
 .hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
 .icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c55e,#2d82ff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(45,130,255,.35)}
@@ -144,6 +144,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 }
 @media(max-width:600px){.article-list{grid-template-columns:1fr}}
 @media(max-width:480px){.opts{grid-template-columns:1fr}.card{padding:20px}}
+.features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "QR Code Generator", "description": "Create a free QR code for a link, text, Wi-Fi or email. Customize colors and size, download PNG or SVG. Private, runs in your browser, no sign-up.", "url": "https://www.convertkitlite.site/tools/qrcodegenerator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "QR Code Generator", "item": "https://www.convertkitlite.site/tools/qrcodegenerator/"}]}]}</script>
 </head>
@@ -151,7 +152,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 
 <header><div class="container navbar">
 <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
-<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="/blog/">Learn</a><a href="#faq">FAQ</a></nav>
 </div></header>
 
 <main>

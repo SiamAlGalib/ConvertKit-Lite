@@ -129,8 +129,8 @@ footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px;top:calc(100% - 2px)}
 nav a:after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
 nav a:hover:after{transform:scaleX(1)}
-nav a[href="#learn"]{color:#e6dcff}
-nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+nav a[href="/blog/"]{color:#e6dcff}
+nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
 .learn{margin-bottom:50px}
 .article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:transform .18s,border-color .18s,box-shadow .18s}
@@ -158,6 +158,7 @@ nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 #quality{width:100%;accent-color:#2d82ff;cursor:pointer}
 .q-hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
 .note{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 16px}
+.features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Compress PDF Online", "description": "Compress PDF files online for free. Reduce PDF size for email and uploads right in your browser. Private, no sign-up, no watermark.", "url": "https://www.convertkitlite.site/tools/compresspdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Compress PDF Online", "item": "https://www.convertkitlite.site/tools/compresspdf/"}]}]}</script>
 </head>
@@ -165,7 +166,7 @@ nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 
 <header><div class="container navbar">
 <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
-<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="/blog/">Learn</a><a href="#faq">FAQ</a></nav>
 </div></header>
 
 <main>
@@ -242,13 +243,6 @@ nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:
     <div class="step"><b>1</b><h3>Add your PDF</h3><p>Drag a PDF onto the box above or click it to browse your files.</p></div>
     <div class="step"><b>2</b><h3>Pick a mode</h3><p>Use "Keep text &amp; quality" for a safe clean-up, or "Maximum compression" for scans and image-heavy files.</p></div>
     <div class="step"><b>3</b><h3>Download</h3><p>Compare the sizes, then download your smaller PDF.</p></div>
-  </div>
-</section>
-
-<section class="narrow learn" id="learn">
-  <h2 class="section-title">Learn about <span>PDFs</span></h2>
-  <p class="section-intro">Helpful guides on reducing PDF size and sharing documents.</p>
-  <div class="article-list">
   </div>
 </section>
 

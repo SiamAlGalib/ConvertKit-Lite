@@ -132,8 +132,8 @@ footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px;top:calc(100% - 2px)}
 nav a:after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
 nav a:hover:after{transform:scaleX(1)}
-nav a[href="#learn"]{color:#e6dcff}
-nav a[href="#learn"]:before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+nav a[href="/blog/"]{color:#e6dcff}
+nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
 .learn{margin-bottom:50px}
 .article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:transform .18s,border-color .18s,box-shadow .18s}
@@ -187,6 +187,7 @@ input[type=color]{width:100%;height:44px;padding:4px;border-radius:10px;border:1
 .info{min-width:0;flex:1}.info strong{display:block;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .badge{font-size:12px;font-weight:800;color:#48e59d;white-space:nowrap}.badge.bad{color:#ffb454}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.cmp img,.ph{height:150px}}
+.features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PNG to JPG Converter", "description": "Convert PNG to JPG online for free. Batch convert many images at once with adjustable quality, right in your browser. Private, no sign-up.", "url": "https://www.convertkitlite.site/tools/pngtojpg/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PNG to JPG Converter", "item": "https://www.convertkitlite.site/tools/pngtojpg/"}]}]}</script>
 </head>
@@ -194,7 +195,7 @@ input[type=color]{width:100%;height:44px;padding:4px;border-radius:10px;border:1
 
 <header><div class="container navbar">
 <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
-<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="#learn">Learn</a><a href="#faq">FAQ</a></nav>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="/blog/">Learn</a><a href="#faq">FAQ</a></nav>
 </div></header>
 
 <main>
@@ -240,13 +241,6 @@ input[type=color]{width:100%;height:44px;padding:4px;border-radius:10px;border:1
     <div class="step"><b>1</b><h3>Add your PNGs</h3><p>Drag one or many PNG images onto the box above, or click it to browse.</p></div>
     <div class="step"><b>2</b><h3>Adjust the settings</h3><p>Set the JPG quality and pick a background color for any transparent areas.</p></div>
     <div class="step"><b>3</b><h3>Download</h3><p>Compare before and after, then download each JPG or get them all as a ZIP.</p></div>
-  </div>
-</section>
-
-<section class="narrow learn" id="learn">
-  <h2 class="section-title">Learn about <span>Images</span></h2>
-  <p class="section-intro">Helpful guides on image formats, quality and file size.</p>
-  <div class="article-list">
   </div>
 </section>
 
