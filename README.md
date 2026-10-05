@@ -2,7 +2,7 @@
 
 **Free online file tools that run in your browser.** Merge, split, compress and convert PDFs, work with images, and more, with no sign-up and no installs.
 
-🌐 **Live site:** [convertkitlite.site](https://www.convertkitlite.site)
+🌐 **Live site:** [www.convertkitlite.site](https://www.convertkitlite.site)
 
 ---
 
