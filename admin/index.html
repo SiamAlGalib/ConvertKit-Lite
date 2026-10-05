@@ -153,6 +153,16 @@ textarea#excerpt{min-height:75px;resize:vertical}
       <div class="stat-card"><div class="stat-label">Total conversions</div><div class="stat-number" id="totalConv">0</div></div>
       <div class="stat-card"><div class="stat-label">Total downloads</div><div class="stat-number" id="totalDl">0</div></div>
     </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:16px">
+      <div class="posts-panel">
+        <div class="posts-panel-head"><div class="posts-panel-title">Last 14 days</div></div>
+        <div style="position:relative;height:260px;padding:14px"><canvas id="chartDaily"></canvas></div>
+      </div>
+      <div class="posts-panel">
+        <div class="posts-panel-head"><div class="posts-panel-title">Top tools</div></div>
+        <div style="position:relative;height:260px;padding:14px"><canvas id="chartTools"></canvas></div>
+      </div>
+    </div>
     <div class="posts-panel">
       <div class="posts-panel-head"><div class="posts-panel-title">Conversions by tool</div></div>
       <div id="toolTable"><div class="empty-state">No conversions yet.</div></div>
@@ -255,8 +265,23 @@ function startLiveStats() {
   if (liveStarted) return; liveStarted = true;
   onValue(ref(rtdb, "presence"), s => { $("onlineNow").textContent = s.size; },
     e => console.error("PRESENCE ERROR:", e));
-  let conv = {}, dl = {};
+  let docs = {}, charts = {};
+  const TXT = "#9fb4d6", GRID = "rgba(120,160,220,.15)";
+  const mk = (id, cfg) => {
+    if (typeof Chart === "undefined") return;
+    if (charts[id]) { charts[id].data = cfg.data; charts[id].update(); return; }
+    charts[id] = new Chart($(id), cfg);
+  };
+  const axes = extra => Object.assign({
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: TXT } } },
+    scales: {
+      x: { ticks: { color: TXT }, grid: { color: GRID }, beginAtZero: true },
+      y: { ticks: { color: TXT, precision: 0 }, grid: { color: GRID }, beginAtZero: true }
+    }
+  }, extra || {});
   const render = () => {
+    const conv = docs["totals"] || {}, dl = docs["dl_totals"] || {};
     const { total = 0, ...tools } = conv;
     const { total: dlTotal = 0, ...dlTools } = dl;
     $("totalConv").textContent = total.toLocaleString();
@@ -267,9 +292,28 @@ function startLiveStats() {
       ? `<div class="tool-row"><span><b>Tool</b></span><span><b>Conversions / Downloads</b></span></div>` +
         names.map(n => `<div class="tool-row"><span>${esc(n)}</span><strong>${(tools[n] || 0).toLocaleString()} / ${(dlTools[n] || 0).toLocaleString()}</strong></div>`).join("")
       : `<div class="empty-state">No conversions yet.</div>`;
+
+    const labels = [], cs = [], ds = [];
+    for (let i = 13; i >= 0; i--) {
+      const k = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+      labels.push(k.slice(5));
+      cs.push((docs["d_" + k] || {}).total || 0);
+      ds.push((docs["dl_d_" + k] || {}).total || 0);
+    }
+    mk("chartDaily", { type: "bar", data: { labels, datasets: [
+      { label: "Conversions", data: cs, backgroundColor: "#2d82ff", borderRadius: 4 },
+      { label: "Downloads", data: ds, backgroundColor: "#9b5cff", borderRadius: 4 }
+    ] }, options: axes() });
+
+    const top = names.slice(0, 10);
+    mk("chartTools", { type: "bar", data: { labels: top, datasets: [
+      { label: "Conversions", data: top.map(n => tools[n] || 0), backgroundColor: "#2d82ff", borderRadius: 4 },
+      { label: "Downloads", data: top.map(n => dlTools[n] || 0), backgroundColor: "#9b5cff", borderRadius: 4 }
+    ] }, options: axes({ indexAxis: "y" }) });
   };
-  onSnapshot(doc(db, "toolStats", "totals"), snap => { conv = snap.data() || {}; render(); }, e => console.error("STATS ERROR:", e));
-  onSnapshot(doc(db, "toolStats", "dl_totals"), snap => { dl = snap.data() || {}; render(); }, e => console.error("DL STATS ERROR:", e));
+  onSnapshot(collection(db, "toolStats"), snap => {
+    docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render();
+  }, e => console.error("STATS ERROR:", e));
 }
 
 /* ---------- AUTH ---------- */
@@ -444,5 +488,6 @@ $("deleteBtn").onclick = async () => {
   } catch (e) { console.error(e); toast("Couldn't delete post."); }
 };
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </body>
 </html>
