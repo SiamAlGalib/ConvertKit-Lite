@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.convertkitlite.site/</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-
-  <!-- PDF & Document -->
-  <url><loc>https://www.convertkitlite.site/tools/mergepdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/splitpdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/compresspdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/editpdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/wordtopdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/powerpointtopdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/pptxtopdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/pdftopowerpoint/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/pdftopptx/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/pdftoword/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/pdftojpg/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/jpgtopdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/rtftopdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/txttopdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/docxtohtml/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/docxtotxt/index.htm</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/exceltopdf/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Data -->
-  <url><loc>https://www.convertkitlite.site/tools/csvtoxlsx/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/xlsxtocsv/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Image -->
-  <url><loc>https://www.convertkitlite.site/tools/pngtojpg/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/jpgtowebp/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/webptojpg/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/heictojpg/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/removebg/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/imagecompressor/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Audio & Video -->
-  <url><loc>https://www.convertkitlite.site/tools/mp4tomp3/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/mp4togif/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/mp3towav/index.htm</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Calculators & Utilities -->
-  <url><loc>https://www.convertkitlite.site/tools/agecalculator/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/bmicalculator/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/faceage/</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.convertkitlite.site/tools/qrcodegenerator/</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Blog -->
-  <url><loc>https://www.convertkitlite.site/blog/</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertkitlite.site/blog/post.html?slug=age-calculator-find-your-exact-age</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.convertkitlite.site/blog/post.html?slug=face-age-estimator-how-old-do-you-look</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.convertkitlite.site/blog/post.html?slug=mp4-to-mp3-converter-extract-audio-from-video</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.convertkitlite.site/blog/post.html?slug=qr-code-generator-link-wifi-email</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- ADD NEW PAGES ABOVE THIS LINE -->
-     <!-- BLOG-START -->
-  <url><loc>https://www.convertkitlite.site/blog/age-calculator-exact-age-years-months-days/</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://www.convertkitlite.site/blog/age-calculator-find-your-exact-age/</loc><lastmod>2026-10-04</lastmod></url>
-  <url><loc>https://www.convertkitlite.site/blog/convert-webp-to-jpg-free-private-bulk/</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://www.convertkitlite.site/blog/face-age-estimator-how-old-do-you-look/</loc><lastmod>2026-10-04</lastmod></url>
-  <url><loc>https://www.convertkitlite.site/blog/mp4-to-mp3-converter-extract-audio-from-video/</loc><lastmod>2026-10-04</lastmod></url>
-  <url><loc>https://www.convertkitlite.site/blog/qr-code-generator-link-wifi-email/</loc><lastmod>2026-10-04</lastmod></url>
-  <!-- BLOG-END -->
+  <url><loc>https://www.convertkitlite.site/</loc></url>
+  <url><loc>https://www.convertkitlite.site/about/</loc></url>
+  <url><loc>https://www.convertkitlite.site/blog/</loc></url>
+  <url><loc>https://www.convertkitlite.site/blog/age-calculator-exact-age-years-months-days/</loc></url>
+  <url><loc>https://www.convertkitlite.site/blog/age-calculator-find-your-exact-age/</loc></url>
+  <url><loc>https://www.convertkitlite.site/blog/convert-webp-to-jpg-free-private-bulk/</loc></url>
+  <url><loc>https://www.convertkitlite.site/blog/face-age-estimator-how-old-do-you-look/</loc></url>
+  <url><loc>https://www.convertkitlite.site/blog/mp4-to-mp3-converter-extract-audio-from-video/</loc></url>
+  <url><loc>https://www.convertkitlite.site/blog/qr-code-generator-link-wifi-email/</loc></url>
+  <url><loc>https://www.convertkitlite.site/careers/</loc></url>
+  <url><loc>https://www.convertkitlite.site/contact/</loc></url>
+  <url><loc>https://www.convertkitlite.site/cookies/</loc></url>
+  <url><loc>https://www.convertkitlite.site/disclaimer/</loc></url>
+  <url><loc>https://www.convertkitlite.site/privacy/</loc></url>
+  <url><loc>https://www.convertkitlite.site/terms/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/agecalculator/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/bmicalculator/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/compresspdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/csvtoxlsx/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/docxtohtml/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/docxtotxt/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/editpdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/exceltopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/faceage/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/heictojpg/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/imagecompressor/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/imageconverter/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/jpgtopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/jpgtopng/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/jpgtowebp/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/mergepdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/movtomp4/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/mp3towav/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/mp4togif/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/mp4tomp3/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pdftoexcel/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pdftojpg/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pdftopowerpoint/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pdftopptx/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pdftotxt/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pdftoword/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pngtojpg/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/powerpointtopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/pptxtopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/qrcodegenerator/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/removebg/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/rtftopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/splitpdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/txttopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/webptojpg/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/wordtopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/xlsxtocsv/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/xlsxtopdf/</loc></url>
+  <url><loc>https://www.convertkitlite.site/tools/zipextractor/</loc></url>
 </urlset>
