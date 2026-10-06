@@ -247,7 +247,7 @@ input.addEventListener('change',e=>useFile(e.target.files[0]));for(const ev of [
 estimateBtn.addEventListener('click',async()=>{if(!img.src)return;estimateBtn.disabled=true;result.style.display='none';try{await loadModel();status('Analyzing face…');const detections=await faceapi.detectAllFaces(img,new faceapi.TinyFaceDetectorOptions({inputSize:416,scoreThreshold:.35})).withAgeAndGender();if(!detections.length){status('No face detected. Try a clearer, front-facing photo with better lighting.');return}if(detections.length>1){status('More than one face detected. Please crop the image to show only one person, then try again.');return}const age=detections[0].age;ageValue.textContent=String(Math.round(age));result.style.display='block';status('Estimate complete.');}catch(err){console.error(err);status('Could not load the AI model or analyze this photo. Check your internet connection, then try again. Details: '+(err.message||'unknown error'))}finally{estimateBtn.disabled=!img.src}});
 resetBtn.addEventListener('click',()=>{input.value='';img.removeAttribute('src');preview.style.display='none';result.style.display='none';estimateBtn.disabled=true;ageValue.textContent='—';if(currentUrl){URL.revokeObjectURL(currentUrl);currentUrl=null}status('Choose a photo to get started.')});
 </script>
-<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
+<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);</script>
 <script type="module" src="/geo-track.js"></script>
 </body>
 </html>

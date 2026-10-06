@@ -277,7 +277,7 @@ async function convertDocx(it,mode,imgs){
   if(!html.trim()){const e=new Error('empty');e.kind='No content was found in this document.';throw e}
   let out=html.trim()+'\n';
   if(mode==='page'){
-    out='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+esc(base(it.name))+'</title>\n<style>'+PAGE_CSS+'</style>\n</head>\n<body>\n'+out+'<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
+    out='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+esc(base(it.name))+'</title>\n<style>'+PAGE_CSS+'</style>\n</head>\n<body>\n'+out+'<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);</script>
 <script type="module" src="/geo-track.js"></script>
 </body>\n</html>\n';
   }
@@ -370,7 +370,7 @@ $('reset').onclick=()=>{
 };
 syncMode();render();
 </script>
-<script type="module">import { trackPresence } from "/stats.js"; trackPresence();</script>
+<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);</script>
 <script type="module" src="/geo-track.js"></script>
 </body>
 </html>
