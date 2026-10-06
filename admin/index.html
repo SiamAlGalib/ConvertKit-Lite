@@ -49,10 +49,11 @@ main{max-width:1180px;margin:auto;padding:32px 24px 80px}
 .stat-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:15px}
 .stat-label{color:var(--muted);font:10px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.04em}
 .stat-number{margin-top:6px;font-size:26px;font-weight:800}
+.stat-sub{margin-top:3px;color:var(--muted);font-size:11px}
 
 /* LIVE ACTIVITY */
 .activity{margin-bottom:26px}
-.activity .stats{grid-template-columns:repeat(2,1fr)}
+.activity .stats{grid-template-columns:repeat(3,1fr)}
 .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#34d399;margin-right:6px;box-shadow:0 0 8px #34d399}
 .tool-row{display:flex;justify-content:space-between;padding:11px 18px;border-bottom:1px solid rgba(25,74,132,.5);font-size:13px}
 .tool-row:last-child{border-bottom:0}
@@ -151,18 +152,27 @@ textarea#excerpt{min-height:75px;resize:vertical}
   <div class="activity">
     <div class="stats">
       <div class="stat-card"><div class="stat-label"><span class="live-dot"></span>Online now</div><div class="stat-number" id="onlineNow">0</div></div>
-      <div class="stat-card"><div class="stat-label">Total conversions</div><div class="stat-number" id="totalConv">0</div></div>
-      <div class="stat-card"><div class="stat-label">Total downloads</div><div class="stat-number" id="totalDl">0</div></div>
+      <div class="stat-card"><div class="stat-label">Impressions (14 days)</div><div class="stat-number" id="totImpr">0</div><div class="stat-sub">Unique visitors</div></div>
+      <div class="stat-card"><div class="stat-label">Clicks (14 days)</div><div class="stat-number" id="totClicks">0</div><div class="stat-sub" id="ctrLine">CTR —</div></div>
+    </div>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-label">Total conversions (all time)</div><div class="stat-number" id="totalConv">0</div></div>
+      <div class="stat-card"><div class="stat-label">Total downloads (all time)</div><div class="stat-number" id="totalDl">0</div></div>
+      <div class="stat-card"><div class="stat-label">Impressions today</div><div class="stat-number" id="imprToday">0</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:16px">
       <div class="posts-panel">
-        <div class="posts-panel-head"><div class="posts-panel-title">Last 14 days</div></div>
-        <div style="position:relative;height:260px;padding:14px"><canvas id="chartDaily"></canvas></div>
+        <div class="posts-panel-head"><div class="posts-panel-title">Impressions (visitors), last 14 days</div></div>
+        <div style="position:relative;height:260px;padding:14px"><canvas id="chartImpr"></canvas></div>
       </div>
       <div class="posts-panel">
-        <div class="posts-panel-head"><div class="posts-panel-title">Top tools</div></div>
-        <div style="position:relative;height:260px;padding:14px"><canvas id="chartTools"></canvas></div>
+        <div class="posts-panel-head"><div class="posts-panel-title">Clicks (conversions &amp; downloads), last 14 days</div></div>
+        <div style="position:relative;height:260px;padding:14px"><canvas id="chartDaily"></canvas></div>
       </div>
+    </div>
+    <div class="posts-panel" style="margin-bottom:16px">
+      <div class="posts-panel-head"><div class="posts-panel-title">Top tools (clicks)</div></div>
+      <div style="position:relative;height:260px;padding:14px"><canvas id="chartTools"></canvas></div>
     </div>
     <div class="posts-panel" style="margin-bottom:16px">
       <div class="posts-panel-head">
@@ -272,7 +282,7 @@ function toast(msg) {
   clearTimeout(toast.timer); toast.timer = setTimeout(() => t.classList.remove("show"), 2600);
 }
 
-/* ---------- LIVE STATS (online now + conversions) ---------- */
+/* ---------- LIVE STATS (online now + impressions + clicks) ---------- */
 let liveStarted = false;
 function startLiveStats() {
   if (liveStarted) return; liveStarted = true;
@@ -306,16 +316,30 @@ function startLiveStats() {
         names.map(n => `<div class="tool-row"><span>${esc(n)}</span><strong>${(tools[n] || 0).toLocaleString()} / ${(dlTools[n] || 0).toLocaleString()}</strong></div>`).join("")
       : `<div class="empty-state">No conversions yet.</div>`;
 
-    const labels = [], cs = [], ds = [];
+    // Impressions = unique visitors (geo_d_<date>.total)
+    // Clicks      = conversions (d_<date>.total) + downloads (dl_d_<date>.total)
+    const labels = [], imp = [], cs = [], ds = [];
     for (let i = 13; i >= 0; i--) {
       const k = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
       labels.push(k.slice(5));
+      imp.push((docs["geo_d_" + k] || {}).total || 0);
       cs.push((docs["d_" + k] || {}).total || 0);
       ds.push((docs["dl_d_" + k] || {}).total || 0);
     }
+    const sum = a => a.reduce((x, y) => x + y, 0);
+    const totImp = sum(imp), totClk = sum(cs) + sum(ds);
+    $("totImpr").textContent = totImp.toLocaleString();
+    $("totClicks").textContent = totClk.toLocaleString();
+    $("imprToday").textContent = (imp[imp.length - 1] || 0).toLocaleString();
+    $("ctrLine").textContent = "CTR " + (totImp ? (totClk / totImp * 100).toFixed(1) + "%" : "—");
+
+    mk("chartImpr", { type: "line", data: { labels, datasets: [
+      { label: "Impressions", data: imp, borderColor: "#3ee7ff", backgroundColor: "rgba(62,231,255,.15)", fill: true, tension: .3, pointRadius: 3 }
+    ] }, options: axes() });
+
     mk("chartDaily", { type: "bar", data: { labels, datasets: [
-      { label: "Conversions", data: cs, backgroundColor: "#2d82ff", borderRadius: 4 },
-      { label: "Downloads", data: ds, backgroundColor: "#9b5cff", borderRadius: 4 }
+      { label: "Conversion clicks", data: cs, backgroundColor: "#2d82ff", borderRadius: 4 },
+      { label: "Download clicks", data: ds, backgroundColor: "#9b5cff", borderRadius: 4 }
     ] }, options: axes() });
 
     const top = names.slice(0, 10);
@@ -452,7 +476,7 @@ function refresh() {
 }
 
 $("title").oninput = () => { if (!editingId && !$("slug").dataset.manual) $("slug").value = slugify($("title").value); refresh(); };
-// FIX: don't strip trailing hyphens while typing, so you can type "my-slug".
+// Don't strip trailing hyphens while typing, so you can type "my-slug".
 // Full cleanup (slugify) happens once on save.
 $("slug").oninput = () => {
   $("slug").dataset.manual = "1";
@@ -500,7 +524,7 @@ $("saveDraftBtn").onclick = () => savePost("draft");
 $("publishBtn").onclick = () => savePost("published");
 
 async function savePost(status) {
-  // FIX: clean the slug once here (trims stray hyphens, etc.)
+  // Clean the slug once here (trims stray hyphens, etc.)
   const title = $("title").value.trim(), slug = slugify($("slug").value);
   if (!title || !slug) return toast("Title and slug are required.");
   $("slug").value = slug; refresh();
