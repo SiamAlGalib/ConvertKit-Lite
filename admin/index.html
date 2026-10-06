@@ -186,6 +186,15 @@ textarea#excerpt{min-height:75px;resize:vertical}
         <div id="geoCountries"></div>
       </div>
     </div>
+    <div class="posts-panel" style="margin-bottom:16px">
+      <div class="posts-panel-head">
+        <div class="posts-panel-title">Clicks by country</div>
+        <div class="posts-controls"><select id="clkRange">
+          <option value="1">Today</option><option value="7" selected>Last 7 days</option><option value="30">Last 30 days</option>
+        </select></div>
+      </div>
+      <div id="clkCountries"></div>
+    </div>
     <div class="posts-panel">
       <div class="posts-panel-head"><div class="posts-panel-title">Conversions by tool</div></div>
       <div id="toolTable"><div class="empty-state">No conversions yet.</div></div>
@@ -348,6 +357,7 @@ function startLiveStats() {
       { label: "Downloads", data: top.map(n => dlTools[n] || 0), backgroundColor: "#9b5cff", borderRadius: 4 }
     ] }, options: axes({ indexAxis: "y" }) });
     renderGeo();
+    renderClkGeo();
   };
   const GEO_COLORS = { Asia:"#2d82ff", Europe:"#9b5cff", NorthAmerica:"#3ee7ff", SouthAmerica:"#34d399", Africa:"#ffb84d", Oceania:"#f472b6", Antarctica:"#9db7dd", Unknown:"#64748b" };
   const nice = n => n.replace(/([a-z])([A-Z])/g, "$1 $2");
@@ -368,6 +378,19 @@ function startLiveStats() {
     $("geoCountries").innerHTML = top.length
       ? top.map(([cc, v]) => `<div class="tool-row"><span>${esc(regionName(cc))}</span><strong>${v.toLocaleString()}</strong></div>`).join("")
       : `<div class="empty-state">No visitor data yet.</div>`;
+  const renderClkGeo = () => {
+    const days = Number($("clkRange").value) || 7, ctry = {};
+    for (let i = 0; i < days; i++) {
+      const d = docs["clk_geo_d_" + new Date(Date.now() - i * 864e5).toISOString().slice(0, 10)];
+      if (!d) continue;
+      for (const [n, v] of Object.entries(d.countries || {})) ctry[n] = (ctry[n] || 0) + v;
+    }
+    const rows = Object.entries(ctry).sort((x, y) => y[1] - x[1]);
+    $("clkCountries").innerHTML = rows.length
+      ? rows.map(([cc, v]) => `<div class="tool-row"><span>${esc(cc === "Unknown" ? "Unknown" : regionName(cc))}</span><strong>${v.toLocaleString()} ${v === 1 ? "click" : "clicks"}</strong></div>`).join("")
+      : `<div class="empty-state">No click data yet. Counting starts when the new stats.js goes live.</div>`;
+  };
+  $("clkRange").onchange = renderClkGeo;
   };
   $("geoRange").onchange = renderGeo;
   onSnapshot(collection(db, "toolStats"), snap => {

@@ -14,12 +14,49 @@ export function trackPresence() {
   } catch (e) {}
 }
 
+/* ---------- country lookup for clicks (once per browser session) ---------- */
+let ccPromise = null;
+function getCountry() {
+  if (ccPromise) return ccPromise;
+  try {
+    const cached = sessionStorage.getItem("ckl_click_cc");
+    if (cached) return (ccPromise = Promise.resolve(cached));
+  } catch (e) {}
+  ccPromise = (async () => {
+    let cc = null;
+    try {
+      const t = await (await fetch("https://www.cloudflare.com/cdn-cgi/trace")).text();
+      const m = t.match(/loc=([A-Z]{2})/);
+      if (m) cc = m[1];
+    } catch (e) {}
+    if (!cc) {
+      try {
+        const j = await (await fetch("https://api.country.is/")).json();
+        if (j && /^[A-Z]{2}$/.test(j.country)) cc = j.country;
+      } catch (e) {}
+    }
+    if (cc) { try { sessionStorage.setItem("ckl_click_cc", cc); } catch (e) {} }
+    else ccPromise = null;
+    return cc;
+  })();
+  return ccPromise;
+}
+
+// toolStats/clk_geo_d_YYYY-MM-DD = { total, countries: { BD: n, IN: n, Unknown: n } }
+async function trackClickCountry(day) {
+  try {
+    const cc = (await getCountry()) || "Unknown";
+    await setDoc(doc(db, "toolStats", "clk_geo_d_" + day), { total: increment(1), countries: { [cc]: increment(1) } }, { merge: true });
+  } catch (e) {}
+}
+
 export async function trackUse(tool) {
  tool = tool || location.pathname.split("/").filter(Boolean).pop() || "unknown";
   const day = new Date().toISOString().slice(0, 10);
   try {
     await setDoc(doc(db, "toolStats", "totals"), { [tool]: increment(1), total: increment(1) }, { merge: true });
     await setDoc(doc(db, "toolStats", "d_" + day), { [tool]: increment(1), total: increment(1) }, { merge: true });
+    await trackClickCountry(day);
   } catch (e) {}
 }
 
@@ -29,6 +66,7 @@ export async function trackDownload(tool) {
   try {
     await setDoc(doc(db, "toolStats", "dl_totals"), { [tool]: increment(1), total: increment(1) }, { merge: true });
     await setDoc(doc(db, "toolStats", "dl_d_" + day), { [tool]: increment(1), total: increment(1) }, { merge: true });
+    await trackClickCountry(day);
   } catch (e) {}
 }
 
