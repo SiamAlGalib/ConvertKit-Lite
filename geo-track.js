@@ -1,8 +1,15 @@
 /**
  * ConvertKit Lite - visitor geo tracker
- * Counts ONE visitor per browser per UTC day, grouped by country + continent.
+ * Counts ONE real visitor per browser per UTC day, grouped by country + continent.
  * Stores only counters (no IP address, no personal data) in Firestore:
  *   toolStats/geo_d_YYYY-MM-DD = { total, continents:{Asia:n,...}, countries:{BD:n,...} }
+ *
+ * A visit is counted only if:
+ *   - it is not the admin panel
+ *   - it is not an obvious bot / automated browser
+ *   - the visitor interacts with the page (scroll, click, key, touch, mouse move)
+ *     and stays at least 3 seconds
+ *   - the tab is visible when the count is sent
  *
  * Add to every public page (before </body>):
  *   <script type="module" src="/geo-track.js"></script>
@@ -22,6 +29,8 @@ const GROUPS = {
 const MAP = {};
 for (const [continent, list] of Object.entries(GROUPS)) list.split(" ").forEach(c => (MAP[c] = continent));
 
+const BOT_RE = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|monitor|preview|python|curl|wget|axios|phantom|selenium|puppeteer|playwright/i;
+
 async function getCountry() {
   try {
     const t = await (await fetch("https://www.cloudflare.com/cdn-cgi/trace")).text();
@@ -35,21 +44,42 @@ async function getCountry() {
   return null;
 }
 
+// Resolves only after a real interaction AND at least 3 seconds on the page
+function waitForHuman() {
+  return new Promise(resolve => {
+    const start = Date.now();
+    const events = ["pointerdown", "keydown", "scroll", "touchstart", "mousemove"];
+    const fire = () => {
+      events.forEach(e => removeEventListener(e, fire));
+      setTimeout(resolve, Math.max(0, 3000 - (Date.now() - start)));
+    };
+    events.forEach(e => addEventListener(e, fire, { passive: true, once: true }));
+  });
+}
+
 (async function track() {
+  const day = new Date().toISOString().slice(0, 10);
   try {
     if (location.pathname.startsWith("/admin")) return; // never count yourself in the admin panel
-    const day = new Date().toISOString().slice(0, 10);
+    if (navigator.webdriver || BOT_RE.test(navigator.userAgent)) return; // skip bots
     if (localStorage.getItem("ckl_geo_day") === day) return; // already counted today
+
+    // Mark as counted BEFORE any async work, so parallel tabs/pages can't double count
+    localStorage.setItem("ckl_geo_day", day);
+
+    await waitForHuman();
+    if (document.visibilityState !== "visible") throw new Error("hidden");
+
     const cc = await getCountry();
-    if (!cc) return;
+    if (!cc) throw new Error("no country");
     const continent = MAP[cc] || "Unknown";
     await setDoc(
       doc(db, "toolStats", "geo_d_" + day),
       { total: increment(1), continents: { [continent]: increment(1) }, countries: { [cc]: increment(1) } },
       { merge: true }
     );
-    localStorage.setItem("ckl_geo_day", day);
   } catch (e) {
+    localStorage.removeItem("ckl_geo_day"); // failed, so allow a retry on the next load
     console.warn("geo-track skipped:", e && e.message);
   }
 })();
