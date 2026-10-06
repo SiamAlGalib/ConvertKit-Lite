@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compress PDF to 100KB Online Free — No Signup | ConvertKit Lite</title>
+<meta name="description" content="Compress a PDF to under 100KB in your browser. Free, no watermark, no signup, and your file is never uploaded. Auto-targets 100 KB for form uploads.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://www.convertkitlite.site/tools/compress-pdf-to-100kb/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:title" content="Compress PDF to 100KB Online Free — No Signup | ConvertKit Lite">
+<meta property="og:description" content="Compress a PDF to under 100KB in your browser. Free, no watermark, no signup, and your file is never uploaded. Auto-targets 100 KB for form uploads.">
+<meta property="og:url" content="https://www.convertkitlite.site/tools/compress-pdf-to-100kb/">
+<meta property="og:image" content="https://www.convertkitlite.site/logo.png">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap"></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<style>
+:root{--bg:#020a19;--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent:#7c6cff;--accent-2:#a46bff;--accent-blue:#2d82ff;--success:#22c55e;--danger:#f43f5e;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(ellipse at 83% 15%,rgba(21,71,145,.28),transparent 35%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:50;display:flex;align-items:center}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;letter-spacing:0;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{display:flex;align-items:center;gap:8px;font-size:13px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;transition:.2s}
+nav a:hover{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);transform:translateY(-1px)}
+@media(max-width:700px){nav{display:none}}
+
+.hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
+.icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c55e,#2d82ff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(45,130,255,.35)}
+h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
+h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
+.trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
+.trust-row div::before{content:"✓";color:var(--success);font-weight:700}
+
+.tool{margin-top:32px;margin-bottom:48px}
+.card{background:linear-gradient(145deg,#0a2245,#071932);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.dropzone{border:2px dashed rgba(76,140,255,.45);border-radius:14px;background:rgba(45,130,255,.05);padding:44px 20px;text-align:center;cursor:pointer;transition:.2s}
+.dropzone:hover,.dropzone.dragover{border-color:var(--accent-blue);background:rgba(45,130,255,.1)}
+.dz-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 16px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);display:grid;place-items:center;font-size:24px}
+.dropzone h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.dropzone p{color:var(--text-faint);font-size:13.5px}
+.dropzone input{display:none}
+#fileInfoWrap{margin-top:22px;display:none}
+.file-item{display:flex;align-items:center;gap:12px;background:var(--panel-2);border:1px solid #194a84;border-radius:12px;padding:12px 14px}
+.file-icon{width:34px;height:34px;border-radius:8px;flex-shrink:0;background:rgba(244,63,94,.15);color:#f43f5e;display:grid;place-items:center;font-size:15px}
+.file-meta{flex:1;min-width:0}
+.file-name{font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-size{font-size:11.5px;color:var(--text-faint);margin-top:2px}
+.file-remove,.range-remove{background:none;border:none;color:var(--text-faint);cursor:pointer;font-size:16px;padding:4px 8px;border-radius:6px;transition:.15s;flex-shrink:0}
+.file-remove:hover,.range-remove:hover{color:var(--danger);background:rgba(244,63,94,.1)}
+#optionsWrap{margin-top:22px;display:none}
+.page-count-pill{display:inline-block;background:rgba(59,130,246,.12);color:#93c5fd;border:1px solid rgba(59,130,246,.3);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;margin-bottom:14px}
+.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.mode-btn{background:var(--panel-2);border:1px solid #194a84;color:var(--text-dim);padding:14px 12px;border-radius:12px;font-family:inherit;cursor:pointer;text-align:left;transition:.15s}
+.mode-btn h4{font-size:13.5px;color:var(--text);margin-bottom:3px}
+.mode-btn p{font-size:11.5px;color:var(--text-faint);line-height:1.4}
+.mode-btn.active{border-color:var(--accent-blue);background:rgba(45,130,255,.12)}
+.field-label{font-size:12.5px;color:var(--text-dim);font-weight:600;margin-bottom:8px;display:block}
+.range-input-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.range-order{width:24px;height:24px;border-radius:7px;flex-shrink:0;background:linear-gradient(135deg,#2d82ff,#7c3ff0);display:grid;place-items:center;font-size:12px;font-weight:700}
+.range-input-row input{flex:1;background:var(--panel-2);border:1px solid #194a84;color:var(--text);padding:11px 14px;border-radius:10px;font:inherit;font-size:13.5px}
+.range-input-row input:focus{outline:none;border-color:var(--accent-blue)}
+.add-more-btn{background:none;border:1px dashed #2b5d97;color:#80baff;border-radius:10px;padding:9px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.add-more-btn:hover{background:rgba(45,130,255,.1)}
+.range-hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
+.merge-btn{width:100%;margin-top:18px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff;border:none;padding:15px;border-radius:12px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 25px rgba(66,67,255,.2);transition:transform .1s,filter .2s}
+.merge-btn:hover:not(:disabled){filter:brightness(1.1)}
+.merge-btn:active:not(:disabled){transform:scale(.99)}
+.merge-btn:disabled{opacity:.4;cursor:not-allowed}
+.spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite;display:none}
+.merge-btn.loading .spinner{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+#result{display:none;margin-top:22px;text-align:center;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);border-radius:14px;padding:26px}
+.result-icon{width:52px;height:52px;border-radius:50%;margin:0 auto 14px;background:rgba(34,197,94,.15);color:var(--success);display:grid;place-items:center;font-size:24px}
+#result h3{font-size:17px;margin-bottom:6px}
+#result p{color:var(--text-dim);font-size:13.5px;margin-bottom:18px}
+.result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-download{background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff;padding:11px 22px;border-radius:10px;font-weight:600;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn-reset{background:none;border:1px solid #194a84;color:var(--text-dim);padding:11px 22px;border-radius:10px;font:inherit;font-weight:600;font-size:13.5px;cursor:pointer}
+.btn-reset:hover{border-color:var(--border-hover);color:var(--text)}
+#errorBox{display:none;margin-top:16px;padding:12px 16px;border-radius:10px;background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);color:#fca5b5;font-size:13px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin-bottom:4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5}
+
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:18px}
+.how,.faq{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+details{border:1px solid #174b88;border-radius:12px;background:#071a35;margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary:after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15px}
+
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin-bottom:8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
+.rt-card span.go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px;top:calc(100% - 2px)}
+nav a:after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover:after{transform:scaleX(1)}
+nav a[href="/blog/"]{color:#e6dcff}
+nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+.learn{margin-bottom:50px}
+.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:transform .18s,border-color .18s,box-shadow .18s}
+.article-card:hover{transform:translateY(-3px);border-color:#4b9cff;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
+.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
+.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
+.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-banner img{transform:scale(1.07)}
+.article-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
+.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
+.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.article-card h3{font-size:15px;margin-bottom:8px}
+.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
+.article-read{font-size:12px;color:#79b7ff;font-weight:700}
+@media(max-width:600px){.article-list{grid-template-columns:1fr}}
+@media(max-width:700px){.steps,.related-grid,.features{grid-template-columns:1fr}h1{font-size:30px}.mode-toggle{grid-template-columns:1fr}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 18px}
+.stat-box{background:#071a35;border:1px solid #194a84;border-radius:12px;padding:12px 6px;text-align:center}
+.stat-box b{display:block;font-size:19px;font-weight:800;background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-box small{color:var(--text-dim);font-size:11px}
+.q-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-dim);font-weight:600;margin-bottom:10px}
+.q-row strong{color:#80baff}
+#quality{width:100%;accent-color:#2d82ff;cursor:pointer}
+.q-hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
+.note{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 16px}
+.features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
+
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
+.crumbs{width:min(760px,calc(100% - 32px));margin:18px auto 0;font-size:12px;color:var(--text-faint)}
+.crumbs a{color:#80baff}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Compress PDF to 100KB", "description": "Compress a PDF to under 100KB in your browser. Free, no watermark, no signup, and your file is never uploaded. Auto-targets 100 KB for form uploads.", "url": "https://www.convertkitlite.site/tools/compress-pdf-to-100kb/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Compress PDF", "item": "https://www.convertkitlite.site/tools/compresspdf/"}, {"@type": "ListItem", "position": 3, "name": "Compress PDF to 100KB", "item": "https://www.convertkitlite.site/tools/compress-pdf-to-100kb/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I compress a PDF to under 100KB?", "acceptedAnswer": {"@type": "Answer", "text": "Drop your PDF into the box above and press the compress button. The tool tries a lossless clean-up first, then lowers image quality and resolution step by step until the file is under 100 KB or it reaches the smallest readable result. Then you download the file."}}, {"@type": "Question", "name": "Will my PDF still be readable after compressing to 100KB?", "acceptedAnswer": {"@type": "Answer", "text": "Usually yes for normal documents. If a lossless clean-up is not enough, pages are converted to images, so the text stays visible but can no longer be selected or searched. Very small targets on image-heavy files can look softer."}}, {"@type": "Question", "name": "Why is my PDF still bigger than 100KB?", "acceptedAnswer": {"@type": "Answer", "text": "Files with many pages, large photos or full-page scans can be too heavy to reach 100 KB without looking blurry. Split the PDF into smaller parts, remove pages you do not need, or rescan at a lower resolution, then compress again."}}, {"@type": "Question", "name": "Is it safe to upload my documents here?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing is uploaded. The compression runs inside your own browser, so your file stays on your device. That makes it a good fit for ID copies, certificates and application documents."}}, {"@type": "Question", "name": "Does this work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It works in any modern browser on Android, iPhone, Windows and Mac. Large PDFs can take longer on older phones, so try a smaller file first."}}, {"@type": "Question", "name": "Is there a watermark or a limit?", "acceptedAnswer": {"@type": "Answer", "text": "No watermark, no account and no daily limit. You can compress as many PDFs as you like."}}]}]}</script>
+</head>
+<body>
+
+<header><div class="container navbar">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="/blog/">Learn</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<main>
+<div class="crumbs"><a href="../../">Home</a> › <a href="../compresspdf/">Compress PDF</a> › Compress PDF to 100KB</div>
+
+<section class="hero">
+  <div class="icon-badge">🗜️</div>
+  <h1>Compress PDF to <span>100KB</span></h1>
+  <p>Shrink a PDF to under 100 KB for forms, portals and email. It runs in your browser, so your file never leaves your device.</p>
+  <div class="trust-row"><div>No signup</div><div>No watermark</div><div>Files stay on your device</div></div>
+</section>
+
+<div class="narrow tool">
+  <div class="card">
+    <div class="dropzone" id="dropzone">
+      <div class="dz-icon">⬆</div>
+      <h3>Drop a PDF file here</h3>
+      <p>or click to browse — target size: 100 KB</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="fileInfoWrap">
+      <div class="file-item">
+        <div class="file-icon">📄</div>
+        <div class="file-meta"><div class="file-name" id="fileName"></div><div class="file-size" id="fileSize"></div></div>
+        <button class="file-remove" id="fileRemove" title="Remove">✕</button>
+      </div>
+    </div>
+
+    <div id="errorBox"></div>
+
+    <button class="merge-btn" id="compressBtn" disabled>
+      <span class="spinner"></span><span class="btn-label">Compress to 100 KB</span>
+    </button>
+    <div id="status" style="display:none;text-align:center;margin-top:10px;font-size:13px;opacity:.82;line-height:1.45"></div>
+
+    <div id="result">
+      <div class="result-icon" id="resultIcon">✓</div>
+      <h3 id="resultTitle">Your PDF is ready</h3>
+      <div class="stat-row" id="statRow">
+        <div class="stat-box"><b id="statOrig">—</b><small>Original</small></div>
+        <div class="stat-box"><b id="statNew">—</b><small>Compressed</small></div>
+        <div class="stat-box"><b id="statSaved">—</b><small>Target 100 KB</small></div>
+      </div>
+      <p id="resultMeta"></p>
+      <div class="result-actions">
+        <a class="btn-download" id="downloadLink" download="compressed.pdf">⬇ Download PDF</a>
+        <button class="btn-reset" id="resetBtn" type="button">Start Over</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature"><div class="f-icon">🎯</div><h4>Targets 100 KB</h4><p>Tries several quality levels until the file fits under 100 KB.</p></div>
+    <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Compression runs locally. Nothing is uploaded.</p></div>
+    <div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account, no watermark, no file limits.</p></div>
+  </div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to compress a PDF to <span>100KB</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Add your PDF</h3><p>Drag a PDF onto the box above or click it to choose a file.</p></div>
+    <div class="step"><b>2</b><h3>Press compress</h3><p>The tool tries a lossless clean-up first, then lowers quality step by step until the file is under 100 KB.</p></div>
+    <div class="step"><b>3</b><h3>Download</h3><p>Check the new size, then download your smaller PDF.</p></div>
+  </div>
+</section>
+
+<section class="narrow prose">
+  <h2>Why do you need a PDF under 100KB?</h2>
+  <p>Many websites cap uploads at 100 KB. You see this on job applications, exam and admission forms, scholarship and visa portals, and government services. If your file is even a little too big, the form rejects it, and a scan from a phone is often several megabytes.</p>
+  <p>Some email systems and chat apps also struggle with large attachments. A small PDF uploads faster on a slow connection, which helps a lot on mobile data.</p>
+
+  <h2>How this tool gets your file under 100KB</h2>
+  <p>It works in stages, so you keep as much quality as possible:</p>
+  <ul>
+    <li><b>Lossless clean-up first.</b> The tool rebuilds the file structure without changing how pages look. Text stays selectable. If this is enough, you are done.</li>
+    <li><b>Image compression next.</b> If the file is still too big, each page is re-encoded as an image at a lower quality and resolution. It repeats with stronger settings until the size is under 100 KB.</li>
+    <li><b>Best effort if needed.</b> If 100 KB is not possible without making the pages unreadable, the tool tells you the smallest size it reached.</li>
+  </ul>
+
+  <h2>Tips if your PDF is still too large</h2>
+  <ul>
+    <li><b>Split it.</b> A 30-page scan will rarely fit in 100 KB. Use <a href="../splitpdf/">Split PDF</a> to send only the pages you need.</li>
+    <li><b>Scan at a lower resolution.</b> 150 DPI black and white is enough for most forms.</li>
+    <li><b>Shrink photos first.</b> If your PDF is made of pictures, run them through the <a href="../imagecompressor/">Image Compressor</a> and then rebuild the PDF with <a href="../jpgtopdf/">JPG to PDF</a>.</li>
+    <li><b>Combine afterwards.</b> Need several documents in one file? Use <a href="../mergepdf/">Merge PDF</a> after you compress each one.</li>
+  </ul>
+  <p>Need a different size or more control over quality? Use the standard <a href="../compresspdf/">Compress PDF</a> tool.</p>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about compressing a PDF to 100KB.</p>
+  <details><summary>How do I compress a PDF to under 100KB?</summary><p>Drop your PDF into the box above and press the compress button. The tool tries a lossless clean-up first, then lowers image quality and resolution step by step until the file is under 100 KB or it reaches the smallest readable result. Then you download the file.</p></details>
+  <details><summary>Will my PDF still be readable after compressing to 100KB?</summary><p>Usually yes for normal documents. If a lossless clean-up is not enough, pages are converted to images, so the text stays visible but can no longer be selected or searched. Very small targets on image-heavy files can look softer.</p></details>
+  <details><summary>Why is my PDF still bigger than 100KB?</summary><p>Files with many pages, large photos or full-page scans can be too heavy to reach 100 KB without looking blurry. Split the PDF into smaller parts, remove pages you do not need, or rescan at a lower resolution, then compress again.</p></details>
+  <details><summary>Is it safe to upload my documents here?</summary><p>Nothing is uploaded. The compression runs inside your own browser, so your file stays on your device. That makes it a good fit for ID copies, certificates and application documents.</p></details>
+  <details><summary>Does this work on a phone?</summary><p>Yes. It works in any modern browser on Android, iPhone, Windows and Mac. Large PDFs can take longer on older phones, so try a smaller file first.</p></details>
+  <details><summary>Is there a watermark or a limit?</summary><p>No watermark, no account and no daily limit. You can compress as many PDFs as you like.</p></details>
+  
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these related PDF and image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../compresspdf/"><span class="rt-icon">🗜</span><h3>Compress PDF</h3><p>Choose your own quality and compression mode.</p><span class="go">Compress PDF →</span></a>
+    <a class="rt-card" href="../splitpdf/"><span class="rt-icon">✂</span><h3>Split PDF</h3><p>Extract pages or split a PDF into separate files.</p><span class="go">Split PDF →</span></a>
+    <a class="rt-card" href="../mergepdf/"><span class="rt-icon">▥</span><h3>Merge PDF</h3><p>Combine multiple PDF documents into one file.</p><span class="go">Merge files →</span></a>
+    <a class="rt-card" href="../jpgtopdf/"><span class="rt-icon">⇄</span><h3>JPG to PDF</h3><p>Turn JPG images into a single PDF.</p><span class="go">Convert file →</span></a>
+    <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size before building a PDF.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
+
+<script type="module">
+import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
+const { PDFDocument } = PDFLib;
+const TARGET = 100*1024;
+const $ = id => document.getElementById(id);
+const el = {
+  dropzone:$('dropzone'), fileInput:$('fileInput'), fileInfoWrap:$('fileInfoWrap'), fileName:$('fileName'), fileSize:$('fileSize'),
+  fileRemove:$('fileRemove'), btn:$('compressBtn'), status:$('status'), err:$('errorBox'), result:$('result'),
+  resultIcon:$('resultIcon'), resultTitle:$('resultTitle'), resultMeta:$('resultMeta'),
+  statOrig:$('statOrig'), statNew:$('statNew'), statSaved:$('statSaved'), dl:$('downloadLink'), reset:$('resetBtn')
+};
+let file=null, bytes=null, blobUrl=null;
+
+const fmt = n => n<1024 ? n+' B' : n<1048576 ? (n/1024).toFixed(1)+' KB' : (n/1048576).toFixed(2)+' MB';
+const tick = () => new Promise(r => requestAnimationFrame(() => setTimeout(r,0)));
+const showError = m => { el.err.textContent=m; el.err.style.display='block'; };
+const clearError = () => { el.err.style.display='none'; el.err.textContent=''; };
+const setStatus = m => { el.status.textContent=m||''; el.status.style.display=m?'block':'none'; };
+const setLabel = m => { el.btn.querySelector('.btn-label').textContent=m; };
+const baseName = () => file.name.replace(/\.pdf$/i,'') || 'document';
+
+async function handleFile(f){
+  clearError(); el.result.style.display='none';
+  if (f.type!=='application/pdf' && !f.name.toLowerCase().endsWith('.pdf')) return showError(`"${f.name}" is not a PDF file.`);
+  try{
+    const buf = await f.arrayBuffer();
+    const doc = await pdfjsLib.getDocument({data:new Uint8Array(buf.slice(0))}).promise;
+    const pages = doc.numPages; await doc.destroy();
+    file=f; bytes=buf;
+    el.fileName.textContent=f.name;
+    el.fileSize.textContent=`${fmt(f.size)} • ${pages} page${pages===1?'':'s'}`;
+    el.fileInfoWrap.style.display='block';
+    el.dropzone.style.display='none'; el.btn.disabled=false;
+  }catch(e){
+    console.error(e);
+    showError(`Could not read "${f.name}". It may be corrupted or password-protected.`);
+  }
+}
+
+async function losslessCompress(){
+  const src = await PDFDocument.load(bytes,{ignoreEncryption:true,updateMetadata:false});
+  return await src.save({useObjectStreams:true});
+}
+
+async function imageCompress(q, scale, label){
+  const pdf = await pdfjsLib.getDocument({data:new Uint8Array(bytes.slice(0))}).promise;
+  const out = await PDFDocument.create();
+  for(let i=1;i<=pdf.numPages;i++){
+    setStatus(`${label} — page ${i} of ${pdf.numPages}…`); await tick();
+    const page = await pdf.getPage(i);
+    const base = page.getViewport({scale:1});
+    const vp = page.getViewport({scale});
+    const c = document.createElement('canvas');
+    c.width=Math.ceil(vp.width); c.height=Math.ceil(vp.height);
+    const ctx = c.getContext('2d',{alpha:false});
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+    await page.render({canvasContext:ctx,viewport:vp}).promise;
+    const blob = await new Promise(r => c.toBlob(r,'image/jpeg',q));
+    const img = await out.embedJpg(await blob.arrayBuffer());
+    const p = out.addPage([base.width,base.height]);
+    p.drawImage(img,{x:0,y:0,width:base.width,height:base.height});
+    c.width=c.height=1; page.cleanup();
+  }
+  await pdf.destroy();
+  return await out.save({useObjectStreams:true});
+}
+
+async function targetCompress(){
+  setStatus('Trying a lossless clean-up first…'); await tick();
+  const lossless = await losslessCompress();
+  if (lossless.byteLength <= TARGET) return {out:lossless, reached:true, kind:'lossless'};
+  const ladder = [[1.5,.7],[1.25,.6],[1,.5],[1,.4],[.8,.35],[.7,.3],[.6,.25],[.5,.2]];
+  let best = lossless, bestKind='lossless';
+  for (let i=0;i<ladder.length;i++){
+    const [s,q] = ladder[i];
+    const out = await imageCompress(q, s, `Attempt ${i+1} of ${ladder.length}`);
+    if (out.byteLength < best.byteLength){ best = out; bestKind='image'; }
+    if (out.byteLength <= TARGET) return {out, reached:true, kind:'image'};
+  }
+  return {out:best, reached:false, kind:bestKind};
+}
+
+el.btn.addEventListener('click', async () => {
+  if(!file) return;
+  clearError(); el.result.style.display='none';
+  el.btn.classList.add('loading'); el.btn.disabled=true; setLabel('Processing…');
+  try{
+    const orig = bytes.byteLength;
+    el.statOrig.textContent = fmt(orig);
+    if (orig <= TARGET){
+      el.dl.style.display='none';
+      el.resultIcon.textContent='✓'; el.resultTitle.textContent='Already under 100 KB';
+      el.statNew.textContent = fmt(orig); el.statSaved.textContent='Met';
+      el.resultMeta.textContent = 'Your file is already smaller than 100 KB, so no compression is needed.';
+    } else {
+      const r = await targetCompress();
+      const now = r.out.byteLength;
+      el.statNew.textContent = fmt(now);
+      el.statSaved.textContent = r.reached ? 'Met' : 'Not met';
+      if (now < orig){
+        if(blobUrl) URL.revokeObjectURL(blobUrl);
+        blobUrl = URL.createObjectURL(new Blob([r.out],{type:'application/pdf'}));
+        import('/stats.js').then(m=>m.trackUse()).catch(()=>{});
+        el.dl.href=blobUrl; el.dl.download=baseName()+'-100kb.pdf'; el.dl.style.display='inline-flex';
+      } else { el.dl.style.display='none'; }
+      if (r.reached){
+        el.resultIcon.textContent='✓'; el.resultTitle.textContent='Your PDF is under 100 KB';
+        el.resultMeta.textContent = r.kind==='lossless' ? 'Text and layout are unchanged.' : 'Pages were re-encoded as images, so text is no longer selectable.';
+      } else {
+        el.resultIcon.textContent='ℹ'; el.resultTitle.textContent='Smallest size reached: '+fmt(now);
+        el.resultMeta.textContent = 'This file could not reach 100 KB without becoming unreadable. Try splitting it into fewer pages, then compress again.';
+      }
+    }
+    el.result.style.display='block';
+    el.result.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }catch(e){
+    console.error(e);
+    showError('Something went wrong while compressing. The file may be protected or damaged.');
+  }finally{
+    el.btn.classList.remove('loading'); el.btn.disabled=false; setLabel('Compress to 100 KB'); setStatus('');
+  }
+});
+
+el.dropzone.addEventListener('click',()=>el.fileInput.click());
+el.fileInput.addEventListener('change',e=>{ if(e.target.files[0]) handleFile(e.target.files[0]); el.fileInput.value=''; });
+['dragenter','dragover'].forEach(t=>el.dropzone.addEventListener(t,e=>{e.preventDefault();el.dropzone.classList.add('dragover');}));
+['dragleave','drop'].forEach(t=>el.dropzone.addEventListener(t,e=>{e.preventDefault();el.dropzone.classList.remove('dragover');}));
+el.dropzone.addEventListener('drop',e=>{ if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+
+function resetAll(){
+  file=null; bytes=null;
+  el.fileInfoWrap.style.display='none';
+  el.dropzone.style.display='block'; el.result.style.display='none';
+  el.btn.disabled=true; clearError(); setStatus('');
+  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl=null; }
+}
+el.fileRemove.addEventListener('click',resetAll);
+el.reset.addEventListener('click',resetAll);
+</script>
+<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);</script>
+<script type="module" src="/geo-track.js"></script>
+</body>
+</html>
