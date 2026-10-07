@@ -739,8 +739,9 @@ try {
  
   function moveTo(a){
     if(!a)return;
-    ind.style.width=a.offsetWidth+'px';
-    ind.style.transform='translateX('+a.offsetLeft+'px)';
+    const w=a.offsetWidth,x=a.offsetLeft;
+    ind.style.width=w+"px";
+    ind.style.transform="translateX("+x+"px)";
   }
   function setActive(a){
     links.forEach(l=>l.classList.toggle('active',l===a));
@@ -748,9 +749,11 @@ try {
     moveTo(a);
   }
   function place(){
-    ind.style.transition='none';
-    moveTo(active);
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{ind.style.transition='';}));
+    const w=active.offsetWidth,x=active.offsetLeft;
+    ind.style.transition="none";
+    ind.style.width=w+"px";
+    ind.style.transform="translateX("+x+"px)";
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ind.style.transition="";}));
   }
  
   links.forEach(a=>{
@@ -762,7 +765,7 @@ try {
   nav.addEventListener('mouseleave',()=>moveTo(active));
   window.addEventListener('resize',()=>moveTo(active));
   window.addEventListener('load',place);
-  place();
+  requestAnimationFrame(()=>requestAnimationFrame(place));
 })();
 </script>
 <script src="/lazy-presence.js" defer></script>
