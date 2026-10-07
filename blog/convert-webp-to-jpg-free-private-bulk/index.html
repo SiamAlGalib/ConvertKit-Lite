@@ -7,9 +7,14 @@
 <meta name="description" content="Convert WebP to JPG free in your browser. No upload, no sign-up. Batch convert, fix transparent backgrounds, set quality and download a ZIP.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="article"><meta property="og:site_name" content="ConvertKit Lite">
-<meta property="og:image" content="/blog/BannerImage/convert-webp-to-jpg-free-private-bulk.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/SiamAlGalib/ConvertKit-Lite/refs/heads/main/blog/BannerImage/convert-webp-to-jpg-free-private-bulk.png">
 <link rel="icon" href="/logo.png">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<!-- speed: open connections and start downloading the Firebase code immediately -->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap"></noscript>
 <style>
@@ -62,7 +67,7 @@ footer:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;backg
 @media(max-width:950px){.foot-top{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
 @media(max-width:560px){footer{padding:30px 18px 20px}.foot-bottom{flex-direction:column;text-align:center}}
 
-article{max-width:780px;margin:0 auto;padding:50px 0 10px}
+article{max-width:780px;margin:0 auto;padding:50px 0 10px;min-height:70vh}
 .back{display:inline-block;color:var(--link);font-size:13px;font-weight:600;margin-bottom:20px}
 .back:hover{text-decoration:underline}
 article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px;margin:14px 0 14px}
@@ -78,12 +83,21 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
 .cta{margin:46px 0 0;padding:26px 28px;border:1px solid var(--line);border-radius:16px;background:var(--card);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .cta h3{margin:0 0 6px;font-size:19px}.cta p{margin:0;color:var(--soft);font-size:14px}
 .pstate{text-align:center;color:var(--mut);padding:80px 0}
+
+/* skeleton shown while the very first load fetches the post */
+.sk{border-radius:10px;background:linear-gradient(90deg,var(--chip) 25%,rgba(120,160,255,.22) 50%,var(--chip) 75%);background-size:200% 100%;animation:sk 1.2s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.sk-tag{width:90px;height:22px;border-radius:999px;margin-bottom:16px}
+.sk-h{height:42px;margin-bottom:12px}.sk-h.s{width:70%}
+.sk-meta{width:160px;height:14px;margin:16px 0 24px}
+.sk-cover{height:280px;border-radius:16px;margin-bottom:26px}
+.sk-line{height:14px;margin-bottom:14px}.sk-line.s{width:80%}
 </style>
 <link rel="canonical" href="https://www.convertkitlite.site/blog/convert-webp-to-jpg-free-private-bulk/">
 <meta property="og:title" content="WebP to JPG Converter: Free, Private, No Upload | ConvertKit Lite">
 <meta property="og:description" content="Convert WebP to JPG free in your browser. No upload, no sign-up. Batch convert, fix transparent backgrounds, set quality and download a ZIP.">
 <meta property="og:url" content="https://www.convertkitlite.site/blog/convert-webp-to-jpg-free-private-bulk/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Convert WebP to JPG: Free, Private and in Bulk","description":"Convert WebP to JPG free in your browser. No upload, no sign-up. Batch convert, fix transparent backgrounds, set quality and download a ZIP.","mainEntityOfPage":"https://www.convertkitlite.site/blog/convert-webp-to-jpg-free-private-bulk/","author":{"@type":"Person","name":"SAG"},"publisher":{"@type":"Organization","name":"ConvertKit Lite","logo":{"@type":"ImageObject","url":"https://www.convertkitlite.site/logo.png"}},"image":"/blog/BannerImage/convert-webp-to-jpg-free-private-bulk.webp","datePublished":"2026-10-05T08:39:44.751Z","dateModified":"2026-10-05T08:39:44.751Z"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Convert WebP to JPG: Free, Private and in Bulk","description":"Convert WebP to JPG free in your browser. No upload, no sign-up. Batch convert, fix transparent backgrounds, set quality and download a ZIP.","mainEntityOfPage":"https://www.convertkitlite.site/blog/convert-webp-to-jpg-free-private-bulk/","author":{"@type":"Person","name":"SAG"},"publisher":{"@type":"Organization","name":"ConvertKit Lite","logo":{"@type":"ImageObject","url":"https://www.convertkitlite.site/logo.png"}},"image":"https://raw.githubusercontent.com/SiamAlGalib/ConvertKit-Lite/refs/heads/main/blog/BannerImage/convert-webp-to-jpg-free-private-bulk.png","datePublished":"2026-10-05T08:39:44.751Z","dateModified":"2026-10-05T08:39:44.751Z"}</script>
 </head>
 <body id="top">
 <header><div class="container navbar">
@@ -101,14 +115,14 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
       <div class="tags"><span>webp to jpg</span><span>image converter</span><span>webp</span><span>batch convert</span><span>photo tools</span></div>
       <h1>How to Convert WebP to JPG: Free, Private and in Bulk</h1>
       <div class="meta"><span>October 5, 2026</span><i></i><span>7 min read</span></div>
-      <img class="cover" src="/blog/BannerImage/convert-webp-to-jpg-free-private-bulk.webp" alt="How to Convert WebP to JPG: Free, Private and in Bulk">
-      <div class="prose"><p>You saved an image, and it turned out to be a .webp file that your form, app or print shop won't accept. The <a href="https://www.convertkitlite.site/tools/webptojpg/">WebP to JPG converter</a> from ConvertKit Lite turns WebP images into JPG in seconds. It runs in your browser, so your images are not uploaded anywhere, and you don't need an account or any software.</p>
+      <img class="cover" src="https://raw.githubusercontent.com/SiamAlGalib/ConvertKit-Lite/refs/heads/main/blog/BannerImage/convert-webp-to-jpg-free-private-bulk.png" alt="How to Convert WebP to JPG: Free, Private and in Bulk">
+      <div class="prose"><p>You saved an image, and it turned out to be a .webp file that your form, app or print shop won't accept. The <a href="https://www.convertkitlite.site/tools/WebpToJpg/">WebP to JPG converter</a> from ConvertKit Lite turns WebP images into JPG in seconds. It runs in your browser, so your images are not uploaded anywhere, and you don't need an account or any software.</p>
 
 <div style="margin:28px 0;padding:28px 24px;text-align:center;border:1px solid #347cff;border-radius:18px;background:linear-gradient(135deg,rgba(45,130,255,.22),rgba(124,63,240,.22));box-shadow:0 14px 40px rgba(66,67,255,.25)">
 <div style="font-size:34px;line-height:1;margin-bottom:10px">🖼️✨</div>
 <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Need a JPG right now?</div>
 <div style="font-size:14px;color:#c4d6ef;margin-bottom:18px">Add one or many WebP files, pick the quality and download. Free and private.</div>
-<a href="https://www.convertkitlite.site/tools/webptojpg/" style="display:inline-block;padding:15px 32px;border-radius:12px;background:linear-gradient(100deg,#2d82ff,#7c3ff0);color:#fff;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 10px 28px rgba(66,67,255,.4)">Open the WebP to JPG Converter →</a>
+<a href="https://www.convertkitlite.site/tools/WebpToJpg/" style="display:inline-block;padding:15px 32px;border-radius:12px;background:linear-gradient(100deg,#2d82ff,#7c3ff0);color:#fff;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 10px 28px rgba(66,67,255,.4)">Open the WebP to JPG Converter →</a>
 </div>
 
 <div style="margin:22px 0;padding:16px 18px;border:1px solid #194a84;border-radius:12px;background:rgba(45,130,255,.08)">
@@ -128,7 +142,7 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
 
 <h2>How to Convert WebP to JPG</h2>
 <ol>
-<li>Open the <a href="https://www.convertkitlite.site/tools/webptojpg/">WebP to JPG converter</a>.</li>
+<li>Open the <a href="https://www.convertkitlite.site/tools/WebpToJpg/">WebP to JPG converter</a>.</li>
 <li>Click the upload area, or drag and drop your .webp files onto it.</li>
 <li>Set the <strong>JPG quality</strong>. The default is 90%.</li>
 <li>Choose the color for transparent areas: white, black or gray.</li>
@@ -145,7 +159,7 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
 <li>Use <strong>90%</strong> for a good balance of sharpness and file size, and <strong>100%</strong> when quality matters most.</li>
 <li>Convert from the <strong>original WebP</strong> once. Saving a JPG again and again lowers quality each time.</li>
 <li>Keep your original WebP file as a backup.</li>
-<li>Need zero loss? A lossless format like PNG is the better choice. See WebP vs JPG vs PNG for the differences.</li>
+<li>Need zero loss? A lossless format like PNG is the better choice. See <a href="https://www.convertkitlite.site/articles/webp-vs-jpg-vs-png/">WebP vs JPG vs PNG</a> for the differences.</li>
 </ul>
 
 <h2>How to Convert Many WebP Files at Once</h2>
@@ -223,11 +237,11 @@ magick mogrify -format jpg *.webp</code></pre>
 <div style="margin:28px 0;padding:28px 24px;text-align:center;border:1px solid #347cff;border-radius:18px;background:linear-gradient(135deg,rgba(45,130,255,.22),rgba(124,63,240,.22));box-shadow:0 14px 40px rgba(66,67,255,.25)">
 <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Ready to convert?</div>
 <div style="font-size:14px;color:#c4d6ef;margin-bottom:18px">Your images stay in your browser.</div>
-<a href="https://www.convertkitlite.site/tools/webptojpg/" style="display:inline-block;padding:15px 32px;border-radius:12px;background:linear-gradient(100deg,#2d82ff,#7c3ff0);color:#fff;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 10px 28px rgba(66,67,255,.4)">Convert WebP to JPG now →</a>
+<a href="https://www.convertkitlite.site/tools/WebpToJpg/" style="display:inline-block;padding:15px 32px;border-radius:12px;background:linear-gradient(100deg,#2d82ff,#7c3ff0);color:#fff;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 10px 28px rgba(66,67,255,.4)">Convert WebP to JPG now →</a>
 </div>
 
 <h2>Try It Now</h2>
-<p>Open the <a href="https://www.convertkitlite.site/tools/webptojpg/">WebP to JPG converter</a>, add your images and download your JPGs. If you're curious what WebP is, read What Is a WebP File?. Working with iPhone photos? Try the <a href="https://www.convertkitlite.site/tools/heictojpg/">HEIC to JPG converter</a> too.</p></div>
+<p>Open the <a href="https://www.convertkitlite.site/tools/WebpToJpg/">WebP to JPG converter</a>, add your images and download your JPGs. If you're curious what WebP is, read <a href="https://www.convertkitlite.site/articles/what-is-a-webp-file/">What Is a WebP File?</a>. Working with iPhone photos? Try the <a href="https://www.convertkitlite.site/tools/HeicToJpg/">HEIC to JPG converter</a> too.</p></div>
       <div class="cta"><div><h3>Need to convert a file?</h3><p>Try our free PDF, image, audio and video tools. No sign-up needed.</p></div><a class="primary" href="/#tools">Browse all tools</a></div></article></main>
 <footer>
 <div class="foot-top">
