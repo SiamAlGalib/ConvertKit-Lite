@@ -1,0 +1,1 @@
+(function(){var d=false,E=["pointerdown","keydown","scroll","touchstart","mousemove"];function go(){if(d)return;d=true;E.forEach(function(e){removeEventListener(e,go)});import("/stats.js").then(function(m){setTimeout(m.trackPresence,4000)})}E.forEach(function(e){addEventListener(e,go,{passive:true})})})();

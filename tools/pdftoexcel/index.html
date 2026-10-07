@@ -471,7 +471,7 @@ $('reset').onclick=()=>{
 };
 syncMode();render();
 </script>
-<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);</script>
-<script type="module" src="/geo-track.js"></script>
+<script src="/lazy-presence.js" defer></script>
+<script src="/lazy-track.js" defer></script>
 </body>
 </html>

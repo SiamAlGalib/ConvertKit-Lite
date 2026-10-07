@@ -1,0 +1,1 @@
+(function(){var d=false,E=["pointerdown","keydown","scroll","touchstart","mousemove"];function go(){if(d)return;d=true;E.forEach(function(e){removeEventListener(e,go)});import("/geo-track.js")}E.forEach(function(e){addEventListener(e,go,{passive:true})})})();

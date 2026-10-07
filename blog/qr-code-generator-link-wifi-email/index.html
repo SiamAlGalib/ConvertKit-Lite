@@ -200,7 +200,7 @@ article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px
   window.addEventListener('resize',()=>mv(active));window.addEventListener('load',place);place();
 })();
 </script>
-<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);</script>
-<script type="module" src="/geo-track.js"></script>
+<script src="/lazy-presence.js" defer></script>
+<script src="/lazy-track.js" defer></script>
 </body>
 </html>

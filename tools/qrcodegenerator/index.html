@@ -331,7 +331,7 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
 ['txt','ssid','wpass','wtype','eto','esub','ebody','fg','bg','ecc'].forEach(id=>$(id).addEventListener('input',render));
 $('size').addEventListener('input',()=>{$('sizeV').textContent=$('size').value+' px';render()});
 </script>
-<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);</script>
-<script type="module" src="/geo-track.js"></script>
+<script src="/lazy-presence.js" defer></script>
+<script src="/lazy-track.js" defer></script>
 </body>
 </html>
