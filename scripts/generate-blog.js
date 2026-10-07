@@ -131,6 +131,8 @@ async function main() {
   }
   fs.writeFileSync(MANIFEST, JSON.stringify([...keep].sort(), null, 2) + '\n');
   updateSitemap(done);
+  // NEW: write real links to the posts into blog/index.html and index.html
+  try { require('./inject-blog-links').run(); } catch (e) { console.warn('inject-blog-links failed:', e.message); }
   console.log(`Done: ${done.length} post(s).`);
 }
 

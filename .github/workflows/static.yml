@@ -46,7 +46,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog sitemap.xml
+          git add blog sitemap.xml index.html
           if ! git diff --cached --quiet; then
             git commit -m "Auto-generate static blog pages"
             git pull --rebase origin main
