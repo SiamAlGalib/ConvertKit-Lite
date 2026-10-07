@@ -364,7 +364,7 @@ el.btn.addEventListener('click', async () => {
   clearError(); el.result.style.display='none';
   el.btn.classList.add('loading'); el.btn.disabled=true; setLabel('Processing…');
   try{
-    const out = mode==='max' ? await maxCompress(+el.quality.value/100) : await losslessCompress();
+    let out = mode==="max" ? await maxCompress(+el.quality.value/100) : await losslessCompress(); let usedFallback = false; if (mode==="max") { if (out.byteLength >= bytes.byteLength) { setStatus("Trying a safer method…"); const alt = await losslessCompress(); if (alt.byteLength < out.byteLength) { out = alt; usedFallback = true; } } }
     const orig = bytes.byteLength, now = out.byteLength;
     const saved = orig-now, pct = (saved/orig*100);
     el.statOrig.textContent=fmt(orig);
@@ -374,13 +374,13 @@ el.btn.addEventListener('click', async () => {
       el.dl.href=blobUrl; el.dl.download=baseName()+'-compressed.pdf'; el.dl.style.display='inline-flex';
       el.resultIcon.textContent='✓'; el.resultTitle.textContent='Your PDF is ready';
       el.statNew.textContent=fmt(now); el.statSaved.textContent=pct.toFixed(1)+'%';
-      el.resultMeta.textContent = mode==='max' ? 'Pages were re-encoded as images, so text is no longer selectable.' : 'Text and layout are unchanged.';
+      el.resultMeta.textContent = (mode==="max" ? !usedFallback : false) ? 'Pages were re-encoded as images, so text is no longer selectable.' : 'Text and layout are unchanged.';
     } else {
       el.dl.style.display='none';
       el.resultIcon.textContent='ℹ'; el.resultTitle.textContent='Already well optimized';
       el.statNew.textContent=fmt(now); el.statSaved.textContent='0%';
       el.resultMeta.textContent = mode==='max'
-        ? 'This result was not smaller than the original. Try lowering the quality.'
+        ? 'Maximum compression could not make this PDF smaller because it is mostly text or already compressed. Try the Keep text and quality mode.'
         : 'No further lossless savings were found. Try "Maximum compression" for a smaller file.';
     }
     el.result.style.display='block';
