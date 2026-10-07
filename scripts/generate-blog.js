@@ -70,7 +70,8 @@ function buildPage(template, p, slug) {
   swap(/<meta name="description" content="[^"]*">/, () => `<meta name="description" content="${esc(desc)}">`, 'meta description');
   swap(/<article id="post">[\s\S]*?<\/article>/, () => `<article id="post">${articleHtml(p)}</article>`, '<article id="post">');
   // Remove the client-side Firebase loader (page is static now)
-  swap(/<script type="module">\s*import \{ db, COL \} from "\.\/firebase\.js";[\s\S]*?<\/script>\s*/, () => '', 'firebase module script');
+  swap(/<script type="module">(?:(?!<\/script>)[\s\S])*?import\("\.\/firebase\.js"\)[\s\S]*?<\/script>\s*/, () => '', 'firebase module script');
+  html = html.replace(/<link rel="modulepreload"[^>]*firebase[^>]*>\s*/g, ''); // static posts don't need the Firestore preload
 
   if (p.coverImageUrl) {
     html = html.replace(/<meta property="og:image" content="[^"]*">/, () => `<meta property="og:image" content="${esc(p.coverImageUrl)}">`);
