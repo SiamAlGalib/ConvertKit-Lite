@@ -49,9 +49,9 @@ function readPost(slug) {
   };
 }
 
-const blogCard = p => `<a class="card" href="/blog/${p.slug}/"><span class="accent"></span>${p.img ? `<div class="cover"><img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async"></div>` : '<div class="cover ph"></div>'}<div class="cb"><div class="tags">${p.tags}</div><h2>${p.title}</h2><p>${p.desc}</p><div class="meta"><span>${p.date}</span><i></i><span>${p.mins} min read</span><b>Read →</b></div></div></a>`;
+const blogCard = p => `<a class="card" href="/blog/${p.slug}/"><span class="accent"></span>${p.img ? `<div class="cover"><img src="${cardImg(p.img)}" alt="${p.title}" loading="lazy" decoding="async"></div>` : '<div class="cover ph"></div>'}<div class="cb"><div class="tags">${p.tags}</div><h2>${p.title}</h2><p>${p.desc}</p><div class="meta"><span>${p.date}</span><i></i><span>${p.mins} min read</span><b>Read →</b></div></div></a>`;
 
-const homeCard = p => `<a class="blog-card" href="blog/${p.slug}/">${p.img ? `<img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async">` : '<div class="ph"></div>'}<div class="bc"><h3>${p.title}</h3><p>${p.desc}</p></div></a>`;
+const homeCard = (p, i) => `<a class="blog-card" href="blog/${p.slug}/">${p.img ? `<img src="${cardImg(p.img)}" ${dimAttrs(p.img)} alt="${p.title}" ${lz(i)} decoding="async">` : '<div class="ph"></div>'}<div class="bc"><h3>${p.title}</h3><p>${p.desc}</p></div></a>`;
 
 function setBlock(html, bootstrapRe, content, label) {
   const marked = new RegExp(`${START}[\\s\\S]*?${END}`);
@@ -101,3 +101,29 @@ function localImg(u) {
   const fs = require('fs'), path = require('path');
   return fs.existsSync(path.join(__dirname, '..', rel)) ? '/' + rel : u;
 }
+
+
+// Use the small 800px card version of a banner when it exists
+function cardImg(u) {
+  const m = u && u.match(/^\/blog\/BannerImage\/(.+)\.webp$/);
+  if (!m || /-card$/.test(m[1])) return u;
+  const fs = require('fs'), path = require('path');
+  return fs.existsSync(path.join(__dirname, '..', 'blog/BannerImage', m[1] + '-card.webp'))
+    ? '/blog/BannerImage/' + m[1] + '-card.webp' : u;
+}
+// First homepage card is the LCP image: load it eagerly with high priority
+function lz(i) { return i === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; }
+
+// Read real pixel size from a WebP file so width/height match the image
+function imgDims(u) {
+  try {
+    const fs = require('fs'), path = require('path');
+    const b = fs.readFileSync(path.join(__dirname, '..', u.replace(/^\//, '')));
+    const t = b.toString('ascii', 12, 16);
+    if (t === 'VP8 ') return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+    if (t === 'VP8X') return [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+    if (t === 'VP8L') { const v = b.readUInt32LE(21); return [(v & 0x3fff) + 1, ((v >> 14) & 0x3fff) + 1]; }
+  } catch (e) {}
+  return [800, 450];
+}
+function dimAttrs(u) { const d = imgDims(cardImg(u)); return 'width="' + d[0] + '" height="' + d[1] + '"'; }
