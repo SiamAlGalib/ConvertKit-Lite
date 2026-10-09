@@ -51,7 +51,7 @@ function readPost(slug) {
 
 const blogCard = p => `<a class="card" href="/blog/${p.slug}/"><span class="accent"></span>${p.img ? `<div class="cover"><img src="${cardImg(p.img)}" alt="${p.title}" loading="lazy" decoding="async"></div>` : '<div class="cover ph"></div>'}<div class="cb"><div class="tags">${p.tags}</div><h2>${p.title}</h2><p>${p.desc}</p><div class="meta"><span>${p.date}</span><i></i><span>${p.mins} min read</span><b>Read →</b></div></div></a>`;
 
-const homeCard = (p, i) => `<a class="blog-card" href="blog/${p.slug}/">${p.img ? `<img src="${cardImg(p.img)}" ${dimAttrs(p.img)} alt="${p.title}" ${lz(i)} decoding="async">` : '<div class="ph"></div>'}<div class="bc"><h3>${p.title}</h3><p>${p.desc}</p></div></a>`;
+const homeCard = (p, i) => `<a class="blog-card" href="blog/${p.slug}/">${p.img ? `<img src="${cardImg(p.img)}" ${dimAttrs(p.img)}${srcs(p.img)} alt="${p.title}" ${lz(i)} decoding="async">` : '<div class="ph"></div>'}<div class="bc"><h3>${p.title}</h3><p>${p.desc}</p></div></a>`;
 
 function setBlock(html, bootstrapRe, content, label) {
   const marked = new RegExp(`${START}[\\s\\S]*?${END}`);
@@ -84,6 +84,7 @@ function run() {
   let home = fs.readFileSync('index.html', 'utf8');
   home = setBlock(home, /(<div class="blog-grid" id="blogGrid">)(?:<div class="blog-card sk"><\/div>)+(<\/div>)/, posts.slice(0, HOME_COUNT).map(homeCard).join(''), 'homepage blog grid');
   home = addFooterLinks(home);
+  home = lcpPreload(home, posts[0]);
   fs.writeFileSync('index.html', home);
 
   console.log(`inject-blog-links: ${posts.length} post(s) linked, homepage updated.`);
@@ -127,3 +128,32 @@ function imgDims(u) {
   return [800, 450];
 }
 function dimAttrs(u) { const d = imgDims(cardImg(u)); return 'width="' + d[0] + '" height="' + d[1] + '"'; }
+
+// ---- Responsive card images + LCP preload (managed by this script) ----
+function cardSizes() { return '(max-width:900px) calc(100vw - 26px), 380px'; }
+function cardSet(u) {
+  const fs = require('fs'), path = require('path');
+  const c = cardImg(u);
+  const s = c.replace(/-card\.webp$/, '-card-700.webp');
+  const ok = s !== c && fs.existsSync(path.join(__dirname, '..', s.replace(/^\//, '')));
+  return { c: c, s: ok ? s : null };
+}
+function srcs(u) {
+  const x = cardSet(u);
+  return x.s ? ' srcset="' + x.s + ' 700w, ' + x.c + ' 800w" sizes="' + cardSizes() + '"' : '';
+}
+function lcpPreload(html, p) {
+  const START = '<\x21--LCP-PRELOAD-->', END = '<\x21--/LCP-PRELOAD-->';
+  const a = html.indexOf(START), b = html.indexOf(END);
+  if (a >= 0 && b > a) html = html.slice(0, a) + html.slice(b + END.length).replace(/^\n/, '');
+  if (p && p.img) {
+    const x = cardSet(p.img);
+    const tag = START + '<link rel="preload" as="image" href="' + x.c + '" fetchpriority="high"'
+      + (x.s ? ' imagesrcset="' + x.s + ' 700w, ' + x.c + ' 800w" imagesizes="' + cardSizes() + '"' : '')
+      + '>' + END + '\n';
+    const i = html.indexOf('<link rel="preconnect"');
+    const j = i >= 0 ? i : html.indexOf('</head>');
+    if (j >= 0) html = html.slice(0, j) + tag + html.slice(j);
+  }
+  return html;
+}
