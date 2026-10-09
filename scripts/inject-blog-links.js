@@ -151,7 +151,7 @@ function lcpPreload(html, p) {
     const tag = START + '<link rel="preload" as="image" href="' + x.c + '" fetchpriority="high"'
       + (x.s ? ' imagesrcset="' + x.s + ' 700w, ' + x.c + ' 800w" imagesizes="' + cardSizes() + '"' : '')
       + '>' + END + '\n';
-    const i = html.indexOf('<link rel="preconnect"');
+    const i = [html.indexOf('<link rel="preconnect"'), html.indexOf('<link rel="preload" as="font"')].filter(function (n) { return n >= 0; }).sort(function (x, y) { return x - y; })[0];
     const j = i >= 0 ? i : html.indexOf('</head>');
     if (j >= 0) html = html.slice(0, j) + tag + html.slice(j);
   }
