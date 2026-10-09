@@ -34,7 +34,7 @@ function articleHtml(p) {
       <div class="tags">${tags}</div>
       <h1>${esc(p.title)}</h1>
       <div class="meta"><span>${fmtDate(ms)}</span><i></i><span>${minutes(p.content)} min read</span></div>
-      ${p.coverImageUrl ? `<img class="cover" src="${esc(p.coverImageUrl)}" alt="${esc(p.title)}">` : ''}
+      ${p.coverImageUrl ? `<img class="cover" src="${esc(localImg(p.coverImageUrl))}" alt="${esc(p.title)}">` : ''}
       <div class="prose">${p.content || ''}</div>
       <div class="cta"><div><h3>Need to convert a file?</h3><p>Try our free PDF, image, audio and video tools. No sign-up needed.</p></div><a class="primary" href="/#tools">Browse all tools</a></div>`;
 }
@@ -139,3 +139,14 @@ async function main() {
 
 module.exports = { buildPage };
 if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });
+
+
+// Prefer the local optimized .webp banner over the heavy remote PNG/JFIF
+function localImg(u) {
+  if (!u) return u;
+  const m = u.match(/\/blog\/BannerImage\/([^\/?#]+)\.(png|jpe?g|jfif)$/i);
+  if (!m) return u;
+  const rel = 'blog/BannerImage/' + m[1] + '.webp';
+  const fs = require('fs'), path = require('path');
+  return fs.existsSync(path.join(__dirname, '..', rel)) ? '/' + rel : u;
+}

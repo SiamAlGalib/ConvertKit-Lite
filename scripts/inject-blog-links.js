@@ -41,7 +41,7 @@ function readPost(slug) {
     slug,
     title, // already HTML-escaped by generate-blog.js
     desc: (html.match(/<meta name="description" content="([^"]*)">/) || [])[1] || '',
-    img: (article.match(/<img class="cover" src="([^"]*)"/) || [])[1] || '',
+    img: localImg((article.match(/<img class="cover" src="([^"]*)"/) || [])[1] || ''),
     tags: (tagsHtml.match(/<span>[\s\S]*?<\/span>/g) || []).slice(0, 3).join(''),
     ts,
     date: fmtDate(ts),
@@ -91,3 +91,13 @@ function run() {
 
 module.exports = { run };
 if (require.main === module) run();
+
+// Prefer the local optimized .webp banner over the heavy remote PNG/JFIF
+function localImg(u) {
+  if (!u) return u;
+  const m = u.match(/\/blog\/BannerImage\/([^\/?#]+)\.(png|jpe?g|jfif)$/i);
+  if (!m) return u;
+  const rel = 'blog/BannerImage/' + m[1] + '.webp';
+  const fs = require('fs'), path = require('path');
+  return fs.existsSync(path.join(__dirname, '..', rel)) ? '/' + rel : u;
+}
