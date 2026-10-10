@@ -21,6 +21,8 @@ const MANIFEST = path.join(BLOG_DIR, 'generated-posts.json');
 const SITEMAP = 'sitemap.xml';
 const SLUG_OK = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+// GitHub Pages URLs are case-sensitive: /tools/AgeCalculator/ 404s, /tools/agecalculator/ works.
+const fixToolLinks = h => String(h).replace(/(href=["'](?:https?:\/\/www\.convertkitlite\.site)?\/tools\/)([A-Za-z0-9-]+)(\/?["'])/g, (m, a, slug, z) => a + slug.toLowerCase() + z);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c]));
 const toMs = v => (v && typeof v.toMillis === 'function') ? v.toMillis() : (Number(v) || Date.parse(v) || 0);
 const minutes = h => Math.max(1, Math.round((h || '').replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length / 200));
@@ -35,7 +37,7 @@ function articleHtml(p) {
       <h1>${esc(p.title)}</h1>
       <div class="meta"><span>${fmtDate(ms)}</span><i></i><span>${minutes(p.content)} min read</span></div>
       ${p.coverImageUrl ? `<img class="cover" src="${esc(localImg(p.coverImageUrl))}" alt="${esc(p.title)}">` : ''}
-      <div class="prose">${p.content || ''}</div>
+      <div class="prose">${fixToolLinks(p.content || '')}</div>
       <div class="cta"><div><h3>Need to convert a file?</h3><p>Try our free PDF, image, audio and video tools. No sign-up needed.</p></div><a class="primary" href="/#tools">Browse all tools</a></div>`;
 }
 
@@ -82,6 +84,10 @@ function buildPage(template, p, slug) {
     `<meta property="og:title" content="${esc(title)}">`,
     `<meta property="og:description" content="${esc(desc)}">`,
     `<meta property="og:url" content="${url}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${esc(title)}">`,
+    `<meta name="twitter:description" content="${esc(desc)}">`,
+    `<meta name="twitter:image" content="${esc(p.coverImageUrl || SITE + '/logo.png')}">`,
     `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`
   ].join('\n');
   swap(/<\/head>/, () => `${head}\n</head>`, '</head>');
