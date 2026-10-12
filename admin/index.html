@@ -378,6 +378,7 @@ function startLiveStats() {
     $("geoCountries").innerHTML = top.length
       ? top.map(([cc, v]) => `<div class="tool-row"><span>${esc(regionName(cc))}</span><strong>${v.toLocaleString()}</strong></div>`).join("")
       : `<div class="empty-state">No visitor data yet.</div>`;
+  };
   const renderClkGeo = () => {
     const days = Number($("clkRange").value) || 7, ctry = {};
     for (let i = 0; i < days; i++) {
@@ -391,7 +392,6 @@ function startLiveStats() {
       : `<div class="empty-state">No click data yet. Counting starts when the new stats.js goes live.</div>`;
   };
   $("clkRange").onchange = renderClkGeo;
-  };
   $("geoRange").onchange = renderGeo;
   onSnapshot(collection(db, "toolStats"), snap => {
     docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render();
