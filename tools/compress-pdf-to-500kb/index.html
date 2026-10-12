@@ -16,7 +16,6 @@
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap"></noscript>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <style>
 :root{--bg:#020a19;--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--accent:#7c6cff;--accent-2:#a46bff;--accent-blue:#2d82ff;--success:#22c55e;--danger:#f43f5e;--radius:16px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -54,29 +53,16 @@ h1 span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-cli
 .dropzone h3{font-size:17px;font-weight:600;margin-bottom:6px}
 .dropzone p{color:var(--text-faint);font-size:13.5px}
 .dropzone input{display:none}
+.dropzone:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px}
 #fileInfoWrap{margin-top:22px;display:none}
 .file-item{display:flex;align-items:center;gap:12px;background:var(--panel-2);border:1px solid #194a84;border-radius:12px;padding:12px 14px}
 .file-icon{width:34px;height:34px;border-radius:8px;flex-shrink:0;background:rgba(244,63,94,.15);color:#f43f5e;display:grid;place-items:center;font-size:15px}
 .file-meta{flex:1;min-width:0}
 .file-name{font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .file-size{font-size:11.5px;color:var(--text-faint);margin-top:2px}
-.file-remove,.range-remove{background:none;border:none;color:var(--text-faint);cursor:pointer;font-size:16px;padding:4px 8px;border-radius:6px;transition:.15s;flex-shrink:0}
-.file-remove:hover,.range-remove:hover{color:var(--danger);background:rgba(244,63,94,.1)}
-#optionsWrap{margin-top:22px;display:none}
-.page-count-pill{display:inline-block;background:rgba(59,130,246,.12);color:#93c5fd;border:1px solid rgba(59,130,246,.3);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;margin-bottom:14px}
-.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
-.mode-btn{background:var(--panel-2);border:1px solid #194a84;color:var(--text-dim);padding:14px 12px;border-radius:12px;font-family:inherit;cursor:pointer;text-align:left;transition:.15s}
-.mode-btn h4{font-size:13.5px;color:var(--text);margin-bottom:3px}
-.mode-btn p{font-size:11.5px;color:var(--text-faint);line-height:1.4}
-.mode-btn.active{border-color:var(--accent-blue);background:rgba(45,130,255,.12)}
-.field-label{font-size:12.5px;color:var(--text-dim);font-weight:600;margin-bottom:8px;display:block}
-.range-input-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
-.range-order{width:24px;height:24px;border-radius:7px;flex-shrink:0;background:linear-gradient(135deg,#2d82ff,#7c3ff0);display:grid;place-items:center;font-size:12px;font-weight:700}
-.range-input-row input{flex:1;background:var(--panel-2);border:1px solid #194a84;color:var(--text);padding:11px 14px;border-radius:10px;font:inherit;font-size:13.5px}
-.range-input-row input:focus{outline:none;border-color:var(--accent-blue)}
-.add-more-btn{background:none;border:1px dashed #2b5d97;color:#80baff;border-radius:10px;padding:9px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
-.add-more-btn:hover{background:rgba(45,130,255,.1)}
-.range-hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
+.file-remove{background:none;border:none;color:var(--text-faint);cursor:pointer;font-size:16px;padding:4px 8px;border-radius:6px;transition:.15s;flex-shrink:0}
+.file-remove:hover:not(:disabled){color:var(--danger);background:rgba(244,63,94,.1)}
+.file-remove:disabled{opacity:.4;cursor:not-allowed}
 .merge-btn{width:100%;margin-top:18px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff;border:none;padding:15px;border-radius:12px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 25px rgba(66,67,255,.2);transition:transform .1s,filter .2s}
 .merge-btn:hover:not(:disabled){filter:brightness(1.1)}
 .merge-btn:active:not(:disabled){transform:scale(.99)}
@@ -132,33 +118,11 @@ nav a:after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:
 nav a:hover:after{transform:scaleX(1)}
 nav a[href="/blog/"]{color:#e6dcff}
 nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
-.learn{margin-bottom:50px}
-.article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.article-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);transition:transform .18s,border-color .18s,box-shadow .18s}
-.article-card:hover{transform:translateY(-3px);border-color:#4b9cff;box-shadow:0 14px 30px rgba(0,0,0,.25)}
-.article-banner{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#123a78,#4a2a9c)}
-.article-banner.b2{background:linear-gradient(135deg,#0d4f7a,#1d8fd6)}
-.article-banner.b3{background:linear-gradient(135deg,#3b2a8c,#b25bff)}
-.article-banner .glyph{font-size:46px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
-.article-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.article-card:hover .article-banner img{transform:scale(1.07)}
-.article-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,25,.05) 35%,rgba(7,25,50,.85))}
-.article-tag{position:absolute;top:12px;left:12px;z-index:2;color:#e6dcff;background:rgba(20,12,50,.65);backdrop-filter:blur(6px);border:1px solid rgba(164,107,255,.4);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700}
-.article-body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
-.article-card h3{font-size:15px;margin-bottom:8px}
-.article-card p{flex:1;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:12px}
-.article-read{font-size:12px;color:#79b7ff;font-weight:700}
-@media(max-width:600px){.article-list{grid-template-columns:1fr}}
-@media(max-width:700px){.steps,.related-grid,.features{grid-template-columns:1fr}h1{font-size:30px}.mode-toggle{grid-template-columns:1fr}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}}
+@media(max-width:700px){.steps,.related-grid,.features{grid-template-columns:1fr}h1{font-size:30px}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}}
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 18px}
 .stat-box{background:#071a35;border:1px solid #194a84;border-radius:12px;padding:12px 6px;text-align:center}
 .stat-box b{display:block;font-size:19px;font-weight:800;background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat-box small{color:var(--text-dim);font-size:11px}
-.q-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-dim);font-weight:600;margin-bottom:10px}
-.q-row strong{color:#80baff}
-#quality{width:100%;accent-color:#2d82ff;cursor:pointer}
-.q-hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
-.note{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 16px}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 
 .prose{margin-bottom:50px}
@@ -168,8 +132,29 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 .prose a{color:#80baff;text-decoration:underline}
 .crumbs{width:min(760px,calc(100% - 32px));margin:18px auto 0;font-size:12px;color:var(--text-faint)}
 .crumbs a{color:#80baff}
+
+.protected-note{display:none;margin-top:16px;padding:11px 14px;border-radius:10px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:#b6d5ff;font-size:12.5px;line-height:1.55}
+.progress-box{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--panel-2);border:1px solid #194a84}
+.pg-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;color:var(--text-dim);margin-bottom:9px}
+.pg-top strong{font-size:15px;color:var(--text);font-variant-numeric:tabular-nums}
+.pg-bar{height:10px;border-radius:99px;background:#0b2a55;overflow:hidden}
+.pg-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#2d82ff,#7c3ff0);transition:width .25s ease}
+.pg-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:9px;font-size:12px;color:var(--text-faint);font-variant-numeric:tabular-nums}
+.pg-meta #pgEta{color:#80baff;font-weight:600}
+.pg-cancel{margin-left:auto;background:none;border:1px solid #194a84;color:var(--text-dim);border-radius:8px;padding:5px 12px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.pg-cancel:hover{border-color:var(--danger);color:#fca5b5}
+.pw-box{display:none;margin-top:14px;padding:16px;border-radius:12px;background:rgba(124,108,255,.08);border:1px solid rgba(124,108,255,.35)}
+.pw-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.pw-msg{font-size:12.5px;line-height:1.55;color:var(--text-dim);margin-bottom:12px}
+.pw-msg.bad{color:#fca5b5}
+.pw-row{display:flex;gap:10px}
+.pw-row input[type=password],.pw-row input[type=text]{flex:1;min-width:0;background:var(--panel-2);border:1px solid #194a84;color:var(--text);padding:11px 14px;border-radius:10px;font:inherit;font-size:14px}
+.pw-row input:focus{outline:none;border-color:var(--accent-blue)}
+.pw-btn{background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff;border:none;padding:0 20px;border-radius:10px;font:inherit;font-weight:700;font-size:13.5px;cursor:pointer}
+.pw-btn:hover{filter:brightness(1.1)}
+.pw-show{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:var(--text-faint);cursor:pointer}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Compress PDF to 500KB", "description": "Compress a PDF to under 500KB in your browser. Free, no watermark, no signup, and your file is never uploaded. Auto-targets 500 KB for form uploads.", "url": "https://www.convertkitlite.site/tools/compress-pdf-to-500kb/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Compress PDF", "item": "https://www.convertkitlite.site/tools/compresspdf/"}, {"@type": "ListItem", "position": 3, "name": "Compress PDF to 500KB", "item": "https://www.convertkitlite.site/tools/compress-pdf-to-500kb/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I compress a PDF to under 500KB?", "acceptedAnswer": {"@type": "Answer", "text": "Drop your PDF into the box above and press the compress button. The tool tries a lossless clean-up first, then lowers image quality and resolution step by step until the file is under 500 KB or it reaches the smallest readable result. Then you download the file."}}, {"@type": "Question", "name": "Will my PDF still be readable after compressing to 500KB?", "acceptedAnswer": {"@type": "Answer", "text": "Usually yes for normal documents. If a lossless clean-up is not enough, pages are converted to images, so the text stays visible but can no longer be selected or searched. Very small targets on image-heavy files can look softer."}}, {"@type": "Question", "name": "Why is my PDF still bigger than 500KB?", "acceptedAnswer": {"@type": "Answer", "text": "Files with many pages, large photos or full-page scans can be too heavy to reach 500 KB without looking blurry. Split the PDF into smaller parts, remove pages you do not need, or rescan at a lower resolution, then compress again."}}, {"@type": "Question", "name": "Is it safe to upload my documents here?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing is uploaded. The compression runs inside your own browser, so your file stays on your device. That makes it a good fit for ID copies, certificates and application documents."}}, {"@type": "Question", "name": "Does this work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It works in any modern browser on Android, iPhone, Windows and Mac. Large PDFs can take longer on older phones, so try a smaller file first."}}, {"@type": "Question", "name": "Is there a watermark or a limit?", "acceptedAnswer": {"@type": "Answer", "text": "No watermark, no account and no daily limit. You can compress as many PDFs as you like."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Compress PDF to 500KB", "description": "Compress a PDF to under 500KB in your browser. Free, no watermark, no signup, and your file is never uploaded. Auto-targets 500 KB for form uploads.", "url": "https://www.convertkitlite.site/tools/compress-pdf-to-500kb/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Compress PDF", "item": "https://www.convertkitlite.site/tools/compresspdf/"}, {"@type": "ListItem", "position": 3, "name": "Compress PDF to 500KB", "item": "https://www.convertkitlite.site/tools/compress-pdf-to-500kb/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I compress a PDF to under 500KB?", "acceptedAnswer": {"@type": "Answer", "text": "Drop your PDF into the box above and press the compress button. The tool tries a lossless clean-up first, then lowers image quality and resolution step by step until the file is under 500 KB or it reaches the smallest readable result. Then you download the file."}}, {"@type": "Question", "name": "Will my PDF still be readable after compressing to 500KB?", "acceptedAnswer": {"@type": "Answer", "text": "Usually yes for normal documents. If a lossless clean-up is not enough, pages are converted to images, so the text stays visible but can no longer be selected or searched. Very small targets on image-heavy files can look softer."}}, {"@type": "Question", "name": "Why is my PDF still bigger than 500KB?", "acceptedAnswer": {"@type": "Answer", "text": "Files with many pages, large photos or full-page scans can be too heavy to reach 500 KB without looking blurry. Split the PDF into smaller parts, remove pages you do not need, or rescan at a lower resolution, then compress again."}}, {"@type": "Question", "name": "Can I compress a password-protected PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Enter the password when asked. It is used only in your browser and is never uploaded. The compressed copy is not password-protected, and its pages are re-encoded as images."}}, {"@type": "Question", "name": "Is it safe to upload my documents here?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing is uploaded. The compression runs inside your own browser, so your file stays on your device. That makes it a good fit for ID copies, certificates and application documents."}}, {"@type": "Question", "name": "Does this work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It works in any modern browser on Android, iPhone, Windows and Mac. Large PDFs can take longer on older phones, so try a smaller file first."}}, {"@type": "Question", "name": "Is there a watermark or a limit?", "acceptedAnswer": {"@type": "Answer", "text": "No watermark, no account and no daily limit. You can compress as many PDFs as you like."}}]}]}</script>
 <meta name="twitter:title" content="Compress PDF to 500KB — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Compress a PDF to under 500KB in your browser. Free, no watermark, no signup, and your file is never uploaded. Auto-targets 500 KB for form uploads.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -193,7 +178,7 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 
 <div class="narrow tool">
   <div class="card">
-    <div class="dropzone" id="dropzone">
+    <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Choose a PDF file to compress to 500 KB">
       <div class="dz-icon">⬆</div>
       <h3>Drop a PDF file here</h3>
       <p>or click to browse — target size: 500 KB</p>
@@ -206,14 +191,26 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
         <div class="file-meta"><div class="file-name" id="fileName"></div><div class="file-size" id="fileSize"></div></div>
         <button class="file-remove" id="fileRemove" title="Remove">✕</button>
       </div>
+      <div class="progress-box" id="progressBox" role="status" aria-live="polite">
+        <div class="pg-top"><span id="pgStep">Preparing…</span><strong id="pgPct">0%</strong></div>
+        <div class="pg-bar" id="pgBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="pg-fill" id="pgFill"></div></div>
+        <div class="pg-meta"><span id="pgElapsed"></span><span id="pgEta"></span><button type="button" class="pg-cancel" id="pgCancel" style="display:none">Cancel</button></div>
+      </div>
+      <div class="pw-box" id="pwBox">
+        <div class="pw-title">🔒 This PDF is password-protected</div>
+        <p class="pw-msg" id="pwMsg">Enter the password to continue.</p>
+        <div class="pw-row"><input type="password" id="pwInput" placeholder="PDF password" autocomplete="off" aria-label="PDF password"><button type="button" class="pw-btn" id="pwBtn">Unlock</button></div>
+        <label class="pw-show"><input type="checkbox" id="pwShow"> Show password</label>
+      </div>
     </div>
+
+    <div class="protected-note" id="protectedNote">🔒 Password-protected PDFs are re-encoded as images to reach 500 KB. The compressed copy will not be password-protected.</div>
 
     <div id="errorBox"></div>
 
     <button class="merge-btn" id="compressBtn" disabled>
       <span class="spinner"></span><span class="btn-label">Compress to 500 KB</span>
     </button>
-    <div id="status" style="display:none;text-align:center;margin-top:10px;font-size:13px;opacity:.82;line-height:1.45"></div>
 
     <div id="result">
       <div class="result-icon" id="resultIcon">✓</div>
@@ -242,8 +239,8 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
   <h2 class="section-title">How to compress a PDF to <span>500KB</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your PDF</h3><p>Drag a PDF onto the box above or click it to choose a file.</p></div>
-    <div class="step"><b>2</b><h3>Press compress</h3><p>The tool tries a lossless clean-up first, then lowers quality step by step until the file is under 500 KB.</p></div>
+    <div class="step"><b>1</b><h3>Add your PDF</h3><p>Drag a PDF onto the box above or click it to choose a file. If it has a password, you will be asked for it.</p></div>
+    <div class="step"><b>2</b><h3>Press compress</h3><p>The tool tries a lossless clean-up first, then lowers quality step by step until the file is under 500 KB. You can watch the progress and cancel at any time.</p></div>
     <div class="step"><b>3</b><h3>Download</h3><p>Check the new size, then download your smaller PDF.</p></div>
   </div>
 </section>
@@ -277,10 +274,10 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
   <details><summary>How do I compress a PDF to under 500KB?</summary><p>Drop your PDF into the box above and press the compress button. The tool tries a lossless clean-up first, then lowers image quality and resolution step by step until the file is under 500 KB or it reaches the smallest readable result. Then you download the file.</p></details>
   <details><summary>Will my PDF still be readable after compressing to 500KB?</summary><p>Usually yes for normal documents. If a lossless clean-up is not enough, pages are converted to images, so the text stays visible but can no longer be selected or searched. Very small targets on image-heavy files can look softer.</p></details>
   <details><summary>Why is my PDF still bigger than 500KB?</summary><p>Files with many pages, large photos or full-page scans can be too heavy to reach 500 KB without looking blurry. Split the PDF into smaller parts, remove pages you do not need, or rescan at a lower resolution, then compress again.</p></details>
+  <details><summary>Can I compress a password-protected PDF?</summary><p>Yes. Enter the password when asked. It is used only in your browser and is never uploaded. The compressed copy is not password-protected, and its pages are re-encoded as images.</p></details>
   <details><summary>Is it safe to upload my documents here?</summary><p>Nothing is uploaded. The compression runs inside your own browser, so your file stays on your device. That makes it a good fit for ID copies, certificates and application documents.</p></details>
   <details><summary>Does this work on a phone?</summary><p>Yes. It works in any modern browser on Android, iPhone, Windows and Mac. Large PDFs can take longer on older phones, so try a smaller file first.</p></details>
   <details><summary>Is there a watermark or a limit?</summary><p>No watermark, no account and no daily limit. You can compress as many PDFs as you like.</p></details>
-  
 </section>
 
 <section class="related" aria-labelledby="rt">
@@ -302,145 +299,383 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 <div>© 2026 ConvertKit Lite. All rights reserved.</div>
 </footer>
 
-<script type="module">
-import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
-pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
-const { PDFDocument } = PDFLib;
-const TARGET = 500*1024;
+<script>
+(function(){
+'use strict';
+/* ===== Per-page settings. For the 100KB / 200KB / 1MB pages, change only these four lines
+   (and the visible text in the HTML above). ===== */
+const TARGET_KB = 500;
+const LABEL = '500 KB';
+const SUFFIX = '-500kb';
+// [render scale, JPEG quality] from gentlest to strongest. Tweak the tail for smaller targets.
+const LADDER = [[2,.85],[2,.75],[1.5,.7],[1.25,.6],[1,.5],[1,.4],[.8,.35],[.7,.3],[.6,.25],[.5,.2]];
+/* ================================================================================================ */
+const TARGET = TARGET_KB * 1024;
+const PDFLIB_URL='https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
+const PDFJS_URL='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
+const PDFJS_WORKER='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
 const $ = id => document.getElementById(id);
 const el = {
   dropzone:$('dropzone'), fileInput:$('fileInput'), fileInfoWrap:$('fileInfoWrap'), fileName:$('fileName'), fileSize:$('fileSize'),
-  fileRemove:$('fileRemove'), btn:$('compressBtn'), status:$('status'), err:$('errorBox'), result:$('result'),
+  fileRemove:$('fileRemove'), protectedNote:$('protectedNote'), btn:$('compressBtn'), err:$('errorBox'), result:$('result'),
   resultIcon:$('resultIcon'), resultTitle:$('resultTitle'), resultMeta:$('resultMeta'),
-  statOrig:$('statOrig'), statNew:$('statNew'), statSaved:$('statSaved'), dl:$('downloadLink'), reset:$('resetBtn')
+  statOrig:$('statOrig'), statNew:$('statNew'), statSaved:$('statSaved'), dl:$('downloadLink'), reset:$('resetBtn'),
+  progressBox:$('progressBox'), pgStep:$('pgStep'), pgPct:$('pgPct'), pgBar:$('pgBar'), pgFill:$('pgFill'),
+  pgElapsed:$('pgElapsed'), pgEta:$('pgEta'), pgCancel:$('pgCancel'),
+  pwBox:$('pwBox'), pwMsg:$('pwMsg'), pwInput:$('pwInput'), pwBtn:$('pwBtn'), pwShow:$('pwShow')
 };
 let file=null, bytes=null, blobUrl=null;
+let password='', isProtected=false, compressing=false, cancelled=false, loadToken=0;
+let libs=null, libsPromise=null;
 
+class Cancelled extends Error {}
+const check = () => { if (cancelled) throw new Cancelled('cancelled'); };
 const fmt = n => n<1024 ? n+' B' : n<1048576 ? (n/1024).toFixed(1)+' KB' : (n/1048576).toFixed(2)+' MB';
-const tick = () => new Promise(r => requestAnimationFrame(() => setTimeout(r,0)));
+const fmtTime = (ms, up) => {
+  const s = Math.max(0, up ? Math.ceil(ms/1000) : Math.floor(ms/1000));
+  return s < 60 ? s+'s' : Math.floor(s/60)+'m '+(s%60)+'s';
+};
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Let the browser paint, but never stall when the tab is in the background.
+const tick = () => new Promise(r => { let d=false; const f=()=>{ if(!d){ d=true; r(); } }; requestAnimationFrame(()=>setTimeout(f,0)); setTimeout(f,80); });
 const showError = m => { el.err.textContent=m; el.err.style.display='block'; };
 const clearError = () => { el.err.style.display='none'; el.err.textContent=''; };
-const setStatus = m => { el.status.textContent=m||''; el.status.style.display=m?'block':'none'; };
 const setLabel = m => { el.btn.querySelector('.btn-label').textContent=m; };
-const baseName = () => file.name.replace(/\.pdf$/i,'') || 'document';
+const baseName = () => (file ? file.name.replace(/\.pdf$/i,'') : '') || 'document';
+
+/* ---------- progress box ---------- */
+const prog = { t0:0, timer:null, eta:null, step:null, etaAt:0, active:false };
+function renderTimes(){
+  if(!prog.active) return;
+  const now = performance.now();
+  el.pgElapsed.textContent = 'Time taken: ' + fmtTime(now - prog.t0);
+  if(prog.eta == null){ el.pgEta.textContent = 'Time needed: estimating…'; return; }
+  const gone = now - prog.etaAt;
+  const left = prog.eta - gone;
+  if(left <= 1500){ el.pgEta.textContent = 'Almost done…'; return; }
+  const stepLeft = prog.step == null ? null : prog.step - gone;
+  el.pgEta.textContent = (stepLeft != null && stepLeft > 1500 && stepLeft < left - 1500)
+    ? 'Time needed: ~' + fmtTime(stepLeft, true) + ' for this attempt, at most ~' + fmtTime(left, true) + ' in total'
+    : 'Time needed: ~' + fmtTime(left, true);
+}
+function setProgress(pct, step, etaMs, stepMs){
+  pct = Math.max(0, Math.min(100, pct));
+  el.pgFill.style.width = pct.toFixed(1) + '%';
+  el.pgPct.textContent = Math.floor(pct) + '%';
+  el.pgBar.setAttribute('aria-valuenow', String(Math.floor(pct)));
+  if(step) el.pgStep.textContent = step;
+  if(etaMs == null){ prog.eta = null; prog.step = null; }
+  else { prog.eta = etaMs; prog.step = stepMs == null ? null : stepMs; prog.etaAt = performance.now(); }
+  renderTimes();
+}
+function progShow(step){
+  prog.t0 = performance.now(); prog.eta = null; prog.step = null; prog.active = true;
+  el.progressBox.style.display = 'block';
+  clearInterval(prog.timer); prog.timer = setInterval(renderTimes, 250);
+  setProgress(0, step);
+}
+function progHide(){
+  prog.active = false; clearInterval(prog.timer);
+  el.progressBox.style.display = 'none';
+}
+el.pgCancel.addEventListener('click', () => { cancelled = true; el.pgStep.textContent = 'Cancelling…'; });
+
+/* ---------- PDF libraries: loaded on demand, so the page responds instantly ---------- */
+function loadScript(src){
+  return new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.async = true; s.onload = res; s.onerror = () => rej(new Error('script'));
+    document.head.appendChild(s);
+  });
+}
+function loadLibs(){
+  if(!libsPromise){
+    libsPromise = Promise.all([ window.PDFLib ? Promise.resolve() : loadScript(PDFLIB_URL), import(PDFJS_URL) ])
+      .then(([, pdfjs]) => {
+        pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+        libs = { pdfjsLib: pdfjs, PDFLib: window.PDFLib };
+        return libs;
+      })
+      .catch(() => {
+        libsPromise = null;
+        const err = new Error('Could not load the PDF engine. Check your internet connection and try again.');
+        err.engine = true; throw err;
+      });
+  }
+  return libsPromise;
+}
+// Start downloading as soon as the person shows interest in the box.
+['pointerenter','touchstart','focusin'].forEach(t => el.dropzone.addEventListener(t, () => { loadLibs().catch(()=>{}); }, { once:true, passive:true }));
+
+/* ---------- loading a file ---------- */
+function readFile(f, onProgress){
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onprogress = e => { if(e.lengthComputable) onProgress(e.loaded / e.total); };
+    r.onload = () => res(r.result);
+    r.onerror = () => rej(r.error || new Error('read'));
+    r.readAsArrayBuffer(f);
+  });
+}
+
+function askPassword(wrong){
+  progHide();
+  el.pwMsg.textContent = wrong
+    ? 'Incorrect password. Please try again.'
+    : 'Enter the password to continue. It is used only in your browser and is never uploaded.';
+  el.pwMsg.classList.toggle('bad', !!wrong);
+  el.pwBox.style.display = 'block';
+  el.pwInput.value = '';
+  el.pwInput.focus();
+}
+
+async function analyze(pw, token){
+  if(!libs) setProgress(50, 'Loading PDF engine…');
+  const L = await loadLibs();
+  if(token !== loadToken) return;
+  setProgress(75, 'Checking PDF…'); await tick();
+  if(token !== loadToken) return;
+  let doc;
+  try{
+    doc = await L.pdfjsLib.getDocument({ data:new Uint8Array(bytes.slice(0)), password:pw || undefined }).promise;
+  }catch(e){
+    if(token !== loadToken) return;
+    if(e && e.name === 'PasswordException'){ askPassword(e.code === 2); return; }
+    throw e;
+  }
+  const pages = doc.numPages; await doc.destroy();
+  if(token !== loadToken) return;
+  password = pw; isProtected = !!pw;
+  el.fileSize.textContent = `${fmt(file.size)} • ${pages} page${pages===1?'':'s'}` + (isProtected ? ' • unlocked' : '');
+  setProgress(100, 'Ready'); await sleep(200);
+  if(token !== loadToken) return;
+  progHide();
+  el.protectedNote.style.display = isProtected ? 'block' : 'none';
+  el.btn.disabled = false;
+}
+
+function failLoad(e, token){
+  if(token !== loadToken) return;
+  console.error(e);
+  const name = file ? file.name : 'this file';
+  resetAll(true);
+  showError(e && e.engine ? e.message : `Could not read "${name}". It may be corrupted or not a valid PDF.`);
+}
 
 async function handleFile(f){
-  clearError(); el.result.style.display='none';
-  if (f.type!=='application/pdf' && !f.name.toLowerCase().endsWith('.pdf')) return showError(`"${f.name}" is not a PDF file.`);
+  if(compressing) return;
+  clearError(); el.result.style.display = 'none';
+  if(f.type !== 'application/pdf' && !f.name.toLowerCase().endsWith('.pdf')) return showError(`"${f.name}" is not a PDF file.`);
+  const token = ++loadToken;
+  file = f; bytes = null; password = ''; isProtected = false;
+  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl = null; }
+  // Show the file and a progress bar right away, so it is obvious the upload worked.
+  el.fileName.textContent = f.name; el.fileSize.textContent = fmt(f.size);
+  el.dropzone.style.display = 'none'; el.fileInfoWrap.style.display = 'block';
+  el.protectedNote.style.display = 'none'; el.pwBox.style.display = 'none'; el.btn.disabled = true;
+  el.pgCancel.style.display = 'none';
+  progShow('Reading file…');
   try{
-    const buf = await f.arrayBuffer();
-    const doc = await pdfjsLib.getDocument({data:new Uint8Array(buf.slice(0))}).promise;
-    const pages = doc.numPages; await doc.destroy();
-    file=f; bytes=buf;
-    el.fileName.textContent=f.name;
-    el.fileSize.textContent=`${fmt(f.size)} • ${pages} page${pages===1?'':'s'}`;
-    el.fileInfoWrap.style.display='block';
-    el.dropzone.style.display='none'; el.btn.disabled=false;
-  }catch(e){
-    console.error(e);
-    showError(`Could not read "${f.name}". It may be corrupted or password-protected.`);
+    const buf = await readFile(f, p => { if(token === loadToken) setProgress(p * 50, 'Reading file…'); });
+    if(token !== loadToken) return;
+    bytes = buf;
+    await analyze('', token);
+  }catch(e){ failLoad(e, token); }
+}
+
+async function submitPassword(){
+  const pw = el.pwInput.value;
+  if(!pw){ el.pwInput.focus(); return; }
+  const token = ++loadToken;
+  el.pwBox.style.display = 'none'; el.pgCancel.style.display = 'none';
+  progShow('Unlocking PDF…');
+  try{ await analyze(pw, token); }catch(e){ failLoad(e, token); }
+}
+el.pwBtn.addEventListener('click', submitPassword);
+el.pwInput.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); submitPassword(); } });
+el.pwShow.addEventListener('change', () => { el.pwInput.type = el.pwShow.checked ? 'text' : 'password'; });
+
+/* ---------- compression ---------- */
+const isEncryptedError = (L, e) =>
+  !!e && ((L.PDFLib.EncryptedPDFError && e instanceof L.PDFLib.EncryptedPDFError) || /encrypt/i.test(e.message || ''));
+
+async function losslessCompress(L){
+  const src = await L.PDFLib.PDFDocument.load(bytes, { updateMetadata:false });
+  check();
+  return await src.save({ useObjectStreams:true });
+}
+
+// Re-encodes every page as a JPEG. If `limit` is given and the pages add up to more than that,
+// the attempt stops early and returns null, so failed attempts cost very little time.
+async function imageCompress(L, q, scale, limit, onPage){
+  const pdf = await L.pdfjsLib.getDocument({ data:new Uint8Array(bytes.slice(0)), password:password || undefined }).promise;
+  try{
+    const n = pdf.numPages;
+    const out = await L.PDFLib.PDFDocument.create();
+    let total = 0;
+    for(let i = 1; i <= n; i++){
+      check(); onPage(i, n); await tick(); check();
+      const page = await pdf.getPage(i);
+      const base = page.getViewport({ scale:1 });
+      let s = scale;
+      const px = base.width * base.height * s * s;
+      if(px > 16e6) s *= Math.sqrt(16e6 / px);   // keep the canvas within phone limits
+      const vp = page.getViewport({ scale:s });
+      const c = document.createElement('canvas');
+      c.width = Math.ceil(vp.width); c.height = Math.ceil(vp.height);
+      const ctx = c.getContext('2d', { alpha:false });
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+      await page.render({ canvasContext:ctx, viewport:vp }).promise;
+      const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', q));
+      c.width = c.height = 1; page.cleanup();
+      if(!blob) throw new Error('canvas');
+      total += blob.size;
+      if(limit && total > limit) return null;
+      const img = await out.embedJpg(await blob.arrayBuffer());
+      const p = out.addPage([base.width, base.height]);
+      p.drawImage(img, { x:0, y:0, width:base.width, height:base.height });
+    }
+    check();
+    return await out.save({ useObjectStreams:true });
+  } finally {
+    await pdf.destroy();
   }
 }
 
-async function losslessCompress(){
-  const src = await PDFDocument.load(bytes,{ignoreEncryption:true,updateMetadata:false});
-  return await src.save({useObjectStreams:true});
-}
-
-async function imageCompress(q, scale, label){
-  const pdf = await pdfjsLib.getDocument({data:new Uint8Array(bytes.slice(0))}).promise;
-  const out = await PDFDocument.create();
-  for(let i=1;i<=pdf.numPages;i++){
-    setStatus(`${label} — page ${i} of ${pdf.numPages}…`); await tick();
-    const page = await pdf.getPage(i);
-    const base = page.getViewport({scale:1});
-    const vp = page.getViewport({scale});
-    const c = document.createElement('canvas');
-    c.width=Math.ceil(vp.width); c.height=Math.ceil(vp.height);
-    const ctx = c.getContext('2d',{alpha:false});
-    ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
-    await page.render({canvasContext:ctx,viewport:vp}).promise;
-    const blob = await new Promise(r => c.toBlob(r,'image/jpeg',q));
-    const img = await out.embedJpg(await blob.arrayBuffer());
-    const p = out.addPage([base.width,base.height]);
-    p.drawImage(img,{x:0,y:0,width:base.width,height:base.height});
-    c.width=c.height=1; page.cleanup();
+async function targetCompress(L){
+  let lossless = null, autoSwitched = false;
+  if(!isProtected){
+    setProgress(5, 'Trying a lossless clean-up first…'); await tick(); check();
+    try{ lossless = await losslessCompress(L); }
+    catch(e){
+      if(e instanceof Cancelled) throw e;
+      if(!isEncryptedError(L, e)) throw e;
+      autoSwitched = true;   // restricted PDFs cannot be rewritten losslessly without corrupting them
+    }
+    if(lossless && lossless.byteLength <= TARGET){
+      return { out:lossless, reached:true, kind:'lossless', autoSwitched };
+    }
   }
-  await pdf.destroy();
-  return await out.save({useObjectStreams:true});
-}
-
-async function targetCompress(){
-  setStatus('Trying a lossless clean-up first…'); await tick();
-  const lossless = await losslessCompress();
-  if (lossless.byteLength <= TARGET) return {out:lossless, reached:true, kind:'lossless'};
-  const ladder = [[2,.85],[2,.75],[1.5,.7],[1.25,.6],[1,.5],[1,.4],[.8,.35],[.7,.3],[.6,.25],[.5,.2]];
-  let best = lossless, bestKind='lossless';
-  for (let i=0;i<ladder.length;i++){
-    const [s,q] = ladder[i];
-    const out = await imageCompress(q, s, `Attempt ${i+1} of ${ladder.length}`);
-    if (out.byteLength < best.byteLength){ best = out; bestKind='image'; }
-    if (out.byteLength <= TARGET) return {out, reached:true, kind:'image'};
+  const K = LADDER.length;
+  let lastImage = null;
+  let pageAvg = 0, lastPageAt = 0;   // average time to render one page, learned as we go
+  for(let k = 0; k < K; k++){
+    check();
+    const [s, q] = LADDER[k];
+    const last = k === K - 1;
+    const attStart = performance.now();
+    lastPageAt = 0;
+    const res = await imageCompress(L, q, s, last ? 0 : TARGET, (i, n) => {
+      const now = performance.now();
+      if(i > 1 && lastPageAt){ const dt = now - lastPageAt; pageAvg = pageAvg ? pageAvg * 0.6 + dt * 0.4 : dt; }
+      lastPageAt = now;
+      const pct = 12 + ((k + (i - 1) / n) / K) * 82;
+      const label = `Attempt ${k + 1} of ${K} — page ${i} of ${n}…`;
+      if(pageAvg){
+        const stepLeft = pageAvg * (n - i + 1);
+        // Worst case: every remaining attempt runs in full. Real runs are usually shorter, because
+        // an attempt stops early once it is clearly too big.
+        setProgress(pct, label, stepLeft + pageAvg * n * (K - k - 1), stepLeft);
+      } else setProgress(pct, label, null);
+    });
+    if(!pageAvg) pageAvg = performance.now() - attStart;   // one-page files: use the whole attempt
+    if(res){
+      lastImage = res;
+      if(res.byteLength <= TARGET) return { out:res, reached:true, kind:'image', autoSwitched };
+    }
   }
-  return {out:best, reached:false, kind:bestKind};
+  let best = lastImage, kind = 'image';
+  if(lossless && (!best || lossless.byteLength < best.byteLength)){ best = lossless; kind = 'lossless'; }
+  return { out:best, reached:false, kind, autoSwitched };
 }
 
 el.btn.addEventListener('click', async () => {
-  if(!file) return;
-  clearError(); el.result.style.display='none';
-  el.btn.classList.add('loading'); el.btn.disabled=true; setLabel('Processing…');
+  if(!file || !bytes || compressing) return;
+  compressing = true; cancelled = false;
+  clearError(); el.result.style.display = 'none';
+  el.btn.classList.add('loading'); el.btn.disabled = true; setLabel('Processing…');
+  el.fileRemove.disabled = true;
+  el.pgCancel.style.display = 'inline-block';
+  progShow('Starting…');
   try{
     const orig = bytes.byteLength;
     el.statOrig.textContent = fmt(orig);
-    if (orig <= TARGET){
-      el.dl.style.display='none';
-      el.resultIcon.textContent='✓'; el.resultTitle.textContent='Already under 500 KB';
-      el.statNew.textContent = fmt(orig); el.statSaved.textContent='Met';
-      el.resultMeta.textContent = 'Your file is already smaller than 500 KB, so no compression is needed.';
+    if(orig <= TARGET){
+      el.dl.style.display = 'none';
+      el.resultIcon.textContent = '✓'; el.resultTitle.textContent = 'Already under ' + LABEL;
+      el.statNew.textContent = fmt(orig); el.statSaved.textContent = 'Met';
+      el.resultMeta.textContent = 'Your file is already smaller than ' + LABEL + ', so no compression is needed.';
     } else {
-      const r = await targetCompress();
+      if(!libs) setProgress(2, 'Loading PDF engine…');
+      const L = await loadLibs(); check();
+      const r = await targetCompress(L);
       const now = r.out.byteLength;
+      setProgress(100, 'Done'); await sleep(300);
       el.statNew.textContent = fmt(now);
       el.statSaved.textContent = r.reached ? 'Met' : 'Not met';
-      if (now < orig){
+      if(now < orig){
         if(blobUrl) URL.revokeObjectURL(blobUrl);
-        blobUrl = URL.createObjectURL(new Blob([r.out],{type:'application/pdf'}));
-        import('/stats.js').then(m=>m.trackUse()).catch(()=>{});
-        el.dl.href=blobUrl; el.dl.download=baseName()+'-500kb.pdf'; el.dl.style.display='inline-flex';
-      } else { el.dl.style.display='none'; }
-      if (r.reached){
-        el.resultIcon.textContent='✓'; el.resultTitle.textContent='Your PDF is under 500 KB';
-        el.resultMeta.textContent = r.kind==='lossless' ? 'Text and layout are unchanged.' : 'Pages were re-encoded as images, so text is no longer selectable.';
+        blobUrl = URL.createObjectURL(new Blob([r.out], { type:'application/pdf' }));
+        import('/stats.js').then(m => m.trackUse()).catch(() => {});
+        el.dl.href = blobUrl; el.dl.download = baseName() + SUFFIX + '.pdf'; el.dl.style.display = 'inline-flex';
+      } else { el.dl.style.display = 'none'; }
+      const imgNote = r.kind === 'image'
+        ? 'Pages were re-encoded as images, so text is no longer selectable.' +
+          (isProtected ? ' The compressed file is not password-protected.' : r.autoSwitched ? ' The original security restrictions were not carried over.' : '')
+        : 'Text and layout are unchanged.';
+      if(r.reached){
+        el.resultIcon.textContent = '✓'; el.resultTitle.textContent = 'Your PDF is under ' + LABEL;
+        el.resultMeta.textContent = imgNote;
       } else {
-        el.resultIcon.textContent='ℹ'; el.resultTitle.textContent='Smallest size reached: '+fmt(now);
-        el.resultMeta.textContent = 'This file could not reach 500 KB without becoming unreadable. Try splitting it into fewer pages, then compress again.';
+        el.resultIcon.textContent = 'ℹ'; el.resultTitle.textContent = 'Smallest size reached: ' + fmt(now);
+        el.resultMeta.textContent = 'This file could not reach ' + LABEL + ' without becoming unreadable. Try splitting it into fewer pages, then compress again. ' +
+          (now < orig ? imgNote : 'No smaller version was found, so there is nothing to download.');
       }
     }
-    el.result.style.display='block';
-    el.result.scrollIntoView({behavior:'smooth',block:'nearest'});
+    el.result.style.display = 'block';
+    el.result.scrollIntoView({ behavior:'smooth', block:'nearest' });
   }catch(e){
-    console.error(e);
-    showError('Something went wrong while compressing. The file may be protected or damaged.');
+    if(!(e instanceof Cancelled)){
+      console.error(e);
+      showError(e && e.engine ? e.message : 'Something went wrong while compressing. The file may be damaged or too large for this device.');
+    }
   }finally{
-    el.btn.classList.remove('loading'); el.btn.disabled=false; setLabel('Compress to 500 KB'); setStatus('');
+    compressing = false; progHide(); el.pgCancel.style.display = 'none';
+    el.btn.classList.remove('loading'); el.btn.disabled = false; setLabel('Compress to ' + LABEL);
+    el.fileRemove.disabled = false;
   }
 });
 
-el.dropzone.addEventListener('click',()=>el.fileInput.click());
-el.fileInput.addEventListener('change',e=>{ if(e.target.files[0]) handleFile(e.target.files[0]); el.fileInput.value=''; });
-['dragenter','dragover'].forEach(t=>el.dropzone.addEventListener(t,e=>{e.preventDefault();el.dropzone.classList.add('dragover');}));
-['dragleave','drop'].forEach(t=>el.dropzone.addEventListener(t,e=>{e.preventDefault();el.dropzone.classList.remove('dragover');}));
-el.dropzone.addEventListener('drop',e=>{ if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+/* ---------- picking and dropping files ---------- */
+const hasFiles = e => !!e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files');
+el.dropzone.addEventListener('click', () => el.fileInput.click());
+el.dropzone.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); el.fileInput.click(); } });
+el.fileInput.addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); el.fileInput.value = ''; });
+['dragenter','dragover'].forEach(t => el.dropzone.addEventListener(t, e => { if(hasFiles(e)){ e.preventDefault(); el.dropzone.classList.add('dragover'); } }));
+['dragleave','drop'].forEach(t => el.dropzone.addEventListener(t, () => el.dropzone.classList.remove('dragover')));
+// A file dropped anywhere on the page is used, instead of the browser opening it in the tab.
+window.addEventListener('dragover', e => { if(hasFiles(e)) e.preventDefault(); });
+window.addEventListener('drop', e => {
+  if(!hasFiles(e)) return;
+  e.preventDefault();
+  const f = e.dataTransfer.files[0];
+  if(f && !compressing) handleFile(f);
+});
 
-function resetAll(){
-  file=null; bytes=null;
-  el.fileInfoWrap.style.display='none';
-  el.dropzone.style.display='block'; el.result.style.display='none';
-  el.btn.disabled=true; clearError(); setStatus('');
-  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl=null; }
+function resetAll(keepError){
+  if(compressing) return;
+  loadToken++;
+  file = null; bytes = null; password = ''; isProtected = false;
+  progHide();
+  el.fileInfoWrap.style.display = 'none'; el.pwBox.style.display = 'none'; el.protectedNote.style.display = 'none';
+  el.dropzone.style.display = 'block'; el.result.style.display = 'none';
+  el.btn.disabled = true; el.pwInput.value = '';
+  if(keepError !== true) clearError();
+  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl = null; }
 }
-el.fileRemove.addEventListener('click',resetAll);
-el.reset.addEventListener('click',resetAll);
+el.fileRemove.addEventListener('click', () => resetAll());
+el.reset.addEventListener('click', () => resetAll());
+})();
 </script>
 <script src="/lazy-presence.js" defer></script>
 <script src="/lazy-track.js" defer></script>
