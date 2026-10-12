@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compress PDF to 100KB, 200KB, 500KB, 1MB, 3MB | Free — ConvertKit Lite</title>
+<meta name="description" content="Compress a PDF to an exact size limit for free. Pick 100KB, 200KB, 500KB, 1MB or 3MB. No upload, no watermark, no signup. Works on phone and PC.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="ConvertKit Lite">
+<meta property="og:image" content="https://github.com/SiamAlGalib/ConvertKit-Lite/blob/main/blog/BannerImage/compress-pdf-to-100kb-200kb-500kb-1mb-3mb.webp?raw=true">
+<link rel="icon" href="/logo.png">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<!-- speed: open connections and start downloading the Firebase code immediately -->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap"></noscript>
+<style>
+:root{--txt:#f2f6ff;--mut:#9db7dd;--soft:#c4d6ef;--line:#194a84;--hl:#12345d;--card:linear-gradient(145deg,#0b254a,#071a35);--hdr:rgba(2,12,30,.92);--fbg:linear-gradient(160deg,rgba(10,33,66,.85),rgba(5,16,36,.92));--link:#66a9ff;--chip:rgba(44,131,255,.12)}
+html[data-theme=light]{--txt:#0d1b33;--mut:#5b6f92;--soft:#41587d;--line:#cfdcf1;--hl:#d6e2f5;--card:#fff;--hdr:rgba(255,255,255,.88);--fbg:#fff;--link:#2c6fe0;--chip:#eaf2ff;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#020a19;color:var(--txt);font-family:Inter,Arial,sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(80,140,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(80,140,255,.07) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 25%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 80% 60% at 50% 25%,#000 20%,transparent 75%)}
+body:after{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;background:radial-gradient(600px 420px at 85% 8%,rgba(44,131,255,.38),transparent 70%),radial-gradient(520px 420px at 8% 22%,rgba(163,92,255,.28),transparent 70%),radial-gradient(700px 500px at 62% 100%,rgba(0,200,255,.14),transparent 70%),linear-gradient(135deg,#020a19 0%,#03132b 60%,#061a39 100%);animation:bgDrift 22s ease-in-out infinite alternate}
+@keyframes bgDrift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-2%,2%,0) scale(1.06)}}
+@media(prefers-reduced-motion:reduce){body:after{animation:none}}
+html[data-theme=light] body{background:#f4f8ff}
+html[data-theme=light] body:before{background-image:linear-gradient(rgba(60,110,220,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(60,110,220,.08) 1px,transparent 1px)}
+html[data-theme=light] body:after{background:radial-gradient(600px 420px at 85% 8%,rgba(90,150,255,.35),transparent 70%),radial-gradient(520px 420px at 8% 22%,rgba(170,120,255,.25),transparent 70%),linear-gradient(135deg,#f7faff 0%,#eaf1fe 60%,#e2ebfc 100%)}
+a{color:inherit;text-decoration:none}button{font:inherit}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+header{height:72px;border-bottom:1px solid var(--hl);background:var(--hdr);backdrop-filter:blur(15px);position:sticky;top:0;z-index:20}
+.navbar{height:100%;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+.brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;letter-spacing:0;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+html[data-theme=light] .brand .by{color:#0a8fb0;text-shadow:none}
+nav{position:relative;display:flex;align-items:center;gap:32px;font-size:13px;color:var(--soft)}
+nav a{padding:27px 0 23px;border-bottom:2px solid transparent}nav a:hover,nav a.active{color:var(--txt)}
+.nav-ind{position:absolute;bottom:0;left:0;height:2px;width:0;background:#7257ff;border-radius:2px;transition:transform .3s cubic-bezier(.4,0,.2,1),width .3s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.nav-actions{display:flex;align-items:center;gap:25px}
+.theme{width:40px;height:40px;border-radius:50%;border:1px solid #2b5d97;background:rgba(20,60,120,.35);color:#9ebef0;display:grid;place-items:center;cursor:pointer;padding:0}
+.theme .i-moon{display:none}html[data-theme=light] .theme .i-sun{display:none}html[data-theme=light] .theme .i-moon{display:block}
+html[data-theme=light] .theme{background:#fff;border-color:#c5d5ee;color:#c47a00}
+.primary{border:0;border-radius:9px;color:#fff;font-weight:700;padding:11px 27px;background:linear-gradient(100deg,#2d82ff,#7c3ff0);box-shadow:0 8px 25px rgba(66,67,255,.2);cursor:pointer;display:inline-block}
+@media(max-width:950px){nav{display:none}}
+@media(max-width:560px){.container{width:calc(100% - 24px)}.nav-actions{gap:12px}.primary{padding:10px 16px}}
+.accent{display:block;height:2px;background:linear-gradient(90deg,#2c83ff,#a35cff,#3ee7ff)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{color:var(--link);background:var(--chip);border:1px solid rgba(94,158,255,.28);padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600}
+.meta{display:flex;align-items:center;gap:9px;color:var(--mut);font-size:12px}
+.meta i{width:3px;height:3px;border-radius:50%;background:var(--mut);opacity:.6}
+footer{position:relative;overflow:hidden;margin:40px auto 36px;padding:40px 36px 22px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(520px 260px at 0% 0%,rgba(44,131,255,.2),transparent 70%),radial-gradient(520px 260px at 100% 100%,rgba(163,92,255,.18),transparent 70%),var(--fbg);color:var(--mut);font-size:12px}
+footer:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#2c83ff,#a35cff,#ff3976,#3ee7ff)}
+.foot-top{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:34px;padding-bottom:26px}
+.foot-brand .brand{font-size:20px;margin-bottom:12px}.foot-brand p{margin:14px 0 0;max-width:320px;line-height:1.6;font-size:13px}
+.foot-col h4{position:relative;margin:0 0 18px;padding-bottom:10px;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--txt)}
+.foot-col h4:after{content:"";position:absolute;left:0;bottom:0;width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2c83ff,#a35cff)}
+.foot-col a{display:block;width:fit-content;font-size:13px;margin-bottom:11px;transition:color .2s,transform .2s}.foot-col a:hover{color:var(--txt);transform:translateX(5px)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--hl);font-size:11px}
+.foot-bottom b{color:#3ee7ff}html[data-theme=light] .foot-bottom b{color:#0a8fb0}
+.to-top{border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-weight:700}
+@media(max-width:950px){.foot-top{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+@media(max-width:560px){footer{padding:30px 18px 20px}.foot-bottom{flex-direction:column;text-align:center}}
+
+article{max-width:780px;margin:0 auto;padding:50px 0 10px;min-height:70vh}
+.back{display:inline-block;color:var(--link);font-size:13px;font-weight:600;margin-bottom:20px}
+.back:hover{text-decoration:underline}
+article h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-1.4px;margin:14px 0 14px}
+.cover{width:100%;max-height:420px;object-fit:cover;border-radius:16px;border:1px solid var(--line);margin:24px 0}
+.prose{font-size:16.5px;line-height:1.85;color:var(--soft)}
+.prose h2{font-size:27px;line-height:1.25;letter-spacing:-.6px;color:var(--txt);margin:2em 0 .6em}
+.prose h3{font-size:20px;color:var(--txt);margin:1.6em 0 .5em}
+.prose p{margin:0 0 1.2em}.prose ul,.prose ol{padding-left:24px;margin:0 0 1.2em}.prose li{margin-bottom:.5em}
+.prose a{color:var(--link);text-decoration:underline}.prose strong{color:var(--txt)}
+.prose img{max-width:100%;height:auto;border-radius:12px;margin:.6em 0}
+.prose blockquote{margin:1.4em 0;padding:4px 0 4px 18px;border-left:3px solid #7257ff;color:var(--txt)}
+.prose code{background:var(--chip);padding:2px 6px;border-radius:6px;font-size:.9em}
+.cta{margin:46px 0 0;padding:26px 28px;border:1px solid var(--line);border-radius:16px;background:var(--card);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.cta h3{margin:0 0 6px;font-size:19px}.cta p{margin:0;color:var(--soft);font-size:14px}
+.pstate{text-align:center;color:var(--mut);padding:80px 0}
+
+/* skeleton shown while the very first load fetches the post */
+.sk{border-radius:10px;background:linear-gradient(90deg,var(--chip) 25%,rgba(120,160,255,.22) 50%,var(--chip) 75%);background-size:200% 100%;animation:sk 1.2s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.sk-tag{width:90px;height:22px;border-radius:999px;margin-bottom:16px}
+.sk-h{height:42px;margin-bottom:12px}.sk-h.s{width:70%}
+.sk-meta{width:160px;height:14px;margin:16px 0 24px}
+.sk-cover{height:280px;border-radius:16px;margin-bottom:26px}
+.sk-line{height:14px;margin-bottom:14px}.sk-line.s{width:80%}
+</style>
+<link rel="canonical" href="https://www.convertkitlite.site/blog/compress-pdf-to-100kb-200kb-500kb-1mb-3mb/">
+<meta property="og:title" content="Compress PDF to 100KB, 200KB, 500KB, 1MB, 3MB | Free — ConvertKit Lite">
+<meta property="og:description" content="Compress a PDF to an exact size limit for free. Pick 100KB, 200KB, 500KB, 1MB or 3MB. No upload, no watermark, no signup. Works on phone and PC.">
+<meta property="og:url" content="https://www.convertkitlite.site/blog/compress-pdf-to-100kb-200kb-500kb-1mb-3mb/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compress PDF to 100KB, 200KB, 500KB, 1MB, 3MB | Free — ConvertKit Lite">
+<meta name="twitter:description" content="Compress a PDF to an exact size limit for free. Pick 100KB, 200KB, 500KB, 1MB or 3MB. No upload, no watermark, no signup. Works on phone and PC.">
+<meta name="twitter:image" content="https://github.com/SiamAlGalib/ConvertKit-Lite/blob/main/blog/BannerImage/compress-pdf-to-100kb-200kb-500kb-1mb-3mb.webp?raw=true">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Compress a PDF to 100KB, 200KB, 500KB, 1MB or 3MB (Free)","description":"Compress a PDF to an exact size limit for free. Pick 100KB, 200KB, 500KB, 1MB or 3MB. No upload, no watermark, no signup. Works on phone and PC.","mainEntityOfPage":"https://www.convertkitlite.site/blog/compress-pdf-to-100kb-200kb-500kb-1mb-3mb/","author":{"@type":"Person","name":"SAG"},"publisher":{"@type":"Organization","name":"ConvertKit Lite","logo":{"@type":"ImageObject","url":"https://www.convertkitlite.site/logo.png"}},"image":"https://github.com/SiamAlGalib/ConvertKit-Lite/blob/main/blog/BannerImage/compress-pdf-to-100kb-200kb-500kb-1mb-3mb.webp?raw=true","datePublished":"2026-10-12T06:52:08.806Z","dateModified":"2026-10-12T06:52:08.806Z"}</script>
+</head>
+<body id="top">
+<header><div class="container navbar">
+<a class="brand" href="/"><img alt="ConvertKit Lite logo" src="/logo.png" onerror="this.style.display='none'"><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="/">Home</a><a href="/#tools">Tools</a><a href="/#about">About</a><a href="/#faq">FAQ</a><a class="active" href="/blog/">Blog</a></nav>
+<div class="nav-actions">
+<button class="theme" id="themeToggle" type="button" aria-label="Toggle light/dark mode">
+<svg class="i-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+<svg class="i-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+</button>
+<a class="primary" href="/#tools">Get Started</a></div>
+</div></header>
+<main class="container"><article id="post">
+      <a class="back" href="/blog/">← All articles</a>
+      <div class="tags"><span>compress pdf</span><span>reduce pdf size</span><span>pdf to 100kb</span><span>pdf to 200kb</span><span>pdf to 500kb</span><span>pdf to 1mb</span><span>pdf to 3mb</span></div>
+      <h1>How to Compress a PDF to 100KB, 200KB, 500KB, 1MB or 3MB (Free)</h1>
+      <div class="meta"><span>October 12, 2026</span><i></i><span>4 min read</span></div>
+      <img class="cover" src="https://github.com/SiamAlGalib/ConvertKit-Lite/blob/main/blog/BannerImage/compress-pdf-to-100kb-200kb-500kb-1mb-3mb.webp?raw=true" alt="How to Compress a PDF to 100KB, 200KB, 500KB, 1MB or 3MB (Free)">
+      <div class="prose"><div style="border:1px solid #3b82f6;border-radius:12px;padding:16px 20px;margin:0 0 24px">
+<strong>What you'll learn</strong>
+<ul>
+<li>Which PDF size limit your form or portal needs</li>
+<li>How to compress a PDF to 100KB, 200KB, 500KB, 1MB or 3MB</li>
+<li>Why some PDFs refuse to get smaller, and how to fix that</li>
+<li>How to keep your documents private while compressing</li>
+</ul>
+</div>
+
+<p>You are filling in a job application, a scholarship form or a government portal, and it says: <em>"Upload a PDF under 200KB."</em> Your file is 4MB. This is one of the most common PDF problems, and it is easy to fix once you know which size to aim for.</p>
+
+<p>ConvertKit Lite has a free compressor for each of the most common limits. Everything runs in your browser, so your file is never uploaded to a server.</p>
+
+<h2>Pick the right size for your upload</h2>
+<p>Choose the tool that matches the limit on your form:</p>
+<ul>
+<li><a href="/tools/compress-pdf-to-100kb/"><strong>Compress PDF to 100KB</strong></a>: for strict portals, ID proofs, signatures and single-page certificates.</li>
+<li><a href="/tools/compress-pdf-to-200kb/"><strong>Compress PDF to 200KB</strong></a>: for job applications, exam forms and short documents.</li>
+<li><a href="/tools/compress-pdf-to-500kb/"><strong>Compress PDF to 500KB</strong></a>: for resumes, mark sheets and multi-page forms.</li>
+<li><a href="/tools/compress-pdf-to-1mb/"><strong>Compress PDF to 1MB</strong></a>: for email attachments and standard online applications.</li>
+<li><a href="/tools/compress-pdf-to-3mb/"><strong>Compress PDF to 3MB</strong></a>: for longer reports, scans and portfolios that need to stay sharp.</li>
+</ul>
+<p>Not sure what limit you need? Use the general <a href="/tools/compresspdf/">Compress PDF tool</a>.</p>
+
+<div style="border:1px solid #8b5cf6;border-radius:12px;padding:16px 20px;margin:24px 0">
+<strong>Need it small right now?</strong><br>
+Open the <a href="/tools/compresspdf/">free PDF compressor</a>, drop your file in, and download the smaller version in seconds. No signup, no watermark.
+</div>
+
+<h2>How to compress a PDF to a specific size</h2>
+<ol>
+<li><strong>Open the right tool.</strong> Choose the page that matches your limit from the list above.</li>
+<li><strong>Add your PDF.</strong> Drag it into the box or click to browse. It works on Windows, Mac, Android and iPhone.</li>
+<li><strong>Press compress.</strong> The tool first tries a lossless clean-up. If the file is still too big, it lowers image quality and resolution step by step until it fits under your target.</li>
+<li><strong>Download the result.</strong> Check that the file is readable, then upload it to your form.</li>
+</ol>
+
+<h2>Will the PDF still look good?</h2>
+<p>For normal documents, yes. The larger the target, the sharper the result. A 3MB or 1MB target leaves plenty of room, so most files stay crisp. A 100KB target is very small, so photos and full-page scans can look softer.</p>
+<p>If a lossless clean-up is not enough, the pages are converted to images. The text stays visible, but you can no longer select or search it. If you need searchable text, choose a larger target size.</p>
+
+<h2>Why is my PDF still too big?</h2>
+<p>Some files are hard to shrink without looking blurry:</p>
+<ul>
+<li><strong>Many pages.</strong> A 60-page scan will not fit in 100KB. Split it into parts with our <a href="/tools/splitpdf/">Split PDF tool</a>, or remove pages you do not need.</li>
+<li><strong>High-resolution photos.</strong> Phone photos inside a PDF add several MB each.</li>
+<li><strong>Full-page scans.</strong> Rescan at a lower resolution (150 DPI is enough for most forms), then compress again.</li>
+</ul>
+<p>If you have several small PDFs that you want in one file first, use <a href="/tools/mergepdf/">Merge PDF</a>, then compress the result.</p>
+
+<h2>Is it safe to compress ID copies and certificates?</h2>
+<p>Yes. The compression happens inside your own browser. Your file stays on your device and is never sent to our servers, which makes it a good fit for ID copies, certificates, bank statements and application documents. Password-protected PDFs also work: you enter the password in your browser, and it is not uploaded.</p>
+
+<h2>Tips to get a smaller PDF before you compress</h2>
+<ul>
+<li>Export from Word or Google Docs as PDF instead of printing a photo of the page.</li>
+<li>Scan in grayscale or black and white when colour is not needed.</li>
+<li>Crop large margins and delete blank pages.</li>
+<li>Avoid embedding full-size images. Resize them first.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<h3>Is there a watermark or a daily limit?</h3>
+<p>No watermark, no account and no limit. Compress as many PDFs as you like.</p>
+<h3>Does it work on a phone?</h3>
+<p>Yes, in any modern browser on Android and iPhone. Large PDFs can take longer on older phones, so try a smaller file first.</p>
+<h3>What if my file does not reach the target?</h3>
+<p>The tool gives you the smallest readable result it can reach. Split the file, remove pages, or try the next size up.</p>
+
+<div style="border:1px solid #3b82f6;border-radius:12px;padding:16px 20px;margin:24px 0">
+<strong>Ready to try it?</strong> Start with the <a href="/tools/compress-pdf-to-200kb/">200KB compressor</a> for forms, or the <a href="/tools/compress-pdf-to-1mb/">1MB compressor</a> for email.
+</div></div>
+      <div class="cta"><div><h3>Need to convert a file?</h3><p>Try our free PDF, image, audio and video tools. No sign-up needed.</p></div><a class="primary" href="/#tools">Browse all tools</a></div></article></main>
+<footer>
+<div class="foot-top">
+<div class="foot-brand"><a class="brand" href="/"><img alt="ConvertKit Lite logo" src="/logo.png" onerror="this.style.display='none'"><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a><p>Free online file converter and tools. Convert PDF, images, audio and video in your browser, with no sign-up.</p></div>
+<div class="foot-col"><h4>Company</h4><a href="/about/">About Us</a><a href="/careers/">Careers</a><a href="/contact/">Contact Us</a><a href="/blog/">Blog</a></div>
+<div class="foot-col"><h4>Support</h4><a href="/#faq">FAQ</a><a href="/contact/">Request a Tool</a><a href="/contact/">Report a Problem</a><a href="/sitemap.xml">Sitemap</a></div>
+<div class="foot-col"><h4>Legal</h4><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/cookies/">Cookie Policy</a><a href="/disclaimer/">Disclaimer</a></div>
+</div>
+<div class="foot-bottom"><span>© 2026 ConvertKit Lite. All rights reserved.</span><span>Made with ♥ by <b>SAG</b></span><a class="to-top" href="#top">↑ Top</a></div>
+</footer>
+
+<script>
+(function(){
+  const root=document.documentElement;
+  document.getElementById('themeToggle').addEventListener('click',()=>{
+    const n=root.dataset.theme==='light'?'dark':'light';
+    root.dataset.theme=n;try{localStorage.setItem('ck-theme',n)}catch(e){}
+  });
+  const nav=document.querySelector('header nav');if(!nav)return;
+  const ind=document.createElement('span');ind.className='nav-ind';nav.appendChild(ind);
+  const active=nav.querySelector('a.active')||nav.querySelector('a');
+  const mv=a=>{ind.style.width=a.offsetWidth+'px';ind.style.transform='translateX('+a.offsetLeft+'px)'};
+  const place=()=>{ind.style.transition='none';mv(active);requestAnimationFrame(()=>requestAnimationFrame(()=>{ind.style.transition=''}))};
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('mouseenter',()=>mv(a)));
+  nav.addEventListener('mouseleave',()=>mv(active));
+  window.addEventListener('resize',()=>mv(active));window.addEventListener('load',place);place();
+})();
+</script>
+<script src="/lazy-presence.js" defer></script>
+<script src="/lazy-track.js" defer></script>
+</body>
+</html>
