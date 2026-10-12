@@ -96,7 +96,7 @@ function saveBlob(buf,name){const u=URL.createObjectURL(new Blob([buf],{type:'ap
 function wireDrop(dz,input,cb){dz.addEventListener('click',()=>input.click());dz.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();input.click()}});input.addEventListener('change',e=>{if(e.target.files[0])cb(e.target.files[0]);input.value=''});
 ['dragenter','dragover'].forEach(t=>dz.addEventListener(t,e=>{e.preventDefault();dz.classList.add('dragover')}));['dragleave','drop'].forEach(t=>dz.addEventListener(t,()=>dz.classList.remove('dragover')));
 dz.addEventListener('drop',e=>{e.preventDefault();if(e.dataTransfer.files[0])cb(e.dataTransfer.files[0])})}
-let mode='file',text='',base='data',sheets=null;
+let mode='file',text='',base='data',sheets=null,fileIsTxt=false;
 const flatten=(o,p,out)=>{if(o!==null&&typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).length){for(const k in o)flatten(o[k],p?p+'.'+k:k,out)}else if(Array.isArray(o)){out[p]=o.every(v=>v===null||typeof v!=='object')?o.join(', '):JSON.stringify(o)}else out[p]=(o&&typeof o==='object')?JSON.stringify(o):(o===undefined?'':o);return out};
 const shallow=o=>{const r={};for(const k in o){const v=o[k];r[k]=(v&&typeof v==='object')?JSON.stringify(v):v}return r};
 const toRows=(a,f)=>a.map(r=>r&&typeof r==='object'&&!Array.isArray(r)?(f?flatten(r,'',{}):shallow(r)):{value:Array.isArray(r)?JSON.stringify(r):r});
@@ -108,12 +108,19 @@ function setMode(m){mode=m;clearError();$('mFile').classList.toggle('active',m==
 $('dropzone').classList.toggle('hide',m!=='file'||!!text);$('fileWrap').classList.toggle('hide',m!=='file'||!text);$('pasteWrap').classList.toggle('hide',m!=='paste');upd()}
 const upd=()=>{$('goBtn').disabled=mode==='file'?!text:!$('pasteBox').value.trim()};
 function loadFile(f){clearError();if(!/\.(json|txt)$/i.test(f.name)&&f.type!=='application/json')return showError('"'+f.name+'" is not a JSON file.');
-const r=new FileReader();r.onload=()=>{text=r.result;base=f.name.replace(/\.\w+$/,'')||'data';$('fileName').textContent=f.name;$('fileSize').textContent=fmt(f.size);setMode('file')};r.onerror=()=>showError('Could not read that file.');r.readAsText(f)}
+const r=new FileReader();r.onload=()=>{text=r.result;base=f.name.replace(/\.\w+$/,'')||'data';fileIsTxt=/\.txt$/i.test(f.name);$('fileName').textContent=f.name;$('fileSize').textContent=fmt(f.size);setMode('file')};r.onerror=()=>showError('Could not read that file.');r.readAsText(f)}
 wireDrop($('dropzone'),$('fileInput'),loadFile);
-$('fileRemove').onclick=()=>{text='';$('result').style.display='none';setMode('file')};
+$('fileRemove').onclick=()=>{text='';fileIsTxt=false;$('result').style.display='none';setMode('file')};
 $('mFile').onclick=()=>setMode('file');$('mPaste').onclick=()=>setMode('paste');$('pasteBox').addEventListener('input',upd);
 $('goBtn').onclick=async()=>{clearError();$('result').style.display='none';const src=mode==='file'?text:$('pasteBox').value;
-let data;try{data=JSON.parse(src.replace(/^\uFEFF/,''))}catch(e){return showError('Invalid JSON: '+e.message)}
+let data;try{data=JSON.parse(src.replace(/^\uFEFF/,''))}catch(e){
+if(mode==='file'&&fileIsTxt){
+const lines=src.replace(/^\uFEFF/,'').split(/\r?\n/).map(line=>line.trim()).filter(Boolean);
+if(!lines.length)return showError('The text file is empty.');
+data=lines.map((line,i)=>({line:i+1,text:line}));
+}else{
+return showError('This file is not valid JSON. Upload a .json file or switch to “Paste JSON” and enter valid JSON, for example: [{"name":"Ana","age":31}].');
+}}
 $('goBtn').classList.add('loading');$('goBtn').disabled=true;$('progressBox').style.display='block';setProgress(30,'Loading Excel engine…');
 try{await ensureXLSX();setProgress(70,'Building spreadsheet…');sheets=build(data,$('flat').checked);
 const names=Object.keys(sheets);let rows=0,cols=new Set();names.forEach(n=>{rows+=sheets[n].length;sheets[n].forEach(r=>Object.keys(r).forEach(k=>cols.add(k)))});
@@ -128,7 +135,7 @@ finally{$('progressBox').style.display='none';$('goBtn').classList.remove('loadi
 $('dlBtn').onclick=()=>{const wb=XLSX.utils.book_new();for(const n in sheets){const ws=XLSX.utils.json_to_sheet(sheets[n]);const aoa=XLSX.utils.sheet_to_json(ws,{header:1});
 ws['!cols']=(aoa[0]||[]).map((_,c)=>({wch:Math.min(50,Math.max(8,...aoa.slice(0,200).map(r=>String(r[c]??'').length)))}));XLSX.utils.book_append_sheet(wb,ws,n)}
 saveBlob(XLSX.write(wb,{bookType:'xlsx',type:'array'}),base+'.xlsx')};
-$('resetBtn').onclick=()=>{text='';sheets=null;$('pasteBox').value='';$('result').style.display='none';clearError();setMode('file')};
+$('resetBtn').onclick=()=>{text='';fileIsTxt=false;sheets=null;$('pasteBox').value='';$('result').style.display='none';clearError();setMode('file')};
 setMode('file');
 })();
 </script>
