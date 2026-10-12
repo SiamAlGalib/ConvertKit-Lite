@@ -167,7 +167,7 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 .pg-top strong{font-size:15px;color:var(--text);font-variant-numeric:tabular-nums}
 .pg-bar{height:10px;border-radius:99px;background:#0b2a55;overflow:hidden}
 .pg-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#2d82ff,#7c3ff0);transition:width .25s ease}
-.pg-meta{display:flex;align-items:center;gap:14px;margin-top:9px;font-size:12px;color:var(--text-faint);font-variant-numeric:tabular-nums}
+.pg-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:9px;font-size:12px;color:var(--text-faint);font-variant-numeric:tabular-nums}
 .pg-meta #pgEta{color:#80baff;font-weight:600}
 .pg-cancel{margin-left:auto;background:none;border:1px solid #194a84;color:var(--text-dim);border-radius:8px;padding:5px 12px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
 .pg-cancel:hover{border-color:var(--danger);color:#fca5b5}
@@ -181,6 +181,10 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 .pw-btn{background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff;border:none;padding:0 20px;border-radius:10px;font:inherit;font-weight:700;font-size:13.5px;cursor:pointer}
 .pw-btn:hover{filter:brightness(1.1)}
 .pw-show{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:var(--text-faint);cursor:pointer}
+.quick-tools{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:20px}
+.quick-tools .qt-label{width:100%;font-size:12px;color:var(--text-faint);margin-bottom:2px}
+.quick-tools a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid rgba(91,151,255,.28);background:linear-gradient(135deg,rgba(46,139,255,.12),rgba(173,91,255,.1));color:#cfe0ff;font-size:12.5px;font-weight:600;transition:.2s}
+.quick-tools a:hover{border-color:#5c8fff;color:#fff;transform:translateY(-1px)}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Compress PDF Online", "description": "Compress PDF files online for free. Reduce PDF size for email and uploads right in your browser. Private, no sign-up, no watermark.", "url": "https://www.convertkitlite.site/tools/compresspdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Compress PDF Online", "item": "https://www.convertkitlite.site/tools/compresspdf/"}]}]}</script>
 <meta name="twitter:title" content="Compress PDF Online — Free &amp; Private | ConvertKit Lite">
@@ -200,6 +204,7 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
   <h1>Compress <span>PDF</span> Files</h1>
   <p>Reduce PDF file size right in your browser. Choose a mode, compress, and download — your file never leaves your device.</p>
   <div class="trust-row"><div>No registration required</div><div>Secure &amp; private</div><div>Works on any device</div></div>
+  <div class="quick-tools"><span class="qt-label">More PDF tools</span><a href="../mergepdf/"><span>▥</span>Merge PDF</a><a href="../editpdf/"><span>✎</span>Edit or Create PDF</a><a href="../jpgtopdf/"><span>⇄</span>JPG to PDF</a><a href="../splitpdf/"><span>✂</span>Split PDF</a></div>
 </section>
 
 <div class="narrow tool">
@@ -354,10 +359,10 @@ const prog = { t0:0, timer:null, eta:null, etaAt:0, active:false };
 function renderTimes(){
   if(!prog.active) return;
   const now = performance.now();
-  el.pgElapsed.textContent = 'Elapsed ' + fmtTime(now - prog.t0);
-  if(prog.eta == null){ el.pgEta.textContent=''; return; }
+  el.pgElapsed.textContent = 'Time taken: ' + fmtTime(now - prog.t0);
+  if(prog.eta == null){ el.pgEta.textContent = 'Time needed: estimating…'; return; }
   const left = prog.eta - (now - prog.etaAt);
-  el.pgEta.textContent = left > 1500 ? '~' + fmtTime(left, true) + ' left' : 'Almost done…';
+  el.pgEta.textContent = left > 1500 ? 'Time needed: ~' + fmtTime(left, true) : 'Almost done…';
 }
 function setProgress(pct, step, etaMs){
   pct = Math.max(0, Math.min(100, pct));
