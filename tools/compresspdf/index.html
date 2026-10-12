@@ -158,6 +158,29 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 .q-hint{font-size:11.5px;color:var(--text-faint);margin-top:8px;line-height:1.5}
 .note{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 16px}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
+.dropzone:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px}
+.mode-btn:disabled{opacity:.45;cursor:not-allowed}
+#optionsWrap.locked{opacity:.6;pointer-events:none}
+.protected-note{display:none;margin-bottom:16px;padding:11px 14px;border-radius:10px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:#b6d5ff;font-size:12.5px;line-height:1.55}
+.progress-box{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--panel-2);border:1px solid #194a84}
+.pg-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;color:var(--text-dim);margin-bottom:9px}
+.pg-top strong{font-size:15px;color:var(--text);font-variant-numeric:tabular-nums}
+.pg-bar{height:10px;border-radius:99px;background:#0b2a55;overflow:hidden}
+.pg-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#2d82ff,#7c3ff0);transition:width .25s ease}
+.pg-meta{display:flex;align-items:center;gap:14px;margin-top:9px;font-size:12px;color:var(--text-faint);font-variant-numeric:tabular-nums}
+.pg-meta #pgEta{color:#80baff;font-weight:600}
+.pg-cancel{margin-left:auto;background:none;border:1px solid #194a84;color:var(--text-dim);border-radius:8px;padding:5px 12px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.pg-cancel:hover{border-color:var(--danger);color:#fca5b5}
+.pw-box{display:none;margin-top:14px;padding:16px;border-radius:12px;background:rgba(124,108,255,.08);border:1px solid rgba(124,108,255,.35)}
+.pw-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.pw-msg{font-size:12.5px;line-height:1.55;color:var(--text-dim);margin-bottom:12px}
+.pw-msg.bad{color:#fca5b5}
+.pw-row{display:flex;gap:10px}
+.pw-row input{flex:1;min-width:0;background:var(--panel-2);border:1px solid #194a84;color:var(--text);padding:11px 14px;border-radius:10px;font:inherit;font-size:14px}
+.pw-row input:focus{outline:none;border-color:var(--accent-blue)}
+.pw-btn{background:linear-gradient(135deg,#2d82ff,#7c3ff0);color:#fff;border:none;padding:0 20px;border-radius:10px;font:inherit;font-weight:700;font-size:13.5px;cursor:pointer}
+.pw-btn:hover{filter:brightness(1.1)}
+.pw-show{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:var(--text-faint);cursor:pointer}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Compress PDF Online", "description": "Compress PDF files online for free. Reduce PDF size for email and uploads right in your browser. Private, no sign-up, no watermark.", "url": "https://www.convertkitlite.site/tools/compresspdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Compress PDF Online", "item": "https://www.convertkitlite.site/tools/compresspdf/"}]}]}</script>
 <meta name="twitter:title" content="Compress PDF Online — Free &amp; Private | ConvertKit Lite">
@@ -181,7 +204,7 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 
 <div class="narrow tool">
   <div class="card">
-    <div class="dropzone" id="dropzone">
+    <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Choose a PDF file to compress">
       <div class="dz-icon">⬆</div>
       <h3>Drop a PDF file here</h3>
       <p>or click to browse — one file at a time</p>
@@ -194,9 +217,21 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
         <div class="file-meta"><div class="file-name" id="fileName"></div><div class="file-size" id="fileSize"></div></div>
         <button class="file-remove" id="fileRemove" title="Remove">✕</button>
       </div>
+      <div class="progress-box" id="progressBox" role="status" aria-live="polite">
+        <div class="pg-top"><span id="pgStep">Preparing…</span><strong id="pgPct">0%</strong></div>
+        <div class="pg-bar" id="pgBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="pg-fill" id="pgFill"></div></div>
+        <div class="pg-meta"><span id="pgElapsed"></span><span id="pgEta"></span><button type="button" class="pg-cancel" id="pgCancel" style="display:none">Cancel</button></div>
+      </div>
+      <div class="pw-box" id="pwBox">
+        <div class="pw-title">🔒 This PDF is password-protected</div>
+        <p class="pw-msg" id="pwMsg">Enter the password to continue.</p>
+        <div class="pw-row"><input type="password" id="pwInput" placeholder="PDF password" autocomplete="off" aria-label="PDF password"><button type="button" class="pw-btn" id="pwBtn">Unlock</button></div>
+        <label class="pw-show"><input type="checkbox" id="pwShow"> Show password</label>
+      </div>
     </div>
 
     <div id="optionsWrap">
+      <div class="protected-note" id="protectedNote">🔒 Password-protected PDFs use <b>Maximum compression</b>. The compressed copy will not be password-protected.</div>
       <div class="mode-toggle">
         <button class="mode-btn active" id="modeLossless" type="button"><h4>Keep text &amp; quality</h4><p>Lossless clean-up. Text stays selectable. Smaller savings.</p></button>
         <button class="mode-btn" id="modeMax" type="button"><h4>Maximum compression</h4><p>Re-encodes pages as images. Biggest savings, text is not selectable.</p></button>
@@ -213,7 +248,6 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
     <button class="merge-btn" id="compressBtn" disabled>
       <span class="spinner"></span><span class="btn-label">Compress PDF</span>
     </button>
-    <div id="status" style="display:none;text-align:center;margin-top:10px;font-size:13px;opacity:.82;line-height:1.45"></div>
 
     <div id="result">
       <div class="result-icon" id="resultIcon">✓</div>
@@ -279,138 +313,364 @@ nav a[href="/blog/"]:before{content:"✦";font-size:10px;margin-right:7px;color:
 <div>© 2026 ConvertKit Lite. All rights reserved.</div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-<script type="module">
-import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
-pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
-const { PDFDocument } = PDFLib;
+<script>
+(function(){
+'use strict';
+const PDFLIB_URL='https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
+const PDFJS_URL='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
+const PDFJS_WORKER='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
 const $ = id => document.getElementById(id);
 const el = {
   dropzone:$('dropzone'), fileInput:$('fileInput'), fileInfoWrap:$('fileInfoWrap'), fileName:$('fileName'), fileSize:$('fileSize'),
   fileRemove:$('fileRemove'), optionsWrap:$('optionsWrap'), modeLossless:$('modeLossless'), modeMax:$('modeMax'),
-  qualityWrap:$('qualityWrap'), quality:$('quality'), qualityValue:$('qualityValue'), btn:$('compressBtn'), status:$('status'),
-  err:$('errorBox'), result:$('result'), resultIcon:$('resultIcon'), resultTitle:$('resultTitle'), resultMeta:$('resultMeta'), statRow:$('statRow'),
-  statOrig:$('statOrig'), statNew:$('statNew'), statSaved:$('statSaved'), dl:$('downloadLink'), reset:$('resetBtn')
+  qualityWrap:$('qualityWrap'), quality:$('quality'), qualityValue:$('qualityValue'), protectedNote:$('protectedNote'),
+  btn:$('compressBtn'), err:$('errorBox'), result:$('result'), resultIcon:$('resultIcon'), resultTitle:$('resultTitle'),
+  resultMeta:$('resultMeta'), statOrig:$('statOrig'), statNew:$('statNew'), statSaved:$('statSaved'), dl:$('downloadLink'), reset:$('resetBtn'),
+  progressBox:$('progressBox'), pgStep:$('pgStep'), pgPct:$('pgPct'), pgBar:$('pgBar'), pgFill:$('pgFill'),
+  pgElapsed:$('pgElapsed'), pgEta:$('pgEta'), pgCancel:$('pgCancel'),
+  pwBox:$('pwBox'), pwMsg:$('pwMsg'), pwInput:$('pwInput'), pwBtn:$('pwBtn'), pwShow:$('pwShow')
 };
 let file=null, bytes=null, mode='lossless', blobUrl=null;
+let password='', isProtected=false, compressing=false, cancelled=false, loadToken=0;
+let libs=null, libsPromise=null;
 
+class Cancelled extends Error {}
+const check = () => { if (cancelled) throw new Cancelled('cancelled'); };
 const fmt = n => n<1024 ? n+' B' : n<1048576 ? (n/1024).toFixed(1)+' KB' : (n/1048576).toFixed(2)+' MB';
-const tick = () => new Promise(r => requestAnimationFrame(() => setTimeout(r,0)));
+const fmtTime = (ms, up) => {
+  const s = Math.max(0, up ? Math.ceil(ms/1000) : Math.floor(ms/1000));
+  return s < 60 ? s+'s' : Math.floor(s/60)+'m '+(s%60)+'s';
+};
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Let the browser paint, but never stall when the tab is in the background.
+const tick = () => new Promise(r => { let d=false; const f=()=>{ if(!d){ d=true; r(); } }; requestAnimationFrame(()=>setTimeout(f,0)); setTimeout(f,80); });
 const showError = m => { el.err.textContent=m; el.err.style.display='block'; };
 const clearError = () => { el.err.style.display='none'; el.err.textContent=''; };
-const setStatus = m => { el.status.textContent=m||''; el.status.style.display=m?'block':'none'; };
 const setLabel = m => { el.btn.querySelector('.btn-label').textContent=m; };
-const baseName = () => file.name.replace(/\.pdf$/i,'') || 'document';
+const baseName = () => (file ? file.name.replace(/\.pdf$/i,'') : '') || 'document';
+
+/* ---------- progress box ---------- */
+const prog = { t0:0, timer:null, eta:null, etaAt:0, active:false };
+function renderTimes(){
+  if(!prog.active) return;
+  const now = performance.now();
+  el.pgElapsed.textContent = 'Elapsed ' + fmtTime(now - prog.t0);
+  if(prog.eta == null){ el.pgEta.textContent=''; return; }
+  const left = prog.eta - (now - prog.etaAt);
+  el.pgEta.textContent = left > 1500 ? '~' + fmtTime(left, true) + ' left' : 'Almost done…';
+}
+function setProgress(pct, step, etaMs){
+  pct = Math.max(0, Math.min(100, pct));
+  el.pgFill.style.width = pct.toFixed(1) + '%';
+  el.pgPct.textContent = Math.floor(pct) + '%';
+  el.pgBar.setAttribute('aria-valuenow', String(Math.floor(pct)));
+  if(step) el.pgStep.textContent = step;
+  if(etaMs == null){ prog.eta = null; } else { prog.eta = etaMs; prog.etaAt = performance.now(); }
+  renderTimes();
+}
+function progShow(step){
+  prog.t0 = performance.now(); prog.eta = null; prog.active = true;
+  el.progressBox.style.display = 'block';
+  clearInterval(prog.timer); prog.timer = setInterval(renderTimes, 250);
+  setProgress(0, step);
+}
+function progHide(){
+  prog.active = false; clearInterval(prog.timer);
+  el.progressBox.style.display = 'none';
+}
+el.pgCancel.addEventListener('click', () => { cancelled = true; el.pgStep.textContent = 'Cancelling…'; });
+
+/* ---------- PDF libraries: loaded on demand, so the page responds instantly ---------- */
+function loadScript(src){
+  return new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.async = true; s.onload = res; s.onerror = () => rej(new Error('script'));
+    document.head.appendChild(s);
+  });
+}
+function loadLibs(){
+  if(!libsPromise){
+    libsPromise = Promise.all([ window.PDFLib ? Promise.resolve() : loadScript(PDFLIB_URL), import(PDFJS_URL) ])
+      .then(([, pdfjs]) => {
+        pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+        libs = { pdfjsLib: pdfjs, PDFLib: window.PDFLib };
+        return libs;
+      })
+      .catch(() => {
+        libsPromise = null;
+        const err = new Error('Could not load the PDF engine. Check your internet connection and try again.');
+        err.engine = true; throw err;
+      });
+  }
+  return libsPromise;
+}
+// Start downloading as soon as the person shows interest in the box.
+['pointerenter','touchstart','focusin'].forEach(t => el.dropzone.addEventListener(t, () => { loadLibs().catch(()=>{}); }, { once:true, passive:true }));
+
+/* ---------- loading a file ---------- */
+function readFile(f, onProgress){
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onprogress = e => { if(e.lengthComputable) onProgress(e.loaded / e.total); };
+    r.onload = () => res(r.result);
+    r.onerror = () => rej(r.error || new Error('read'));
+    r.readAsArrayBuffer(f);
+  });
+}
+
+function applyProtectedUI(){
+  el.protectedNote.style.display = isProtected ? 'block' : 'none';
+  el.modeLossless.disabled = isProtected;
+  if(isProtected) setMode('max');
+}
+
+function askPassword(wrong){
+  progHide();
+  el.pwMsg.textContent = wrong
+    ? 'Incorrect password. Please try again.'
+    : 'Enter the password to continue. It is used only in your browser and is never uploaded.';
+  el.pwMsg.classList.toggle('bad', !!wrong);
+  el.pwBox.style.display = 'block';
+  el.pwInput.value = '';
+  el.pwInput.focus();
+}
+
+async function analyze(pw, token){
+  if(!libs) setProgress(50, 'Loading PDF engine…');
+  const L = await loadLibs();
+  if(token !== loadToken) return;
+  setProgress(75, 'Checking PDF…'); await tick();
+  if(token !== loadToken) return;
+  let doc;
+  try{
+    doc = await L.pdfjsLib.getDocument({ data:new Uint8Array(bytes.slice(0)), password:pw || undefined }).promise;
+  }catch(e){
+    if(token !== loadToken) return;
+    if(e && e.name === 'PasswordException'){ askPassword(e.code === 2); return; }
+    throw e;
+  }
+  const pages = doc.numPages; await doc.destroy();
+  if(token !== loadToken) return;
+  password = pw; isProtected = !!pw;
+  el.fileSize.textContent = `${fmt(file.size)} • ${pages} page${pages===1?'':'s'}` + (isProtected ? ' • unlocked' : '');
+  setProgress(100, 'Ready'); await sleep(200);
+  if(token !== loadToken) return;
+  progHide();
+  el.optionsWrap.style.display = 'block'; el.btn.disabled = false;
+  applyProtectedUI();
+}
+
+function failLoad(e, token){
+  if(token !== loadToken) return;
+  console.error(e);
+  const name = file ? file.name : 'this file';
+  resetAll(true);
+  showError(e && e.engine ? e.message : `Could not read "${name}". It may be corrupted or not a valid PDF.`);
+}
 
 async function handleFile(f){
-  clearError(); el.result.style.display='none';
-  if (f.type!=='application/pdf' && !f.name.toLowerCase().endsWith('.pdf')) return showError(`"${f.name}" is not a PDF file.`);
+  if(compressing) return;
+  clearError(); el.result.style.display = 'none';
+  if(f.type !== 'application/pdf' && !f.name.toLowerCase().endsWith('.pdf')) return showError(`"${f.name}" is not a PDF file.`);
+  const token = ++loadToken;
+  file = f; bytes = null; password = ''; isProtected = false;
+  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl = null; }
+  // Show the file and a progress bar right away, so it is obvious the upload worked.
+  el.fileName.textContent = f.name; el.fileSize.textContent = fmt(f.size);
+  el.dropzone.style.display = 'none'; el.fileInfoWrap.style.display = 'block';
+  el.optionsWrap.style.display = 'none'; el.pwBox.style.display = 'none'; el.btn.disabled = true;
+  el.pgCancel.style.display = 'none';
+  progShow('Reading file…');
   try{
-    const buf = await f.arrayBuffer();
-    const doc = await pdfjsLib.getDocument({data:new Uint8Array(buf.slice(0))}).promise;
-    const pages = doc.numPages; await doc.destroy();
-    file=f; bytes=buf;
-    el.fileName.textContent=f.name;
-    el.fileSize.textContent=`${fmt(f.size)} • ${pages} page${pages===1?'':'s'}`;
-    el.fileInfoWrap.style.display='block'; el.optionsWrap.style.display='block';
-    el.dropzone.style.display='none'; el.btn.disabled=false;
-  }catch(e){
-    console.error(e);
-    showError(`Could not read "${f.name}". It may be corrupted or password-protected.`);
-  }
+    const buf = await readFile(f, p => { if(token === loadToken) setProgress(p * 50, 'Reading file…'); });
+    if(token !== loadToken) return;
+    bytes = buf;
+    await analyze('', token);
+  }catch(e){ failLoad(e, token); }
 }
+
+async function submitPassword(){
+  const pw = el.pwInput.value;
+  if(!pw){ el.pwInput.focus(); return; }
+  const token = ++loadToken;
+  el.pwBox.style.display = 'none'; el.pgCancel.style.display = 'none';
+  progShow('Unlocking PDF…');
+  try{ await analyze(pw, token); }catch(e){ failLoad(e, token); }
+}
+el.pwBtn.addEventListener('click', submitPassword);
+el.pwInput.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); submitPassword(); } });
+el.pwShow.addEventListener('change', () => { el.pwInput.type = el.pwShow.checked ? 'text' : 'password'; });
 
 function setMode(m){
-  mode=m;
-  el.modeLossless.classList.toggle('active',m==='lossless');
-  el.modeMax.classList.toggle('active',m==='max');
-  el.qualityWrap.style.display = m==='max' ? 'block' : 'none';
+  mode = m;
+  el.modeLossless.classList.toggle('active', m === 'lossless');
+  el.modeMax.classList.toggle('active', m === 'max');
+  el.qualityWrap.style.display = m === 'max' ? 'block' : 'none';
   clearError();
 }
-el.modeLossless.onclick=()=>setMode('lossless');
-el.modeMax.onclick=()=>setMode('max');
-el.quality.addEventListener('input',()=>{ el.qualityValue.textContent=el.quality.value+'%'; });
+el.modeLossless.onclick = () => { if(!isProtected) setMode('lossless'); };
+el.modeMax.onclick = () => setMode('max');
+el.quality.addEventListener('input', () => { el.qualityValue.textContent = el.quality.value + '%'; });
 
-async function losslessCompress(){
-  setStatus('Optimizing file structure…'); await tick();
-  const src = await PDFDocument.load(bytes,{ignoreEncryption:true,updateMetadata:false});
-  return await src.save({useObjectStreams:true});
+/* ---------- compression ---------- */
+const isEncryptedError = (L, e) =>
+  !!e && ((L.PDFLib.EncryptedPDFError && e instanceof L.PDFLib.EncryptedPDFError) || /encrypt/i.test(e.message || ''));
+
+async function losslessCompress(L){
+  const t0 = performance.now();
+  setProgress(15, 'Reading PDF structure…'); await tick(); check();
+  const src = await L.PDFLib.PDFDocument.load(bytes, { updateMetadata:false });
+  check();
+  const parse = performance.now() - t0;
+  setProgress(60, 'Optimizing and saving…', parse * 0.9); await tick(); check();
+  const out = await src.save({ useObjectStreams:true });
+  setProgress(100, 'Done');
+  return out;
 }
 
-async function maxCompress(q){
-  const pdf = await pdfjsLib.getDocument({data:new Uint8Array(bytes.slice(0))}).promise;
-  const out = await PDFDocument.create();
-  const scale = q>=0.8 ? 2 : 1.5;
-  for(let i=1;i<=pdf.numPages;i++){
-    setStatus(`Compressing page ${i} of ${pdf.numPages}…`); await tick();
-    const page = await pdf.getPage(i);
-    const base = page.getViewport({scale:1});
-    const vp = page.getViewport({scale});
-    const c = document.createElement('canvas');
-    c.width=Math.ceil(vp.width); c.height=Math.ceil(vp.height);
-    const ctx = c.getContext('2d',{alpha:false});
-    ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
-    await page.render({canvasContext:ctx,viewport:vp}).promise;
-    const blob = await new Promise(r => c.toBlob(r,'image/jpeg',q));
-    const img = await out.embedJpg(await blob.arrayBuffer());
-    const p = out.addPage([base.width,base.height]);
-    p.drawImage(img,{x:0,y:0,width:base.width,height:base.height});
-    c.width=c.height=1; page.cleanup();
+async function maxCompress(L, q){
+  setProgress(4, 'Opening PDF…'); await tick(); check();
+  const pdf = await L.pdfjsLib.getDocument({ data:new Uint8Array(bytes.slice(0)), password:password || undefined }).promise;
+  try{
+    const n = pdf.numPages;
+    const out = await L.PDFLib.PDFDocument.create();
+    const baseScale = q >= 0.8 ? 2 : 1.5;
+    let avg = 0;
+    for(let i = 1; i <= n; i++){
+      check();
+      const ts = performance.now();
+      setProgress(6 + ((i - 1) / n) * 86, `Compressing page ${i} of ${n}…`, i > 1 ? avg * (n - i + 1) : null);
+      await tick(); check();
+      const page = await pdf.getPage(i);
+      const base = page.getViewport({ scale:1 });
+      let scale = baseScale;
+      const px = base.width * base.height * scale * scale;
+      if(px > 16e6) scale *= Math.sqrt(16e6 / px);   // keep the canvas within phone limits
+      const vp = page.getViewport({ scale });
+      const c = document.createElement('canvas');
+      c.width = Math.ceil(vp.width); c.height = Math.ceil(vp.height);
+      const ctx = c.getContext('2d', { alpha:false });
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+      await page.render({ canvasContext:ctx, viewport:vp }).promise;
+      const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', q));
+      if(!blob) throw new Error('canvas');
+      const img = await out.embedJpg(await blob.arrayBuffer());
+      const p = out.addPage([base.width, base.height]);
+      p.drawImage(img, { x:0, y:0, width:base.width, height:base.height });
+      c.width = c.height = 1; page.cleanup();
+      const dt = performance.now() - ts;
+      avg = i === 1 ? dt : avg * 0.6 + dt * 0.4;
+    }
+    check();
+    setProgress(94, 'Building the new PDF…', 1500); await tick();
+    return await out.save({ useObjectStreams:true });
+  } finally {
+    await pdf.destroy();
   }
-  await pdf.destroy();
-  setStatus('Building the new PDF…'); await tick();
-  return await out.save({useObjectStreams:true});
 }
 
 el.btn.addEventListener('click', async () => {
-  if(!file) return;
-  clearError(); el.result.style.display='none';
-  el.btn.classList.add('loading'); el.btn.disabled=true; setLabel('Processing…');
+  if(!file || !bytes || compressing) return;
+  compressing = true; cancelled = false;
+  clearError(); el.result.style.display = 'none';
+  el.btn.classList.add('loading'); el.btn.disabled = true; setLabel('Processing…');
+  el.optionsWrap.classList.add('locked'); el.fileRemove.disabled = true;
+  el.pgCancel.style.display = 'inline-block';
+  progShow('Starting…');
   try{
-    let out = mode==="max" ? await maxCompress(+el.quality.value/100) : await losslessCompress(); let usedFallback = false; if (mode==="max") { if (out.byteLength >= bytes.byteLength) { setStatus("Trying a safer method…"); const alt = await losslessCompress(); if (alt.byteLength < out.byteLength) { out = alt; usedFallback = true; } } }
-    const orig = bytes.byteLength, now = out.byteLength;
-    const saved = orig-now, pct = (saved/orig*100);
-    el.statOrig.textContent=fmt(orig);
-    if (saved > 0){
-      if(blobUrl) URL.revokeObjectURL(blobUrl);
-      blobUrl = URL.createObjectURL(new Blob([out],{type:'application/pdf'})); import('/stats.js').then(m=>m.trackUse());
-      el.dl.href=blobUrl; el.dl.download=baseName()+'-compressed.pdf'; el.dl.style.display='inline-flex';
-      el.resultIcon.textContent='✓'; el.resultTitle.textContent='Your PDF is ready';
-      el.statNew.textContent=fmt(now); el.statSaved.textContent=pct.toFixed(1)+'%';
-      el.resultMeta.textContent = (mode==="max" ? !usedFallback : false) ? 'Pages were re-encoded as images, so text is no longer selectable.' : 'Text and layout are unchanged.';
+    if(!libs) setProgress(2, 'Loading PDF engine…');
+    const L = await loadLibs(); check();
+    const q = +el.quality.value / 100;
+    let out, usedFallback = false, autoSwitched = false;
+    if(mode === 'max' || isProtected){
+      out = await maxCompress(L, q);
+      if(!isProtected && out.byteLength >= bytes.byteLength){
+        setProgress(96, 'Trying a safer method…'); await tick();
+        try{
+          const alt = await losslessCompress(L);
+          if(alt.byteLength < out.byteLength){ out = alt; usedFallback = true; }
+        }catch(e){ if(e instanceof Cancelled) throw e; }
+      }
     } else {
-      el.dl.style.display='none';
-      el.resultIcon.textContent='ℹ'; el.resultTitle.textContent='Already well optimized';
-      el.statNew.textContent=fmt(now); el.statSaved.textContent='0%';
-      el.resultMeta.textContent = mode==='max'
-        ? 'Maximum compression could not make this PDF smaller because it is mostly text or already compressed. Try the Keep text and quality mode.'
+      try{ out = await losslessCompress(L); }
+      catch(e){
+        if(!isEncryptedError(L, e)) throw e;
+        // Restricted PDFs cannot be rewritten losslessly without corrupting them.
+        autoSwitched = true;
+        setProgress(5, 'This PDF has restrictions, using Maximum compression…'); await tick();
+        out = await maxCompress(L, q);
+      }
+    }
+    const usedImages = (mode === 'max' || isProtected || autoSwitched) && !usedFallback;
+    const orig = bytes.byteLength, now = out.byteLength;
+    const saved = orig - now, pct = (saved / orig * 100);
+    setProgress(100, 'Done'); await sleep(300);
+    el.statOrig.textContent = fmt(orig);
+    if(saved > 0){
+      if(blobUrl) URL.revokeObjectURL(blobUrl);
+      blobUrl = URL.createObjectURL(new Blob([out], { type:'application/pdf' }));
+      import('/stats.js').then(m => m.trackUse()).catch(() => {});
+      el.dl.href = blobUrl; el.dl.download = baseName() + '-compressed.pdf'; el.dl.style.display = 'inline-flex';
+      el.resultIcon.textContent = '✓'; el.resultTitle.textContent = 'Your PDF is ready';
+      el.statNew.textContent = fmt(now); el.statSaved.textContent = pct.toFixed(1) + '%';
+      el.resultMeta.textContent = usedImages
+        ? 'Pages were re-encoded as images, so text is no longer selectable.' +
+          (isProtected ? ' The compressed file is not password-protected.' : autoSwitched ? ' The original security restrictions were not carried over.' : '')
+        : 'Text and layout are unchanged.';
+    } else {
+      el.dl.style.display = 'none';
+      el.resultIcon.textContent = 'ℹ'; el.resultTitle.textContent = 'Already well optimized';
+      el.statNew.textContent = fmt(now); el.statSaved.textContent = '0%';
+      el.resultMeta.textContent = usedImages
+        ? 'Maximum compression could not make this PDF smaller because it is mostly text or already compressed.' + (isProtected || autoSwitched ? '' : ' Try the Keep text and quality mode.')
         : 'No further lossless savings were found. Try "Maximum compression" for a smaller file.';
     }
-    el.result.style.display='block';
-    el.result.scrollIntoView({behavior:'smooth',block:'nearest'});
+    el.result.style.display = 'block';
+    el.result.scrollIntoView({ behavior:'smooth', block:'nearest' });
   }catch(e){
-    console.error(e);
-    showError('Something went wrong while compressing. The file may be protected or damaged.');
+    if(!(e instanceof Cancelled)){
+      console.error(e);
+      showError(e && e.engine ? e.message : 'Something went wrong while compressing. The file may be damaged or too large for this device.');
+    }
   }finally{
-    el.btn.classList.remove('loading'); el.btn.disabled=false; setLabel('Compress PDF'); setStatus('');
+    compressing = false; progHide(); el.pgCancel.style.display = 'none';
+    el.btn.classList.remove('loading'); el.btn.disabled = false; setLabel('Compress PDF');
+    el.optionsWrap.classList.remove('locked'); el.fileRemove.disabled = false;
   }
 });
 
-el.dropzone.addEventListener('click',()=>el.fileInput.click());
-el.fileInput.addEventListener('change',e=>{ if(e.target.files[0]) handleFile(e.target.files[0]); el.fileInput.value=''; });
-['dragenter','dragover'].forEach(t=>el.dropzone.addEventListener(t,e=>{e.preventDefault();el.dropzone.classList.add('dragover');}));
-['dragleave','drop'].forEach(t=>el.dropzone.addEventListener(t,e=>{e.preventDefault();el.dropzone.classList.remove('dragover');}));
-el.dropzone.addEventListener('drop',e=>{ if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+/* ---------- picking and dropping files ---------- */
+const hasFiles = e => !!e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files');
+el.dropzone.addEventListener('click', () => el.fileInput.click());
+el.dropzone.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); el.fileInput.click(); } });
+el.fileInput.addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); el.fileInput.value = ''; });
+['dragenter','dragover'].forEach(t => el.dropzone.addEventListener(t, e => { if(hasFiles(e)){ e.preventDefault(); el.dropzone.classList.add('dragover'); } }));
+['dragleave','drop'].forEach(t => el.dropzone.addEventListener(t, () => el.dropzone.classList.remove('dragover')));
+// A file dropped anywhere on the page is used, instead of the browser opening it in the tab.
+window.addEventListener('dragover', e => { if(hasFiles(e)) e.preventDefault(); });
+window.addEventListener('drop', e => {
+  if(!hasFiles(e)) return;
+  e.preventDefault();
+  const f = e.dataTransfer.files[0];
+  if(f && !compressing) handleFile(f);
+});
 
-function resetAll(){
-  file=null; bytes=null;
-  el.fileInfoWrap.style.display='none'; el.optionsWrap.style.display='none';
-  el.dropzone.style.display='block'; el.result.style.display='none';
-  el.btn.disabled=true; clearError(); setStatus(''); setMode('lossless');
-  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl=null; }
+function resetAll(keepError){
+  if(compressing) return;
+  loadToken++;
+  file = null; bytes = null; password = ''; isProtected = false;
+  progHide();
+  el.fileInfoWrap.style.display = 'none'; el.optionsWrap.style.display = 'none'; el.pwBox.style.display = 'none';
+  el.dropzone.style.display = 'block'; el.result.style.display = 'none';
+  el.btn.disabled = true; el.pwInput.value = '';
+  el.modeLossless.disabled = false; el.protectedNote.style.display = 'none';
+  if(keepError !== true) clearError();
+  setMode('lossless');
+  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl = null; }
 }
-el.fileRemove.addEventListener('click',resetAll);
-el.reset.addEventListener('click',resetAll);
+el.fileRemove.addEventListener('click', () => resetAll());
+el.reset.addEventListener('click', () => resetAll());
+})();
 </script>
 <script src="/lazy-presence.js" defer></script>
 <script src="/lazy-track.js" defer></script>
