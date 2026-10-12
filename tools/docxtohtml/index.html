@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998786237970751" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DOCX to HTML Converter — Free &amp; Private | ConvertKit Lite</title>
@@ -163,7 +164,8 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 </head>
 <body>
 
-<header><div class="container navbar">
+<header>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998786237970751" crossorigin="anonymous"></script><div class="container navbar">
 <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" width="32" height="32" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
 <nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="/blog/">Learn</a><a href="#faq">FAQ</a></nav>
 </div></header>
@@ -280,7 +282,8 @@ async function convertDocx(it,mode,imgs){
   if(!html.trim()){const e=new Error('empty');e.kind='No content was found in this document.';throw e}
   let out=html.trim()+'\n';
   if(mode==='page'){
-    out='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+esc(base(it.name))+'</title>\n<style>'+PAGE_CSS+'</style>\n</head>\n<body>\n'+out+'<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);<\/script>\n<script type="module" src="/geo-track.js"><\/script>\n</body>\n</html>\n';
+    out='<!DOCTYPE html>\n<html lang="en">\n<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998786237970751" crossorigin="anonymous"></script>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+esc(base(it.name))+'</title>\n<style>'+PAGE_CSS+'</style>\n</head>\n<body>\n'+out+'<script type="module">import { trackPresence } from "/stats.js"; setTimeout(trackPresence, 4000);<\/script>\n<script type="module" src="/geo-track.js"><\/script>\n</body>\n</html>\n';
   }
   const text=out.replace(/<[^>]+>/g,' ').trim();
   return {blob:new Blob([out],{type:'text/html;charset=utf-8'}),words:text?text.split(/\s+/).length:0};
