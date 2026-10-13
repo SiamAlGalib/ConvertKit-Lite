@@ -8,7 +8,8 @@
 <meta property="og:url" content="https://www.convertkitlite.site/tools/rtftopdf/">
 <meta property="og:image" content="https://www.convertkitlite.site/logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="description" content="Free RTF to PDF converter. Turn .rtf documents into PDF with selectable text. Private, runs in your browser, no upload.">
+<meta name="description" content="Free RTF to PDF converter. Turn .rtf documents into PDF with selectable text, keeping bold, italics, colors and alignment. Private, runs in your browser, no upload.">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://www.convertkitlite.site/tools/rtftopdf/">
 <link rel="icon" href="../../favicon.ico">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -113,6 +114,22 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
 .step h3{font-size:14.5px;margin-bottom:6px}
 .step p{font-size:12px;line-height:1.65;color:var(--text-dim)}
+/* SEO content blocks */
+.seo{margin-bottom:46px}
+.seo h2{font-size:25px;letter-spacing:-.6px;margin:0 0 12px}
+.seo p{font-size:14px;line-height:1.75;color:var(--text-dim);margin-bottom:12px}
+.seo p strong,.seo li strong{color:var(--text);font-weight:700}
+.seo ul{list-style:none;display:grid;gap:10px;margin:4px 0 0}
+.seo li{position:relative;font-size:14px;line-height:1.7;color:var(--text-dim);padding:12px 14px 12px 40px;border:1px solid #174b88;border-radius:12px;background:var(--panel-2)}
+.seo li::before{content:"✓";position:absolute;left:14px;top:12px;color:var(--success);font-weight:800}
+.seo p a,.seo li a,details p a{color:#79b7ff;font-weight:600;border-bottom:1px solid rgba(121,183,255,.35)}
+.seo p a:hover,.seo li a:hover,details p a:hover{color:#fff;border-bottom-color:#fff}
+.tbl-wrap{overflow-x:auto;border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin:6px 0 12px}
+.tbl-wrap table{width:100%;border-collapse:collapse;font-size:13px;min-width:420px}
+.tbl-wrap th,.tbl-wrap td{padding:11px 14px;text-align:left;border-bottom:1px solid #12345d;color:var(--text-dim);vertical-align:top}
+.tbl-wrap th{color:var(--text);font-weight:700;background:#0a2142;font-size:12px}
+.tbl-wrap tr:last-child td{border-bottom:0}
+.tbl-wrap td:first-child{color:var(--text);font-weight:600}
 details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
 summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
 summary::-webkit-details-marker{display:none}
@@ -162,7 +179,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "RTF to PDF Converter", "description": "Free RTF to PDF converter. Turn .rtf documents into PDF with selectable text. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/rtftopdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "RTF to PDF", "item": "https://www.convertkitlite.site/tools/rtftopdf/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"RTF to PDF Converter","description":"Free RTF to PDF converter. Turn .rtf documents into PDF with selectable text. Private, runs in your browser, no upload.","url":"https://www.convertkitlite.site/tools/rtftopdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertkitlite.site/"},{"@type":"ListItem","position":2,"name":"RTF to PDF","item":"https://www.convertkitlite.site/tools/rtftopdf/"}]},{"@type":"HowTo","name":"How to convert RTF to PDF","step":[{"@type":"HowToStep","name":"Add your RTF files","text":"Click the upload area or drag one or more .rtf files onto it."},{"@type":"HowToStep","name":"Choose page settings","text":"Pick A4 or US Letter and the margin size you prefer."},{"@type":"HowToStep","name":"Convert and download","text":"Press Convert, then download each PDF or all of them as a ZIP."}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are my documents uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is created in your browser, so your files stay on your device."}},{"@type":"Question","name":"Is the text in the PDF selectable?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool writes real text, not pictures, so you can select, copy and search it."}},{"@type":"Question","name":"What formatting is kept?","acceptedAnswer":{"@type":"Answer","text":"Bold, italic, underline, font size, text color, alignment, indents and paragraph spacing. Fonts are matched to Helvetica, Times or Courier."}},{"@type":"Question","name":"What is not supported?","acceptedAnswer":{"@type":"Answer","text":"Embedded images, tables with borders, headers and footers, and non-Latin scripts such as Arabic, Chinese or Bengali. Characters outside the supported set appear as question marks."}},{"@type":"Question","name":"Can I convert many files at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add several RTF files, convert them together, and download each PDF or one ZIP."}},{"@type":"Question","name":"What is an RTF file?","acceptedAnswer":{"@type":"Answer","text":"RTF stands for Rich Text Format. It is a document format that stores text with basic formatting such as bold, italics, colors and alignment, and it opens in programs like Word, WordPad, TextEdit and LibreOffice."}},{"@type":"Question","name":"Should I choose A4 or US Letter?","acceptedAnswer":{"@type":"Answer","text":"Choose US Letter if you will print or submit the document in the United States or Canada. Choose A4 for most other countries."}},{"@type":"Question","name":"Will the PDF look exactly like my RTF in Word?","acceptedAnswer":{"@type":"Answer","text":"It will be close for text documents but not identical. Text is laid out again on the page size you choose, and fonts are matched to Helvetica, Times or Courier, so line breaks and page breaks can differ slightly."}},{"@type":"Question","name":"Are images and tables kept?","acceptedAnswer":{"@type":"Answer","text":"No. Embedded images and bordered tables are not supported. If your document depends on them, export it to PDF from the program you wrote it in, such as Word or LibreOffice."}},{"@type":"Question","name":"Does it work with accents and special characters?","acceptedAnswer":{"@type":"Answer","text":"Yes, for Latin-script text including common accented letters, curly quotes and dashes. Scripts such as Arabic, Chinese, Japanese or Bengali are not supported and appear as question marks."}},{"@type":"Question","name":"Can I edit the PDF afterwards?","acceptedAnswer":{"@type":"Answer","text":"The text can be selected and copied, but changing it needs a PDF editor. To get an editable Word document back from a PDF, try the PDF to Word tool."}},{"@type":"Question","name":"Is the RTF to PDF converter really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free with no account, no watermark and no limit on how many files you convert."}}]}]}</script>
 <meta name="twitter:title" content="RTF to PDF Converter — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Free RTF to PDF converter. Turn .rtf documents into PDF with selectable text. Private, runs in your browser, no upload.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -211,7 +228,6 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <button class="primary" id="zip" type="button">Download all (ZIP)</button>
 </div>
 </div>
-</div>
 
 <div class="features">
   <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your documents are converted in your browser — nothing is uploaded.</p></div>
@@ -230,6 +246,47 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   </div>
 </section>
 
+<section class="narrow seo" id="why">
+  <h2>Why convert <span class="grad">RTF to PDF?</span></h2>
+  <p>RTF (Rich Text Format) is a handy format for exchanging formatted text between programs, but it is made for editing. PDF is made for sharing and printing, and it looks the same on every device.</p>
+  <ul>
+    <li><strong>Share without worrying about the viewer.</strong> Anyone can open a PDF on a phone, tablet or computer without needing a word processor that understands RTF.</li>
+    <li><strong>Print and submit with confidence.</strong> Applications, forms, assignments and official documents are often required as PDF, and PDFs print consistently.</li>
+    <li><strong>Prevent accidental edits.</strong> A PDF is much harder to change by accident than an RTF document that opens straight into an editor.</li>
+    <li><strong>Keep text selectable and searchable.</strong> This tool writes real text, not pictures, so you can still copy, search and use screen readers on the PDF.</li>
+    <li><strong>Keep your documents private.</strong> The conversion runs in your browser, so letters, notes and drafts are never uploaded to a server.</li>
+  </ul>
+</section>
+
+<section class="narrow seo" id="how-it-works">
+  <h2>How this tool <span class="grad">builds your PDF</span></h2>
+  <p>ConvertKit Lite reads your RTF file in the browser, understands its text and formatting codes, and lays the text out on new PDF pages using the page size and margins you choose.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Kept in the PDF</th><th>Not supported</th></tr></thead>
+    <tbody>
+      <tr><td>Text with real, selectable characters</td><td>Embedded images and pictures</td></tr>
+      <tr><td>Bold, italic and underline</td><td>Tables with borders</td></tr>
+      <tr><td>Font size and text color</td><td>Headers and footers</td></tr>
+      <tr><td>Left, right, centered and justified text</td><td>Arabic, Chinese, Japanese, Bengali and other non-Latin scripts</td></tr>
+      <tr><td>Indents, paragraph spacing, tabs and line breaks</td><td>Exact original fonts (matched to Helvetica, Times or Courier)</td></tr>
+    </tbody>
+  </table></div>
+  <p>Need to go the other way? Try <a href="../pdftoword/">PDF to Word</a> to turn a PDF back into an editable document, or <a href="../jpgtopdf/">JPG to PDF</a> to build a PDF from images.</p>
+</section>
+
+<section class="narrow seo" id="tips">
+  <h2>Tips for the <span class="grad">best result</span></h2>
+  <ul>
+    <li><strong>Pick the right page size.</strong> Use US Letter for the United States and Canada, and A4 for most other countries.</li>
+    <li><strong>Choose margins to fit your content.</strong> Narrow gives more text per page, Normal is the standard one-inch margin, and Wide gives a more spacious page.</li>
+    <li><strong>Document has pictures or bordered tables?</strong> Export to PDF straight from the program you wrote it in, such as Word or LibreOffice, so nothing is left out.</li>
+    <li><strong>Check non-English text.</strong> Latin-script languages with accents work well. For Arabic, Chinese, Japanese, Bengali and similar scripts, export to PDF from your word processor instead.</li>
+    <li><strong>Expect small layout differences.</strong> Text is laid out again with matched fonts, so line and page breaks may shift slightly compared with your word processor.</li>
+    <li><strong>Converting a batch?</strong> Add many RTF files at once and download them together as a single ZIP.</li>
+    <li><strong>Review before sending.</strong> Give the PDF a quick look, especially tabs and indents, before you share or print it.</li>
+  </ul>
+</section>
+
 <section class="narrow faq" id="faq">
   <h2 class="section-title">Frequently asked <span>questions</span></h2>
   <p class="section-intro">Quick answers about the ConvertKit Lite RTF to PDF tool.</p>
@@ -238,17 +295,24 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>What formatting is kept?</summary><p>Bold, italic, underline, font size, text color, alignment, indents and paragraph spacing. Fonts are matched to Helvetica, Times or Courier.</p></details>
   <details><summary>What is not supported?</summary><p>Embedded images, tables with borders, headers and footers, and non-Latin scripts such as Arabic, Chinese or Bengali. Characters outside the supported set appear as question marks.</p></details>
   <details><summary>Can I convert many files at once?</summary><p>Yes. Add several RTF files, convert them together, and download each PDF or one ZIP.</p></details>
+  <details><summary>What is an RTF file?</summary><p>RTF stands for Rich Text Format. It is a document format that stores text with basic formatting such as bold, italics, colors and alignment, and it opens in programs like Word, WordPad, TextEdit and LibreOffice.</p></details>
+  <details><summary>Should I choose A4 or US Letter?</summary><p>Choose US Letter if you will print or submit the document in the United States or Canada. Choose A4 for most other countries.</p></details>
+  <details><summary>Will the PDF look exactly like my RTF in Word?</summary><p>It will be close for text documents but not identical. Text is laid out again on the page size you choose, and fonts are matched to Helvetica, Times or Courier, so line breaks and page breaks can differ slightly.</p></details>
+  <details><summary>Are images and tables kept?</summary><p>No. Embedded images and bordered tables are not supported. If your document depends on them, export it to PDF from the program you wrote it in, such as Word or LibreOffice.</p></details>
+  <details><summary>Does it work with accents and special characters?</summary><p>Yes, for Latin-script text including common accented letters, curly quotes and dashes. Scripts such as Arabic, Chinese, Japanese or Bengali are not supported and appear as question marks.</p></details>
+  <details><summary>Can I edit the PDF afterwards?</summary><p>The text can be selected and copied, but changing it needs a PDF editor. To get an editable Word document back from a PDF, try the <a href="../pdftoword/">PDF to Word</a> tool.</p></details>
+  <details><summary>Is the RTF to PDF converter really free?</summary><p>Yes. It is free with no account, no watermark and no limit on how many files you convert.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
   <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
-  <p class="section-intro">Keep going with these useful calculators and image tools.</p>
+  <p class="section-intro">Keep going with these useful document and image tools.</p>
   <div class="related-grid">
     <a class="rt-card" href="../jpgtopdf/"><span class="rt-icon">🖼️</span><h3>JPG to PDF</h3><p>Combine images into a single PDF file.</p><span class="go">Convert to PDF →</span></a>
-    <a class="rt-card" href="../pdftopowerpoint/"><span class="rt-icon">📊</span><h3>PDF to PowerPoint</h3><p>Turn every PDF page into a PowerPoint slide.</p><span class="go">Convert PDF →</span></a>
-    <a class="rt-card" href="../jpgtowebp/"><span class="rt-icon">🗜️</span><h3>JPG to WebP</h3><p>Convert images to smaller WebP files.</p><span class="go">Convert to WebP →</span></a>
+    <a class="rt-card" href="../pdftopptx/"><span class="rt-icon">📊</span><h3>PDF to PowerPoint</h3><p>Turn every PDF page into a PowerPoint slide.</p><span class="go">Convert PDF →</span></a>
+    <a class="rt-card" href="../pdftoword/"><span class="rt-icon">📘</span><h3>PDF to Word</h3><p>Turn PDF files into editable Word documents.</p><span class="go">Convert PDF →</span></a>
+    <a class="rt-card" href="../docxtotxt/"><span class="rt-icon">📃</span><h3>DOCX to TXT</h3><p>Extract plain text from Word documents.</p><span class="go">Convert to TXT →</span></a>
     <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images for easier sharing.</p><span class="go">Optimize image →</span></a>
-    <a class="rt-card" href="../qrcodegenerator/"><span class="rt-icon">▦</span><h3>QR Code Generator</h3><p>Create a QR code from text, a link, or other supported content.</p><span class="go">Create QR code →</span></a>
     <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
   </div>
 </section>
