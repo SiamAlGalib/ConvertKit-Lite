@@ -124,12 +124,17 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 @media(max-width:850px){.workspace{grid-template-columns:1fr}.sidebar{height:auto}.thumbs{flex-direction:row;overflow-x:auto}.thumb{min-width:96px;flex-shrink:0}.canvas-area{height:560px}}
 @media(max-width:700px){nav{display:none}h1{font-size:30px}.steps,.related-grid{grid-template-columns:1fr}.rt-card{min-height:0}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}.zoom{margin-left:0}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Edit or Create PDF","description":"Free online PDF editor. Add text, draw and manage pages in your browser.","url":"https://www.convertkitlite.site/tools/editpdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertkitlite.site/"},{"@type":"ListItem","position":2,"name":"Edit or Create PDF","item":"https://www.convertkitlite.site/tools/editpdf/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Edit or Create PDF", "description": "Free online PDF editor. Add text, draw and manage pages in your browser.", "url": "https://www.convertkitlite.site/tools/editpdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Edit or Create PDF", "item": "https://www.convertkitlite.site/tools/editpdf/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my PDF uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Editing happens entirely in your browser, so your file stays on your device."}}, {"@type": "Question", "name": "Can I change the existing text in a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "No. This editor adds new text and drawings on top of a page. It cannot rewrite text that is already in the PDF."}}, {"@type": "Question", "name": "How do I move, edit or delete text I added?", "acceptedAnswer": {"@type": "Answer", "text": "Click the text to type. Drag the blue handle above it to move it, and use the red × to remove it."}}, {"@type": "Question", "name": "Which characters and fonts are supported?", "acceptedAnswer": {"@type": "Answer", "text": "Added text uses Helvetica with Latin characters. Other characters, such as Arabic or Chinese, are replaced with a question mark when you download."}}, {"@type": "Question", "name": "Why are edits misplaced on some pages?", "acceptedAnswer": {"@type": "Answer", "text": "Pages that are rotated inside the PDF can place text and drawings in the wrong spot. Check the downloaded file if your PDF has rotated pages."}}, {"@type": "Question", "name": "How do I fill in or sign a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Open the PDF, use Add Text to type on the form lines, and use Draw to sign with the brush. Then press Download PDF. Zoom in first if the fields are small."}}, {"@type": "Question", "name": "Can I add, reorder or delete pages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add Page inserts a blank A4 page after the current one, the ↑ and ↓ buttons move the current page, and Delete Page removes it after you confirm."}}, {"@type": "Question", "name": "Can I create a PDF from scratch?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Press New PDF to start with a blank A4 page. Add text and drawings, add more pages if you need them, then download the result."}}, {"@type": "Question", "name": "Is there a watermark, account or limit?", "acceptedAnswer": {"@type": "Answer", "text": "No watermark, no account and no limit on how many PDFs you edit."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "It works in modern browsers on Android, iPhone, Windows and Mac. Placing text and drawing are easier on a larger screen, but a phone is fine for quick changes."}}]}]}</script>
 <meta name="twitter:title" content="Free Online PDF Editor — Edit &amp; Create | ConvertKit Lite">
 <meta name="twitter:description" content="Free online PDF editor. Add text, draw, add or delete pages and download. Private, runs in your browser, no watermark.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -193,10 +198,44 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to edit a <span>PDF</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Open or create</h3><p>Open a PDF, or start a blank A4 page with New PDF.</p></div>
-    <div class="step"><b>2</b><h3>Edit it</h3><p>Add text, draw, and add, move or delete pages. Use Undo if you slip.</p></div>
-    <div class="step"><b>3</b><h3>Download</h3><p>Press Download PDF to save your edited file.</p></div>
+    <div class="step"><b>1</b><h3>Open or create</h3><p>Drag in a PDF or click Open PDF. If you have no file yet, New PDF starts a blank A4 page so you can build a document from scratch.</p></div>
+    <div class="step"><b>2</b><h3>Edit it</h3><p>Add text, draw with the brush, and add, reorder or delete pages. Pick size and color first, and press Undo if you slip. Zoom in to place things precisely.</p></div>
+    <div class="step"><b>3</b><h3>Download</h3><p>Press Download PDF. Your edited file is saved to your device, with no watermark and no sign-up.</p></div>
   </div>
+</section>
+
+<section class="narrow prose">
+  <h2>Why edit a PDF in your browser?</h2>
+  <p>Most people only need small changes: write a name in a blank field, add a date, sign with a quick drawing, or remove a page that should not be there. Installing a heavy desktop program for that is overkill, and many online editors add a watermark or ask you to create an account before you can download.</p>
+  <p>This editor opens right away and runs on your own device. That is also better for privacy, because forms, contracts and ID copies often hold personal details you would rather not send to a stranger's server.</p>
+
+  <h2>What you can do with this PDF editor</h2>
+  <ul>
+    <li><b>Add text.</b> Place a text box anywhere on the page, then choose its size and color. Click it to type, drag the blue handle to move it, and use the red × to remove it.</li>
+    <li><b>Draw.</b> Use the brush to sign, circle something or underline a line. You can change the brush width and color.</li>
+    <li><b>Manage pages.</b> Add a blank page after the current one, move pages up or down in the thumbnail list, or delete the ones you do not need.</li>
+    <li><b>Start from nothing.</b> New PDF gives you a blank A4 page, so you can write a short letter, note or checklist and download it as a PDF.</li>
+    <li><b>Undo mistakes.</b> Press Undo, or Ctrl+Z (Cmd+Z on Mac), to step back.</li>
+  </ul>
+
+  <h2>What this editor cannot do</h2>
+  <p>It is a lightweight editor, so it is worth knowing the limits before you start:</p>
+  <ul>
+    <li><b>It does not rewrite existing text.</b> Text that is already in the PDF stays as it is. You can only add new text and drawings on top of a page.</li>
+    <li><b>Added text uses Helvetica.</b> It supports Latin characters. Other scripts, such as Arabic or Chinese, are replaced with a question mark in the downloaded file.</li>
+    <li><b>Rotated pages can be tricky.</b> If a page is rotated inside the PDF, your edits may land in the wrong spot, so check the result before you send it.</li>
+  </ul>
+  <p>If you need to change the original text in a document, convert it to an editable format first with <a href="../pdftoword/">PDF to Word</a>, edit it there, then turn it back into a PDF with <a href="../wordtopdf/">Word to PDF</a>.</p>
+
+  <h2>Tips for better results</h2>
+  <ul>
+    <li><b>Set size and color before you add text.</b> It is quicker than fixing each box afterwards.</li>
+    <li><b>Zoom in for small fields.</b> Use the + button to place text exactly on a form line.</li>
+    <li><b>Do page work first.</b> Delete and reorder pages before you add text, so you do not have to move things around later.</li>
+    <li><b>Check the downloaded file.</b> Open it once before you upload or email it, especially if the original had rotated pages.</li>
+    <li><b>Keep a copy of the original.</b> Downloading creates a new file, so your first PDF is never changed.</li>
+  </ul>
+  <p>Finished editing? Use <a href="../compresspdf/">Compress PDF</a> to make the file smaller for email or form uploads, <a href="../mergepdf/">Merge PDF</a> to join it with other documents, or <a href="../splitpdf/">Split PDF</a> to send only certain pages.</p>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -207,6 +246,11 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>How do I move, edit or delete text I added?</summary><p>Click the text to type. Drag the blue handle above it to move it, and use the red × to remove it.</p></details>
   <details><summary>Which characters and fonts are supported?</summary><p>Added text uses Helvetica with Latin characters. Other characters, such as Arabic or Chinese, are replaced with a question mark when you download.</p></details>
   <details><summary>Why are edits misplaced on some pages?</summary><p>Pages that are rotated inside the PDF can place text and drawings in the wrong spot. Check the downloaded file if your PDF has rotated pages.</p></details>
+  <details><summary>How do I fill in or sign a PDF?</summary><p>Open the PDF, use Add Text to type on the form lines, and use Draw to sign with the brush. Then press Download PDF. Zoom in first if the fields are small.</p></details>
+  <details><summary>Can I add, reorder or delete pages?</summary><p>Yes. Add Page inserts a blank A4 page after the current one, the ↑ and ↓ buttons move the current page, and Delete Page removes it after you confirm.</p></details>
+  <details><summary>Can I create a PDF from scratch?</summary><p>Yes. Press New PDF to start with a blank A4 page. Add text and drawings, add more pages if you need them, then download the result.</p></details>
+  <details><summary>Is there a watermark, account or limit?</summary><p>No watermark, no account and no limit on how many PDFs you edit.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>It works in modern browsers on Android, iPhone, Windows and Mac. Placing text and drawing are easier on a larger screen, but a phone is fine for quick changes.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
