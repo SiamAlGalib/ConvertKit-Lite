@@ -8,7 +8,8 @@
 <meta property="og:url" content="https://www.convertkitlite.site/tools/bmicalculator/">
 <meta property="og:image" content="https://www.convertkitlite.site/logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="description" content="Free BMI calculator metric (kg, cm) and imperial BMI calculator (lbs, ft, in). Enter your height and weight to get your BMI instantly. Private, no sign-up.">
+<meta name="description" content="Free BMI calculator metric (kg, cm) and imperial BMI calculator (lbs, ft, in). Enter your height and weight to get your BMI, category and healthy weight range instantly. Private, no sign-up.">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://www.convertkitlite.site/tools/bmicalculator/">
 <link rel="icon" href="../../favicon.ico">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -46,7 +47,7 @@ nav a[href="/blog/"]::before{content:"✦";font-size:10px;margin-right:7px;color
 .hero{text-align:center;max-width:680px;margin:48px auto 8px;padding:0 20px}
 .icon-badge{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,#22c55e,#2d82ff);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(45,130,255,.35)}
 h1{font-size:38px;font-weight:800;letter-spacing:-1.4px;margin-bottom:10px}
-h1 span,.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 span,.section-title span,.grad{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{color:#c4d6ef;font-size:15.5px;line-height:1.6}
 .trust-row{display:flex;gap:22px;justify-content:center;margin-top:18px;flex-wrap:wrap}
 .trust-row div{font-size:13px;color:var(--text-dim);display:flex;gap:6px}
@@ -101,6 +102,23 @@ button:active{transform:scale(.99)}
 .about .block{border:1px solid #174b88;border-radius:14px;background:var(--panel-2);padding:18px 20px;margin-bottom:12px}
 .about h3{font-size:15px;margin-bottom:6px}
 .about p{font-size:13px;line-height:1.75;color:#b7cbea}
+/* SEO content blocks */
+.seo{margin-bottom:46px}
+.seo h2{font-size:25px;letter-spacing:-.6px;margin:0 0 12px}
+.seo p{font-size:14px;line-height:1.75;color:var(--text-dim);margin-bottom:12px}
+.seo p strong,.seo li strong{color:var(--text);font-weight:700}
+.seo ul{list-style:none;display:grid;gap:10px;margin:4px 0 0}
+.seo li{position:relative;font-size:14px;line-height:1.7;color:var(--text-dim);padding:12px 14px 12px 40px;border:1px solid #174b88;border-radius:12px;background:var(--panel-2)}
+.seo li::before{content:"✓";position:absolute;left:14px;top:12px;color:var(--success);font-weight:800}
+.seo p a,.seo li a,details p a{color:#79b7ff;font-weight:600;border-bottom:1px solid rgba(121,183,255,.35)}
+.seo p a:hover,.seo li a:hover,details p a:hover{color:#fff;border-bottom-color:#fff}
+.tbl-wrap{overflow-x:auto;border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin:6px 0 12px}
+.tbl-wrap table{width:100%;border-collapse:collapse;font-size:13px;min-width:420px}
+.tbl-wrap th,.tbl-wrap td{padding:11px 14px;text-align:left;border-bottom:1px solid #12345d;color:var(--text-dim)}
+.tbl-wrap th{color:var(--text);font-weight:700;background:#0a2142;font-size:12px}
+.tbl-wrap tr:last-child td{border-bottom:0}
+.tbl-wrap td:first-child{color:var(--text);font-weight:600}
+.tbl-note{font-size:12px;color:var(--text-faint);line-height:1.6}
 details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
 summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
 summary::-webkit-details-marker{display:none}
@@ -149,9 +167,9 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.fields.top{grid-template-columns:1fr}.card{padding:20px}.scale-labels{font-size:9px}.btns button{padding:12px 10px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "BMI Calculator", "description": "Calculate your Body Mass Index (BMI) from height and weight in metric or imperial units. Free, private, no sign-up.", "url": "https://www.convertkitlite.site/tools/bmicalculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "BMI Calculator", "item": "https://www.convertkitlite.site/tools/bmicalculator/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"BMI Calculator","description":"Calculate your Body Mass Index (BMI) from height and weight in metric or imperial units. Free, private, no sign-up.","url":"https://www.convertkitlite.site/tools/bmicalculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertkitlite.site/"},{"@type":"ListItem","position":2,"name":"BMI Calculator","item":"https://www.convertkitlite.site/tools/bmicalculator/"}]},{"@type":"HowTo","name":"How to calculate your BMI","step":[{"@type":"HowToStep","name":"Pick your units","text":"Choose kilograms or pounds, and centimetres or feet and inches."},{"@type":"HowToStep","name":"Enter weight and height","text":"Type your measurements. Imperial values are converted automatically."},{"@type":"HowToStep","name":"Calculate","text":"See your BMI, its category and a reference weight range for your height."}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I use the imperial BMI calculator?","acceptedAnswer":{"@type":"Answer","text":"Choose Pounds (lb) as the weight unit and Feet and inches (ft / in) as the height unit, enter your measurements, then press Calculate BMI. The imperial formula is 703 × weight (lb) ÷ height (in)²."}},{"@type":"Question","name":"How do I use the metric BMI calculator?","acceptedAnswer":{"@type":"Answer","text":"Choose Kilograms (kg) and Centimetres (cm), enter your weight and height, then press Calculate BMI. The metric formula is weight (kg) ÷ height (m)²."}},{"@type":"Question","name":"Is my data stored or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The calculation runs entirely in your browser, so your measurements are not uploaded to a server."}},{"@type":"Question","name":"Can I mix metric and imperial units?","acceptedAnswer":{"@type":"Answer","text":"Yes. Weight and height units are chosen separately, for example pounds with centimetres."}},{"@type":"Question","name":"Is BMI accurate for everyone?","acceptedAnswer":{"@type":"Answer","text":"BMI is a screening measure and does not directly measure body fat. It may not reflect health accurately for every person, such as athletes or older adults."}},{"@type":"Question","name":"Can children and teens use this calculator?","acceptedAnswer":{"@type":"Answer","text":"No. The categories here are for adults aged 20 and older. For children and teens, BMI is interpreted using age- and sex-specific percentiles."}},{"@type":"Question","name":"What is the reference weight range?","acceptedAnswer":{"@type":"Answer","text":"It is the weight span that would give an adult BMI of 18.5–24.9 at the height you entered. It is a guide, not a personal target."}},{"@type":"Question","name":"What is a healthy BMI for adults?","acceptedAnswer":{"@type":"Answer","text":"For adults aged 20 and older, a BMI of 18.5 to 24.9 is the commonly used healthy weight range. Below 18.5 is underweight, 25 to 29.9 is overweight, and 30 or above is obesity."}},{"@type":"Question","name":"Is the BMI formula different for men and women?","acceptedAnswer":{"@type":"Answer","text":"No. The adult BMI formula and category cut-offs are the same for men and women. Body composition can differ between people with the same BMI, which is one reason BMI is only a screening tool."}},{"@type":"Question","name":"Why can BMI be misleading for athletes?","acceptedAnswer":{"@type":"Answer","text":"BMI uses only height and weight, so it cannot tell muscle from fat. A muscular person can have a BMI in the overweight range without having excess body fat."}},{"@type":"Question","name":"Should I use BMI during pregnancy?","acceptedAnswer":{"@type":"Answer","text":"No. The adult categories are not designed for use during pregnancy. A doctor or midwife can advise on healthy weight changes during pregnancy."}},{"@type":"Question","name":"Does this BMI calculator work on phones?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works in any modern browser on Android, iPhone, iPad, Windows, Mac and Linux with nothing to install."}},{"@type":"Question","name":"Is the BMI calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free with no account and no limit on how often you use it."}}]}]}</script>
 <meta name="twitter:title" content="BMI Calculator — Metric &amp; Imperial | ConvertKit Lite">
-<meta name="twitter:description" content="Free BMI calculator metric (kg, cm) and imperial BMI calculator (lbs, ft, in). Enter your height and weight to get your BMI instantly. Private, no sign-up.">
+<meta name="twitter:description" content="Free BMI calculator metric (kg, cm) and imperial BMI calculator (lbs, ft, in). Enter your height and weight to get your BMI, category and healthy weight range instantly. Private, no sign-up.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
 </head>
 <body>
@@ -221,16 +239,73 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <div class="block"><h3>Important note</h3><p>BMI is a screening measure, not a diagnosis. It does not directly measure body fat and may not describe health accurately for every person. Adult categories are not intended for children or teens, whose BMI is interpreted using age- and sex-specific percentiles. If you have concerns about your weight or health, consult a qualified healthcare professional.</p></div>
 </section>
 
+<section class="narrow seo" id="why">
+  <h2>Why <span class="grad">check your BMI?</span></h2>
+  <p>BMI is one of the quickest ways to relate your weight to your height. It is widely used by doctors, health organizations and researchers as a first-step screening tool, because it needs only two measurements and no special equipment.</p>
+  <ul>
+    <li><strong>A quick starting point.</strong> Your BMI shows at a glance whether your weight falls in the underweight, healthy, overweight or obesity range for adults.</li>
+    <li><strong>A weight range for your height.</strong> Along with your BMI, this calculator shows the span of weights that would fall in the 18.5–24.9 range at your height, so you can see where you sit.</li>
+    <li><strong>Track change over time.</strong> Recalculate after a change in weight to see how your BMI has moved, using the same units each time.</li>
+    <li><strong>A good conversation opener.</strong> A BMI result can help you decide what to ask a doctor, dietitian or trainer.</li>
+    <li><strong>Private by design.</strong> Your height and weight are calculated in your browser and never sent to a server.</li>
+  </ul>
+</section>
+
+<section class="narrow seo" id="chart">
+  <h2>Adult <span class="grad">BMI chart</span></h2>
+  <p>These standard categories apply to adults aged 20 and older. They are the same for men and women.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>BMI</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td></tr>
+      <tr><td>18.5 – 24.9</td><td>Healthy weight range</td></tr>
+      <tr><td>25 – 29.9</td><td>Overweight</td></tr>
+      <tr><td>30 or above</td><td>Obesity</td></tr>
+    </tbody>
+  </table></div>
+  <p>To see how this looks at common heights, here are the approximate weights that fall in the 18.5–24.9 range:</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Height</th><th>In feet and inches</th><th>Weight range (kg)</th><th>Weight range (lb)</th></tr></thead>
+    <tbody>
+      <tr><td>160 cm</td><td>5 ft 3 in</td><td>47 – 64 kg</td><td>104 – 141 lb</td></tr>
+      <tr><td>170 cm</td><td>5 ft 7 in</td><td>53 – 72 kg</td><td>118 – 159 lb</td></tr>
+      <tr><td>180 cm</td><td>5 ft 11 in</td><td>60 – 81 kg</td><td>132 – 178 lb</td></tr>
+      <tr><td>190 cm</td><td>6 ft 3 in</td><td>67 – 90 kg</td><td>147 – 198 lb</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tbl-note">Values are rounded. Use the calculator above for your exact height. A BMI in the healthy range does not guarantee good health, and a BMI outside it does not by itself mean poor health.</p>
+</section>
+
+<section class="narrow seo" id="tips">
+  <h2>Using BMI <span class="grad">sensibly</span></h2>
+  <ul>
+    <li><strong>Treat it as a screening tool, not a diagnosis.</strong> BMI cannot say how much of your weight is fat, muscle, bone or water.</li>
+    <li><strong>Athletes and very muscular people</strong> may have a BMI in the overweight range without excess body fat.</li>
+    <li><strong>Age and body type matter.</strong> Older adults and people with low muscle mass can carry more body fat than their BMI suggests.</li>
+    <li><strong>Look at more than one measure.</strong> Waist size, blood pressure, blood tests, diet, activity and family history all give a fuller picture.</li>
+    <li><strong>Measure carefully.</strong> Use barefoot height and a recent weight, ideally measured at the same time of day, for more consistent results.</li>
+    <li><strong>Not for children, teens or pregnancy.</strong> The adult categories here do not apply to people under 20 or to pregnant women.</li>
+    <li><strong>Talk to a professional.</strong> For personal advice about your weight or health, speak with a doctor or qualified healthcare professional. This tool is for information only.</li>
+  </ul>
+  <p>Looking for other everyday calculators? Try the <a href="../agecalculator/">Age Calculator</a> to find your exact age in years, months and days.</p>
+</section>
+
 <section class="narrow faq" id="faq">
   <h2 class="section-title">Frequently asked <span>questions</span></h2>
   <p class="section-intro">Quick answers about the ConvertKit Lite BMI Calculator.</p>
-    <details><summary>How do I use the imperial BMI calculator?</summary><p>Choose Pounds (lb) as the weight unit and Feet and inches (ft / in) as the height unit, enter your measurements, then press Calculate BMI. The imperial formula is 703 × weight (lb) ÷ height (in)².</p></details>
+  <details><summary>How do I use the imperial BMI calculator?</summary><p>Choose Pounds (lb) as the weight unit and Feet and inches (ft / in) as the height unit, enter your measurements, then press Calculate BMI. The imperial formula is 703 × weight (lb) ÷ height (in)².</p></details>
   <details><summary>How do I use the metric BMI calculator?</summary><p>Choose Kilograms (kg) and Centimetres (cm), enter your weight and height, then press Calculate BMI. The metric formula is weight (kg) ÷ height (m)².</p></details>
   <details><summary>Is my data stored or sent anywhere?</summary><p>No. The calculation runs entirely in your browser, so your measurements are not uploaded to a server.</p></details>
   <details><summary>Can I mix metric and imperial units?</summary><p>Yes. Weight and height units are chosen separately, for example pounds with centimetres.</p></details>
   <details><summary>Is BMI accurate for everyone?</summary><p>BMI is a screening measure and does not directly measure body fat. It may not reflect health accurately for every person, such as athletes or older adults.</p></details>
   <details><summary>Can children and teens use this calculator?</summary><p>No. The categories here are for adults aged 20 and older. For children and teens, BMI is interpreted using age- and sex-specific percentiles.</p></details>
   <details><summary>What is the reference weight range?</summary><p>It is the weight span that would give an adult BMI of 18.5–24.9 at the height you entered. It is a guide, not a personal target.</p></details>
+  <details><summary>What is a healthy BMI for adults?</summary><p>For adults aged 20 and older, a BMI of 18.5 to 24.9 is the commonly used healthy weight range. Below 18.5 is underweight, 25 to 29.9 is overweight, and 30 or above is obesity.</p></details>
+  <details><summary>Is the BMI formula different for men and women?</summary><p>No. The adult BMI formula and category cut-offs are the same for men and women. Body composition can differ between people with the same BMI, which is one reason BMI is only a screening tool.</p></details>
+  <details><summary>Why can BMI be misleading for athletes?</summary><p>BMI uses only height and weight, so it cannot tell muscle from fat. A muscular person can have a BMI in the overweight range without having excess body fat.</p></details>
+  <details><summary>Should I use BMI during pregnancy?</summary><p>No. The adult categories are not designed for use during pregnancy. A doctor or midwife can advise on healthy weight changes during pregnancy.</p></details>
+  <details><summary>Does this BMI calculator work on phones?</summary><p>Yes. It works in any modern browser on Android, iPhone, iPad, Windows, Mac and Linux with nothing to install.</p></details>
+  <details><summary>Is the BMI calculator free?</summary><p>Yes. It is free with no account and no limit on how often you use it.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
