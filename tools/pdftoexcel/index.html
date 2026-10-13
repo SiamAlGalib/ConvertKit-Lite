@@ -142,6 +142,11 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
 
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 
@@ -165,7 +170,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 .tool-recommendations a:hover,.tool-recommendations a:focus-visible{background:#17366b;border-color:#5798ff;transform:translateY(-1px);outline:none}
 @media(max-width:520px){.tool-recommendations{padding:0 10px}.tool-recommendations .recommend-links{gap:6px}.tool-recommendations a{font-size:10.5px;padding:7px 10px}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PDF to Excel Converter", "description": "Free PDF to Excel converter. Extract tables and text from PDF into an XLSX spreadsheet, one sheet per page or all in one. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/pdftoexcel/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PDF to Excel", "item": "https://www.convertkitlite.site/tools/pdftoexcel/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PDF to Excel Converter", "description": "Free PDF to Excel converter. Extract tables and text from PDF into an XLSX spreadsheet, one sheet per page or all in one. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/pdftoexcel/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PDF to Excel", "item": "https://www.convertkitlite.site/tools/pdftoexcel/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my documents uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Excel file is created in your browser, so your PDFs stay on your device."}}, {"@type": "Question", "name": "How accurate is the table detection?", "acceptedAnswer": {"@type": "Answer", "text": "PDF files do not store real tables, only text placed at positions on the page. The tool groups text into rows and lines up columns by position, which works well for tidy, left-aligned tables. Complex layouts, merged cells and tightly packed columns may need a quick clean-up in Excel. If columns look wrong, try One text line per row."}}, {"@type": "Question", "name": "What is the difference between the two modes?", "acceptedAnswer": {"@type": "Answer", "text": "Detect table columns splits each row into cells and places them in columns. One text line per row puts each full line of text into a single cell, which is useful for documents that are not tables."}}, {"@type": "Question", "name": "Can I convert scanned PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "No. Scanned PDFs are pictures of pages and contain no selectable text, so there is nothing to extract. Run OCR on the file first, then add it again."}}, {"@type": "Question", "name": "Are numbers converted to real numbers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Plain numbers such as 1,250.50 become numeric cells so you can use formulas. Values with a leading zero, currency symbols, percentages and dates stay as text."}}, {"@type": "Question", "name": "Can I convert password-protected PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "No. Remove the password in your PDF viewer first, then add the file again."}}, {"@type": "Question", "name": "Can I convert many files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add several PDF files, convert them together, and download each XLSX file or one ZIP."}}, {"@type": "Question", "name": "Does it keep my formatting, colors and fonts?", "acceptedAnswer": {"@type": "Answer", "text": "No. The tool extracts text and numbers only. Fonts, colors, borders, images and shading are not carried over. You get plain data that is ready to format in Excel."}}, {"@type": "Question", "name": "Why are some columns merged or split in the wrong place?", "acceptedAnswer": {"@type": "Answer", "text": "Column positions are guessed from where text sits on the page. If text in different columns is very close together, or one column has uneven left edges, cells can merge or split. Try the other extraction mode, or fix the few affected rows in Excel."}}, {"@type": "Question", "name": "Why did some numbers stay as text?", "acceptedAnswer": {"@type": "Answer", "text": "Only plain numbers, with an optional minus sign, comma thousands separators and decimals, are converted. Values with a leading zero, such as account codes, currency symbols, percentages and dates stay as text on purpose, so they are not changed by mistake."}}, {"@type": "Question", "name": "What do the sheets and file names look like?", "acceptedAnswer": {"@type": "Answer", "text": "Each PDF becomes one XLSX file with the same name as the PDF. With one sheet per page, the sheets are named Page 1, Page 2 and so on. With all pages in one sheet, the single sheet is named Data."}}, {"@type": "Question", "name": "Is there a watermark or a limit?", "acceptedAnswer": {"@type": "Answer", "text": "No watermark, no account and no daily limit. Very large PDFs take longer because everything runs on your own device."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in any modern browser on Android, iPhone, Windows and Mac. Long PDFs can take longer on older phones, and the spreadsheet is easier to check on a larger screen."}}]}]}</script>
 <meta name="twitter:title" content="PDF to Excel Converter — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Free PDF to Excel converter. Extract tables and text from a PDF into an XLSX file, one sheet per page or all in one. Private, no upload.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -236,10 +241,43 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to convert <span>PDF to Excel</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your PDF files</h3><p>Click the upload area or drag one or more .pdf files onto it.</p></div>
-    <div class="step"><b>2</b><h3>Choose a mode</h3><p>Pick Detect table columns for tables, or One text line per row for plain text.</p></div>
-    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each XLSX file or all of them as a ZIP.</p></div>
+    <div class="step"><b>1</b><h3>Add your PDF files</h3><p>Click the upload area or drag one or more .pdf files onto it. You can add several files and convert them in one go.</p></div>
+    <div class="step"><b>2</b><h3>Choose a mode and layout</h3><p>Pick Detect table columns for tables or One text line per row for plain text. Then choose one sheet per page or everything in a single sheet.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, check the sheet and row count, then download each XLSX file or all of them as a ZIP.</p></div>
   </div>
+  </section>
+
+<section class="narrow prose">
+  <h2>Why convert a PDF to Excel?</h2>
+  <p>Bank statements, invoices, price lists, reports and exam results often arrive as PDFs. You can read them, but you cannot sort, filter, total or chart the numbers until they are in a spreadsheet. Copying and pasting from a PDF usually breaks the columns and leaves you fixing every line by hand.</p>
+  <p>This tool reads the text on each page and places it into rows and columns for you. It runs in your browser, so statements and financial documents stay on your device.</p>
+
+  <h2>How this tool builds your spreadsheet</h2>
+  <p>A PDF does not contain real tables. It only stores pieces of text at positions on the page. The tool works like this:</p>
+  <ul>
+    <li><b>It groups text into rows.</b> Pieces of text that sit on the same line are put in the same row.</li>
+    <li><b>It finds the columns.</b> In Detect table columns mode, big gaps start a new cell, and the left edges that repeat down the page become your columns. Empty columns are dropped.</li>
+    <li><b>It keeps text lines whole when you ask.</b> In One text line per row mode, each full line goes into one cell, which suits letters, notes and other non-table documents.</li>
+    <li><b>It turns plain numbers into numbers.</b> A value like 1,250.50 becomes a numeric cell, so formulas such as SUM work right away. Values with a leading zero, currency symbols, percentages and dates stay as text.</li>
+    <li><b>It lays out the sheets your way.</b> One sheet per page names the sheets Page 1, Page 2 and so on. All pages in one sheet stacks every page into a single sheet called Data. Pages with no text are skipped.</li>
+  </ul>
+
+  <h2>What this tool cannot do</h2>
+  <ul>
+    <li><b>Scanned PDFs.</b> A scan is a picture of a page with no selectable text, so there is nothing to extract. Pictures need OCR first.</li>
+    <li><b>Password-protected PDFs.</b> Remove the password in your PDF viewer, then add the file again.</li>
+    <li><b>Perfect copies of complex layouts.</b> Merged cells, tightly packed columns and multi-line cells may need a quick clean-up in Excel.</li>
+  </ul>
+
+  <h2>Tips for cleaner results</h2>
+  <ul>
+    <li><b>Try both modes.</b> If the columns look wrong in Detect table columns, run the file again with One text line per row.</li>
+    <li><b>Use one sheet for long tables.</b> A table that runs over many pages is easier to sort and filter when you pick All pages in one sheet.</li>
+    <li><b>Convert only the pages you need.</b> Use <a href="../splitpdf/">Split PDF</a> to pull out the table pages first, so the sheet is not full of cover pages and notes.</li>
+    <li><b>Check the totals.</b> Compare a column total in Excel with the total in the PDF before you rely on the data.</li>
+    <li><b>Need plain text instead?</b> <a href="../pdftotxt/">PDF to Text</a> and <a href="../pdftoword/">PDF to Word</a> are better for documents that are not tables.</li>
+  </ul>
+  <p>Going the other way? <a href="../exceltopdf/">Excel to PDF</a> turns a spreadsheet into a neat PDF, and <a href="../xlsxtocsv/">Excel to CSV</a> exports a sheet as plain CSV. To combine several PDFs before you convert them, use <a href="../mergepdf/">Merge PDF</a>.</p>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -252,6 +290,12 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>Are numbers converted to real numbers?</summary><p>Yes. Plain numbers such as 1,250.50 become numeric cells so you can use formulas. Values with a leading zero, currency symbols, percentages and dates stay as text.</p></details>
   <details><summary>Can I convert password-protected PDFs?</summary><p>No. Remove the password in your PDF viewer first, then add the file again.</p></details>
   <details><summary>Can I convert many files at once?</summary><p>Yes. Add several PDF files, convert them together, and download each XLSX file or one ZIP.</p></details>
+  <details><summary>Does it keep my formatting, colors and fonts?</summary><p>No. The tool extracts text and numbers only. Fonts, colors, borders, images and shading are not carried over. You get plain data that is ready to format in Excel.</p></details>
+  <details><summary>Why are some columns merged or split in the wrong place?</summary><p>Column positions are guessed from where text sits on the page. If text in different columns is very close together, or one column has uneven left edges, cells can merge or split. Try the other extraction mode, or fix the few affected rows in Excel.</p></details>
+  <details><summary>Why did some numbers stay as text?</summary><p>Only plain numbers, with an optional minus sign, comma thousands separators and decimals, are converted. Values with a leading zero, such as account codes, currency symbols, percentages and dates stay as text on purpose, so they are not changed by mistake.</p></details>
+  <details><summary>What do the sheets and file names look like?</summary><p>Each PDF becomes one XLSX file with the same name as the PDF. With one sheet per page, the sheets are named Page 1, Page 2 and so on. With all pages in one sheet, the single sheet is named Data.</p></details>
+  <details><summary>Is there a watermark or a limit?</summary><p>No watermark, no account and no daily limit. Very large PDFs take longer because everything runs on your own device.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>Yes, in any modern browser on Android, iPhone, Windows and Mac. Long PDFs can take longer on older phones, and the spreadsheet is easier to check on a larger screen.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
