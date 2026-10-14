@@ -135,6 +135,11 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 @media(max-width:700px){
@@ -149,7 +154,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"CSV to XLSX Converter","description":"Free CSV to XLSX converter. Turn CSV files into Excel spreadsheets with automatic delimiter detection, number conversion and auto-fit columns. Private, runs in your browser, no upload.","url":"https://www.convertkitlite.site/tools/csvtoxlsx/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertkitlite.site/"},{"@type":"ListItem","position":2,"name":"CSV to XLSX","item":"https://www.convertkitlite.site/tools/csvtoxlsx/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSV to XLSX Converter", "description": "Free CSV to XLSX converter. Turn CSV files into Excel spreadsheets with automatic delimiter detection, number conversion and auto-fit columns. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/csvtoxlsx/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "CSV to XLSX", "item": "https://www.convertkitlite.site/tools/csvtoxlsx/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my files uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The XLSX file is created in your browser, so your CSV files stay on your device."}}, {"@type": "Question", "name": "How is the delimiter detected?", "acceptedAnswer": {"@type": "Answer", "text": "The tool checks the first lines of the file for commas, semicolons, tabs and pipes, and picks the one that appears consistently on every line. If it guesses wrong, choose the delimiter yourself from the list."}}, {"@type": "Question", "name": "Why did my ZIP codes or IDs keep their leading zeros?", "acceptedAnswer": {"@type": "Answer", "text": "Values such as 00123 and numbers longer than 15 digits are kept as text on purpose. Excel would otherwise remove the zeros or round the number. Choose \"Keep everything as text\" if you want every cell left exactly as written."}}, {"@type": "Question", "name": "Does it support Bengali, Arabic, Hindi or Chinese text?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. XLSX files store Unicode text, so every language is kept as real, selectable text. The tool reads UTF-8, UTF-16 and Windows-1252 CSV files automatically."}}, {"@type": "Question", "name": "Are dates converted?", "acceptedAnswer": {"@type": "Answer", "text": "Dates are left as text exactly as they appear in the CSV, so day/month order is never guessed wrongly. You can format them as dates in Excel afterwards."}}, {"@type": "Question", "name": "Are there size limits?", "acceptedAnswer": {"@type": "Answer", "text": "Each file can be up to 20 MB. An Excel sheet holds at most 1,048,576 rows and 16,384 columns, and a single cell holds up to 32,767 characters. Longer cells are shortened."}}, {"@type": "Question", "name": "Can I convert many files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add several CSV files, convert them together, and download each XLSX file or one ZIP."}}, {"@type": "Question", "name": "Can I convert TSV files too?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The tool accepts .csv and .tsv files, and Auto-detect recognises tab-separated data. You can also pick Tab from the Delimiter list."}}, {"@type": "Question", "name": "What does the First row option do?", "acceptedAnswer": {"@type": "Answer", "text": "With Header row selected, filter buttons are added to the top row so you can sort and filter in Excel. Choose Plain data if the first row is not a header."}}, {"@type": "Question", "name": "What does Auto-fit do to the columns?", "acceptedAnswer": {"@type": "Answer", "text": "It sizes each column to its longest value, looking at up to the first 2,000 rows, with a minimum and a maximum width so no column is too tiny or too wide. Choose Default width to skip it."}}, {"@type": "Question", "name": "Why are values like 1,234 or 50% still text?", "acceptedAnswer": {"@type": "Answer", "text": "Only plain numbers are converted: digits with an optional sign, decimal point or exponent. Values with thousands separators, currency signs or percent signs are kept exactly as written."}}, {"@type": "Question", "name": "What happens to empty lines and special characters?", "acceptedAnswer": {"@type": "Answer", "text": "Empty rows at the end of the file are dropped. Control characters that Excel cannot store are removed. Other text is kept."}}, {"@type": "Question", "name": "What are the sheet and file names?", "acceptedAnswer": {"@type": "Answer", "text": "Each XLSX file uses your CSV file name. The sheet inside is named after it too, with characters Excel does not allow removed and the name cut to 31 characters."}}, {"@type": "Question", "name": "What is in the ZIP download?", "acceptedAnswer": {"@type": "Answer", "text": "One XLSX file for each CSV you converted. If two files have the same name, a number is added to the second one. The ZIP is called csv-to-xlsx.zip."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in any modern browser. For very large CSV files a computer is safer because the conversion uses your device's memory."}}]}]}</script>
 <meta name="twitter:title" content="CSV to XLSX Converter — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Free CSV to XLSX converter. Turn CSV files into Excel spreadsheets with automatic delimiter detection and auto-fit columns. Private, runs in your browser.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -212,10 +217,44 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to convert <span>CSV to XLSX</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your CSV files</h3><p>Click the upload area or drag one or more .csv files onto it.</p></div>
-    <div class="step"><b>2</b><h3>Choose settings</h3><p>Keep auto-detect, or pick the delimiter, number handling and column width.</p></div>
-    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each XLSX file or all of them as a ZIP.</p></div>
+    <div class="step"><b>1</b><h3>Add your CSV files</h3><p>Click the upload area or drag one or more .csv or .tsv files onto it. You can select several at once.</p></div>
+    <div class="step"><b>2</b><h3>Choose settings</h3><p>Keep Auto-detect for the delimiter, or pick comma, semicolon, tab or pipe. Decide how numbers, the first row and column widths are handled.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert to XLSX, check the row and column counts, then download each Excel file or all of them as a ZIP.</p></div>
   </div>
+  </section>
+
+<section class="narrow prose">
+  <h2>Why convert CSV to XLSX?</h2>
+  <p>A CSV file is plain text. It opens in Excel, but it has no column widths, no filter buttons, and no memory of which values are numbers. Open it by double-clicking and Excel often squeezes everything into narrow columns, strips leading zeros, or splits the data in the wrong place when your region uses semicolons.</p>
+  <p>An XLSX file is a real Excel workbook. This tool builds one from your CSV on your own device, so exports from banks, shops or CRM systems are not uploaded anywhere.</p>
+
+  <h2>How this tool converts your file</h2>
+  <ul>
+    <li><b>The delimiter is found for you.</b> It looks at the first lines for commas, semicolons, tabs and pipes and picks the one that appears the same number of times on every line, ignoring anything inside quotes. You can also choose it yourself.</li>
+    <li><b>Quotes and line breaks are handled.</b> Commas inside quoted values stay in the cell, and so do line breaks inside a quoted value.</li>
+    <li><b>Numbers become numbers.</b> Plain values such as 42, -3.5 or 1e5 are stored as numbers so you can sum and sort them. Values with leading zeros, such as ZIP codes and IDs, and numbers longer than 15 digits stay as text so nothing is changed.</li>
+    <li><b>Text is read in the right encoding.</b> UTF-8, UTF-16 and Windows-1252 files are detected automatically, so accented letters and other scripts come through.</li>
+    <li><b>One sheet per file.</b> The sheet is named after your file, shortened to 31 characters, which is Excel's limit.</li>
+    <li><b>Layout options.</b> The first row can get filter buttons, and columns can be auto-fitted to their content. Widths are based on the first 2,000 rows and are capped at 60 characters.</li>
+  </ul>
+
+  <h2>Limits to know</h2>
+  <ul>
+    <li><b>20 MB per file.</b> Larger files are refused with a message.</li>
+    <li><b>Excel's own sheet limits.</b> A sheet holds at most 1,048,576 rows and 16,384 columns, and one cell holds at most 32,767 characters. Longer cells are cut and marked "long cells shortened".</li>
+    <li><b>Dates stay as text.</b> They appear exactly as written in the CSV, so day and month are never swapped by mistake. Format them as dates in Excel afterwards.</li>
+    <li><b>Formatted numbers stay as text.</b> Values like 1,234.50 with a thousands comma, or with a currency sign or percent sign, are not treated as plain numbers and are kept as written.</li>
+  </ul>
+
+  <h2>Tips for better results</h2>
+  <ul>
+    <li><b>Numbers not adding up?</b> Check whether the cells are left-aligned text. If a column holds values like 1,200, remove the commas in the source first.</li>
+    <li><b>Need every cell left exactly as written?</b> Set Numbers to "Keep everything as text".</li>
+    <li><b>Garbled characters or a single wide column?</b> Choose the delimiter by hand instead of Auto-detect.</li>
+    <li><b>Going the other way?</b> Use <a href="../xlsxtocsv/">XLSX to CSV</a> to turn a workbook back into plain text.</li>
+    <li><b>Have data in other formats?</b> <a href="../jsontoexcel/">JSON to Excel</a> handles JSON, <a href="../pdftoexcel/">PDF to Excel</a> pulls tables from PDFs, and <a href="../imagetoexcel/">Image to Excel</a> works from pictures of tables.</li>
+    <li><b>Want a printable copy?</b> Send the result through <a href="../xlsxtopdf/">XLSX to PDF</a>.</li>
+  </ul>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -228,6 +267,14 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>Are dates converted?</summary><p>Dates are left as text exactly as they appear in the CSV, so day/month order is never guessed wrongly. You can format them as dates in Excel afterwards.</p></details>
   <details><summary>Are there size limits?</summary><p>Each file can be up to 20 MB. An Excel sheet holds at most 1,048,576 rows and 16,384 columns, and a single cell holds up to 32,767 characters. Longer cells are shortened.</p></details>
   <details><summary>Can I convert many files at once?</summary><p>Yes. Add several CSV files, convert them together, and download each XLSX file or one ZIP.</p></details>
+  <details><summary>Can I convert TSV files too?</summary><p>Yes. The tool accepts .csv and .tsv files, and Auto-detect recognises tab-separated data. You can also pick Tab from the Delimiter list.</p></details>
+  <details><summary>What does the First row option do?</summary><p>With Header row selected, filter buttons are added to the top row so you can sort and filter in Excel. Choose Plain data if the first row is not a header.</p></details>
+  <details><summary>What does Auto-fit do to the columns?</summary><p>It sizes each column to its longest value, looking at up to the first 2,000 rows, with a minimum and a maximum width so no column is too tiny or too wide. Choose Default width to skip it.</p></details>
+  <details><summary>Why are values like 1,234 or 50% still text?</summary><p>Only plain numbers are converted: digits with an optional sign, decimal point or exponent. Values with thousands separators, currency signs or percent signs are kept exactly as written.</p></details>
+  <details><summary>What happens to empty lines and special characters?</summary><p>Empty rows at the end of the file are dropped. Control characters that Excel cannot store are removed. Other text is kept.</p></details>
+  <details><summary>What are the sheet and file names?</summary><p>Each XLSX file uses your CSV file name. The sheet inside is named after it too, with characters Excel does not allow removed and the name cut to 31 characters.</p></details>
+  <details><summary>What is in the ZIP download?</summary><p>One XLSX file for each CSV you converted. If two files have the same name, a number is added to the second one. The ZIP is called csv-to-xlsx.zip.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>Yes, in any modern browser. For very large CSV files a computer is safer because the conversion uses your device's memory.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
