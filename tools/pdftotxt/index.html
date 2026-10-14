@@ -143,6 +143,11 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
 
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 
@@ -158,7 +163,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PDF to TXT Converter", "description": "Free PDF to TXT converter. Extract plain text from PDF files, keep line breaks or merge paragraphs, and download or copy the result. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/pdftotxt/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PDF to TXT", "item": "https://www.convertkitlite.site/tools/pdftotxt/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PDF to TXT Converter", "description": "Free PDF to TXT converter. Extract plain text from PDF files, keep line breaks or merge paragraphs, and download or copy the result. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/pdftotxt/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PDF to TXT", "item": "https://www.convertkitlite.site/tools/pdftotxt/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my documents uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The text is extracted in your browser, so your PDFs stay on your device."}}, {"@type": "Question", "name": "What is the difference between the two layouts?", "acceptedAnswer": {"@type": "Answer", "text": "Keep line breaks gives you the text as it appears on the page, one line per line, with blank lines between paragraphs. Merge lines into paragraphs joins the lines of each paragraph into one flowing line, which is better for copying into emails or documents."}}, {"@type": "Question", "name": "Can I convert scanned PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "No. Scanned PDFs are pictures of pages and contain no selectable text, so there is nothing to extract. Run OCR on the file first, then add it again."}}, {"@type": "Question", "name": "Why is the text order or spacing wrong?", "acceptedAnswer": {"@type": "Answer", "text": "PDF files store text as pieces placed on the page, not as flowing paragraphs. Multi-column pages, tables and headers can come out in a different order than you read them. Large gaps between words are kept as tab characters, so tables stay roughly aligned."}}, {"@type": "Question", "name": "Why do some characters look wrong?", "acceptedAnswer": {"@type": "Answer", "text": "Try the UTF-8 with BOM option, which helps Excel and older Notepad versions read non-English text correctly. If a PDF has damaged or custom fonts, some characters may still be extracted incorrectly."}}, {"@type": "Question", "name": "Can I convert password-protected PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "No. Remove the password in your PDF viewer first, then add the file again."}}, {"@type": "Question", "name": "Can I convert many files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add several PDF files, convert them together, and download each TXT file or one ZIP."}}, {"@type": "Question", "name": "What does the Between pages option do?", "acceptedAnswer": {"@type": "Answer", "text": "Blank line separates pages with an empty line. Page markers adds a line such as --- Page 3 --- before each page that has text, so you can find your place."}}, {"@type": "Question", "name": "What is UTF-8 with BOM?", "acceptedAnswer": {"@type": "Answer", "text": "It adds a small marker at the start of the file that tells Excel and older versions of Notepad the file is UTF-8, so accented letters and other scripts show correctly. Most modern programs read both options."}}, {"@type": "Question", "name": "Can I copy the text without downloading?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Each converted file has a Copy button that puts the whole text on your clipboard."}}, {"@type": "Question", "name": "Why are some words joined together in paragraph mode?", "acceptedAnswer": {"@type": "Answer", "text": "Paragraph mode joins a line that ends with a letter and a hyphen to the next line, assuming it is a word split across lines. A real hyphenated word at the end of a line can be joined by mistake, so check the result."}}, {"@type": "Question", "name": "Are headers, footers and page numbers included?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The tool extracts all the selectable text on each page, including headers, footers and page numbers, so you may want to delete them afterwards."}}, {"@type": "Question", "name": "Does it work for any language?", "acceptedAnswer": {"@type": "Answer", "text": "It extracts whatever text is stored in the PDF, in any language. How well it reads depends on the PDF's fonts. If characters look wrong, try the UTF-8 with BOM option."}}, {"@type": "Question", "name": "What are the output files called?", "acceptedAnswer": {"@type": "Answer", "text": "Each TXT file uses the name of its PDF. The ZIP is called pdf-to-txt.zip, and a number is added when two files share a name."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in a modern browser. Long PDFs are processed page by page, and you can follow the progress on screen."}}]}]}</script>
 <meta name="twitter:title" content="PDF to TXT Converter — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Free PDF to TXT converter. Extract plain text from PDF files, keep line breaks or merge paragraphs, then download or copy. Private, no upload.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -220,10 +225,46 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to convert <span>PDF to TXT</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your PDF files</h3><p>Click the upload area or drag one or more .pdf files onto it.</p></div>
-    <div class="step"><b>2</b><h3>Choose a layout</h3><p>Keep the original line breaks, or merge lines into flowing paragraphs.</p></div>
-    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download or copy each text file, or get all of them as a ZIP.</p></div>
+    <div class="step"><b>1</b><h3>Add your PDF files</h3><p>Click the upload area or drag one or more .pdf files onto it. You can select several at once.</p></div>
+    <div class="step"><b>2</b><h3>Choose a layout</h3><p>Keep the original line breaks, or merge lines into paragraphs. Pick page markers and the file encoding if you need them.</p></div>
+    <div class="step"><b>3</b><h3>Convert, copy or download</h3><p>Press Convert to TXT, then download each text file, copy its text to the clipboard, or get all of them as a ZIP.</p></div>
   </div>
+  </section>
+
+<section class="narrow prose">
+  <h2>Why convert a PDF to plain text?</h2>
+  <p>Text locked in a PDF is awkward to reuse. Copying from a PDF viewer brings along odd line breaks, and some files do not allow selecting at all. A plain TXT file has none of that. You can paste it into an email, a note or a document, search it, feed it to another program, or count its words.</p>
+  <p>This tool reads the text inside your PDF on your own device, so contracts, reports and personal papers are not uploaded to a server.</p>
+
+  <h2>How this tool extracts the text</h2>
+  <ul>
+    <li><b>Two layouts.</b> Keep line breaks gives the text as it appears on the page, one line per line. Merge lines into paragraphs joins each paragraph into one flowing line, which pastes better into emails and documents.</li>
+    <li><b>Paragraphs are detected.</b> A larger vertical gap between lines becomes a blank line.</li>
+    <li><b>Split words are repaired.</b> In paragraph mode, a word broken by a hyphen at the end of a line is joined back together.</li>
+    <li><b>Tables stay roughly aligned.</b> In line mode, large gaps between words are kept as tab characters. Paragraph mode turns them into spaces.</li>
+    <li><b>Pages are separated your way.</b> Use a blank line, or page markers such as "--- Page 1 ---" so you can see where each page begins.</li>
+    <li><b>Copy or download.</b> You get the word count, a Download button and a Copy button for each file.</li>
+  </ul>
+
+  <h2>Limits to know</h2>
+  <ul>
+    <li><b>Scanned PDFs have no text to extract.</b> A scan is a picture of a page. You will see "No selectable text found". Run OCR on the file first, then add it again.</li>
+    <li><b>Order and spacing can differ from what you see.</b> PDFs store text as separate pieces placed on the page. Text is grouped into lines by position, so columns that sit side by side can end up on the same line, and headers, footers and page numbers are included.</li>
+    <li><b>Password-protected PDFs are not supported.</b> Remove the password in your PDF viewer first.</li>
+    <li><b>Damaged or custom fonts.</b> Some characters may be extracted wrongly when a PDF uses unusual font encoding.</li>
+    <li><b>Pages without text are skipped.</b> They do not appear in the output, not even as an empty page.</li>
+  </ul>
+
+  <h2>Tips for better results</h2>
+  <ul>
+    <li><b>Copying into an email or document?</b> Use Merge lines into paragraphs.</li>
+    <li><b>Keeping a table's shape?</b> Use Keep line breaks, and open the result in a tool that shows tab characters.</li>
+    <li><b>Non-English text looks broken in Excel or old Notepad?</b> Choose UTF-8 with BOM under File encoding.</li>
+    <li><b>Need tables, not text?</b> <a href="../pdftoexcel/">PDF to Excel</a> puts them into a spreadsheet.</li>
+    <li><b>Want editable pages?</b> <a href="../pdftoword/">PDF to Word</a> gives a Word document, and <a href="../pdftopptx/">PDF to PPTX</a> makes slides.</li>
+    <li><b>Need only some pages?</b> Cut them out first with <a href="../splitpdf/">Split PDF</a>.</li>
+    <li><b>Going back to PDF?</b> <a href="../txttopdf/">TXT to PDF</a> turns plain text into a clean PDF.</li>
+  </ul>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -236,6 +277,14 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>Why do some characters look wrong?</summary><p>Try the UTF-8 with BOM option, which helps Excel and older Notepad versions read non-English text correctly. If a PDF has damaged or custom fonts, some characters may still be extracted incorrectly.</p></details>
   <details><summary>Can I convert password-protected PDFs?</summary><p>No. Remove the password in your PDF viewer first, then add the file again.</p></details>
   <details><summary>Can I convert many files at once?</summary><p>Yes. Add several PDF files, convert them together, and download each TXT file or one ZIP.</p></details>
+  <details><summary>What does the Between pages option do?</summary><p>Blank line separates pages with an empty line. Page markers adds a line such as --- Page 3 --- before each page that has text, so you can find your place.</p></details>
+  <details><summary>What is UTF-8 with BOM?</summary><p>It adds a small marker at the start of the file that tells Excel and older versions of Notepad the file is UTF-8, so accented letters and other scripts show correctly. Most modern programs read both options.</p></details>
+  <details><summary>Can I copy the text without downloading?</summary><p>Yes. Each converted file has a Copy button that puts the whole text on your clipboard.</p></details>
+  <details><summary>Why are some words joined together in paragraph mode?</summary><p>Paragraph mode joins a line that ends with a letter and a hyphen to the next line, assuming it is a word split across lines. A real hyphenated word at the end of a line can be joined by mistake, so check the result.</p></details>
+  <details><summary>Are headers, footers and page numbers included?</summary><p>Yes. The tool extracts all the selectable text on each page, including headers, footers and page numbers, so you may want to delete them afterwards.</p></details>
+  <details><summary>Does it work for any language?</summary><p>It extracts whatever text is stored in the PDF, in any language. How well it reads depends on the PDF's fonts. If characters look wrong, try the UTF-8 with BOM option.</p></details>
+  <details><summary>What are the output files called?</summary><p>Each TXT file uses the name of its PDF. The ZIP is called pdf-to-txt.zip, and a number is added when two files share a name.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>Yes, in a modern browser. Long PDFs are processed page by page, and you can follow the progress on screen.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
