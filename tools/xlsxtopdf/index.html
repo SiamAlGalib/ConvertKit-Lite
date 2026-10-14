@@ -147,6 +147,11 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
 
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 
@@ -162,7 +167,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "XLSX to PDF Converter", "description": "Free XLSX to PDF converter. Turn Excel spreadsheets into PDF tables with selectable text. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/xlsxtopdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "XLSX to PDF", "item": "https://www.convertkitlite.site/tools/xlsxtopdf/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "XLSX to PDF Converter", "description": "Free XLSX to PDF converter. Turn Excel spreadsheets into PDF tables with selectable text. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/xlsxtopdf/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "XLSX to PDF", "item": "https://www.convertkitlite.site/tools/xlsxtopdf/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my spreadsheets uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The PDF is created in your browser, so your files stay on your device."}}, {"@type": "Question", "name": "Is the text in the PDF selectable?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The tool writes real text, not pictures, so you can select, copy and search it."}}, {"@type": "Question", "name": "Which sheets are converted?", "acceptedAnswer": {"@type": "Answer", "text": "Every visible sheet in the workbook, in order, each starting on a new page. Hidden sheets and empty sheets are skipped."}}, {"@type": "Question", "name": "What is not supported?", "acceptedAnswer": {"@type": "Answer", "text": "Charts, images, merged cells, cell colors, conditional formatting and exact Excel print settings. Non-Latin scripts such as Arabic, Chinese or Bengali appear as question marks."}}, {"@type": "Question", "name": "Why do wide sheets look small?", "acceptedAnswer": {"@type": "Answer", "text": "Sheets with many columns are fitted to the page width by lowering the font size. Choose Landscape, or split the sheet in Excel, for a larger result."}}, {"@type": "Question", "name": "Can I convert many files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add several Excel files, convert them together, and download each PDF or one ZIP."}}, {"@type": "Question", "name": "Which Excel formats can I use?", "acceptedAnswer": {"@type": "Answer", "text": "XLSX, XLSM and the older XLS format. Files with macros (XLSM) are read for their data only. Macros are not run."}}, {"@type": "Question", "name": "What does the First row option do?", "acceptedAnswer": {"@type": "Answer", "text": "Style as header gives the first row a tinted, bold look and repeats it at the top of each page. Treat as normal data prints it like every other row."}}, {"@type": "Question", "name": "Can I hide the gridlines?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose Hide cell borders under Gridlines and the table is printed without lines or alternating row shading."}}, {"@type": "Question", "name": "Are numbers aligned?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Cells that contain numbers, including amounts with a currency sign or a percent sign, are aligned to the right. Text is aligned to the left."}}, {"@type": "Question", "name": "Does it handle many sheets?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every visible, non-empty sheet is added in order, each starting on its own page and headed with its sheet name."}}, {"@type": "Question", "name": "Can I print the PDF on A4 or Letter?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose A4 or US Letter before converting. Margins are about half an inch (36 pt) on all sides."}}, {"@type": "Question", "name": "What is in the ZIP download?", "acceptedAnswer": {"@type": "Answer", "text": "One PDF for each workbook, named after the original file. If two files share a name, a number is added to the second. The ZIP is called xlsx-to-pdf.zip."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in any modern browser. For large workbooks a computer is faster."}}]}]}</script>
 <meta name="twitter:title" content="XLSX to PDF Converter — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Free XLSX to PDF converter. Turn Excel spreadsheets into PDF tables with selectable text. Private, runs in your browser, no upload.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -226,10 +231,45 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to convert <span>XLSX to PDF</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your Excel files</h3><p>Click the upload area or drag one or more .xlsx files onto it.</p></div>
-    <div class="step"><b>2</b><h3>Choose page settings</h3><p>Pick A4 or US Letter, the orientation, and how the first row and borders look.</p></div>
-    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each PDF or all of them as a ZIP.</p></div>
+    <div class="step"><b>1</b><h3>Add your Excel files</h3><p>Click the upload area or drag one or more .xlsx, .xlsm or .xls files onto it. You can select several at once.</p></div>
+    <div class="step"><b>2</b><h3>Choose page settings</h3><p>Pick A4 or US Letter and the orientation. Decide whether the first row is styled as a header and whether cell borders are shown.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert to PDF, check the page count, then download each PDF or all of them as a ZIP.</p></div>
   </div>
+  </section>
+
+<section class="narrow prose">
+  <h2>Why convert an Excel file to PDF?</h2>
+  <p>An Excel file shows different things on different computers, and anyone who opens it can change the numbers. A PDF looks the same everywhere and is read-only in practice, which makes it the usual choice for sending a price list, a timetable, a report or a statement.</p>
+  <p>This tool builds the PDF in your browser, so your spreadsheet, which may hold prices, salaries or customer data, is never uploaded.</p>
+
+  <h2>How this tool converts your workbook</h2>
+  <ul>
+    <li><b>Each sheet becomes a table.</b> Every visible sheet is converted in order and starts on a new page. If the workbook has more than one sheet, the sheet name is printed above its table.</li>
+    <li><b>The text is real text.</b> It is not a picture, so you can select, copy and search it in the PDF.</li>
+    <li><b>Values appear as Excel shows them.</b> Dates, decimals and number formats come through as formatted in the file.</li>
+    <li><b>Wide sheets are scaled to fit.</b> The font size drops as the number of columns grows: 10 pt for up to 6 columns, then 8.5, 7 and 6 pt, down to 5 pt for sheets with more than 22 columns.</li>
+    <li><b>Orientation can be automatic.</b> In Auto mode, sheets with more than 6 columns are set in landscape and narrower sheets in portrait. You can force either one.</li>
+    <li><b>Headers repeat.</b> With the header option on, the first row is styled and repeated at the top of every page the table runs onto.</li>
+    <li><b>Pages are numbered.</b> Each page gets "Page 1 of N" at the bottom, and numbers are aligned to the right in their cells.</li>
+  </ul>
+
+  <h2>What is not kept</h2>
+  <ul>
+    <li><b>Charts, images, merged cells and cell colours.</b> Only the cell values are converted.</li>
+    <li><b>Conditional formatting and exact print settings.</b> Print areas, page breaks and scaling from Excel are not used. The layout is set by this tool.</li>
+    <li><b>Hidden and empty sheets.</b> They are skipped.</li>
+    <li><b>Non-Latin text.</b> Arabic, Chinese, Bengali and similar scripts appear as question marks, because the PDF uses a standard Latin font. Line breaks inside a cell become spaces.</li>
+  </ul>
+
+  <h2>Tips for better results</h2>
+  <ul>
+    <li><b>Table too small to read?</b> Choose Landscape, or move some columns to a second sheet in Excel before converting.</li>
+    <li><b>Only want part of a workbook?</b> Delete or hide the sheets you do not need first, because hidden sheets are skipped.</li>
+    <li><b>Starting from a CSV?</b> Turn it into a workbook with <a href="../csvtoxlsx/">CSV to XLSX</a> first.</li>
+    <li><b>Need other documents in the same PDF?</b> Combine them with <a href="../mergepdf/">Merge PDF</a>, or add notes and pages with <a href="../editpdf/">Edit PDF</a>.</li>
+    <li><b>File too big to email?</b> Run the result through <a href="../compresspdf/">Compress PDF</a>.</li>
+    <li><b>Converting other files?</b> <a href="../rtftopdf/">RTF to PDF</a> and <a href="../jpgtopdf/">JPG to PDF</a> work the same way.</li>
+  </ul>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -241,6 +281,14 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>What is not supported?</summary><p>Charts, images, merged cells, cell colors, conditional formatting and exact Excel print settings. Non-Latin scripts such as Arabic, Chinese or Bengali appear as question marks.</p></details>
   <details><summary>Why do wide sheets look small?</summary><p>Sheets with many columns are fitted to the page width by lowering the font size. Choose Landscape, or split the sheet in Excel, for a larger result.</p></details>
   <details><summary>Can I convert many files at once?</summary><p>Yes. Add several Excel files, convert them together, and download each PDF or one ZIP.</p></details>
+  <details><summary>Which Excel formats can I use?</summary><p>XLSX, XLSM and the older XLS format. Files with macros (XLSM) are read for their data only. Macros are not run.</p></details>
+  <details><summary>What does the First row option do?</summary><p>Style as header gives the first row a tinted, bold look and repeats it at the top of each page. Treat as normal data prints it like every other row.</p></details>
+  <details><summary>Can I hide the gridlines?</summary><p>Yes. Choose Hide cell borders under Gridlines and the table is printed without lines or alternating row shading.</p></details>
+  <details><summary>Are numbers aligned?</summary><p>Yes. Cells that contain numbers, including amounts with a currency sign or a percent sign, are aligned to the right. Text is aligned to the left.</p></details>
+  <details><summary>Does it handle many sheets?</summary><p>Yes. Every visible, non-empty sheet is added in order, each starting on its own page and headed with its sheet name.</p></details>
+  <details><summary>Can I print the PDF on A4 or Letter?</summary><p>Yes. Choose A4 or US Letter before converting. Margins are about half an inch (36 pt) on all sides.</p></details>
+  <details><summary>What is in the ZIP download?</summary><p>One PDF for each workbook, named after the original file. If two files share a name, a number is added to the second. The ZIP is called xlsx-to-pdf.zip.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>Yes, in any modern browser. For large workbooks a computer is faster.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
