@@ -147,6 +147,11 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
 
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 
@@ -162,7 +167,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "JPG to PNG Converter", "description": "Free JPG to PNG converter. Convert JPG and JPEG images to lossless PNG, with optional resize and white background removal. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/jpgtopng/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "JPG to PNG", "item": "https://www.convertkitlite.site/tools/jpgtopng/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "JPG to PNG Converter", "description": "Free JPG to PNG converter. Convert JPG and JPEG images to lossless PNG, with optional resize and white background removal. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/jpgtopng/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "JPG to PNG", "item": "https://www.convertkitlite.site/tools/jpgtopng/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my images uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The PNG is created in your browser, so your files stay on your device."}}, {"@type": "Question", "name": "Will converting JPG to PNG improve the quality?", "acceptedAnswer": {"@type": "Answer", "text": "No. A JPG has already lost some detail, and PNG cannot bring it back. PNG keeps the image exactly as it is from now on, with no further loss."}}, {"@type": "Question", "name": "Why is the PNG larger than the JPG?", "acceptedAnswer": {"@type": "Answer", "text": "PNG is lossless, so it stores more data than JPG, which compresses with loss. Photos can become several times larger."}}, {"@type": "Question", "name": "How does \"Make white transparent\" work?", "acceptedAnswer": {"@type": "Answer", "text": "Pixels that are white or almost white become transparent, with a soft edge for light grays. It works best on logos and drawings with a plain white background. White areas inside the picture also become transparent."}}, {"@type": "Question", "name": "Can I convert many files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add several JPG files, convert them together, and download each PNG or one ZIP."}}, {"@type": "Question", "name": "Which files can I add?", "acceptedAnswer": {"@type": "Answer", "text": "JPG and JPEG files only. For other types, such as WebP, HEIC or GIF, use the Image Converter."}}, {"@type": "Question", "name": "Which sizes can I choose?", "acceptedAnswer": {"@type": "Answer", "text": "Original size, 75%, 50% or 25% of the width and height. The size you pick is applied to every file in the batch."}}, {"@type": "Question", "name": "Will the PNG keep the same pixels as the JPG?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, at Original size. Each pixel of the JPG is saved exactly as it appears, with no extra loss."}}, {"@type": "Question", "name": "Exactly which pixels does Make white transparent affect?", "acceptedAnswer": {"@type": "Answer", "text": "Pixels where red, green and blue are all very high (about 250 or more out of 255) become fully clear. Slightly darker near-whites fade out gradually. Everything darker stays as it is."}}, {"@type": "Question", "name": "Can I undo the transparency?", "acceptedAnswer": {"@type": "Answer", "text": "The setting is only applied during conversion. Convert the file again with Keep as is selected to get a copy with the original background."}}, {"@type": "Question", "name": "Is there a size limit?", "acceptedAnswer": {"@type": "Answer", "text": "Images above 100 megapixels are refused. Very large files also depend on your device's memory, so a computer is safer than a phone."}}, {"@type": "Question", "name": "What is in the ZIP download?", "acceptedAnswer": {"@type": "Answer", "text": "One PNG for each image, named after the original. If two files share a name, a number is added to the second."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in any modern browser on Android, iPhone, Windows and Mac."}}]}]}</script>
 <meta name="twitter:title" content="JPG to PNG Converter — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Free JPG to PNG converter. Convert JPG and JPEG images to lossless PNG with optional resize. Private, runs in your browser, no upload.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -224,10 +229,41 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to convert <span>JPG to PNG</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your JPG files</h3><p>Click the upload area or drag one or more .jpg or .jpeg files onto it.</p></div>
-    <div class="step"><b>2</b><h3>Choose options</h3><p>Keep the original size or shrink it, and decide whether to make white transparent.</p></div>
-    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each PNG or all of them as a ZIP.</p></div>
+    <div class="step"><b>1</b><h3>Add your JPG files</h3><p>Click the upload area or drag one or more .jpg or .jpeg files onto it. A thumbnail appears for each file.</p></div>
+    <div class="step"><b>2</b><h3>Choose options</h3><p>Keep the original size or scale to 75%, 50% or 25%. Turn on Make white transparent if you want a clear background.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert to PNG, check the new size and dimensions, then download each PNG or all of them as a ZIP.</p></div>
   </div>
+  </section>
+
+<section class="narrow prose">
+  <h2>Why convert JPG to PNG?</h2>
+  <p>JPG and PNG suit different jobs. A JPG is small, but it throws away a little detail every time it is saved, and it cannot be see-through. A PNG keeps every pixel exactly and can have transparent areas, which is why logos, icons, stickers and screenshots are often PNG files.</p>
+  <p>This tool does the conversion on your own device, so your pictures are never uploaded.</p>
+
+  <h2>How this tool converts your images</h2>
+  <ul>
+    <li><b>Lossless from now on.</b> The picture is saved as PNG with no further quality loss. Converting does not bring back detail that the JPG already lost.</li>
+    <li><b>Optional resize.</b> Choose Original size, 75%, 50% or 25%. The new width and height are shown after conversion.</li>
+    <li><b>Optional white to transparent.</b> Pixels that are white or nearly white become clear. Very light grays become partly clear, so the edges look soft instead of jagged.</li>
+    <li><b>Many files at once.</b> Convert a whole batch and download each PNG or one ZIP named jpg-to-png.zip.</li>
+  </ul>
+
+  <h2>What to expect</h2>
+  <ul>
+    <li><b>PNG files are bigger.</b> A photo can become several times larger than its JPG. That is normal for a lossless format.</li>
+    <li><b>White removal works best on logos and drawings.</b> It cannot tell the background from the picture, so white areas inside the image, such as eyes, shirts or highlights, also become transparent.</li>
+    <li><b>Photos with a busy background need a different tool.</b> Plain white removal will not cut out a person from a scene.</li>
+    <li><b>Size limit.</b> Images above 100 megapixels are refused with a message.</li>
+  </ul>
+
+  <h2>Tips for better results</h2>
+  <ul>
+    <li><b>Cutting out a person or object?</b> Use <a href="../removebg/">Remove Background</a>, which uses AI, and save the result as PNG.</li>
+    <li><b>PNG too big?</b> Scale it down here, or shrink it further with <a href="../imagecompressor/">Image Compressor &amp; Resizer</a>. For the web, <a href="../jpgtowebp/">JPG to WebP</a> gives much smaller files.</li>
+    <li><b>Going back the other way?</b> <a href="../pngtojpg/">PNG to JPG</a> turns PNG files into smaller JPGs.</li>
+    <li><b>Starting from an iPhone photo?</b> Convert it first with <a href="../heictojpg/">HEIC to JPG</a>, or use <a href="../imageconverter/">Image Converter</a> to go from HEIC straight to PNG.</li>
+    <li><b>Need a PDF?</b> <a href="../jpgtopdf/">JPG to PDF</a> places your pictures into one document.</li>
+  </ul>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -238,6 +274,14 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>Why is the PNG larger than the JPG?</summary><p>PNG is lossless, so it stores more data than JPG, which compresses with loss. Photos can become several times larger.</p></details>
   <details><summary>How does "Make white transparent" work?</summary><p>Pixels that are white or almost white become transparent, with a soft edge for light grays. It works best on logos and drawings with a plain white background. White areas inside the picture also become transparent.</p></details>
   <details><summary>Can I convert many files at once?</summary><p>Yes. Add several JPG files, convert them together, and download each PNG or one ZIP.</p></details>
+  <details><summary>Which files can I add?</summary><p>JPG and JPEG files only. For other types, such as WebP, HEIC or GIF, use the Image Converter.</p></details>
+  <details><summary>Which sizes can I choose?</summary><p>Original size, 75%, 50% or 25% of the width and height. The size you pick is applied to every file in the batch.</p></details>
+  <details><summary>Will the PNG keep the same pixels as the JPG?</summary><p>Yes, at Original size. Each pixel of the JPG is saved exactly as it appears, with no extra loss.</p></details>
+  <details><summary>Exactly which pixels does Make white transparent affect?</summary><p>Pixels where red, green and blue are all very high (about 250 or more out of 255) become fully clear. Slightly darker near-whites fade out gradually. Everything darker stays as it is.</p></details>
+  <details><summary>Can I undo the transparency?</summary><p>The setting is only applied during conversion. Convert the file again with Keep as is selected to get a copy with the original background.</p></details>
+  <details><summary>Is there a size limit?</summary><p>Images above 100 megapixels are refused. Very large files also depend on your device's memory, so a computer is safer than a phone.</p></details>
+  <details><summary>What is in the ZIP download?</summary><p>One PNG for each image, named after the original. If two files share a name, a number is added to the second.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>Yes, in any modern browser on Android, iPhone, Windows and Mac.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
