@@ -134,6 +134,11 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin-bottom:16px}
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 @media(max-width:700px){
@@ -148,7 +153,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"XLSX to CSV Converter","description":"Free XLSX to CSV converter. Turn Excel spreadsheets into CSV files, one per sheet. Private, runs in your browser, no upload.","url":"https://www.convertkitlite.site/tools/xlsxtocsv/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.convertkitlite.site/"},{"@type":"ListItem","position":2,"name":"XLSX to CSV","item":"https://www.convertkitlite.site/tools/xlsxtocsv/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "XLSX to CSV Converter", "description": "Free XLSX to CSV converter. Turn Excel spreadsheets into CSV files, one per sheet. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/xlsxtocsv/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "XLSX to CSV", "item": "https://www.convertkitlite.site/tools/xlsxtocsv/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my spreadsheets uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The conversion runs in your browser, so your files stay on your device."}}, {"@type": "Question", "name": "What happens to workbooks with several sheets?", "acceptedAnswer": {"@type": "Answer", "text": "CSV can only hold one table, so by default each sheet becomes its own CSV file named after the sheet. Choose \"First sheet only\" if you just need the first one."}}, {"@type": "Question", "name": "What is kept and what is lost?", "acceptedAnswer": {"@type": "Answer", "text": "Cell values are kept. Formulas become their calculated results. Fonts, colors, merged cell styling, charts, images and macros are not part of CSV."}}, {"@type": "Question", "name": "Why do dates and numbers look different?", "acceptedAnswer": {"@type": "Answer", "text": "By default values are written as they appear in Excel, such as formatted dates or currency. Choose \"Numbers as stored\" to get the raw, unformatted numbers instead."}}, {"@type": "Question", "name": "Which delimiter and encoding should I choose?", "acceptedAnswer": {"@type": "Answer", "text": "Comma with UTF-8 works almost everywhere. Use a semicolon if your region's Excel expects it, and UTF-8 with BOM if accented or non-Latin characters look broken when opening the file in Excel."}}, {"@type": "Question", "name": "Can I convert password-protected files?", "acceptedAnswer": {"@type": "Answer", "text": "No. Remove the password in Excel first, then save the file and convert it here."}}, {"@type": "Question", "name": "Can I convert many files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add several spreadsheets, convert them together, and download each CSV file or one ZIP."}}, {"@type": "Question", "name": "Which file types can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "XLSX files work, and so do XLSM (Excel with macros) and the older XLS format. Other file types are skipped with a message. The macros in an XLSM file are not carried into the CSV."}}, {"@type": "Question", "name": "How are the CSV files named?", "acceptedAnswer": {"@type": "Answer", "text": "A workbook that makes one CSV keeps its own name with a .csv ending. A workbook with several sheets makes one file per sheet, named like workbook-SheetName.csv. If two files would have the same name, a number is added."}}, {"@type": "Question", "name": "What do I get when I convert many files?", "acceptedAnswer": {"@type": "Answer", "text": "Each workbook is converted on its own. Download them one by one, or press Download all (ZIP). In the combined ZIP, a workbook with several sheets gets its own folder."}}, {"@type": "Question", "name": "Why do all my columns appear in one column when I open the CSV?", "acceptedAnswer": {"@type": "Answer", "text": "Your program is probably expecting a different delimiter. Convert again with a semicolon or tab, or use the import option in your program to choose the delimiter."}}, {"@type": "Question", "name": "Why are accented or non-Latin characters broken in Excel?", "acceptedAnswer": {"@type": "Answer", "text": "Excel can misread a plain UTF-8 file. Convert again with UTF-8 with BOM, which tells Excel and older Windows programs that the file is UTF-8."}}, {"@type": "Question", "name": "Are hidden rows or blank rows kept?", "acceptedAnswer": {"@type": "Answer", "text": "Blank rows inside the sheet are kept so your rows stay in the same positions. Sheets with no data at all are skipped."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in any modern browser on Android, iPhone, Windows and Mac. Very large workbooks can take longer on older phones."}}, {"@type": "Question", "name": "Is there a watermark or a limit?", "acceptedAnswer": {"@type": "Answer", "text": "No watermark, no account and no limit on how many files you convert."}}]}]}</script>
 <meta name="twitter:title" content="XLSX to CSV Converter — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Free XLSX to CSV converter. Turn Excel spreadsheets into CSV files, one per sheet. Private, runs in your browser, no upload.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -211,10 +216,44 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to convert <span>XLSX to CSV</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your XLSX files</h3><p>Click the upload area or drag one or more spreadsheets onto it.</p></div>
-    <div class="step"><b>2</b><h3>Choose settings</h3><p>Pick which sheets to convert, the delimiter, and the text encoding.</p></div>
-    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each CSV file or all of them as a ZIP.</p></div>
+    <div class="step"><b>1</b><h3>Add your XLSX files</h3><p>Click the upload area or drag one or more spreadsheets onto it. XLSX, XLSM and XLS files all work, and you can add several at once.</p></div>
+    <div class="step"><b>2</b><h3>Choose settings</h3><p>Pick which sheets to convert, the delimiter, whether values look as they do in Excel, and the text encoding.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, check the row count, then download each CSV file or all of them as a ZIP.</p></div>
   </div>
+  </section>
+
+<section class="narrow prose">
+  <h2>Why convert XLSX to CSV?</h2>
+  <p>CSV is the plain-text format that almost every program can read. Databases, CRMs, email tools, online shops, accounting software and data scripts often ask for a CSV import, because an Excel workbook carries things they cannot use, like styles, formulas and several sheets in one file.</p>
+  <p>CSV files are also small and easy to open in any text editor. This tool converts your spreadsheet on your own device, so customer lists, price sheets and financial data are never uploaded.</p>
+
+  <h2>What you can choose</h2>
+  <ul>
+    <li><b>Sheets to convert.</b> Convert every sheet, with one CSV file for each, or only the first sheet. A CSV file can hold just one table, which is why a workbook with several sheets becomes several files.</li>
+    <li><b>Delimiter.</b> Choose comma, semicolon, tab or pipe. Comma works in most places, and some regional versions of Excel expect a semicolon. Tab gives you a TSV-style file.</li>
+    <li><b>Values.</b> As shown in Excel keeps dates, currency and percentages the way they look on screen. Numbers as stored writes the raw numbers without formatting.</li>
+    <li><b>Encoding.</b> UTF-8 works almost everywhere. UTF-8 with BOM helps Excel and older Windows programs show accented and non-Latin characters correctly.</li>
+  </ul>
+
+  <h2>What happens to your data</h2>
+  <ul>
+    <li><b>Values are kept.</b> Text and numbers carry over, and quotes are added automatically where a cell contains the delimiter, quotes or a line break.</li>
+    <li><b>Formulas become results.</b> The CSV holds the calculated value, not the formula.</li>
+    <li><b>Formatting is dropped.</b> Fonts, colors, charts, images and macros are not part of CSV.</li>
+    <li><b>Empty sheets are skipped.</b> A workbook with no data at all shows a message instead.</li>
+    <li><b>File names are tidy.</b> A file with one sheet keeps its name with a .csv ending. With several sheets, each file is named after the workbook and the sheet, such as report-Sales.csv. Characters that are not allowed in file names are replaced with an underscore.</li>
+  </ul>
+
+  <h2>Tips for better results</h2>
+  <ul>
+    <li><b>Check the first row.</b> Most importers expect column names in row 1, with no title rows or merged cells above them.</li>
+    <li><b>Pick the delimiter your target program expects.</b> If the columns land in one cell when you open the CSV, try a semicolon or tab instead.</li>
+    <li><b>Keep leading zeros.</b> Codes such as 00123 look right with As shown in Excel when the cells are formatted as text. Check a few rows before you import.</li>
+    <li><b>Use Numbers as stored for calculations.</b> It avoids currency symbols and thousands separators in number columns.</li>
+    <li><b>Going back to Excel?</b> <a href="../csvtoxlsx/">CSV to Excel</a> turns a CSV file into a workbook again.</li>
+    <li><b>Need a printable copy?</b> <a href="../xlsxtopdf/">XLSX to PDF</a> or <a href="../exceltopdf/">Excel to PDF</a> makes a PDF of your sheet.</li>
+    <li><b>Starting from other data?</b> <a href="../jsontoexcel/">JSON to Excel</a> and <a href="../pdftoexcel/">PDF to Excel</a> build spreadsheets from JSON data and from tables in PDF files.</li>
+  </ul>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -227,6 +266,14 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>Which delimiter and encoding should I choose?</summary><p>Comma with UTF-8 works almost everywhere. Use a semicolon if your region's Excel expects it, and UTF-8 with BOM if accented or non-Latin characters look broken when opening the file in Excel.</p></details>
   <details><summary>Can I convert password-protected files?</summary><p>No. Remove the password in Excel first, then save the file and convert it here.</p></details>
   <details><summary>Can I convert many files at once?</summary><p>Yes. Add several spreadsheets, convert them together, and download each CSV file or one ZIP.</p></details>
+  <details><summary>Which file types can I convert?</summary><p>XLSX files work, and so do XLSM (Excel with macros) and the older XLS format. Other file types are skipped with a message. The macros in an XLSM file are not carried into the CSV.</p></details>
+  <details><summary>How are the CSV files named?</summary><p>A workbook that makes one CSV keeps its own name with a .csv ending. A workbook with several sheets makes one file per sheet, named like workbook-SheetName.csv. If two files would have the same name, a number is added.</p></details>
+  <details><summary>What do I get when I convert many files?</summary><p>Each workbook is converted on its own. Download them one by one, or press Download all (ZIP). In the combined ZIP, a workbook with several sheets gets its own folder.</p></details>
+  <details><summary>Why do all my columns appear in one column when I open the CSV?</summary><p>Your program is probably expecting a different delimiter. Convert again with a semicolon or tab, or use the import option in your program to choose the delimiter.</p></details>
+  <details><summary>Why are accented or non-Latin characters broken in Excel?</summary><p>Excel can misread a plain UTF-8 file. Convert again with UTF-8 with BOM, which tells Excel and older Windows programs that the file is UTF-8.</p></details>
+  <details><summary>Are hidden rows or blank rows kept?</summary><p>Blank rows inside the sheet are kept so your rows stay in the same positions. Sheets with no data at all are skipped.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>Yes, in any modern browser on Android, iPhone, Windows and Mac. Very large workbooks can take longer on older phones.</p></details>
+  <details><summary>Is there a watermark or a limit?</summary><p>No watermark, no account and no limit on how many files you convert.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
@@ -394,8 +441,5 @@ render();
 </script>
 <script src="/lazy-presence.js" defer></script>
 <script src="/lazy-track.js" defer></script>
-<!-- Tools - below result -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6998786237970751" data-ad-slot="2657803488" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </body>
 </html>
