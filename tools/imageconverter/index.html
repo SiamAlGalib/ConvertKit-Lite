@@ -145,6 +145,11 @@ details p{font-size:13px;line-height:1.7;color:var(--text-dim);padding-bottom:15
 .rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
 .rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
 
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
 footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
 
@@ -160,7 +165,7 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Image Converter", "description": "Free image converter. Convert between JPG, PNG, WebP, BMP, GIF, SVG and HEIC with adjustable quality. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/imageconverter/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Image Converter", "item": "https://www.convertkitlite.site/tools/imageconverter/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Image Converter", "description": "Free image converter. Convert between JPG, PNG, WebP, BMP, GIF, SVG and HEIC with adjustable quality. Private, runs in your browser, no upload.", "url": "https://www.convertkitlite.site/tools/imageconverter/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Image Converter", "item": "https://www.convertkitlite.site/tools/imageconverter/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my images uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Images are converted in your browser, so your files stay on your device."}}, {"@type": "Question", "name": "Which formats can I convert from and to?", "acceptedAnswer": {"@type": "Answer", "text": "You can add JPG, PNG, WebP, GIF, BMP, SVG and HEIC images (HEIC needs an internet connection the first time). You can convert to JPG, PNG, WebP or BMP."}}, {"@type": "Question", "name": "What happens to transparent images?", "acceptedAnswer": {"@type": "Answer", "text": "PNG and WebP keep transparency. JPG and BMP cannot store it, so transparent areas are filled with the background color you choose, white or black."}}, {"@type": "Question", "name": "What does the quality setting do?", "acceptedAnswer": {"@type": "Answer", "text": "It applies to JPG and WebP. Higher quality gives sharper images and bigger files. PNG and BMP are lossless, so the setting is turned off for them."}}, {"@type": "Question", "name": "What happens to animated GIFs?", "acceptedAnswer": {"@type": "Answer", "text": "Only the first frame is converted. Animation is not kept in JPG, PNG, WebP or BMP output."}}, {"@type": "Question", "name": "Why is my converted file bigger?", "acceptedAnswer": {"@type": "Answer", "text": "Converting a JPG to PNG or BMP makes files larger because those formats are lossless. For smaller files, choose JPG or WebP with Standard or Small file quality."}}, {"@type": "Question", "name": "Why is WebP not available in my browser?", "acceptedAnswer": {"@type": "Answer", "text": "Some older browsers, including older Safari versions, cannot create WebP files. The tool tells you when this happens. Choose JPG or PNG instead."}}, {"@type": "Question", "name": "Can I convert several files to different formats at once?", "acceptedAnswer": {"@type": "Answer", "text": "All files in one batch are converted to the same format, the one you pick under Convert to. To get another format, run a second batch."}}, {"@type": "Question", "name": "Are image sizes changed?", "acceptedAnswer": {"@type": "Answer", "text": "No. Width and height stay the same, unless a picture is larger than 48 megapixels, in which case it is scaled down to fit. SVG images are drawn at their own size, or at 1024 × 1024 pixels if they have none."}}, {"@type": "Question", "name": "Is EXIF or location data kept?", "acceptedAnswer": {"@type": "Answer", "text": "The image is redrawn and saved fresh, so camera details and location data are not copied into the new file. This is a side effect of how browsers convert images, not a setting."}}, {"@type": "Question", "name": "Why can't I change the quality for PNG or BMP?", "acceptedAnswer": {"@type": "Answer", "text": "Those formats store every pixel without loss, so there is nothing to adjust. The quality menu and the background menu switch off when they do not apply."}}, {"@type": "Question", "name": "Can I convert HEIC photos from my iPhone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add the .heic or .heif files and choose a format, usually JPG. The first HEIC file needs an internet connection to load the decoder."}}, {"@type": "Question", "name": "What is in the ZIP download?", "acceptedAnswer": {"@type": "Answer", "text": "One converted file for each image, named after the original with the new extension. If two files share a name, a number is added to the second. The ZIP is called converted-images.zip."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in a modern browser. Large batches of big photos are easier on a computer because the conversion uses your device's memory."}}, {"@type": "Question", "name": "Are there limits on how many images I can convert?", "acceptedAnswer": {"@type": "Answer", "text": "No account, no watermark and no limit on how often you use it. Very large batches depend on your device's memory."}}]}]}</script>
 <meta name="twitter:title" content="Image Converter — JPG, PNG, WebP, BMP | ConvertKit Lite">
 <meta name="twitter:description" content="Free image converter. Convert between JPG, PNG, WebP, BMP, GIF, SVG and HEIC with adjustable quality. Private, runs in your browser, no upload.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
@@ -222,10 +227,43 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <h2 class="section-title">How to convert <span>images</span></h2>
   <p class="section-intro">Three quick steps. Nothing to install and nothing leaves your device.</p>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Add your images</h3><p>Click the upload area or drag one or more images onto it.</p></div>
-    <div class="step"><b>2</b><h3>Choose a format</h3><p>Pick JPG, PNG, WebP or BMP, and set the quality for JPG and WebP.</p></div>
-    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert, then download each image or all of them as a ZIP.</p></div>
+    <div class="step"><b>1</b><h3>Add your images</h3><p>Click the upload area or drag one or more images onto it. JPG, PNG, WebP, GIF, BMP, SVG and HEIC files all work, and you can mix them.</p></div>
+    <div class="step"><b>2</b><h3>Choose a format</h3><p>Pick JPG, PNG, WebP or BMP. For JPG and WebP set the quality, and for JPG and BMP choose a white or black background for transparent areas.</p></div>
+    <div class="step"><b>3</b><h3>Convert and download</h3><p>Press Convert images, compare the old and new sizes, then download each image or all of them as a ZIP.</p></div>
   </div>
+  </section>
+
+<section class="narrow prose">
+  <h2>Why convert image formats?</h2>
+  <p>Not every site, app or printer accepts every image type. A form may ask for JPG only, a design tool may need PNG for transparency, a website may prefer WebP for speed, and an old program may only open BMP. Phones also save photos as HEIC, which many Windows computers cannot open.</p>
+  <p>This converter handles all of these in one place, on your own device. Your pictures are not uploaded anywhere.</p>
+
+  <h2>Which format should you choose?</h2>
+  <ul>
+    <li><b>JPG</b> gives small files for photos. It cannot store transparency, so transparent areas are filled with the background you pick.</li>
+    <li><b>PNG</b> is lossless and keeps transparency. It suits logos, screenshots and graphics, but photos can become much larger.</li>
+    <li><b>WebP</b> gives small files and keeps transparency. All modern browsers support it.</li>
+    <li><b>BMP</b> is uncompressed 24-bit, so files are large. It is only useful for old software that asks for it.</li>
+  </ul>
+
+  <h2>How this tool converts your images</h2>
+  <ul>
+    <li><b>Quality has three levels.</b> High (95%), Standard (85%) and Small file (65%). It applies to JPG and WebP only. For PNG and BMP the setting is switched off because they are lossless.</li>
+    <li><b>Transparent areas are handled for you.</b> PNG and WebP keep them. JPG and BMP fill them with white or black, your choice.</li>
+    <li><b>HEIC is supported.</b> iPhone photos are decoded in your browser. The decoder is loaded the first time you add a HEIC file, so you need an internet connection then.</li>
+    <li><b>Animated GIFs become still images.</b> Only the first frame is converted.</li>
+    <li><b>Very large pictures are scaled down.</b> An image over 48 megapixels is reduced to fit, so your browser does not run out of memory.</li>
+    <li><b>You see the result at once.</b> Each file shows its new size and dimensions, and whether the file got smaller or larger.</li>
+  </ul>
+
+  <h2>Tips for better results</h2>
+  <ul>
+    <li><b>Need smaller files?</b> Choose JPG or WebP with Standard or Small file quality, or use <a href="../imagecompressor/">Image Compressor &amp; Resizer</a> to shrink and resize.</li>
+    <li><b>Converting a JPG to PNG does not add quality.</b> The detail lost in the JPG stays lost, and the PNG will be bigger.</li>
+    <li><b>Only converting one kind of file?</b> Dedicated pages are available: <a href="../heictojpg/">HEIC to JPG</a>, <a href="../webptojpg/">WebP to JPG</a>, <a href="../pngtojpg/">PNG to JPG</a>, <a href="../jpgtopng/">JPG to PNG</a> and <a href="../jpgtowebp/">JPG to WebP</a>.</li>
+    <li><b>Want to cut out the background?</b> <a href="../removebg/">Remove Background</a> makes it transparent, and you can save the result as PNG.</li>
+    <li><b>Need a PDF?</b> <a href="../jpgtopdf/">JPG to PDF</a> puts your images into one document.</li>
+  </ul>
 </section>
 
 <section class="narrow faq" id="faq">
@@ -238,6 +276,14 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   <details><summary>What happens to animated GIFs?</summary><p>Only the first frame is converted. Animation is not kept in JPG, PNG, WebP or BMP output.</p></details>
   <details><summary>Why is my converted file bigger?</summary><p>Converting a JPG to PNG or BMP makes files larger because those formats are lossless. For smaller files, choose JPG or WebP with Standard or Small file quality.</p></details>
   <details><summary>Why is WebP not available in my browser?</summary><p>Some older browsers, including older Safari versions, cannot create WebP files. The tool tells you when this happens. Choose JPG or PNG instead.</p></details>
+  <details><summary>Can I convert several files to different formats at once?</summary><p>All files in one batch are converted to the same format, the one you pick under Convert to. To get another format, run a second batch.</p></details>
+  <details><summary>Are image sizes changed?</summary><p>No. Width and height stay the same, unless a picture is larger than 48 megapixels, in which case it is scaled down to fit. SVG images are drawn at their own size, or at 1024 × 1024 pixels if they have none.</p></details>
+  <details><summary>Is EXIF or location data kept?</summary><p>The image is redrawn and saved fresh, so camera details and location data are not copied into the new file. This is a side effect of how browsers convert images, not a setting.</p></details>
+  <details><summary>Why can't I change the quality for PNG or BMP?</summary><p>Those formats store every pixel without loss, so there is nothing to adjust. The quality menu and the background menu switch off when they do not apply.</p></details>
+  <details><summary>Can I convert HEIC photos from my iPhone?</summary><p>Yes. Add the .heic or .heif files and choose a format, usually JPG. The first HEIC file needs an internet connection to load the decoder.</p></details>
+  <details><summary>What is in the ZIP download?</summary><p>One converted file for each image, named after the original with the new extension. If two files share a name, a number is added to the second. The ZIP is called converted-images.zip.</p></details>
+  <details><summary>Does it work on a phone?</summary><p>Yes, in a modern browser. Large batches of big photos are easier on a computer because the conversion uses your device's memory.</p></details>
+  <details><summary>Are there limits on how many images I can convert?</summary><p>No account, no watermark and no limit on how often you use it. Very large batches depend on your device's memory.</p></details>
 </section>
 
 <section class="related" aria-labelledby="rt">
