@@ -21,7 +21,8 @@ body{margin:0;min-height:100vh;color:#f2f6ff;font-family:Inter,Arial,sans-serif;
 a{color:inherit;text-decoration:none}
 header{height:72px;border-bottom:1px solid #12345d;background:rgba(2,12,30,.92);backdrop-filter:blur(15px);position:sticky;top:0;z-index:10;display:flex;align-items:center}
 .container{width:min(1180px,calc(100% - 48px));margin:auto}
-.narrow{width:min(820px,calc(100% - 32px));margin:auto}
+.narrow{width:min(760px,calc(100% - 32px));margin:auto}
+.tool-wrap{width:min(820px,calc(100% - 32px));margin:auto}
 .navbar{display:flex;align-items:center;justify-content:space-between;gap:25px}
 .brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
 .brand img{width:34px;height:34px;object-fit:contain}.brand .lite{color:#a46bff}
@@ -59,6 +60,56 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;
 .status{font-size:12px;color:#9bb8e0;margin-top:8px}
 .err{color:#ff7b95;font-size:13px;margin-top:14px}
 .note{font-size:12px;color:#6f8fbd;margin-top:16px;line-height:1.5}
+:root{--panel:#0a2245;--panel-2:#071a35;--border:#174b88;--border-hover:#4b9cff;--text:#f2f6ff;--text-dim:#9bb8e0;--text-faint:#6f8fbd;--success:#22c55e}
+.brand-text{position:relative;display:flex;flex-direction:column;line-height:1}
+.brand .by{position:absolute;right:-6px;top:calc(100% - 3px);font-family:'Dancing Script','Segoe Script',cursive;font-size:21px;font-weight:700;line-height:1;white-space:nowrap;color:#3ee7ff;text-shadow:0 0 10px rgba(62,231,255,.45)}
+.brand .by:after{content:"";display:block;height:5px;margin:2px 0 0 22%;border-bottom:2px solid currentColor;border-radius:0 0 60% 40%/0 0 100% 100%;transform:rotate(-3deg);opacity:.85}
+nav{gap:8px}
+nav a{position:relative;padding:10px 16px;border:1px solid transparent;border-radius:11px;color:#b9cbea;font-weight:600;letter-spacing:.15px;transition:.2s}
+nav a::after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2e8bff,#ad5bff);transform:scaleX(0);transition:transform .2s}
+nav a:hover,nav a:focus-visible{color:#fff;background:linear-gradient(135deg,rgba(46,139,255,.17),rgba(173,91,255,.13));border-color:rgba(91,151,255,.28);box-shadow:0 5px 20px rgba(46,112,255,.12);transform:translateY(-1px);outline:none}
+nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
+nav a[href="/blog/"]{color:#e6dcff}
+nav a[href="/blog/"]::before{content:"✦";font-size:10px;margin-right:7px;color:#ad83ff}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:min(760px,calc(100% - 32px));margin:-12px auto 40px}
+.feature{background:var(--panel-2);border:1px solid #174b88;border-radius:14px;padding:18px;text-align:center}
+.f-icon{font-size:20px;margin-bottom:8px}
+.feature h4{font-size:13.5px;margin:0 0 4px}
+.feature p{font-size:11.5px;color:var(--text-faint);line-height:1.5;margin:0}
+.section-title{font-size:25px;letter-spacing:-.6px;margin:0 0 8px}
+.section-title span{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-intro{color:var(--text-dim);font-size:14px;line-height:1.7;margin:0 0 18px}
+.how,.faq{margin-bottom:50px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{border:1px solid #174b88;border-radius:14px;background:linear-gradient(145deg,#0a2245,#071932);padding:18px}
+.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#2d82ff,#7c3ff0);font-size:14px;margin-bottom:12px}
+.step h3{font-size:14.5px;margin:0 0 6px}
+.step p{font-size:12px;line-height:1.65;color:var(--text-dim);margin:0}
+details{border:1px solid #174b88;border-radius:12px;background:var(--panel-2);margin-bottom:10px;padding:0 16px}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:#80baff;font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:13px;line-height:1.7;color:var(--text-dim);margin:0;padding-bottom:15px}
+.prose{margin-bottom:50px}
+.prose h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.prose p{font-size:14px;line-height:1.8;color:var(--text-dim);margin:0 0 12px}
+.prose ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14px;line-height:1.8}
+.prose a{color:#80baff;text-decoration:underline}
+.prose b{color:#f2f6ff}
+.related{width:min(900px,calc(100% - 32px));margin:0 auto 58px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rt-card{position:relative;display:flex;flex-direction:column;min-height:190px;padding:20px;border:1px solid #174b88;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#0a2245,#071932);transition:.2s}
+.rt-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(82,112,255,.16),transparent 55%);pointer-events:none}
+.rt-card:hover{transform:translateY(-4px);border-color:#5c8fff;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.rt-icon{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:14px;color:#b6d5ff;background:linear-gradient(135deg,rgba(46,139,255,.2),rgba(173,91,255,.18));border:1px solid rgba(100,151,255,.25);font-size:21px}
+.rt-card h3{position:relative;font-size:15px;margin:0 0 8px}
+.rt-card p{position:relative;font-size:12px;line-height:1.65;color:var(--text-dim);margin:0 0 16px}
+.rt-card .go{position:relative;margin-top:auto;color:#80baff;font-size:12px;font-weight:700}
+.rt-card.explore{background:linear-gradient(145deg,#191d4b,#101934);border-color:#5d4aa0}
+footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--text-dim);font-size:11px}
+footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px;right:-4px}
+@media(max-width:700px){.steps,.related-grid,.features{grid-template-columns:1fr}.rt-card{min-height:0}footer{flex-direction:column;gap:18px;text-align:center}.features{margin-top:0}}
 @media(max-width:700px){nav{display:none}h1{font-size:30px}}
 @media(max-width:520px){.container{width:calc(100% - 24px)}.cmp{grid-template-columns:1fr}}
 </style>
@@ -66,16 +117,18 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;
 <meta name="twitter:title" content="Remove Image Background — Free &amp; Private | ConvertKit Lite">
 <meta name="twitter:description" content="Remove image backgrounds online for free with AI. Get a clean cut-out in seconds. No sign-up needed.">
 <meta name="twitter:image" content="https://www.convertkitlite.site/logo.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my image uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The AI runs inside your browser, so your photo stays on your device. Only the AI model files are downloaded, once, the first time you use the tool."}}, {"@type": "Question", "name": "Why is the first image slow?", "acceptedAnswer": {"@type": "Answer", "text": "The first time you use the tool it downloads an AI model of about 45 MB. After that it is cached by your browser, so later images start much faster. Each image then takes roughly 10 to 30 seconds depending on your device and the speed setting."}}, {"@type": "Question", "name": "Which image formats can I use?", "acceptedAnswer": {"@type": "Answer", "text": "You can upload JPG, PNG or WebP images. The result is downloaded as a PNG so the transparent background is preserved."}}, {"@type": "Question", "name": "Can I replace the background with a colour instead of making it transparent?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the background is removed, choose transparent, white, black or any custom colour before you download."}}, {"@type": "Question", "name": "What does the Speed / quality setting do?", "acceptedAnswer": {"@type": "Answer", "text": "Fast uses a lower working resolution and finishes sooner. Balanced is the recommended default. Best quality works at the highest resolution and keeps more fine detail such as hair, but it is the slowest."}}, {"@type": "Question", "name": "What if the AI cannot load?", "acceptedAnswer": {"@type": "Answer", "text": "This can happen if you are offline or a network filter blocks the model files. The tool then offers a simple mode that removes a background of one similar colour and has a sensitivity slider. It works best on plain backgrounds."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my image uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The AI runs inside your browser, so your photo stays on your device. Only the AI model files are downloaded, once, the first time you use the tool."}}, {"@type": "Question", "name": "Why is the first image slow?", "acceptedAnswer": {"@type": "Answer", "text": "The first time you use the tool it downloads an AI model of about 45 MB. After that it is cached by your browser, so later images start much faster. Each image then takes roughly 10 to 30 seconds depending on your device and the speed setting."}}, {"@type": "Question", "name": "Which image formats can I use?", "acceptedAnswer": {"@type": "Answer", "text": "You can upload JPG, PNG or WebP images. The result is downloaded as a PNG so the transparent background is preserved."}}, {"@type": "Question", "name": "Can I replace the background with a colour instead of making it transparent?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the background is removed, choose transparent, white, black or any custom colour before you download."}}, {"@type": "Question", "name": "What does the Speed / quality setting do?", "acceptedAnswer": {"@type": "Answer", "text": "Fast uses a lower working resolution and finishes sooner. Balanced is the recommended default. Best quality works at the highest resolution and keeps more fine detail such as hair, but it is the slowest."}}, {"@type": "Question", "name": "What if the AI cannot load?", "acceptedAnswer": {"@type": "Answer", "text": "This can happen if you are offline or a network filter blocks the model files. The tool then offers a simple mode that removes a background of one similar colour and has a sensitivity slider. It works best on plain backgrounds."}}, {"@type": "Question", "name": "Can I remove the background from several images at once?", "acceptedAnswer": {"@type": "Answer", "text": "Not at the moment. The tool works on one image at a time. When you are done, press Use another image to start the next one."}}, {"@type": "Question", "name": "Can I download a JPG instead of a PNG?", "acceptedAnswer": {"@type": "Answer", "text": "The download is always a PNG, because that is what keeps the transparent background. If you want a JPG, choose a white or coloured background and convert the PNG with PNG to JPG."}}, {"@type": "Question", "name": "How big is the finished image?", "acceptedAnswer": {"@type": "Answer", "text": "The image is kept at its own size unless it is very large. Photos bigger than about 2500 pixels on the longest side are scaled down to that size."}}, {"@type": "Question", "name": "What are the grey squares in the preview?", "acceptedAnswer": {"@type": "Answer", "text": "They show the transparent parts of your image. They are only a guide in the preview and are not saved in the download."}}, {"@type": "Question", "name": "Can I change the speed setting after the image is loaded?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Change the Speed / quality menu and the background is removed again with the new setting."}}, {"@type": "Question", "name": "Why are the edges of my cut-out rough?", "acceptedAnswer": {"@type": "Answer", "text": "This usually happens with busy backgrounds, a subject that is close in colour to its surroundings, or very fine hair. Try Best quality, use a sharper photo, or crop closer to the subject."}}, {"@type": "Question", "name": "Do I need an internet connection?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, at least the first time. The page loads the AI runtime and downloads the model once, and your browser then keeps the model for later visits. Staying online is the safest option."}}, {"@type": "Question", "name": "Is there a watermark or a sign-up?", "acceptedAnswer": {"@type": "Answer", "text": "No. There is no account, and the tool does not add a watermark to your image."}}]}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" media="print" onload="this.media='all'">
 </head>
 <body>
 <header>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998786237970751" crossorigin="anonymous"></script><div class="container navbar">
-<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png"/>ConvertKit <span class="lite">Lite</span></a>
-<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="../../#about">About</a><a href="../../#faq">FAQ</a></nav>
+<a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" width="32" height="32" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+<nav><a href="../../">Home</a><a href="../../#tools">Tools</a><a href="/blog/">Learn</a><a href="#faq">FAQ</a></nav>
 </div></header>
 
-<main class="narrow">
+<main>
+<div class="tool-wrap">
 <h1>Remove <span>Background</span></h1>
 <p class="sub">Erase the background from a photo automatically with AI. Your image stays on your device.</p>
 
@@ -108,10 +161,95 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #194a84;
 
 <div class="note">The first time you use this tool it downloads an AI model (about 45 MB), so it can take a minute. Each image then takes roughly 10 to 30 seconds. After that it is cached by your browser and much faster. Nothing you upload is sent to a server.</div>
 </div>
-<style>.rbg-guide{width:min(900px,calc(100% - 32px));margin:44px auto 0;color:#9bb8e0;font-size:14px;line-height:1.75}.rbg-guide h2{font-size:22px;letter-spacing:-.5px;margin:30px 0 10px;color:#f2f6ff}.rbg-guide ol{padding-left:20px;margin:0}.rbg-guide li{margin:0 0 8px}.rbg-guide b{color:#f2f6ff}.rbg-guide p{margin:0 0 10px}.rbg-guide details{border:1px solid #174b88;border-radius:12px;padding:12px 16px;margin:0 0 10px;background:#071932}.rbg-guide summary{cursor:pointer;font-weight:600;color:#f2f6ff}.rbg-guide details p{margin:10px 0 0}</style>
-<section class="rbg-guide" aria-labelledby="rbg-how"><h2 id="rbg-how">How to remove a background from an image</h2><ol><li><b>Choose an image.</b> Click the upload area or drag a JPG, PNG or WebP photo onto it. People, products, pets and objects all work.</li><li><b>Pick speed and wait for the AI.</b> Leave the setting on Balanced or switch to Best quality for fine detail. The background is removed on your device and a before and after preview appears.</li><li><b>Choose a background and download.</b> Keep the background transparent or switch to white, black or a custom colour, then download the finished PNG.</li></ol><h2 id="rbg-tips">Tips for a cleaner cutout</h2><p>Use a sharp photo where the subject is clearly separated from what is behind it. Good lighting helps, and so does a subject that is not the same colour as the background. For hair, fur or fine edges, try Best quality. If an edge still looks rough, try a different photo or crop closer to the subject.</p><h2 id="rbg-faq">Frequently asked questions</h2><details><summary>Is my image uploaded to a server?</summary><p>No. The AI runs inside your browser, so your photo stays on your device. Only the AI model files are downloaded, once, the first time you use the tool.</p></details><details><summary>Why is the first image slow?</summary><p>The first time you use the tool it downloads an AI model of about 45 MB. After that it is cached by your browser, so later images start much faster. Each image then takes roughly 10 to 30 seconds depending on your device and the speed setting.</p></details><details><summary>Which image formats can I use?</summary><p>You can upload JPG, PNG or WebP images. The result is downloaded as a PNG so the transparent background is preserved.</p></details><details><summary>Can I replace the background with a colour instead of making it transparent?</summary><p>Yes. After the background is removed, choose transparent, white, black or any custom colour before you download.</p></details><details><summary>What does the Speed / quality setting do?</summary><p>Fast uses a lower working resolution and finishes sooner. Balanced is the recommended default. Best quality works at the highest resolution and keeps more fine detail such as hair, but it is the slowest.</p></details><details><summary>What if the AI cannot load?</summary><p>This can happen if you are offline or a network filter blocks the model files. The tool then offers a simple mode that removes a background of one similar colour and has a sensitivity slider. It works best on plain backgrounds.</p></details></section>
-<style>.ck-rel{width:min(900px,calc(100% - 32px));margin:48px auto 58px}.ck-rel h2{font-size:25px;letter-spacing:-.6px;margin:0 0 8px;color:#f2f6ff}.ck-rel .ck-intro{color:#9bb8e0;font-size:14px;line-height:1.7;margin:0 0 18px}.ck-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.ck-card{display:flex;flex-direction:column;padding:20px;border:1px solid #174b88;border-radius:16px;background:linear-gradient(145deg,#0a2245,#071932);color:#f2f6ff;text-decoration:none;transition:.2s}.ck-card:hover{transform:translateY(-4px);border-color:#5c8fff}.ck-card h3{font-size:15px;margin:0 0 8px}.ck-card .d{font-size:12px;line-height:1.65;color:#9bb8e0;margin-bottom:16px}.ck-card .go{margin-top:auto;color:#80baff;font-size:12px;font-weight:700}@media(max-width:700px){.ck-grid{grid-template-columns:1fr}}</style><section class="ck-rel" aria-label="Related tools"><h2>Explore More Tools</h2><p class="ck-intro">Keep going with these related PDF and image tools.</p><div class="ck-grid"><a class="ck-card" href="../imagecompressor/"><h3>Image Compressor &amp; Resizer</h3><span class="d">Reduce image file size or resize images.</span><span class="go">Optimize image →</span></a><a class="ck-card" href="../pngtojpg/"><h3>PNG to JPG</h3><span class="d">Convert PNG images to JPG format.</span><span class="go">Convert image →</span></a><a class="ck-card" href="../qrcodegenerator/"><h3>QR Code Generator</h3><span class="d">Create QR codes for links and text.</span><span class="go">Create QR code →</span></a><a class="ck-card" href="../mp4togif/"><h3>MP4 to GIF</h3><span class="d">Convert MP4 video clips to GIF.</span><span class="go">Make a GIF →</span></a><a class="ck-card" href="../compresspdf/"><h3>Compress PDF</h3><span class="d">Reduce PDF file size right in your browser.</span><span class="go">Compress PDF →</span></a><a class="ck-card" href="../../#tools"><h3>Explore All Tools</h3><span class="d">Browse the complete ConvertKit Lite collection.</span><span class="go">Browse all tools →</span></a></div></section>
+</div>
+
+<div class="features">
+  <div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your photo is processed in your browser — it is never uploaded.</p></div>
+  <div class="feature"><div class="f-icon">✨</div><h4>AI cut-out</h4><p>An AI model finds the subject and removes the background for you.</p></div>
+  <div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account and no limits on how often you use it.</p></div>
+</div>
+
+<section class="narrow how" id="how">
+  <h2 class="section-title">How to remove a <span>background</span></h2>
+  <p class="section-intro">Three quick steps. Nothing to install and your photo stays on your device.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Choose your image</h3><p>Click the upload area or drag a JPG, PNG or WebP photo onto it. People, products, pets and objects all work.</p></div>
+    <div class="step"><b>2</b><h3>Pick the speed and wait</h3><p>Leave Speed / quality on Balanced, or choose Best quality for fine detail like hair. A before and after preview appears when it is done.</p></div>
+    <div class="step"><b>3</b><h3>Choose a background and download</h3><p>Keep it transparent, or switch to white, black or any colour you pick, then download your PNG.</p></div>
+  </div>
+</section>
+
+<section class="narrow prose">
+  <h2>Why remove an image background?</h2>
+  <p>A cut-out lets you put a subject on anything: a clean white background for a product listing, a brand colour for a profile picture, or a transparent PNG you can drop into a design, slide or poster. It saves you from tracing around the edges by hand.</p>
+  <p>The AI runs inside your browser. Your photo is not uploaded to a server, so private pictures stay on your device.</p>
+
+  <h2>How this tool removes the background</h2>
+  <ul>
+    <li><b>An AI model finds the subject.</b> It makes a mask of what to keep, then the mask is applied to your original photo so the background becomes transparent.</li>
+    <li><b>The first use downloads the model.</b> It is about 45 MB, and your browser keeps a copy so later images start much faster.</li>
+    <li><b>You choose speed or detail.</b> Fast works at a lower resolution and finishes sooner. Balanced is the recommended default. Best quality keeps the most fine detail but is the slowest. If you change this menu after an image is loaded, it runs again with the new setting.</li>
+    <li><b>You see before and after.</b> The original is on the left and the cut-out is on the right. The grey squares behind the result show transparent areas, and they are not part of the file.</li>
+    <li><b>Pick the background you want.</b> Transparent, white, black or any colour from the colour picker. The preview changes straight away.</li>
+    <li><b>The download is a PNG.</b> It keeps transparency and is saved with a name like photo-no-bg.png.</li>
+  </ul>
+
+  <h2>Limits to know</h2>
+  <ul>
+    <li><b>The first image can take a minute.</b> Most of that is the model download. After that, each image takes roughly 10 to 30 seconds, depending on your device and the speed setting.</li>
+    <li><b>One image at a time.</b> Press Use another image to start a new one.</li>
+    <li><b>Very large photos are scaled down.</b> The result is limited to about 2500 pixels on its longest side.</li>
+    <li><b>The result is always a PNG.</b> A PNG with a transparent or solid background can be large, so compress or convert it if you need a small file.</li>
+    <li><b>Hard photos can leave rough edges.</b> Busy backgrounds, a subject that is close in colour to what is behind it, and very fine hair or fur are the most difficult.</li>
+    <li><b>The AI needs to load.</b> If you are offline, or a preview window or network filter blocks the model files, the tool offers a simple mode instead. Simple mode removes one similar colour from the edges, with a sensitivity slider, so it only suits plain backgrounds.</li>
+  </ul>
+
+  <h2>Tips for a cleaner cut-out</h2>
+  <ul>
+    <li><b>Start with a sharp, well-lit photo.</b> A subject that stands out from the background gives the best edge.</li>
+    <li><b>Try Best quality for hair, fur and fine edges.</b> If an edge still looks rough, crop closer to the subject or try a different photo.</li>
+    <li><b>Need a smaller file?</b> Choose a white background and convert the PNG with <a href="../pngtojpg/">PNG to JPG</a>, or shrink it with <a href="../imagecompressor/">Image Compressor &amp; Resizer</a>.</li>
+    <li><b>Building a web page?</b> <a href="../jpgtowebp/">JPG to WebP</a> and <a href="../imageconverter/">Image Converter</a> change the format of your pictures.</li>
+  </ul>
+</section>
+
+<section class="narrow faq" id="faq">
+  <h2 class="section-title">Frequently asked <span>questions</span></h2>
+  <p class="section-intro">Quick answers about the ConvertKit Lite Remove Background tool.</p>
+  <details><summary>Is my image uploaded to a server?</summary><p>No. The AI runs inside your browser, so your photo stays on your device. Only the AI model files are downloaded, once, the first time you use the tool.</p></details>
+  <details><summary>Why is the first image slow?</summary><p>The first time you use the tool it downloads an AI model of about 45 MB. After that it is cached by your browser, so later images start much faster. Each image then takes roughly 10 to 30 seconds depending on your device and the speed setting.</p></details>
+  <details><summary>Which image formats can I use?</summary><p>You can upload JPG, PNG or WebP images. The result is downloaded as a PNG so the transparent background is preserved.</p></details>
+  <details><summary>Can I replace the background with a colour instead of making it transparent?</summary><p>Yes. After the background is removed, choose transparent, white, black or any custom colour before you download.</p></details>
+  <details><summary>What does the Speed / quality setting do?</summary><p>Fast uses a lower working resolution and finishes sooner. Balanced is the recommended default. Best quality works at the highest resolution and keeps more fine detail such as hair, but it is the slowest.</p></details>
+  <details><summary>What if the AI cannot load?</summary><p>This can happen if you are offline or a network filter blocks the model files. The tool then offers a simple mode that removes a background of one similar colour and has a sensitivity slider. It works best on plain backgrounds.</p></details>
+  <details><summary>Can I remove the background from several images at once?</summary><p>Not at the moment. The tool works on one image at a time. When you are done, press Use another image to start the next one.</p></details>
+  <details><summary>Can I download a JPG instead of a PNG?</summary><p>The download is always a PNG, because that is what keeps the transparent background. If you want a JPG, choose a white or coloured background and convert the PNG with PNG to JPG.</p></details>
+  <details><summary>How big is the finished image?</summary><p>The image is kept at its own size unless it is very large. Photos bigger than about 2500 pixels on the longest side are scaled down to that size.</p></details>
+  <details><summary>What are the grey squares in the preview?</summary><p>They show the transparent parts of your image. They are only a guide in the preview and are not saved in the download.</p></details>
+  <details><summary>Can I change the speed setting after the image is loaded?</summary><p>Yes. Change the Speed / quality menu and the background is removed again with the new setting.</p></details>
+  <details><summary>Why are the edges of my cut-out rough?</summary><p>This usually happens with busy backgrounds, a subject that is close in colour to its surroundings, or very fine hair. Try Best quality, use a sharper photo, or crop closer to the subject.</p></details>
+  <details><summary>Do I need an internet connection?</summary><p>Yes, at least the first time. The page loads the AI runtime and downloads the model once, and your browser then keeps the model for later visits. Staying online is the safest option.</p></details>
+  <details><summary>Is there a watermark or a sign-up?</summary><p>No. There is no account, and the tool does not add a watermark to your image.</p></details>
+</section>
+
+<section class="related" aria-labelledby="rt">
+  <h2 class="section-title" id="rt">Explore More <span>Tools</span></h2>
+  <p class="section-intro">Keep going with these useful image tools.</p>
+  <div class="related-grid">
+    <a class="rt-card" href="../imagecompressor/"><span class="rt-icon">▧</span><h3>Image Compressor &amp; Resizer</h3><p>Reduce image file size or resize images for easier sharing.</p><span class="go">Optimize image →</span></a>
+    <a class="rt-card" href="../pngtojpg/"><span class="rt-icon">⇄</span><h3>PNG to JPG</h3><p>Convert PNG images to smaller JPG files.</p><span class="go">Convert image →</span></a>
+    <a class="rt-card" href="../jpgtowebp/"><span class="rt-icon">🗜️</span><h3>JPG to WebP</h3><p>Convert JPG and PNG images to smaller WebP files.</p><span class="go">Convert to WebP →</span></a>
+    <a class="rt-card" href="../imageconverter/"><span class="rt-icon">🔄</span><h3>Image Converter</h3><p>Switch images between common formats in your browser.</p><span class="go">Convert image →</span></a>
+    <a class="rt-card" href="../qrcodegenerator/"><span class="rt-icon">▦</span><h3>QR Code Generator</h3><p>Create a QR code from text, a link, or other supported content.</p><span class="go">Create QR code →</span></a>
+    <a class="rt-card explore" href="../../#tools"><span class="rt-icon">⌘</span><h3>Explore All Tools</h3><p>Browse the complete ConvertKit Lite collection to find more utilities.</p><span class="go">Browse all tools →</span></a>
+  </div>
+</section>
 </main>
+
+<footer class="container">
+  <a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" width="32" height="32" onerror="this.style.display='none'"/><span class="brand-text"><span class="brand-name">ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a>
+  <div>© 2026 ConvertKit Lite. All rights reserved.</div>
+</footer>
 
 <script>
 const $=id=>document.getElementById(id);
