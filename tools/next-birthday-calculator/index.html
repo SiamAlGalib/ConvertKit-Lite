@@ -159,6 +159,33 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:600px){.article-list{grid-template-columns:1fr}}
 @media(max-width:480px){.time{grid-template-columns:1fr 1fr}.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
+
+/* seo-style */
+.seo{margin-bottom:46px}
+.seo h2{font-size:25px;letter-spacing:-.6px;margin:0 0 12px}
+.seo h2 .grad{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.seo p{font-size:14px;line-height:1.75;color:#9bb8e0;margin-bottom:12px}
+.seo strong{color:#f2f6ff;font-weight:700}
+.seo ul{list-style:none;display:grid;gap:10px;margin:4px 0 0;padding:0}
+.seo ul li{position:relative;font-size:14px;line-height:1.7;color:#9bb8e0;padding:12px 14px 12px 40px;border:1px solid #174b88;border-radius:12px;background:#071a35}
+.seo ul li::before{content:"\2713";position:absolute;left:14px;top:12px;color:#22c55e;font-weight:800}
+.seo ol{margin:4px 0 12px 20px;color:#9bb8e0;font-size:14px;line-height:1.8}
+.seo ol li{margin-bottom:6px}
+.seo a{color:#79b7ff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(121,183,255,.35)}
+.seo a:hover{color:#fff;border-bottom-color:#fff}
+/* seo-plain */
+.seo{margin-bottom:0}
+.seo:has(+ :not(.seo)){margin-bottom:50px}
+.seo h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.seo h2 .grad{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
+.seo p{font-size:14px;line-height:1.8;color:#9bb8e0;margin-bottom:12px}
+.seo ul,.seo ol{display:block;gap:0;list-style:disc;margin:0 0 12px 20px;padding:0;color:#9bb8e0;font-size:14px;line-height:1.8}
+.seo ol{list-style:decimal}
+.seo ul li,.seo ol li{display:list-item;position:static;border:0;border-radius:0;background:none;padding:0;margin:0;font-size:14px;line-height:1.8;color:#9bb8e0}
+.seo ul li::before{content:none}
+.seo a,.seo p a,.seo li a,.seo ul li a{color:#80baff;font-weight:400;text-decoration:underline;border-bottom:0}
+.seo a:hover,.seo p a:hover,.seo li a:hover,.seo ul li a:hover{color:#80baff;border-bottom:0}
+.seo strong{color:#f2f6ff}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Next Birthday Calculator", "description": "Find how many days are left until your next birthday. Enter your date of birth and see the countdown and the weekday you were born. Free.", "url": "https://www.convertkitlite.site/tools/next-birthday-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "Next Birthday Calculator", "item": "https://www.convertkitlite.site/tools/next-birthday-calculator/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my date of birth stored or sent anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The calculation runs entirely in your browser, so your date of birth is not uploaded to a server."}}, {"@type": "Question", "name": "Do I have to enter my birth time?", "acceptedAnswer": {"@type": "Answer", "text": "No, it is optional. Add it if you want your age in hours and minutes as well."}}, {"@type": "Question", "name": "Can I find my age on a past or future date?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Change the \"Calculate age until\" date to any day after your birth date."}}, {"@type": "Question", "name": "How are leap years handled?", "acceptedAnswer": {"@type": "Answer", "text": "The calculator uses real calendar dates, so leap years and different month lengths are taken into account."}}, {"@type": "Question", "name": "Why does the time zone matter?", "acceptedAnswer": {"@type": "Answer", "text": "Results use your device's local date and time. If you were born in another time zone, hours and minutes may differ slightly."}}, {"@type": "Question", "name": "In what order do I type the date?", "acceptedAnswer": {"@type": "Answer", "text": "Day, then month, then year (DD, MM, YYYY), using four digits for the year. The cursor jumps to the next box when a box is full. You can also pick the date from the calendar instead."}}, {"@type": "Question", "name": "What is the earliest birth date I can use?", "acceptedAnswer": {"@type": "Answer", "text": "1 January 1900. The calendar also stops at today, because a birth date cannot be in the future."}}, {"@type": "Question", "name": "How are the years, months and days worked out?", "acceptedAnswer": {"@type": "Answer", "text": "The calculator counts full years first, then full months, then the remaining days, using the actual number of days in each month. It works from real calendar dates, not an average year."}}, {"@type": "Question", "name": "What do the total months, weeks, days and hours mean?", "acceptedAnswer": {"@type": "Answer", "text": "They are your whole age expressed in one unit. Total months is your full years times twelve plus the extra months. Total weeks and total days are whole numbers. Total hours is the number of whole hours between the two moments."}}, {"@type": "Question", "name": "Why can I not see hours and minutes?", "acceptedAnswer": {"@type": "Answer", "text": "They only appear when you enter a birth time. Choose an hour and minute, with AM or PM, and calculate again."}}, {"@type": "Question", "name": "What if I enter only the hour or only the minute?", "acceptedAnswer": {"@type": "Answer", "text": "The missing part is filled in for you: a missing minute becomes 0, and a missing hour becomes 12. To avoid surprises, give both."}}, {"@type": "Question", "name": "Can I find the age on a future date?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Set the \"Calculate age until\" date to any day after your birth date, including one in the future, for example the day you turn 18 or 65."}}, {"@type": "Question", "name": "How do I find the age difference between two people?", "acceptedAnswer": {"@type": "Answer", "text": "Enter the older person's birth date as the date of birth, then pick the younger person's birth date as the \"Calculate age until\" date. The years, months and days shown are the gap between them."}}, {"@type": "Question", "name": "How is my next birthday counted?", "acceptedAnswer": {"@type": "Answer", "text": "It is the number of days from the end date to the next time your birth month and day come round. It shows \"Today!\" if the end date is your birthday. With a custom end date, the count starts from that date."}}, {"@type": "Question", "name": "What happens if I was born on 29 February?", "acceptedAnswer": {"@type": "Answer", "text": "The calculator counts your age by real dates. For the next-birthday count in a year without a 29 February, it uses 1 March."}}, {"@type": "Question", "name": "Does the calculator use my time zone?", "acceptedAnswer": {"@type": "Answer", "text": "It uses your device's local date and time. People born in another time zone may see a small difference in hours and minutes."}}, {"@type": "Question", "name": "How many days are left until my birthday?", "acceptedAnswer": {"@type": "Answer", "text": "Enter your date of birth and press Calculate Age. The Next birthday box shows the number of days left."}}, {"@type": "Question", "name": "Does the countdown show weeks or months?", "acceptedAnswer": {"@type": "Answer", "text": "No. It shows days only. Your age is shown in years, months and days, plus totals."}}]}]}</script>
 <meta name="twitter:title" content="Next Birthday Calculator – Days Until My Birthday">
@@ -247,40 +274,47 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   </div>
   </section>
 
-<section class="narrow prose"><!--seo-upgrade--><h2>Count the days until your birthday</h2><p>After you press Calculate Age, the Next birthday box shows the days left, or "Today!" if the end date is your birthday.</p><ul><li><b>Counted from the end date.</b> By default that is today. If you choose another end date, the countdown starts from that date.</li><li><b>Born on 29 February?</b> In years without a 29 February, the count uses 1 March.</li><li><b>Also shown:</b> the weekday you were born on.</li></ul><p>The tool shows the countdown in days only, not in weeks or months.</p><h2>More age calculator options</h2><ul><li><a href="../agecalculator/">Age Calculator (main tool)</a></li><li><a href="../age-calculator-by-date-of-birth/">Age calculator by date of birth</a></li><li><a href="../how-old-am-i/">How old am I?</a></li><li><a href="../how-many-days-old-am-i/">How many days old am I?</a></li><li><a href="../exact-age-calculator/">Exact age calculator</a></li><li><a href="../age-difference-calculator/">Age difference calculator</a></li><li><a href="../how-old-will-i-be-calculator/">How old will I be? (future age)</a></li><li><a href="../baby-age-calculator/">Baby age calculator</a></li></ul></section>
+<section class="narrow seo"><!--seo-upgrade--><h2>Count the days until <span class="grad">your birthday</span></h2><p>After you press Calculate Age, the Next birthday box shows the days left, or "Today!" if the end date is your birthday.</p><ul><li><strong>Counted from the end date.</strong> By default that is today. If you choose another end date, the countdown starts from that date.</li><li><strong>Born on 29 February?</strong> In years without a 29 February, the count uses 1 March.</li><li><strong>Also shown:</strong> the weekday you were born on.</li></ul><p>The tool shows the countdown in days only, not in weeks or months.</p></section>
 
-<section class="narrow prose">
-  <h2>Why calculate your exact age?</h2>
+<section class="narrow seo"><h2>More age <span class="grad">calculator options</span></h2><ul><li><a href="../agecalculator/">Age Calculator (main tool)</a></li><li><a href="../age-calculator-by-date-of-birth/">Age calculator by date of birth</a></li><li><a href="../how-old-am-i/">How old am I?</a></li><li><a href="../how-many-days-old-am-i/">How many days old am I?</a></li><li><a href="../exact-age-calculator/">Exact age calculator</a></li><li><a href="../age-difference-calculator/">Age difference calculator</a></li><li><a href="../how-old-will-i-be-calculator/">How old will I be? (future age)</a></li><li><a href="../baby-age-calculator/">Baby age calculator</a></li></ul></section>
+
+<section class="narrow seo"><h2>Why calculate your <span class="grad">exact age?</span></h2>
   <p>Forms, school and job applications, insurance, visas, sports categories and legal limits often ask for your age on a particular date, not just your age today. Counting the years, months and days by hand is easy to get wrong, especially across leap years and months of different lengths. This calculator does it from real calendar dates.</p>
   <p>The calculation runs in your browser. Your date of birth is not sent to a server.</p>
 
-  <h2>How this calculator works</h2>
+  </section>
+
+<section class="narrow seo"><h2>How this <span class="grad">calculator works</span></h2>
   <ul>
-    <li><b>Enter the date your way.</b> Type the day, month and year (the cursor moves on by itself), or use the calendar. The two stay in sync. The calendar does not allow a future date and starts in 1900.</li>
-    <li><b>The age is counted in whole calendar units.</b> The result shows full years, then the months left over, then the days left over, using the real length of each month.</li>
-    <li><b>You can pick the end date.</b> The default is today. Choose any other date to find the age on that day, or press Till now to return to today.</li>
-    <li><b>Birth time is optional.</b> Add an hour and minute to also see hours and minutes. If you give only one of them, the other is set to zero minutes or 12 o'clock, so give both for a reliable result.</li>
-    <li><b>Totals are shown too.</b> You also get total months, total weeks, total days and total hours, the day of the week you were born on, and how many days are left until your next birthday.</li>
-    <li><b>Everything uses your device's date and time.</b> Today and the current time come from your own device.</li>
+    <li><strong>Enter the date your way.</strong> Type the day, month and year (the cursor moves on by itself), or use the calendar. The two stay in sync. The calendar does not allow a future date and starts in 1900.</li>
+    <li><strong>The age is counted in whole calendar units.</strong> The result shows full years, then the months left over, then the days left over, using the real length of each month.</li>
+    <li><strong>You can pick the end date.</strong> The default is today. Choose any other date to find the age on that day, or press Till now to return to today.</li>
+    <li><strong>Birth time is optional.</strong> Add an hour and minute to also see hours and minutes. If you give only one of them, the other is set to zero minutes or 12 o'clock, so give both for a reliable result.</li>
+    <li><strong>Totals are shown too.</strong> You also get total months, total weeks, total days and total hours, the day of the week you were born on, and how many days are left until your next birthday.</li>
+    <li><strong>Everything uses your device's date and time.</strong> Today and the current time come from your own device.</li>
   </ul>
 
-  <h2>Limits to know</h2>
+  </section>
+
+<section class="narrow seo"><h2>Limits <span class="grad">to know</span></h2>
   <ul>
-    <li><b>Dates run from 1900.</b> Birth dates before 1 January 1900 are not accepted.</li>
-    <li><b>The dates must be in order.</b> The end date cannot be before the birth date, and a birth date cannot be later than today when you calculate until today. You will see a message if so.</li>
-    <li><b>Hours and minutes depend on the end date.</b> With "Till now" and a birth time, the result uses the exact current time. With any other end date, that day is counted from the start of the day (midnight).</li>
-    <li><b>Time zones are not converted.</b> If you were born in a different time zone, the hours and minutes can differ slightly.</li>
-    <li><b>Next birthday counts from the end date.</b> If you choose a custom end date, the number of days left is worked out from that date, not from today.</li>
-    <li><b>29 February births.</b> In years without a 29 February, the next-birthday count uses 1 March.</li>
+    <li><strong>Dates run from 1900.</strong> Birth dates before 1 January 1900 are not accepted.</li>
+    <li><strong>The dates must be in order.</strong> The end date cannot be before the birth date, and a birth date cannot be later than today when you calculate until today. You will see a message if so.</li>
+    <li><strong>Hours and minutes depend on the end date.</strong> With "Till now" and a birth time, the result uses the exact current time. With any other end date, that day is counted from the start of the day (midnight).</li>
+    <li><strong>Time zones are not converted.</strong> If you were born in a different time zone, the hours and minutes can differ slightly.</li>
+    <li><strong>Next birthday counts from the end date.</strong> If you choose a custom end date, the number of days left is worked out from that date, not from today.</li>
+    <li><strong>29 February births.</strong> In years without a 29 February, the next-birthday count uses 1 March.</li>
   </ul>
 
-  <h2>Tips and uses</h2>
+  </section>
+
+<section class="narrow seo"><h2>Tips <span class="grad">and uses</span></h2>
   <ul>
-    <li><b>Find your age on a future date.</b> Set "Calculate age until" to the day you turn a milestone age, or to a deadline for a form.</li>
-    <li><b>Find the age difference between two people.</b> Enter the older person's birth date as the date of birth and the younger person's birth date as the end date. The result is the gap between them.</li>
-    <li><b>Check how many days old you are.</b> The total days and total hours boxes give you a number to share or compare.</li>
-    <li><b>Reading the weekday.</b> "Born on a" tells you which day of the week you were born, which is a fun fact for birthday cards.</li>
-    <li><b>More calculators.</b> Try the <a href="../bmicalculator/">BMI Calculator</a>, or see what a photo suggests with the <a href="../faceage/">Face Age Estimator</a> (its results are only approximate).</li>
+    <li><strong>Find your age on a future date.</strong> Set "Calculate age until" to the day you turn a milestone age, or to a deadline for a form.</li>
+    <li><strong>Find the age difference between two people.</strong> Enter the older person's birth date as the date of birth and the younger person's birth date as the end date. The result is the gap between them.</li>
+    <li><strong>Check how many days old you are.</strong> The total days and total hours boxes give you a number to share or compare.</li>
+    <li><strong>Reading the weekday.</strong> "Born on a" tells you which day of the week you were born, which is a fun fact for birthday cards.</li>
+    <li><strong>More calculators.</strong> Try the <a href="../bmicalculator/">BMI Calculator</a>, or see what a photo suggests with the <a href="../faceage/">Face Age Estimator</a> (its results are only approximate).</li>
   </ul>
 </section>
 

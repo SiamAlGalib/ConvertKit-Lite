@@ -59,7 +59,34 @@ details{border:1px solid #174b88;border-radius:12px;background:#071a35;margin-bo
 .prose a{color:#80baff;text-decoration:underline}
 .prose b{color:#f2f6ff}
 footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--dim);font-size:11px}footer .brand{font-size:16px}footer .brand img{width:29px;height:29px}footer .brand .by{font-size:15px}
-@media(max-width:700px){.steps,.related-grid,.features{grid-template-columns:1fr}h1{font-size:30px}.mode-toggle{grid-template-columns:1fr}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}}</style>
+@media(max-width:700px){.steps,.related-grid,.features{grid-template-columns:1fr}h1{font-size:30px}.mode-toggle{grid-template-columns:1fr}footer{flex-direction:column;gap:18px;text-align:center}.container{width:calc(100% - 24px)}}
+/* seo-style */
+.seo{margin-bottom:46px}
+.seo h2{font-size:25px;letter-spacing:-.6px;margin:0 0 12px}
+.seo h2 .grad{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.seo p{font-size:14px;line-height:1.75;color:#9bb8e0;margin-bottom:12px}
+.seo strong{color:#f2f6ff;font-weight:700}
+.seo ul{list-style:none;display:grid;gap:10px;margin:4px 0 0;padding:0}
+.seo ul li{position:relative;font-size:14px;line-height:1.7;color:#9bb8e0;padding:12px 14px 12px 40px;border:1px solid #174b88;border-radius:12px;background:#071a35}
+.seo ul li::before{content:"\2713";position:absolute;left:14px;top:12px;color:#22c55e;font-weight:800}
+.seo ol{margin:4px 0 12px 20px;color:#9bb8e0;font-size:14px;line-height:1.8}
+.seo ol li{margin-bottom:6px}
+.seo a{color:#79b7ff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(121,183,255,.35)}
+.seo a:hover{color:#fff;border-bottom-color:#fff}
+/* seo-plain */
+.seo{margin-bottom:0}
+.seo:has(+ :not(.seo)){margin-bottom:50px}
+.seo h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.seo h2 .grad{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
+.seo p{font-size:14px;line-height:1.8;color:#9bb8e0;margin-bottom:12px}
+.seo ul,.seo ol{display:block;gap:0;list-style:disc;margin:0 0 12px 20px;padding:0;color:#9bb8e0;font-size:14px;line-height:1.8}
+.seo ol{list-style:decimal}
+.seo ul li,.seo ol li{display:list-item;position:static;border:0;border-radius:0;background:none;padding:0;margin:0;font-size:14px;line-height:1.8;color:#9bb8e0}
+.seo ul li::before{content:none}
+.seo a,.seo p a,.seo li a,.seo ul li a{color:#80baff;font-weight:400;text-decoration:underline;border-bottom:0}
+.seo a:hover,.seo p a:hover,.seo li a:hover,.seo ul li a:hover{color:#80baff;border-bottom:0}
+.seo strong{color:#f2f6ff}
+</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "JSON to Excel Converter", "description": "Convert JSON to Excel online free. Paste JSON or upload a file and download an .xlsx spreadsheet. Handles arrays, objects and nested JSON.", "url": "https://www.convertkitlite.site/tools/jsontoexcel/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "JSON to Excel Converter", "item": "https://www.convertkitlite.site/tools/jsontoexcel/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it safe to convert my JSON here?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Conversion runs in your browser, so your data is not uploaded to a server."}}, {"@type": "Question", "name": "What JSON structure works best?", "acceptedAnswer": {"@type": "Answer", "text": "A list of objects, like [{\"name\":\"Ana\"},{\"name\":\"Raj\"}], gives one row per object. If your JSON is an object holding several lists, each list becomes its own sheet."}}, {"@type": "Question", "name": "What happens to nested data?", "acceptedAnswer": {"@type": "Answer", "text": "With flattening on, nested objects become columns like address.city. Lists of simple values are joined with commas, and lists of objects are kept as JSON text in one cell."}}, {"@type": "Question", "name": "Is there a size limit?", "acceptedAnswer": {"@type": "Answer", "text": "No limit on our side. Very large files depend on your device memory."}}, {"@type": "Question", "name": "Can I paste JSON instead of uploading a file?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Switch to Paste JSON, paste your data into the box and press Convert to Excel. Pasted data is saved as data.xlsx."}}, {"@type": "Question", "name": "Which files can I upload?", "acceptedAnswer": {"@type": "Answer", "text": "Files ending in .json. A plain .txt file is also accepted: if it is not valid JSON, each line of text becomes a row with a line number and the text."}}, {"@type": "Question", "name": "What happens if my records have different keys?", "acceptedAnswer": {"@type": "Answer", "text": "Each different key becomes a column. A record that does not have a key simply leaves that cell empty."}}, {"@type": "Question", "name": "What does Flatten nested objects do?", "acceptedAnswer": {"@type": "Answer", "text": "When it is on, nested objects are spread into columns with dotted names such as address.city. When it is off, each nested object or list is saved as JSON text in one cell."}}, {"@type": "Question", "name": "Why do some cells contain text that looks like JSON?", "acceptedAnswer": {"@type": "Answer", "text": "Lists of objects, and any nested data when flattening is off, are kept as JSON text in one cell so no information is lost."}}, {"@type": "Question", "name": "How do I get several sheets?", "acceptedAnswer": {"@type": "Answer", "text": "Use a JSON object whose keys hold lists of objects, such as {\"users\":[...],\"orders\":[...]}. Each of those lists becomes a sheet named after its key."}}, {"@type": "Question", "name": "Why are some keys missing from my file?", "acceptedAnswer": {"@type": "Answer", "text": "When an object holds one or more lists of objects, only those lists are turned into sheets. Other keys at the top level, such as plain values or lists of numbers, are not included."}}, {"@type": "Question", "name": "What do Rows, Columns and Sheets mean in the result?", "acceptedAnswer": {"@type": "Answer", "text": "Rows is the total number of rows across all sheets. Columns is the number of different column names found. Sheets is how many sheets the file will have."}}, {"@type": "Question", "name": "Does the preview show everything?", "acceptedAnswer": {"@type": "Answer", "text": "No. It shows the first 10 rows of the first sheet and up to 30 columns. The downloaded file contains all the data."}}, {"@type": "Question", "name": "What does the message about no rows mean?", "acceptedAnswer": {"@type": "Answer", "text": "The JSON was valid but there was nothing to turn into rows, for example an empty list. Check that your data has at least one record."}}, {"@type": "Question", "name": "What if my JSON is not valid?", "acceptedAnswer": {"@type": "Answer", "text": "Look for trailing commas, single quotes where double quotes are needed, and missing brackets or braces. Fix them and try again, or paste the JSON into the box to edit it there."}}, {"@type": "Question", "name": "Can I convert a list of plain values?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A list such as [1,2,3] becomes a single column named value, with one row per item."}}, {"@type": "Question", "name": "How do I convert JSON to Excel?", "acceptedAnswer": {"@type": "Answer", "text": "Paste your JSON or upload a .json file, press Convert to Excel, check the preview and download the .xlsx file."}}, {"@type": "Question", "name": "Is this JSON to Excel converter free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is free, needs no signup and adds no watermark. There is no size limit on our side, but very large files depend on your device memory."}}, {"@type": "Question", "name": "Can I convert a JSON file to XLSX?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Upload a .json file and download a standard .xlsx workbook that opens in Excel, Google Sheets, LibreOffice and Numbers."}}]}]}</script>
 </head><body>
 <header><div class="container navbar">
@@ -86,43 +113,50 @@ footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items
 <div class="features"><div class="feature"><div class="f-icon">🔒</div><h4>100% Private</h4><p>Your JSON is converted locally in your browser — nothing is uploaded.</p></div><div class="feature"><div class="f-icon">⚡</div><h4>Fast</h4><p>No waiting on uploads. Everything runs on your device.</p></div><div class="feature"><div class="f-icon">🆓</div><h4>Free &amp; Unlimited</h4><p>No account, no watermark, no file limits.</p></div></div></div>
 <section class="narrow how" id="how"><h2 class="section-title">How to <span>convert JSON to Excel</span></h2><p class="section-intro">Three quick steps. Nothing to install.</p><div class="steps"><div class="step"><b>1</b><h3>Add your JSON</h3><p>Drop a .json file or click to browse, or switch to Paste JSON and paste your data into the box.</p></div><div class="step"><b>2</b><h3>Choose how to flatten</h3><p>Leave Flatten nested objects on to turn address.city into its own column, then press Convert to Excel. Lists of objects become rows.</p></div><div class="step"><b>3</b><h3>Check &amp; download</h3><p>Look at the row, column and sheet counts and the preview, then download your .xlsx file.</p></div></div>
   </section>
-<section class="narrow prose"><!--seo-upgrade--><h2>Convert JSON to Excel online, free and private</h2><p>This free JSON to Excel converter turns JSON into an .xlsx spreadsheet right in your browser. There is no signup, no watermark and no upload. Pick the guide below that matches your kind of JSON.</p><h2>More JSON to Excel options</h2><ul><li><a href="../json-to-xlsx-converter/">JSON to XLSX converter</a></li><li><a href="../nested-json-to-excel-converter/">Nested JSON to Excel (flatten to columns)</a></li><li><a href="../json-array-to-excel-converter/">JSON array to Excel</a></li><li><a href="../json-object-to-excel-converter/">JSON object to Excel</a></li><li><a href="../json-api-response-to-excel/">API JSON response to Excel</a></li><li><a href="../large-json-to-excel-converter/">Large JSON to Excel</a></li><li><a href="../paste-json-to-excel/">Paste JSON to Excel</a></li></ul></section>
+<section class="narrow seo"><!--seo-upgrade--><h2>Convert JSON to Excel online, free <span class="grad">and private</span></h2><p>This free JSON to Excel converter turns JSON into an .xlsx spreadsheet right in your browser. There is no signup, no watermark and no upload. Pick the guide below that matches your kind of JSON.</p></section>
 
-<section class="narrow prose">
-  <h2>Why convert JSON to Excel?</h2>
+<section class="narrow seo"><h2>More JSON to <span class="grad">Excel options</span></h2><ul><li><a href="../json-to-xlsx-converter/">JSON to XLSX converter</a></li><li><a href="../nested-json-to-excel-converter/">Nested JSON to Excel (flatten to columns)</a></li><li><a href="../json-array-to-excel-converter/">JSON array to Excel</a></li><li><a href="../json-object-to-excel-converter/">JSON object to Excel</a></li><li><a href="../json-api-response-to-excel/">API JSON response to Excel</a></li><li><a href="../large-json-to-excel-converter/">Large JSON to Excel</a></li><li><a href="../paste-json-to-excel/">Paste JSON to Excel</a></li></ul></section>
+
+<section class="narrow seo"><h2>Why convert JSON <span class="grad">to Excel?</span></h2>
   <p>JSON is how most apps and APIs hand over data, but it is hard to read, sort or filter as plain text. In a spreadsheet you can search it, sort it, build charts and share it with people who do not work with code. This tool turns a list of records into rows and columns in one step.</p>
   <p>The conversion runs in your browser. Your JSON is not uploaded to a server, so API responses and private data stay on your device.</p>
 
-  <h2>How this tool builds your spreadsheet</h2>
+  </section>
+
+<section class="narrow seo"><h2>How this tool builds <span class="grad">your spreadsheet</span></h2>
   <ul>
-    <li><b>A list of objects becomes rows.</b> Each object is one row, and each key becomes a column. If the objects do not all have the same keys, the columns cover all of them.</li>
-    <li><b>Nested objects can be flattened.</b> With the option on, {"address":{"city":"Paris"}} gives a column called address.city. With it off, the nested object is saved as JSON text in a single cell.</li>
-    <li><b>Lists inside a record are kept in one cell.</b> A list of simple values, such as tags, is joined with commas when flattening is on. A list of objects is kept as JSON text.</li>
-    <li><b>An object holding several lists makes several sheets.</b> Each top-level list of objects becomes its own sheet, named after its key.</li>
-    <li><b>A single object becomes one row.</b> If it holds no lists of objects, it goes on Sheet1 as one row.</li>
-    <li><b>You see a summary and a preview.</b> The tool shows the total rows, the number of different columns and the number of sheets, plus the first 10 rows of the first sheet.</li>
-    <li><b>The file is named after your upload.</b> orders.json becomes orders.xlsx. Pasted JSON is saved as data.xlsx. Column widths are set to fit the content.</li>
+    <li><strong>A list of objects becomes rows.</strong> Each object is one row, and each key becomes a column. If the objects do not all have the same keys, the columns cover all of them.</li>
+    <li><strong>Nested objects can be flattened.</strong> With the option on, {"address":{"city":"Paris"}} gives a column called address.city. With it off, the nested object is saved as JSON text in a single cell.</li>
+    <li><strong>Lists inside a record are kept in one cell.</strong> A list of simple values, such as tags, is joined with commas when flattening is on. A list of objects is kept as JSON text.</li>
+    <li><strong>An object holding several lists makes several sheets.</strong> Each top-level list of objects becomes its own sheet, named after its key.</li>
+    <li><strong>A single object becomes one row.</strong> If it holds no lists of objects, it goes on Sheet1 as one row.</li>
+    <li><strong>You see a summary and a preview.</strong> The tool shows the total rows, the number of different columns and the number of sheets, plus the first 10 rows of the first sheet.</li>
+    <li><strong>The file is named after your upload.</strong> orders.json becomes orders.xlsx. Pasted JSON is saved as data.xlsx. Column widths are set to fit the content.</li>
   </ul>
 
-  <h2>Limits to know</h2>
+  </section>
+
+<section class="narrow seo"><h2>Limits <span class="grad">to know</span></h2>
   <ul>
-    <li><b>The JSON must be valid.</b> If it is not, you will see a message with an example. Common causes are trailing commas, single quotes instead of double quotes, and missing brackets.</li>
-    <li><b>Only lists of objects become separate sheets.</b> When an object holds at least one, its other keys, such as a plain list of numbers or a single value, are not added to the file.</li>
-    <li><b>The preview is short.</b> It shows the first 10 rows of the first sheet and up to 30 columns. The downloaded file contains everything.</li>
-    <li><b>Sheet names are cleaned up.</b> Excel does not allow some characters and limits a name to 31 characters, so keys are adjusted to fit.</li>
-    <li><b>Deep structures stay as text.</b> Lists of objects inside a record are not split into more rows, so you may need to convert those parts separately.</li>
-    <li><b>An internet connection is needed once.</b> The Excel library is loaded from a content delivery network when you convert.</li>
-    <li><b>There is no size limit on our side.</b> Very large files depend on your device's memory.</li>
+    <li><strong>The JSON must be valid.</strong> If it is not, you will see a message with an example. Common causes are trailing commas, single quotes instead of double quotes, and missing brackets.</li>
+    <li><strong>Only lists of objects become separate sheets.</strong> When an object holds at least one, its other keys, such as a plain list of numbers or a single value, are not added to the file.</li>
+    <li><strong>The preview is short.</strong> It shows the first 10 rows of the first sheet and up to 30 columns. The downloaded file contains everything.</li>
+    <li><strong>Sheet names are cleaned up.</strong> Excel does not allow some characters and limits a name to 31 characters, so keys are adjusted to fit.</li>
+    <li><strong>Deep structures stay as text.</strong> Lists of objects inside a record are not split into more rows, so you may need to convert those parts separately.</li>
+    <li><strong>An internet connection is needed once.</strong> The Excel library is loaded from a content delivery network when you convert.</li>
+    <li><strong>There is no size limit on our side.</strong> Very large files depend on your device's memory.</li>
   </ul>
 
-  <h2>Tips for better results</h2>
+  </section>
+
+<section class="narrow seo"><h2>Tips for <span class="grad">better results</span></h2>
   <ul>
-    <li><b>Start with a list of objects.</b> A shape like [{"name":"Ana"},{"name":"Raj"}] gives the cleanest spreadsheet.</li>
-    <li><b>Try both flatten settings.</b> Flattening is best for analysis. Switch it off if you want nested data kept intact as JSON text.</li>
-    <li><b>Pasting is quicker for small snippets.</b> Use Paste JSON for an API response you copied, and Upload for saved files.</li>
-    <li><b>Need CSV instead?</b> Download the sheet, then use <a href="../xlsxtocsv/">XLSX to CSV</a>. To go from CSV back to Excel, use <a href="../csvtoxlsx/">CSV to XLSX</a>.</li>
-    <li><b>Want a PDF copy of the table?</b> <a href="../xlsxtopdf/">XLSX to PDF</a> turns the spreadsheet into a document.</li>
-    <li><b>Data is in a picture or a PDF?</b> <a href="../imagetoexcel/">Image to Excel (OCR)</a> reads tables from images, and <a href="../pdftoexcel/">PDF to Excel</a> handles PDFs.</li>
+    <li><strong>Start with a list of objects.</strong> A shape like [{"name":"Ana"},{"name":"Raj"}] gives the cleanest spreadsheet.</li>
+    <li><strong>Try both flatten settings.</strong> Flattening is best for analysis. Switch it off if you want nested data kept intact as JSON text.</li>
+    <li><strong>Pasting is quicker for small snippets.</strong> Use Paste JSON for an API response you copied, and Upload for saved files.</li>
+    <li><strong>Need CSV instead?</strong> Download the sheet, then use <a href="../xlsxtocsv/">XLSX to CSV</a>. To go from CSV back to Excel, use <a href="../csvtoxlsx/">CSV to XLSX</a>.</li>
+    <li><strong>Want a PDF copy of the table?</strong> <a href="../xlsxtopdf/">XLSX to PDF</a> turns the spreadsheet into a document.</li>
+    <li><strong>Data is in a picture or a PDF?</strong> <a href="../imagetoexcel/">Image to Excel (OCR)</a> reads tables from images, and <a href="../pdftoexcel/">PDF to Excel</a> handles PDFs.</li>
   </ul>
 </section>
 

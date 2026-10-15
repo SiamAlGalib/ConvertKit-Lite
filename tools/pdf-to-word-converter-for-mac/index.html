@@ -152,6 +152,33 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 @media(max-width:600px){.article-list{grid-template-columns:1fr}}
 @media(max-width:480px){.card{padding:20px}}
 .features{width:min(760px,calc(100% - 32px));margin:22px auto 40px}
+
+/* seo-style */
+.seo{margin-bottom:46px}
+.seo h2{font-size:25px;letter-spacing:-.6px;margin:0 0 12px}
+.seo h2 .grad{background:linear-gradient(90deg,#2e8bff,#ad5bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.seo p{font-size:14px;line-height:1.75;color:#9bb8e0;margin-bottom:12px}
+.seo strong{color:#f2f6ff;font-weight:700}
+.seo ul{list-style:none;display:grid;gap:10px;margin:4px 0 0;padding:0}
+.seo ul li{position:relative;font-size:14px;line-height:1.7;color:#9bb8e0;padding:12px 14px 12px 40px;border:1px solid #174b88;border-radius:12px;background:#071a35}
+.seo ul li::before{content:"\2713";position:absolute;left:14px;top:12px;color:#22c55e;font-weight:800}
+.seo ol{margin:4px 0 12px 20px;color:#9bb8e0;font-size:14px;line-height:1.8}
+.seo ol li{margin-bottom:6px}
+.seo a{color:#79b7ff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(121,183,255,.35)}
+.seo a:hover{color:#fff;border-bottom-color:#fff}
+/* seo-plain */
+.seo{margin-bottom:0}
+.seo:has(+ :not(.seo)){margin-bottom:50px}
+.seo h2{font-size:22px;letter-spacing:-.5px;margin:26px 0 8px}
+.seo h2 .grad{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
+.seo p{font-size:14px;line-height:1.8;color:#9bb8e0;margin-bottom:12px}
+.seo ul,.seo ol{display:block;gap:0;list-style:disc;margin:0 0 12px 20px;padding:0;color:#9bb8e0;font-size:14px;line-height:1.8}
+.seo ol{list-style:decimal}
+.seo ul li,.seo ol li{display:list-item;position:static;border:0;border-radius:0;background:none;padding:0;margin:0;font-size:14px;line-height:1.8;color:#9bb8e0}
+.seo ul li::before{content:none}
+.seo a,.seo p a,.seo li a,.seo ul li a{color:#80baff;font-weight:400;text-decoration:underline;border-bottom:0}
+.seo a:hover,.seo p a:hover,.seo li a:hover,.seo ul li a:hover{color:#80baff;border-bottom:0}
+.seo strong{color:#f2f6ff}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "PDF to Word Converter for Mac", "description": "Convert PDF to Word on Mac for free. Works in Safari, Chrome and Firefox. No app to install, and your files are never uploaded.", "url": "https://www.convertkitlite.site/tools/pdf-to-word-converter-for-mac/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.convertkitlite.site/"}, {"@type": "ListItem", "position": 2, "name": "PDF to Word Converter for Mac", "item": "https://www.convertkitlite.site/tools/pdf-to-word-converter-for-mac/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my documents uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Word file is created in your browser, so your files stay on your device."}}, {"@type": "Question", "name": "Is the text in the Word file editable?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The tool reads the real text from your PDF and writes it as normal Word paragraphs you can edit."}}, {"@type": "Question", "name": "What formatting is kept?", "acceptedAnswer": {"@type": "Answer", "text": "Bold, italic, font size, paragraph breaks, indents and page breaks. Fonts are matched to Calibri, Times New Roman or Courier New."}}, {"@type": "Question", "name": "What about scanned PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "Scanned pages contain pictures, not text, so they cannot be edited. By default they are inserted as images; you can also skip them. OCR is not included."}}, {"@type": "Question", "name": "Does it support password-protected PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "No. Remove the password first, then convert the file."}}, {"@type": "Question", "name": "Can I convert many files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add several PDFs, convert them together, and download each .docx or one ZIP."}}, {"@type": "Question", "name": "Will the Word file look exactly like my PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Not always. Text, bold, italic, sizes and paragraphs are kept, but the layout is rebuilt as normal Word paragraphs. Complex tables, columns and exact positioning may need touch-ups in Word."}}, {"@type": "Question", "name": "Are images and logos kept?", "acceptedAnswer": {"@type": "Answer", "text": "The tool converts text. Pictures on pages that have text are not copied into the Word file. Pages with no text can be inserted as images if you choose that option."}}, {"@type": "Question", "name": "What does Insert page as image do?", "acceptedAnswer": {"@type": "Answer", "text": "For a page with no selectable text, the tool draws the page as a picture and places it in the Word file at the size of that page. You can see the picture but not edit its words. Choose Skip them if you do not want those pages."}}, {"@type": "Question", "name": "Can I choose the page size?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Match the PDF uses the size of your first page. You can also pick A4 or US Letter. The margins are 1 inch (2.54 cm)."}}, {"@type": "Question", "name": "What file will I get?", "acceptedAnswer": {"@type": "Answer", "text": "A .docx file with the same name as your PDF. It opens in Microsoft Word and in other programs that read the .docx format."}}, {"@type": "Question", "name": "Why does it say no text was found?", "acceptedAnswer": {"@type": "Answer", "text": "The PDF is probably scanned, so its pages are pictures. Set the scan option to Insert page as image, or run OCR on the file first."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in any modern browser on Android, iPhone, Windows and Mac. Long PDFs can take longer on older phones, and the result is easier to check on a larger screen."}}, {"@type": "Question", "name": "Is there a watermark or a limit?", "acceptedAnswer": {"@type": "Answer", "text": "No watermark, no account and no limit on how many files you convert."}}, {"@type": "Question", "name": "Do I need to install anything on my Mac?", "acceptedAnswer": {"@type": "Answer", "text": "No. The converter runs in your browser, so there is no app or extension to install."}}, {"@type": "Question", "name": "Can Pages open the converted file?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Pages can open .docx files, as can Microsoft Word for Mac and Google Docs."}}]}]}</script>
 <meta name="twitter:title" content="PDF to Word Converter for Mac – Free, No Install">
@@ -220,39 +247,46 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
   </div>
   </section>
 
-<section class="narrow prose"><!--seo-upgrade--><h2>Convert PDF to Word on a Mac</h2><p>Open this page in Safari, Chrome or Firefox, choose your PDF and press Convert. The .docx file is saved to your Downloads folder.</p><p>You can open the result in Microsoft Word for Mac, in Pages, or in Google Docs. Because the conversion happens in your browser, private documents stay on your Mac.</p><h2>More PDF to Word options</h2><ul><li><a href="../pdftoword/">PDF to Word converter (main tool)</a></li><li><a href="../pdf-to-docx-converter/">PDF to DOCX converter</a></li><li><a href="../pdf-to-word-without-losing-formatting/">PDF to Word without losing formatting</a></li><li><a href="../pdf-to-word-converter-for-android/">PDF to Word converter for Android</a></li><li><a href="../pdf-to-word-converter-for-iphone/">PDF to Word converter for iPhone and iPad</a></li><li><a href="../batch-pdf-to-word-converter/">Batch PDF to Word converter</a></li><li><a href="../pdf-resume-to-word-converter/">Convert a PDF resume to Word</a></li></ul></section>
+<section class="narrow seo"><!--seo-upgrade--><h2>Convert PDF to Word on <span class="grad">a Mac</span></h2><p>Open this page in Safari, Chrome or Firefox, choose your PDF and press Convert. The .docx file is saved to your Downloads folder.</p><p>You can open the result in Microsoft Word for Mac, in Pages, or in Google Docs. Because the conversion happens in your browser, private documents stay on your Mac.</p></section>
 
-<section class="narrow prose">
-  <h2>Why convert a PDF to Word?</h2>
+<section class="narrow seo"><h2>More PDF to <span class="grad">Word options</span></h2><ul><li><a href="../pdftoword/">PDF to Word converter (main tool)</a></li><li><a href="../pdf-to-docx-converter/">PDF to DOCX converter</a></li><li><a href="../pdf-to-word-without-losing-formatting/">PDF to Word without losing formatting</a></li><li><a href="../pdf-to-word-converter-for-android/">PDF to Word converter for Android</a></li><li><a href="../pdf-to-word-converter-for-iphone/">PDF to Word converter for iPhone and iPad</a></li><li><a href="../batch-pdf-to-word-converter/">Batch PDF to Word converter</a></li><li><a href="../pdf-resume-to-word-converter/">Convert a PDF resume to Word</a></li></ul></section>
+
+<section class="narrow seo"><h2>Why convert a PDF <span class="grad">to Word?</span></h2>
   <p>A PDF is made to be read, not changed. When you need to fix a typo in a contract, reuse a paragraph from a report, update an old CV or copy text from a form, you want an editable file. A Word document lets you type, delete, reformat and save the changes.</p>
   <p>Many converters upload your PDF to a server. This one does not. The text is read and the .docx file is built on your own device, which is better for contracts, ID documents, financial papers and anything private.</p>
 
-  <h2>How this tool builds your Word file</h2>
+  </section>
+
+<section class="narrow seo"><h2>How this tool builds your <span class="grad">Word file</span></h2>
   <p>The tool reads the real text from each page of the PDF and writes it as normal Word paragraphs:</p>
   <ul>
-    <li><b>It rebuilds lines and paragraphs.</b> Text on the same line is joined, and a new paragraph starts where the PDF has a clear break, a short line or a change in text size.</li>
-    <li><b>It keeps basic formatting.</b> Bold, italic, font size, indents and page breaks carry over.</li>
-    <li><b>It matches fonts to common ones.</b> Serif fonts become Times New Roman, monospaced fonts become Courier New, and everything else becomes Calibri.</li>
-    <li><b>It sets the page size.</b> Keep Match the PDF, or choose A4 or US Letter. The Word page has 1 inch (2.54 cm) margins.</li>
-    <li><b>It handles scans for you.</b> A page with no text can be inserted as an image or skipped, depending on your choice.</li>
+    <li><strong>It rebuilds lines and paragraphs.</strong> Text on the same line is joined, and a new paragraph starts where the PDF has a clear break, a short line or a change in text size.</li>
+    <li><strong>It keeps basic formatting.</strong> Bold, italic, font size, indents and page breaks carry over.</li>
+    <li><strong>It matches fonts to common ones.</strong> Serif fonts become Times New Roman, monospaced fonts become Courier New, and everything else becomes Calibri.</li>
+    <li><strong>It sets the page size.</strong> Keep Match the PDF, or choose A4 or US Letter. The Word page has 1 inch (2.54 cm) margins.</li>
+    <li><strong>It handles scans for you.</strong> A page with no text can be inserted as an image or skipped, depending on your choice.</li>
   </ul>
 
-  <h2>What this tool cannot do</h2>
+  </section>
+
+<section class="narrow seo"><h2>What this tool <span class="grad">cannot do</span></h2>
   <ul>
-    <li><b>No OCR.</b> Scanned pages are pictures, so their words cannot become editable text. They can only be placed in the Word file as images.</li>
-    <li><b>Layout is simplified.</b> Complex tables, multiple columns and exact positioning may not come out as they were. Expect some touch-ups in Word.</li>
-    <li><b>Pictures on text pages are not copied.</b> The tool carries over text. Logos and photos on a page that has text may be missing from the Word file, so check for them.</li>
-    <li><b>Password-protected PDFs.</b> Remove the password in your PDF viewer first.</li>
+    <li><strong>No OCR.</strong> Scanned pages are pictures, so their words cannot become editable text. They can only be placed in the Word file as images.</li>
+    <li><strong>Layout is simplified.</strong> Complex tables, multiple columns and exact positioning may not come out as they were. Expect some touch-ups in Word.</li>
+    <li><strong>Pictures on text pages are not copied.</strong> The tool carries over text. Logos and photos on a page that has text may be missing from the Word file, so check for them.</li>
+    <li><strong>Password-protected PDFs.</strong> Remove the password in your PDF viewer first.</li>
   </ul>
 
-  <h2>Tips for better results</h2>
+  </section>
+
+<section class="narrow seo"><h2>Tips for <span class="grad">better results</span></h2>
   <ul>
-    <li><b>Check the first page.</b> Open the .docx and compare it with the PDF before you edit a long document.</li>
-    <li><b>Start from a text-based PDF.</b> A PDF saved from Word or another program converts much better than a phone scan.</li>
-    <li><b>Convert only what you need.</b> Use <a href="../splitpdf/">Split PDF</a> to pull out the pages you want to edit.</li>
-    <li><b>Need a table in a spreadsheet?</b> <a href="../pdftoexcel/">PDF to Excel</a> is built for tables. For plain text, <a href="../pdftotxt/">PDF to Text</a> is quicker.</li>
-    <li><b>Done editing?</b> Turn the document back into a PDF with <a href="../wordtopdf/">Word to PDF</a>, and use <a href="../compresspdf/">Compress PDF</a> if the file is too big to send.</li>
-    <li><b>Only small changes?</b> The <a href="../editpdf/">Edit PDF</a> tool can add text and drawings straight onto the PDF.</li>
+    <li><strong>Check the first page.</strong> Open the .docx and compare it with the PDF before you edit a long document.</li>
+    <li><strong>Start from a text-based PDF.</strong> A PDF saved from Word or another program converts much better than a phone scan.</li>
+    <li><strong>Convert only what you need.</strong> Use <a href="../splitpdf/">Split PDF</a> to pull out the pages you want to edit.</li>
+    <li><strong>Need a table in a spreadsheet?</strong> <a href="../pdftoexcel/">PDF to Excel</a> is built for tables. For plain text, <a href="../pdftotxt/">PDF to Text</a> is quicker.</li>
+    <li><strong>Done editing?</strong> Turn the document back into a PDF with <a href="../wordtopdf/">Word to PDF</a>, and use <a href="../compresspdf/">Compress PDF</a> if the file is too big to send.</li>
+    <li><strong>Only small changes?</strong> The <a href="../editpdf/">Edit PDF</a> tool can add text and drawings straight onto the PDF.</li>
   </ul>
 </section>
 
