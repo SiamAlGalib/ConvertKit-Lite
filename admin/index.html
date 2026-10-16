@@ -317,11 +317,16 @@ function startLiveStats() {
     }
   }, extra || {});
   const ALL_TOOLS = [
-  "mergepdf","splitpdf","compresspdf","editpdf","wordtopdf","powerpointtopdf",
-  "pdftoexcel","pdftopptx","pdftotxt","PdfToJpg","txttopdf",
-  "jpgtopng","pngtojpg","jpgtowebp","imagecompressor","removebg","imagetoexcel",
-  "mp4tomp3","mp4togif","agecalculator","bmicalculator","faceage",
-  "qrcodegenerator","jsontoexcel","csvtoxlsx"
+  "agecalculator","bmicalculator","faceage","qrcodegenerator","zipextractor",
+  "mergepdf","splitpdf","compresspdf","editpdf","pdftoword","wordtopdf",
+  "pdftoexcel","exceltopdf","xlsxtopdf","pdftopptx","pdftopowerpoint",
+  "powerpointtopdf","pptxtopdf","jpgtopdf","PdfToJpg","pdftotxt","txttopdf",
+  "docxtotxt","docxtohtml","rtftopdf","xlsxtocsv","csvtoxlsx","jsontoexcel",
+  "imagetoexcel","jpgtopng","pngtojpg","jpgtowebp","webptojpg","heictojpg",
+  "imageconverter","imagecompressor","removebg",
+  "mp4tomp3","mp4togif","movtomp4","mp3towav",
+  "compress-pdf-to-100kb","compress-pdf-to-200kb","compress-pdf-to-500kb","compress-pdf-to-1mb",
+  "merge-pdf-without-watermark","heic-to-jpg-windows","mp4-to-mp3-320kbps"
 ];
   const render = () => {
     const conv = docs["totals"] || {}, dl = docs["dl_totals"] || {};
