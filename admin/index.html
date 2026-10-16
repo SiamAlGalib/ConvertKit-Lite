@@ -312,8 +312,8 @@ function startLiveStats() {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { labels: { color: TXT } } },
     scales: {
-      x: { ticks: { color: TXT }, grid: { color: GRID }, beginAtZero: true },
-      y: { ticks: { color: TXT, precision: 0 }, grid: { color: GRID }, beginAtZero: true }
+      x: { ticks: { color: TXT, autoSkip: false, maxRotation: 0, minRotation: 0, font: { size: 10 } }, grid: { color: GRID }, beginAtZero: true },
+      y: { ticks: { color: TXT, precision: 0, autoSkip: false }, grid: { color: GRID }, beginAtZero: true }
     }
   }, extra || {});
   const render = () => {
@@ -334,7 +334,11 @@ function startLiveStats() {
     const labels = [], imp = [], cs = [], ds = [];
     for (let i = 13; i >= 0; i--) {
       const k = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
-      labels.push(k.slice(5));
+      const dt = new Date(k + "T00:00:00Z");
+labels.push([
+  dt.toLocaleDateString("en", { weekday: "short", timeZone: "UTC" }),
+  dt.toLocaleDateString("en", { month: "short", day: "numeric", timeZone: "UTC" })
+]);
       imp.push((docs["geo_d_" + k] || {}).total || 0);
       cs.push((docs["d_" + k] || {}).total || 0);
       ds.push((docs["dl_d_" + k] || {}).total || 0);
