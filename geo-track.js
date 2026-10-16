@@ -67,7 +67,7 @@ function waitForHuman() {
     // Mark as counted BEFORE any async work, so parallel tabs/pages can't double count
     localStorage.setItem("ckl_geo_day", day);
 
-    await waitForHuman();
+    await new Promise(r => setTimeout(r, 3000));
     if (document.visibilityState !== "visible") throw new Error("hidden");
 
     const cc = await getCountry();
