@@ -316,14 +316,21 @@ function startLiveStats() {
       y: { ticks: { color: TXT, precision: 0, autoSkip: false }, grid: { color: GRID }, beginAtZero: true }
     }
   }, extra || {});
+  const ALL_TOOLS = [
+  "mergepdf","splitpdf","compresspdf","editpdf","wordtopdf","powerpointtopdf",
+  "pdftoexcel","pdftopptx","pdftotxt","PdfToJpg","txttopdf",
+  "jpgtopng","pngtojpg","jpgtowebp","imagecompressor","removebg","imagetoexcel",
+  "mp4tomp3","mp4togif","agecalculator","bmicalculator","faceage",
+  "qrcodegenerator","jsontoexcel","csvtoxlsx"
+];
   const render = () => {
     const conv = docs["totals"] || {}, dl = docs["dl_totals"] || {};
     const { total = 0, ...tools } = conv;
     const { total: dlTotal = 0, ...dlTools } = dl;
     $("totalConv").textContent = total.toLocaleString();
     $("totalDl").textContent = dlTotal.toLocaleString();
-    const names = [...new Set([...Object.keys(tools), ...Object.keys(dlTools)])]
-      .sort((a, b) => (tools[b] || 0) - (tools[a] || 0));
+ const names = [...new Set([...ALL_TOOLS, ...Object.keys(tools), ...Object.keys(dlTools)])]
+  .sort((a, b) => ((tools[b] || 0) + (dlTools[b] || 0)) - ((tools[a] || 0) + (dlTools[a] || 0)) || a.localeCompare(b));
     $("toolTable").innerHTML = names.length
       ? `<div class="tool-row"><span><b>Tool</b></span><span><b>Conversions / Downloads</b></span></div>` +
         names.map(n => `<div class="tool-row"><span>${esc(n)}</span><strong>${(tools[n] || 0).toLocaleString()} / ${(dlTools[n] || 0).toLocaleString()}</strong></div>`).join("")
