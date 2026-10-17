@@ -167,16 +167,16 @@ textarea#excerpt{min-height:75px;resize:vertical}
   <div class="activity">
     <div class="stats">
       <div class="stat-card"><div class="stat-label"><span class="live-dot"></span>Online now</div><div class="stat-number" id="onlineNow">0</div></div>
-      <div class="stat-card"><div class="stat-label">Impressions (14 days)</div><div class="stat-number" id="totImpr">0</div><div class="stat-sub">Unique visitors</div></div>
-      <div class="stat-card"><div class="stat-label">Clicks (14 days)</div><div class="stat-number" id="totClicks">0</div><div class="stat-sub" id="ctrLine">CTR —</div></div>
-    </div>
-    <div class="stats">
       <div class="stat-card"><div class="stat-label">Total conversions (all time)</div><div class="stat-number" id="totalConv">0</div></div>
       <div class="stat-card"><div class="stat-label">Total downloads (all time)</div><div class="stat-number" id="totalDl">0</div></div>
+    </div>
+    <div class="stats" style="display:none">
+      <div class="stat-card"><div class="stat-label">Impressions (14 days)</div><div class="stat-number" id="totImpr">0</div><div class="stat-sub">Unique visitors</div></div>
+      <div class="stat-card"><div class="stat-label">Clicks (14 days)</div><div class="stat-number" id="totClicks">0</div><div class="stat-sub" id="ctrLine">CTR —</div></div>
       <div class="stat-card"><div class="stat-label">Impressions today</div><div class="stat-number" id="imprToday">0</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:16px">
-      <div class="posts-panel">
+      <div class="posts-panel" style="display:none">
         <div class="posts-panel-head"><div class="posts-panel-title">Impressions (visitors), last 14 days</div></div>
         <div style="position:relative;height:260px;padding:14px"><canvas id="chartImpr"></canvas></div>
       </div>
