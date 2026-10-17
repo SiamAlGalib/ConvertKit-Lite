@@ -75,6 +75,38 @@ function getDevice() {
 // "/tools/mergepdf/" -> "|tools|mergepdf" (safe as a Firestore field name)
 const pageKey = () => clean(location.pathname.replace(/\/+$/, "").replace(/\//g, "|") || "|", 80);
 
+/* ---------- error tracking: counts JS errors per page per day (no user data) ---------- */
+(function trackErrors() {
+  if (location.pathname.startsWith("/admin")) return;
+  if (navigator.webdriver || BOT_RE.test(navigator.userAgent)) return;
+  const sent = new Set();
+  let busy = false;
+  async function report(raw) {
+    try {
+      const msg = String(raw || "").replace(/https?:\/\/\S+/g, "").trim();
+      if (!msg || /ResizeObserver|^script error\.?$/i.test(msg) || /extension:\/\//i.test(String(raw))) return;
+      const key = pageKey() + "~" + clean(msg, 60);
+      if (sent.has(key) || sent.size >= 3 || busy) return; // max 3 different errors per page load
+      sent.add(key); busy = true;
+      const day = new Date().toISOString().slice(0, 10);
+      await setDoc(doc(db, "toolStats", "err_d_" + day), { total: increment(1), errs: { [key]: increment(1) } }, { merge: true });
+    } catch (e) {} finally { busy = false; }
+  }
+  addEventListener("error", e => {
+    if (e.filename && !e.filename.startsWith(location.origin)) return; // ignore third-party scripts
+    report(e.message);
+  });
+  addEventListener("unhandledrejection", e => {
+    const r = e.reason;
+    report((r && r.message) || r);
+  });
+  const orig = console.error;
+  console.error = function () {
+    try { report("console: " + Array.prototype.map.call(arguments, x => (x && x.message) || String(x)).join(" ")); } catch (e) {}
+    return orig.apply(console, arguments);
+  };
+})();
+
 async function getCountry() {
   try {
     const t = await (await fetch("https://www.cloudflare.com/cdn-cgi/trace")).text();
