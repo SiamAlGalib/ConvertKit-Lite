@@ -1,1 +1,1 @@
-{"name":"site-alerts","private":true,"type":"module","dependencies":{"firebase-admin":"^14.5.0","nodemailer":"^10.1.2"}}
+{"name":"site-alerts","private":true,"type":"module","dependencies":{"@google-cloud/firestore":"^9.3.1","firebase-admin":"^14.5.0","nodemailer":"^10.1.2"}}
