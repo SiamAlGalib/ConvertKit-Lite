@@ -153,6 +153,11 @@ textarea#excerpt{min-height:75px;resize:vertical}
     <button class="btn btn-primary" id="newPostBtn">+ New post</button>
   </div>
 
+  <div id="adminTabs" style="display:flex;gap:8px;margin:0 0 18px">
+    <button class="btn btn-primary" data-tab="posts" type="button">Posts</button>
+    <button class="btn" data-tab="analytics" type="button">Analytics</button>
+  </div>
+
   <div class="activity">
     <div class="stats">
       <div class="stat-card"><div class="stat-label"><span class="live-dot"></span>Online now</div><div class="stat-number" id="onlineNow">0</div></div>
@@ -562,5 +567,39 @@ $("deleteBtn").onclick = async () => {
 };
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function () {
+  var dash = document.getElementById("dashboard");
+  var bar = document.getElementById("adminTabs");
+  var act = dash.querySelector(".activity");
+  var head = dash.querySelector(".dashboard-head");
+  var newBtn = document.getElementById("newPostBtn");
+  var postEls = Array.prototype.filter.call(dash.children, function (el) {
+    return el !== head && el !== bar && el !== act;
+  });
+  function show(tab) {
+    var analytics = tab === "analytics";
+    act.style.display = analytics ? "" : "none";
+    postEls.forEach(function (el) { el.style.display = analytics ? "none" : ""; });
+    if (newBtn) newBtn.style.display = analytics ? "none" : "";
+    bar.querySelectorAll("button").forEach(function (b) {
+      b.classList.toggle("btn-primary", b.dataset.tab === tab);
+    });
+    try { localStorage.setItem("adminTab", tab); } catch (e) {}
+    if (analytics && window.Chart) {
+      setTimeout(function () {
+        Object.values(Chart.instances).forEach(function (ch) { ch.resize(); });
+      }, 50);
+    }
+  }
+  bar.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-tab]");
+    if (b) show(b.dataset.tab);
+  });
+  var saved = "posts";
+  try { saved = localStorage.getItem("adminTab") || "posts"; } catch (e) {}
+  show(saved);
+})();
+</script>
 </body>
 </html>
