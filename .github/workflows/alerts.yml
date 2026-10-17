@@ -1,0 +1,35 @@
+name: Site alerts
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Send a test email now"
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: site-alerts
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: alerts/package-lock.json
+      - run: npm ci
+        working-directory: alerts
+      - run: node check.mjs
+        working-directory: alerts
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          ALERT_GMAIL_USER: ${{ secrets.ALERT_GMAIL_USER }}
+          ALERT_GMAIL_APP_PASSWORD: ${{ secrets.ALERT_GMAIL_APP_PASSWORD }}
+          TEST_EMAIL: ${{ inputs.test }}
