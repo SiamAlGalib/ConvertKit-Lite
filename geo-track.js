@@ -31,6 +31,50 @@ for (const [continent, list] of Object.entries(GROUPS)) list.split(" ").forEach(
 
 const BOT_RE = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|monitor|preview|python|curl|wget|axios|phantom|selenium|puppeteer|playwright/i;
 
+const clean = (s, n) => String(s || "").toLowerCase().replace(/[^a-z0-9_|-]/g, "_").slice(0, n || 40) || "unknown";
+
+const SOURCES = [
+  [/google\./, "Google"], [/bing\.com$/, "Bing"], [/duckduckgo\.com$/, "DuckDuckGo"], [/yahoo\./, "Yahoo"],
+  [/yandex\./, "Yandex"], [/baidu\.com$/, "Baidu"],
+  [/facebook\.com$|(^|\.)fb\.com$|^fb\.me$/, "Facebook"], [/instagram\.com$/, "Instagram"],
+  [/(^|\.)t\.co$|twitter\.com$|(^|\.)x\.com$/, "X"], [/reddit\.com$/, "Reddit"],
+  [/youtube\.com$|youtu\.be$/, "YouTube"], [/whatsapp\.com$|^wa\.me$/, "WhatsApp"],
+  [/(^|\.)t\.me$|telegram\./, "Telegram"], [/pinterest\./, "Pinterest"],
+  [/linkedin\.com$|lnkd\.in$/, "LinkedIn"], [/tiktok\.com$/, "TikTok"]
+];
+
+// Where the visitor came from. Read ONCE per browser session at page load, so later
+// internal navigation never overwrites the real first referrer.
+function getSource() {
+  try {
+    const stored = sessionStorage.getItem("ckl_src");
+    if (stored) return stored;
+    let src = "Direct";
+    if (document.referrer) {
+      const h = new URL(document.referrer).hostname.replace(/^www\./, "").toLowerCase();
+      const own = location.hostname.replace(/^www\./, "").toLowerCase();
+      if (h === own) src = "Internal";
+      else {
+        const hit = SOURCES.find(([re]) => re.test(h));
+        src = hit ? hit[1] : clean(h.replace(/\./g, "_"), 40);
+      }
+    }
+    sessionStorage.setItem("ckl_src", src);
+    return src;
+  } catch (e) { return "Direct"; }
+}
+const SRC = getSource();
+
+function getDevice() {
+  const ua = navigator.userAgent;
+  if (/iPad|Tablet/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1) || (/Android/i.test(ua) && !/Mobile/i.test(ua))) return "Tablet";
+  if (/Mobi|iPhone|iPod|Android/i.test(ua)) return "Mobile";
+  return "Desktop";
+}
+
+// "/tools/mergepdf/" -> "|tools|mergepdf" (safe as a Firestore field name)
+const pageKey = () => clean(location.pathname.replace(/\/+$/, "").replace(/\//g, "|") || "|", 80);
+
 async function getCountry() {
   try {
     const t = await (await fetch("https://www.cloudflare.com/cdn-cgi/trace")).text();
@@ -75,7 +119,8 @@ function waitForHuman() {
     const continent = MAP[cc] || "Unknown";
     await setDoc(
       doc(db, "toolStats", "geo_d_" + day),
-      { total: increment(1), continents: { [continent]: increment(1) }, countries: { [cc]: increment(1) } },
+      { total: increment(1), continents: { [continent]: increment(1) }, countries: { [cc]: increment(1) },
+        sources: { [SRC]: increment(1) }, devices: { [getDevice()]: increment(1) }, pages: { [pageKey()]: increment(1) } },
       { merge: true }
     );
   } catch (e) {

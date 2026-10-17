@@ -123,6 +123,9 @@ textarea#excerpt{min-height:75px;resize:vertical}
 .asof-label{font-weight:700;color:#fff}
 .asof-bar input[type=date]{color-scheme:dark;padding:8px 10px;font:inherit;color:#fff;background:rgba(45,130,255,.12);border:1px solid var(--line);border-radius:8px}
 #asOfNote{font-size:12px;color:#9fb4d6}
+.vis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:14px}
+.vis-title{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:#9fb4d6;margin:0 0 8px}
+.vis-row{background:linear-gradient(90deg,rgba(45,130,255,.22) var(--p),transparent var(--p));border-radius:6px}
 .admin-tabs{display:flex;gap:6px;margin:0 0 22px;padding:6px;background:rgba(7,26,53,.85);border:1px solid var(--line);border-radius:14px}
 .admin-tab{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:#9db7dd;background:transparent;border:0;border-radius:10px;cursor:pointer;transition:all .15s}
 .admin-tab svg{flex:none;transition:transform .15s}
@@ -195,6 +198,17 @@ textarea#excerpt{min-height:75px;resize:vertical}
         <div class="posts-panel-head" style="flex-wrap:wrap;gap:10px"><div class="posts-panel-title">Clicks (conversions &amp; downloads)</div>
           <div class="clk-nav"><button class="clk-btn" id="clkPrev" type="button" aria-label="Previous 14 days">&#8249;</button><span id="clkRangeLabel">&mdash;</span><button class="clk-btn" id="clkNext" type="button" aria-label="Next 14 days">&#8250;</button><button class="clk-btn" id="clkToday" type="button">Today</button></div></div>
         <div style="position:relative;height:260px;padding:14px"><canvas id="chartDaily"></canvas></div>
+      </div>
+    </div>
+    <div class="posts-panel" style="margin-bottom:16px">
+      <div class="posts-panel-head"><div class="posts-panel-title">Visitor insights</div>
+        <div class="posts-controls"><select id="visRange">
+          <option value="1">Today</option><option value="7" selected>Last 7 days</option><option value="30">Last 30 days</option>
+        </select></div></div>
+      <div class="vis-grid">
+        <div><div class="vis-title">Where visitors come from</div><div id="srcList"></div></div>
+        <div><div class="vis-title">Top landing pages</div><div id="pageList"></div></div>
+        <div><div class="vis-title">Devices</div><div id="devList"></div></div>
       </div>
     </div>
     <div class="asof-bar"><span class="asof-label">Tool stats as of</span><input type="date" id="asOfInput"><button class="clk-btn" id="asOfLatest" type="button">Latest</button><span id="asOfNote">Showing latest totals</span></div>
@@ -333,6 +347,27 @@ function startLiveStats() {
 ];
   let toolsOpen = false; const TOOL_LIMIT = 8;
   let asOfDate = "";
+  const renderVisitors = () => {
+    const days = Number($("visRange").value) || 7, src = {}, pg = {}, dev = {};
+    for (let i = 0; i < days; i++) {
+      const d = docs["geo_d_" + new Date(Date.now() - i * 864e5).toISOString().slice(0, 10)];
+      if (!d) continue;
+      for (const [n, v] of Object.entries(d.sources || {})) src[n] = (src[n] || 0) + v;
+      for (const [n, v] of Object.entries(d.pages || {})) pg[n] = (pg[n] || 0) + v;
+      for (const [n, v] of Object.entries(d.devices || {})) dev[n] = (dev[n] || 0) + v;
+    }
+    const list = (el, obj, label, empty) => {
+      const rows = Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      const sum = Object.values(obj).reduce((x, y) => x + y, 0) || 1;
+      $(el).innerHTML = rows.length ? rows.map(([n, v]) => {
+        const pct = Math.round(v / sum * 100);
+        return `<div class="tool-row vis-row" style="--p:${pct}%"><span>${esc(label(n))}</span><strong>${v.toLocaleString()} &middot; ${pct}%</strong></div>`;
+      }).join("") : `<div class="empty-state">${empty}</div>`;
+    };
+    list("srcList", src, n => n === "Internal" ? "Internal (site navigation)" : n.replace(/_/g, "."), "No source data yet.");
+    list("pageList", pg, n => n.replace(/\|/g, "/") || "/", "No page data yet.");
+    list("devList", dev, n => n, "No device data yet.");
+  };
   const render = () => {
     const todayKey = new Date().toISOString().slice(0, 10);
     const asOf = asOfDate && asOfDate < todayKey ? asOfDate : "";
@@ -429,8 +464,9 @@ labels.push([
   $("toolTable").addEventListener("click", e => { if (e.target.closest("#toolMore")) { toolsOpen = !toolsOpen; render(); } });
   $("asOfInput").onchange = e => { asOfDate = e.target.value || ""; render(); };
   $("asOfLatest").onclick = () => { asOfDate = ""; $("asOfInput").value = ""; render(); };
+  $("visRange").onchange = renderVisitors;
   onSnapshot(collection(db, "toolStats"), snap => {
-    docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render();
+    docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render(); renderVisitors();
   }, e => console.error("STATS ERROR:", e));
 }
 
