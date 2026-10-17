@@ -113,7 +113,9 @@ textarea#excerpt{min-height:75px;resize:vertical}
 @media(max-width:800px){.stats{grid-template-columns:1fr}.activity .stats{grid-template-columns:1fr 1fr}.editor-grid{grid-template-columns:1fr}.table-head{display:none}.post-item{grid-template-columns:1fr auto}.post-item>div:nth-child(3){display:none}}
 @media(max-width:600px){.topnav-inner{padding:12px 14px}.admin-tag,.view-blog{display:none}main{padding:25px 14px 70px}.dashboard-head h1{font-size:24px}.posts-panel-head{align-items:flex-start;flex-direction:column}.posts-controls{width:100%}.posts-controls button,.posts-controls select{flex:1}.post-cover{width:64px;height:42px;flex-basis:64px}}
 .admin-tabs{display:flex;gap:6px;margin:0 0 22px;padding:6px;background:rgba(7,26,53,.85);border:1px solid var(--line);border-radius:14px}
-.admin-tab{flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:#9db7dd;background:transparent;border:0;border-radius:10px;cursor:pointer;transition:all .15s}
+.admin-tab{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:#9db7dd;background:transparent;border:0;border-radius:10px;cursor:pointer;transition:all .15s}
+.admin-tab svg{flex:none;transition:transform .15s}
+.admin-tab:hover svg,.admin-tab.active svg{transform:scale(1.12)}
 .admin-tab:hover{color:#fff;background:rgba(45,130,255,.18)}
 .admin-tab.active{color:#fff;background:linear-gradient(135deg,#2d82ff,#9b5cff);box-shadow:0 6px 20px rgba(45,130,255,.45)}
 </style>
@@ -158,8 +160,8 @@ textarea#excerpt{min-height:75px;resize:vertical}
   </div>
 
   <div id="adminTabs" class="admin-tabs" role="tablist">
-    <button class="admin-tab active" data-tab="posts" type="button" role="tab">📝 Posts</button>
-    <button class="admin-tab" data-tab="analytics" type="button" role="tab">📊 Analytics</button>
+    <button class="admin-tab active" data-tab="posts" type="button" role="tab"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg><span>Posts</span></button>
+    <button class="admin-tab" data-tab="analytics" type="button" role="tab"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17v-9"/></svg><span>Analytics</span></button>
   </div>
 
   <div class="activity">
