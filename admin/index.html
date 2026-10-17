@@ -117,6 +117,8 @@ textarea#excerpt{min-height:75px;resize:vertical}
 .clk-btn{padding:6px 12px;font:inherit;font-size:14px;font-weight:700;color:#fff;background:rgba(45,130,255,.18);border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:all .15s}
 .clk-btn:hover:not(:disabled){background:linear-gradient(135deg,#2d82ff,#9b5cff)}
 .clk-btn:disabled{opacity:.35;cursor:not-allowed}
+.tool-more{display:block;width:100%;padding:13px;font:inherit;font-size:14px;font-weight:700;color:#9fb4d6;background:rgba(45,130,255,.08);border:0;border-top:1px solid var(--line);cursor:pointer;transition:all .15s}
+.tool-more:hover{color:#fff;background:rgba(45,130,255,.2)}
 .admin-tabs{display:flex;gap:6px;margin:0 0 22px;padding:6px;background:rgba(7,26,53,.85);border:1px solid var(--line);border-radius:14px}
 .admin-tab{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:#9db7dd;background:transparent;border:0;border-radius:10px;cursor:pointer;transition:all .15s}
 .admin-tab svg{flex:none;transition:transform .15s}
@@ -324,6 +326,7 @@ function startLiveStats() {
   "compress-pdf-to-100kb","compress-pdf-to-200kb","compress-pdf-to-500kb","compress-pdf-to-1mb",
   "merge-pdf-without-watermark","heic-to-jpg-windows","mp4-to-mp3-320kbps"
 ];
+  let toolsOpen = false; const TOOL_LIMIT = 8;
   const render = () => {
     const conv = docs["totals"] || {}, dl = docs["dl_totals"] || {};
     const { total = 0, ...tools } = conv;
@@ -332,9 +335,11 @@ function startLiveStats() {
     $("totalDl").textContent = dlTotal.toLocaleString();
  const names = [...new Set([...ALL_TOOLS, ...Object.keys(tools), ...Object.keys(dlTools)])]
   .sort((a, b) => ((tools[b] || 0) + (dlTools[b] || 0)) - ((tools[a] || 0) + (dlTools[a] || 0)) || a.localeCompare(b));
+    const shown = toolsOpen ? names : names.slice(0, TOOL_LIMIT);
     $("toolTable").innerHTML = names.length
       ? `<div class="tool-row"><span><b>Tool</b></span><span><b>Conversions / Downloads</b></span></div>` +
-        names.map(n => `<div class="tool-row"><span>${esc(n)}</span><strong>${(tools[n] || 0).toLocaleString()} / ${(dlTools[n] || 0).toLocaleString()}</strong></div>`).join("")
+        shown.map(n => `<div class="tool-row"><span>${esc(n)}</span><strong>${(tools[n] || 0).toLocaleString()} / ${(dlTools[n] || 0).toLocaleString()}</strong></div>`).join("") +
+        (names.length > TOOL_LIMIT ? `<button type="button" class="tool-more" id="toolMore">${toolsOpen ? "Show less &#9650;" : "See more (" + (names.length - TOOL_LIMIT) + " more) &#9660;"}</button>` : "")
       : `<div class="empty-state">No conversions yet.</div>`;
 
     // Impressions = unique visitors (geo_d_<date>.total)
@@ -399,6 +404,7 @@ labels.push([
   $("clkPrev").onclick = () => { winPage++; render(); };
   $("clkNext").onclick = () => { if (winPage > 0) { winPage--; render(); } };
   $("clkToday").onclick = () => { winPage = 0; render(); };
+  $("toolTable").addEventListener("click", e => { if (e.target.closest("#toolMore")) { toolsOpen = !toolsOpen; render(); } });
   onSnapshot(collection(db, "toolStats"), snap => {
     docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render();
   }, e => console.error("STATS ERROR:", e));
