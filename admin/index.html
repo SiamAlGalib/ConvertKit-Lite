@@ -384,7 +384,7 @@ labels.push([
     }
     const dayKeys = Object.keys(docs).map(x => (x.match(/^(?:dl_)?d_(\d{4}-\d{2}-\d{2})$/) || [])[1]).filter(Boolean).sort();
     $("clkRangeLabel").textContent = wl[0][1] + " \u2013 " + lastDt.toLocaleDateString("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
-    $("clkPrev").disabled = !dayKeys.length || firstKey <= dayKeys[0];
+    $("clkPrev").disabled = false;
     $("clkNext").disabled = winPage === 0;
     $("clkToday").disabled = winPage === 0;
     mk("chartDaily", { type: "bar", data: { labels: wl, datasets: [
