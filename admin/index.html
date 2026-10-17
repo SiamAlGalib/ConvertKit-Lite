@@ -119,6 +119,10 @@ textarea#excerpt{min-height:75px;resize:vertical}
 .clk-btn:disabled{opacity:.35;cursor:not-allowed}
 .tool-more{display:block;width:100%;padding:13px;font:inherit;font-size:14px;font-weight:700;color:#9fb4d6;background:rgba(45,130,255,.08);border:0;border-top:1px solid var(--line);cursor:pointer;transition:all .15s}
 .tool-more:hover{color:#fff;background:rgba(45,130,255,.2)}
+.asof-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 16px;padding:12px 16px;background:rgba(7,26,53,.85);border:1px solid var(--line);border-radius:12px}
+.asof-label{font-weight:700;color:#fff}
+.asof-bar input[type=date]{color-scheme:dark;padding:8px 10px;font:inherit;color:#fff;background:rgba(45,130,255,.12);border:1px solid var(--line);border-radius:8px}
+#asOfNote{font-size:12px;color:#9fb4d6}
 .admin-tabs{display:flex;gap:6px;margin:0 0 22px;padding:6px;background:rgba(7,26,53,.85);border:1px solid var(--line);border-radius:14px}
 .admin-tab{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:#9db7dd;background:transparent;border:0;border-radius:10px;cursor:pointer;transition:all .15s}
 .admin-tab svg{flex:none;transition:transform .15s}
@@ -193,12 +197,13 @@ textarea#excerpt{min-height:75px;resize:vertical}
         <div style="position:relative;height:260px;padding:14px"><canvas id="chartDaily"></canvas></div>
       </div>
     </div>
+    <div class="asof-bar"><span class="asof-label">Tool stats as of</span><input type="date" id="asOfInput"><button class="clk-btn" id="asOfLatest" type="button">Latest</button><span id="asOfNote">Showing latest totals</span></div>
     <div class="posts-panel" style="margin-bottom:16px">
-      <div class="posts-panel-head"><div class="posts-panel-title">Top tools (clicks)</div></div>
+      <div class="posts-panel-head"><div class="posts-panel-title" id="topToolsTitle">Top tools (clicks)</div></div>
       <div style="position:relative;height:260px;padding:14px"><canvas id="chartTools"></canvas></div>
     </div>
     <div class="posts-panel">
-      <div class="posts-panel-head"><div class="posts-panel-title">Conversions by tool</div></div>
+      <div class="posts-panel-head"><div class="posts-panel-title" id="convToolsTitle">Conversions by tool</div></div>
       <div id="toolTable"><div class="empty-state">No conversions yet.</div></div>
     </div>
   </div>
@@ -327,8 +332,25 @@ function startLiveStats() {
   "merge-pdf-without-watermark","heic-to-jpg-windows","mp4-to-mp3-320kbps"
 ];
   let toolsOpen = false; const TOOL_LIMIT = 8;
+  let asOfDate = "";
   const render = () => {
-    const conv = docs["totals"] || {}, dl = docs["dl_totals"] || {};
+    const todayKey = new Date().toISOString().slice(0, 10);
+    const asOf = asOfDate && asOfDate < todayKey ? asOfDate : "";
+    let conv = docs["totals"] || {}, dl = docs["dl_totals"] || {};
+    if (asOf) {
+      conv = Object.assign({}, conv); dl = Object.assign({}, dl);
+      const sub = (base, d) => { for (const [n, v] of Object.entries(d || {})) if (typeof v === "number") base[n] = Math.max(0, (base[n] || 0) - v); };
+      for (let t = new Date(asOf + "T00:00:00Z").getTime() + 864e5; ; t += 864e5) {
+        const k = new Date(t).toISOString().slice(0, 10);
+        if (k > todayKey) break;
+        sub(conv, docs["d_" + k]); sub(dl, docs["dl_d_" + k]);
+      }
+    }
+    const asOfLbl = asOf ? new Date(asOf + "T00:00:00Z").toLocaleDateString("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : "";
+    $("topToolsTitle").textContent = "Top tools (clicks)" + (asOf ? " (as of " + asOfLbl + ")" : "");
+    $("convToolsTitle").textContent = "Conversions by tool" + (asOf ? " (as of " + asOfLbl + ")" : "");
+    $("asOfNote").textContent = asOf ? "Totals at the end of " + asOfLbl + " (UTC)" : "Showing latest totals";
+    $("asOfInput").max = todayKey;
     const { total = 0, ...tools } = conv;
     const { total: dlTotal = 0, ...dlTools } = dl;
     $("totalConv").textContent = total.toLocaleString();
@@ -405,6 +427,8 @@ labels.push([
   $("clkNext").onclick = () => { if (winPage > 0) { winPage--; render(); } };
   $("clkToday").onclick = () => { winPage = 0; render(); };
   $("toolTable").addEventListener("click", e => { if (e.target.closest("#toolMore")) { toolsOpen = !toolsOpen; render(); } });
+  $("asOfInput").onchange = e => { asOfDate = e.target.value || ""; render(); };
+  $("asOfLatest").onclick = () => { asOfDate = ""; $("asOfInput").value = ""; render(); };
   onSnapshot(collection(db, "toolStats"), snap => {
     docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render();
   }, e => console.error("STATS ERROR:", e));
