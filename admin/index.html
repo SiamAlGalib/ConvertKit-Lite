@@ -112,6 +112,11 @@ textarea#excerpt{min-height:75px;resize:vertical}
 @media(max-width:900px){.table-head,.post-item{grid-template-columns:1.8fr .7fr 1fr}.table-head div:nth-child(2),.table-head div:nth-child(4),.post-author,.post-date{display:none}}
 @media(max-width:800px){.stats{grid-template-columns:1fr}.activity .stats{grid-template-columns:1fr 1fr}.editor-grid{grid-template-columns:1fr}.table-head{display:none}.post-item{grid-template-columns:1fr auto}.post-item>div:nth-child(3){display:none}}
 @media(max-width:600px){.topnav-inner{padding:12px 14px}.admin-tag,.view-blog{display:none}main{padding:25px 14px 70px}.dashboard-head h1{font-size:24px}.posts-panel-head{align-items:flex-start;flex-direction:column}.posts-controls{width:100%}.posts-controls button,.posts-controls select{flex:1}.post-cover{width:64px;height:42px;flex-basis:64px}}
+.clk-nav{display:flex;align-items:center;gap:8px}
+.clk-nav span{font-size:12px;color:#9fb4d6;min-width:150px;text-align:center}
+.clk-btn{padding:6px 12px;font:inherit;font-size:14px;font-weight:700;color:#fff;background:rgba(45,130,255,.18);border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:all .15s}
+.clk-btn:hover:not(:disabled){background:linear-gradient(135deg,#2d82ff,#9b5cff)}
+.clk-btn:disabled{opacity:.35;cursor:not-allowed}
 .admin-tabs{display:flex;gap:6px;margin:0 0 22px;padding:6px;background:rgba(7,26,53,.85);border:1px solid var(--line);border-radius:14px}
 .admin-tab{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:#9db7dd;background:transparent;border:0;border-radius:10px;cursor:pointer;transition:all .15s}
 .admin-tab svg{flex:none;transition:transform .15s}
@@ -181,7 +186,8 @@ textarea#excerpt{min-height:75px;resize:vertical}
         <div style="position:relative;height:260px;padding:14px"><canvas id="chartImpr"></canvas></div>
       </div>
       <div class="posts-panel">
-        <div class="posts-panel-head"><div class="posts-panel-title">Clicks (conversions &amp; downloads), last 14 days</div></div>
+        <div class="posts-panel-head" style="flex-wrap:wrap;gap:10px"><div class="posts-panel-title">Clicks (conversions &amp; downloads)</div>
+          <div class="clk-nav"><button class="clk-btn" id="clkPrev" type="button" aria-label="Previous 14 days">&#8249;</button><span id="clkRangeLabel">&mdash;</span><button class="clk-btn" id="clkNext" type="button" aria-label="Next 14 days">&#8250;</button><button class="clk-btn" id="clkToday" type="button">Today</button></div></div>
         <div style="position:relative;height:260px;padding:14px"><canvas id="chartDaily"></canvas></div>
       </div>
     </div>
@@ -291,7 +297,7 @@ function startLiveStats() {
   if (liveStarted) return; liveStarted = true;
   onValue(ref(rtdb, "presence"), s => { $("onlineNow").textContent = s.size; },
     e => console.error("PRESENCE ERROR:", e));
-  let docs = {}, charts = {};
+  let docs = {}, charts = {}, winPage = 0; const WIN = 14;
   const TXT = "#9fb4d6", GRID = "rgba(120,160,220,.15)";
   const mk = (id, cfg) => {
     if (typeof Chart === "undefined") return;
@@ -356,9 +362,29 @@ labels.push([
       { label: "Impressions", data: imp, borderColor: "#3ee7ff", backgroundColor: "rgba(62,231,255,.15)", fill: true, tension: .3, pointRadius: 3 }
     ] }, options: axes() });
 
-    mk("chartDaily", { type: "bar", data: { labels, datasets: [
-      { label: "Conversion clicks", data: cs, backgroundColor: "#2d82ff", borderRadius: 4 },
-      { label: "Download clicks", data: ds, backgroundColor: "#9b5cff", borderRadius: 4 }
+    // Clicks chart: moves in 14-day windows (winPage 0 = latest 14 days)
+    const wl = [], wc = [], wd = [];
+    let firstKey = "", lastDt = null;
+    for (let i = WIN - 1; i >= 0; i--) {
+      const k = new Date(Date.now() - (i + winPage * WIN) * 864e5).toISOString().slice(0, 10);
+      const dt = new Date(k + "T00:00:00Z");
+      if (i === WIN - 1) firstKey = k;
+      if (i === 0) lastDt = dt;
+      wl.push([
+        dt.toLocaleDateString("en", { weekday: "short", timeZone: "UTC" }),
+        dt.toLocaleDateString("en", { month: "short", day: "numeric", timeZone: "UTC" })
+      ]);
+      wc.push((docs["d_" + k] || {}).total || 0);
+      wd.push((docs["dl_d_" + k] || {}).total || 0);
+    }
+    const dayKeys = Object.keys(docs).map(x => (x.match(/^(?:dl_)?d_(\d{4}-\d{2}-\d{2})$/) || [])[1]).filter(Boolean).sort();
+    $("clkRangeLabel").textContent = wl[0][1] + " \u2013 " + lastDt.toLocaleDateString("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+    $("clkPrev").disabled = !dayKeys.length || firstKey <= dayKeys[0];
+    $("clkNext").disabled = winPage === 0;
+    $("clkToday").disabled = winPage === 0;
+    mk("chartDaily", { type: "bar", data: { labels: wl, datasets: [
+      { label: "Conversion clicks", data: wc, backgroundColor: "#2d82ff", borderRadius: 4 },
+      { label: "Download clicks", data: wd, backgroundColor: "#9b5cff", borderRadius: 4 }
     ] }, options: axes() });
 
     const top = names.slice(0, 10);
@@ -370,6 +396,9 @@ labels.push([
   const GEO_COLORS = { Asia:"#2d82ff", Europe:"#9b5cff", NorthAmerica:"#3ee7ff", SouthAmerica:"#34d399", Africa:"#ffb84d", Oceania:"#f472b6", Antarctica:"#9db7dd", Unknown:"#64748b" };
   const nice = n => n.replace(/([a-z])([A-Z])/g, "$1 $2");
   const regionName = cc => { try { return new Intl.DisplayNames(undefined, { type: "region" }).of(cc) || cc; } catch (e) { return cc; } };
+  $("clkPrev").onclick = () => { winPage++; render(); };
+  $("clkNext").onclick = () => { if (winPage > 0) { winPage--; render(); } };
+  $("clkToday").onclick = () => { winPage = 0; render(); };
   onSnapshot(collection(db, "toolStats"), snap => {
     docs = {}; snap.forEach(d => { docs[d.id] = d.data(); }); render();
   }, e => console.error("STATS ERROR:", e));
