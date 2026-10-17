@@ -112,6 +112,10 @@ textarea#excerpt{min-height:75px;resize:vertical}
 @media(max-width:900px){.table-head,.post-item{grid-template-columns:1.8fr .7fr 1fr}.table-head div:nth-child(2),.table-head div:nth-child(4),.post-author,.post-date{display:none}}
 @media(max-width:800px){.stats{grid-template-columns:1fr}.activity .stats{grid-template-columns:1fr 1fr}.editor-grid{grid-template-columns:1fr}.table-head{display:none}.post-item{grid-template-columns:1fr auto}.post-item>div:nth-child(3){display:none}}
 @media(max-width:600px){.topnav-inner{padding:12px 14px}.admin-tag,.view-blog{display:none}main{padding:25px 14px 70px}.dashboard-head h1{font-size:24px}.posts-panel-head{align-items:flex-start;flex-direction:column}.posts-controls{width:100%}.posts-controls button,.posts-controls select{flex:1}.post-cover{width:64px;height:42px;flex-basis:64px}}
+.admin-tabs{display:flex;gap:6px;margin:0 0 22px;padding:6px;background:rgba(7,26,53,.85);border:1px solid var(--line);border-radius:14px}
+.admin-tab{flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:#9db7dd;background:transparent;border:0;border-radius:10px;cursor:pointer;transition:all .15s}
+.admin-tab:hover{color:#fff;background:rgba(45,130,255,.18)}
+.admin-tab.active{color:#fff;background:linear-gradient(135deg,#2d82ff,#9b5cff);box-shadow:0 6px 20px rgba(45,130,255,.45)}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -153,9 +157,9 @@ textarea#excerpt{min-height:75px;resize:vertical}
     <button class="btn btn-primary" id="newPostBtn">+ New post</button>
   </div>
 
-  <div id="adminTabs" style="display:flex;gap:8px;margin:0 0 18px">
-    <button class="btn btn-primary" data-tab="posts" type="button">Posts</button>
-    <button class="btn" data-tab="analytics" type="button">Analytics</button>
+  <div id="adminTabs" class="admin-tabs" role="tablist">
+    <button class="admin-tab active" data-tab="posts" type="button" role="tab">📝 Posts</button>
+    <button class="admin-tab" data-tab="analytics" type="button" role="tab">📊 Analytics</button>
   </div>
 
   <div class="activity">
@@ -583,7 +587,7 @@ $("deleteBtn").onclick = async () => {
     postEls.forEach(function (el) { el.style.display = analytics ? "none" : ""; });
     if (newBtn) newBtn.style.display = analytics ? "none" : "";
     bar.querySelectorAll("button").forEach(function (b) {
-      b.classList.toggle("btn-primary", b.dataset.tab === tab);
+      b.classList.toggle("active", b.dataset.tab === tab);
     });
     try { localStorage.setItem("adminTab", tab); } catch (e) {}
     if (analytics && window.Chart) {
