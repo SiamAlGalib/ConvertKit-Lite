@@ -143,14 +143,14 @@ async function getFF(){
     let lastErr=null;
     for(const cdn of CDNS){
       try{
-        const f=new FFmpeg();
+        const U=(u,t)=>cdn.charAt(0)==='/'?Promise.resolve(location.origin+u):toBlobURL(u,t);const f=new FFmpeg();
         f.on('log',({message})=>console.log('[ffmpeg]',message));
         f.on('progress',({progress})=>{if(onProg)onProg(Math.min(1,Math.max(0,progress)))});
         const core=cdn+'/@ffmpeg/core@0.12.6/dist/umd';
         await f.load({
-          classWorkerURL:await toBlobURL(cdn+'/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js','text/javascript'),
-          coreURL:await toBlobURL(core+'/ffmpeg-core.js','text/javascript'),
-          wasmURL:await toBlobURL(core+'/ffmpeg-core.wasm','application/wasm')
+          classWorkerURL:await U(cdn+'/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js','text/javascript'),
+          coreURL:await U(core+'/ffmpeg-core.js','text/javascript'),
+          wasmURL:await U(core+'/ffmpeg-core.wasm','application/wasm')
         });
         ff=f;return f;
       }catch(e){console.warn('Converter load failed from',cdn,e);lastErr=e}
