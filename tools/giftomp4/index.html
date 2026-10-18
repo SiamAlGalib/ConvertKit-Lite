@@ -149,7 +149,7 @@ async function getFF(){
         const core=cdn+'/@ffmpeg/core@0.12.6/dist/umd';
         await f.load({
           classWorkerURL:await U(cdn+'/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js','text/javascript'),
-          coreURL:await U(core+'/ffmpeg-core.js','text/javascript'),
+          coreURL:await U(core.replace('/umd','/esm')+'/ffmpeg-core.js','text/javascript'),
           wasmURL:await U(core+'/ffmpeg-core.wasm','application/wasm')
         });
         ff=f;return f;
