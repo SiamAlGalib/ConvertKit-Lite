@@ -318,16 +318,16 @@ footer .brand{font-size:16px;margin-bottom:6px}footer .brand img{width:29px;heig
 <p><a href="/tools/">All Tools</a></p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+<script src="/vendor/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<script src="/vendor/npm/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 let items=[],uid=0,ff=null,ffLoading=null,onProg=null;
 const size=b=>b>=1048576?(b/1048576).toFixed(2)+' MB':Math.max(1,Math.round(b/1024))+' KB';
 const base=n=>n.replace(/\.[^.]+$/,'');
-const CORE='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd';
-const WORKER='https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js';
+const CORE='/vendor/npm/@ffmpeg/core@0.12.6/dist/umd';
+const WORKER='/vendor/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js';
 const BIG=1.5*1024*1024*1024;
 
 /* ---- ffmpeg.wasm (loaded once, runs fully in the browser) ---- */

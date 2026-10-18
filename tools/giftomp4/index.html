@@ -119,13 +119,13 @@ footer{border-top:1px solid #12345d;padding:26px 0 36px;display:flex;align-items
 </main>
 <footer class="container"><a class="brand" href="../../"><img alt="ConvertKit Lite logo" src="../../logo.png" width="56" height="56" onerror="this.style.display='none'"><span class="brand-text"><span>ConvertKit <span class="lite">Lite</span></span><small class="by">by SAG</small></span></a><div>© 2026 ConvertKit Lite. All rights reserved.</div><p><a href="/tools/">All Tools</a></p>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+<script src="/vendor/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<script src="/vendor/npm/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 let file=null,inURL=null,outURL=null,ff=null,ffLoading=null,busy=false,onProg=null;
-const CORE='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd';
-const WORKER='https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js';
+const CORE='/vendor/npm/@ffmpeg/core@0.12.6/dist/umd';
+const WORKER='/vendor/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js';
 const MAXBYTES=300*1024*1024;
 const size=n=>n<1048576?Math.max(1,Math.round(n/1024))+' KB':(n/1048576).toFixed(2)+' MB';
 const base=n=>n.replace(/\.[^.]+$/,'');
@@ -134,19 +134,28 @@ function showError(t){$('error').textContent=t;$('error').style.display='block'}
 function withTimeout(p,ms,msg){let t;return Promise.race([p,new Promise((_,rej)=>{t=setTimeout(()=>rej(new Error(msg)),ms)})]).finally(()=>clearTimeout(t))}
 function setProgress(p,t){$('progressWrap').style.display='block';$('bar').style.width=p+'%';$('percent').textContent=p+'%';$('progressText').textContent=t}
 function clearOutput(){if(outURL){URL.revokeObjectURL(outURL);outURL=null}$('outv').removeAttribute('src');$('result').style.display='none'}
+const CDNS=['/vendor/npm','https://cdn.jsdelivr.net/npm','https://unpkg.com'];
 async function getFF(){
   if(ff)return ff;
   if(!ffLoading)ffLoading=(async()=>{
     if(!window.FFmpegWASM||!window.FFmpegUtil)throw new Error('The converter library did not load. Check your internet connection and reload the page.');
     const {FFmpeg}=FFmpegWASM,{toBlobURL}=FFmpegUtil;
-    const f=new FFmpeg();
-    f.on('progress',({progress})=>{if(onProg)onProg(Math.min(1,Math.max(0,progress)))});
-    await f.load({
-      classWorkerURL:await toBlobURL(WORKER,'text/javascript'),
-      coreURL:await toBlobURL(CORE+'/ffmpeg-core.js','text/javascript'),
-      wasmURL:await toBlobURL(CORE+'/ffmpeg-core.wasm','application/wasm')
-    });
-    ff=f;return f;
+    let lastErr=null;
+    for(const cdn of CDNS){
+      try{
+        const f=new FFmpeg();
+        f.on('log',({message})=>console.log('[ffmpeg]',message));
+        f.on('progress',({progress})=>{if(onProg)onProg(Math.min(1,Math.max(0,progress)))});
+        const core=cdn+'/@ffmpeg/core@0.12.6/dist/umd';
+        await f.load({
+          classWorkerURL:await toBlobURL(cdn+'/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js','text/javascript'),
+          coreURL:await toBlobURL(core+'/ffmpeg-core.js','text/javascript'),
+          wasmURL:await toBlobURL(core+'/ffmpeg-core.wasm','application/wasm')
+        });
+        ff=f;return f;
+      }catch(e){console.warn('Converter load failed from',cdn,e);lastErr=e}
+    }
+    throw lastErr||new Error('Could not load the converter.');
   })();
   try{return await withTimeout(ffLoading,120000,'Loading the converter timed out. Check your internet connection and try again.')}catch(e){ffLoading=null;throw e}
 }
@@ -173,22 +182,22 @@ async function convert(){
   busy=true;$('convert').disabled=true;$('convert').classList.add('loading');$('convertText').textContent='Converting…';
   clearOutput();$('error').style.display='none';
   const inN='input.gif',outN='output.mp4';
-  let f=null;
+  let f=null,stage='start';
   try{
     setProgress(2,'Loading the converter (about 30 MB, first time only)…');setStatus('Loading the converter…');
-    f=await getFF();
+    stage='load';f=await getFF();
     const {fetchFile}=FFmpegUtil;
     const crf=$('quality').value,w=Number($('width').value),rep=Math.max(1,Number($('repeat').value)||1);
     const vf=w>0?"scale='trunc(min("+w+",iw)/2)*2':-2:flags=lanczos":"scale=trunc(iw/2)*2:trunc(ih/2)*2";
     setProgress(5,'Reading the GIF…');setStatus('Converting…');
-    await f.writeFile(inN,await fetchFile(file));
+    stage='write';await f.writeFile(inN,await fetchFile(file));
     onProg=p=>{const pct=Math.min(99,5+Math.round(p*94));setProgress(pct,'Converting to MP4… '+Math.round(p*100)+'%')};
     const args=[];
     if(rep>1)args.push('-stream_loop',String(rep-1));
     args.push('-i',inN,'-vf',vf,'-c:v','libx264','-preset','veryfast','-crf',crf,'-pix_fmt','yuv420p','-an','-movflags','+faststart','-y',outN);
-    const ret=await withTimeout(f.exec(args),600000,'Conversion took too long. Try a shorter or smaller GIF.');
+    stage='exec';const ret=await withTimeout(f.exec(args),600000,'Conversion took too long. Try a shorter or smaller GIF.');
     if(ret!==0)throw new Error('The GIF could not be converted. It may be damaged.');
-    const data=await f.readFile(outN);
+    stage='read';const data=await f.readFile(outN);
     if(!data||data.length<100)throw new Error('The converter returned an empty file.');
     const blob=new Blob([data],{type:'video/mp4'});
     outURL=URL.createObjectURL(blob);$('outv').src=outURL;
@@ -200,7 +209,7 @@ async function convert(){
   }catch(e){
     console.error(e);
     if(/too long/.test(e&&e.message||'')&&ff){try{ff.terminate()}catch(_){}ff=null;ffLoading=null}
-    showError('Conversion failed: '+(e&&e.message?e.message:'Unknown browser error.'));
+    showError('Conversion failed at '+stage+': '+(e&&e.message?e.message:(typeof e==='string'?e:String(e))));console.log('STAGE',stage,e);
     $('bar').style.width='0%';$('percent').textContent='0%';setStatus('The conversion could not be completed.');
   }finally{
     if(f){try{await f.deleteFile(inN)}catch(_){}try{await f.deleteFile(outN)}catch(_){}}
