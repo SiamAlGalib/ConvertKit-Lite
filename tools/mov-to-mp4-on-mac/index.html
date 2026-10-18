@@ -338,9 +338,9 @@ async function getFF(){
     const f=new FFmpeg();
     f.on('progress',({progress})=>{if(onProg)onProg(Math.min(1,Math.max(0,progress)))});
     await f.load({
-      classWorkerURL:await toBlobURL(WORKER,'text/javascript'),
-      coreURL:await toBlobURL(CORE+'/ffmpeg-core.js','text/javascript'),
-      wasmURL:await toBlobURL(CORE+'/ffmpeg-core.wasm','application/wasm')
+      classWorkerURL:location.origin+WORKER,
+      coreURL:location.origin+CORE.replace('/umd','/esm')+'/ffmpeg-core.js',
+      wasmURL:location.origin+CORE+'/ffmpeg-core.wasm'
     });
     ff=f;return f;
   })();
