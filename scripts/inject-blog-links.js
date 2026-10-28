@@ -112,8 +112,9 @@ function cardImg(u) {
   return fs.existsSync(path.join(__dirname, '..', 'blog/BannerImage', m[1] + '-card.webp'))
     ? '/blog/BannerImage/' + m[1] + '-card.webp' : u;
 }
-// First homepage card is the LCP image: load it eagerly with high priority
-function lz(i) { return i === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'; }
+// The blog strip sits below the hero, so no card is the LCP image: lazy-load them all
+// (a high-priority preload here steals bandwidth from fonts and first paint on mobile)
+function lz(i) { return 'loading="lazy"'; }
 
 // Read real pixel size from a WebP file so width/height match the image
 function imgDims(u) {
@@ -146,14 +147,6 @@ function lcpPreload(html, p) {
   const START = '<\x21--LCP-PRELOAD-->', END = '<\x21--/LCP-PRELOAD-->';
   const a = html.indexOf(START), b = html.indexOf(END);
   if (a >= 0 && b > a) html = html.slice(0, a) + html.slice(b + END.length).replace(/^\n/, '');
-  if (p && p.img) {
-    const x = cardSet(p.img);
-    const tag = START + '<link rel="preload" as="image" href="' + x.c + '" fetchpriority="high"'
-      + (x.s ? ' imagesrcset="' + x.s + ' 700w, ' + x.c + ' 800w" imagesizes="' + cardSizes() + '"' : '')
-      + '>' + END + '\n';
-    const i = [html.indexOf('<link rel="preconnect"'), html.indexOf('<link rel="preload" as="font"')].filter(function (n) { return n >= 0; }).sort(function (x, y) { return x - y; })[0];
-    const j = i >= 0 ? i : html.indexOf('</head>');
-    if (j >= 0) html = html.slice(0, j) + tag + html.slice(j);
-  }
+  // No image preload is added any more: the blog strip is below the fold.
   return html;
 }
