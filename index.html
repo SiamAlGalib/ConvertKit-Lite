@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998786237970751"
      crossorigin="anonymous"></script> 
@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta name="description" content="Free online file converter with 42 tools: merge, split and compress PDF, PDF to Word, HEIC to JPG, MP4 to MP3, remove backgrounds and more. No sign-up."/>
 <link rel="canonical" href="https://www.convertkitlite.site/"/>
-<script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('ck-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin>
 <style>@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Dancing Script';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/dancing-script-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
 
@@ -436,6 +436,83 @@ footer.site-footer .heart{font-style:normal;color:#ff3976;display:inline-block;a
 footer.site-footer .sf-top{color:#cfe0fb;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:6px 14px;transition:background .2s,border-color .2s}
 footer.site-footer .sf-top:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
 @media(max-width:560px){footer.site-footer .sf-cols{grid-template-columns:1fr 1fr}footer.site-footer .sf-inner{padding-top:40px}footer.site-footer .sf-bottom{flex-direction:column;align-items:flex-start}}
+
+
+/* ===== Clean light look (white page, black headings, gray body text, flat blue buttons) ===== */
+html[data-theme="light"]{color-scheme:light}
+html[data-theme="light"] body{background:#fff;color:#111}
+html[data-theme="light"] body:before,html[data-theme="light"] body:after{display:none}
+html[data-theme="light"] h1,html[data-theme="light"] h2,html[data-theme="light"] h3,html[data-theme="light"] h4{color:#111}
+html[data-theme="light"] h1{letter-spacing:-1.2px}
+html[data-theme="light"] h1 .gradient{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#3d4ff2;animation:none}
+html[data-theme="light"] .hero-copy p{color:#555}
+html[data-theme="light"] .checks{color:#333}
+html[data-theme="light"] .checks i{background:#3d4ff2}
+html[data-theme="light"] .kicker{background:#f1f2ff;border-color:#d9dcff;color:#3d4ff2;box-shadow:none}
+html[data-theme="light"] .kicker b{color:#3d4ff2}
+
+/* Buttons: flat blue, small radius */
+html[data-theme="light"] .primary,.primary{background:#3d4ff2;box-shadow:none;border-radius:6px}
+.primary:hover{background:#2f3fd6}
+html[data-theme="light"] .ghost{background:#fff;border-color:#cfd2da;color:#111;border-radius:6px}
+html[data-theme="light"] .ghost:hover{background:#f4f5f8;border-color:#3d4ff2}
+
+/* Search box and quick links */
+html[data-theme="light"] .hero-search{background:#fff;border:1px solid #d9dce3;border-radius:10px;box-shadow:none}
+html[data-theme="light"] .hero-search:focus-within{border-color:#3d4ff2;box-shadow:0 0 0 3px rgba(61,79,242,.14)}
+html[data-theme="light"] .hero-search input{color:#111}
+html[data-theme="light"] .quick{color:#666}
+html[data-theme="light"] .quick a{background:#fff;border:1px solid #d9dce3;border-radius:6px;color:#222}
+html[data-theme="light"] .quick a:hover{border-color:#3d4ff2;background:#f1f2ff}
+
+/* Filter chips */
+html[data-theme="light"] .category{background:#fff;border:1px solid #d9dce3;border-radius:8px;color:#222;box-shadow:none}
+html[data-theme="light"] .category:hover{background:#f6f7ff;border-color:#3d4ff2;box-shadow:none}
+html[data-theme="light"] .category.active{background:#3d4ff2;border-color:#3d4ff2;color:#fff;box-shadow:none}
+
+/* Tools panel: light gray band with white cards */
+html[data-theme="light"] .phase{background:#f5f5f7;border:0;border-radius:14px}
+html[data-theme="light"] .phase-badge{background:#3d4ff2;border-radius:6px;color:#fff}
+html[data-theme="light"] .phase-title h2{color:#111}
+html[data-theme="light"] .phase-title h2 span,html[data-theme="light"] .phase-title p{color:#666}
+html[data-theme="light"] .tool-count{background:#fff;color:#3d4ff2;border-color:#d9dcff}
+html[data-theme="light"] .tool-card{background:#fff;border:1px solid #e1e3e8;border-radius:10px;color:#111;box-shadow:none}
+html[data-theme="light"] .tool-card:hover{background:#fff;border-color:#3d4ff2;box-shadow:0 8px 22px rgba(61,79,242,.12)}
+html[data-theme="light"] .tool-text strong{color:#111}
+html[data-theme="light"] .tool-text small{color:#666}
+html[data-theme="light"] .arrow{color:#9aa0ad}
+html[data-theme="light"] .tool-card:hover .arrow{color:#3d4ff2}
+html[data-theme="light"] .no-results{color:#666;border-color:#cfd2da}
+
+/* Feature strip, content sections, FAQ, blog, careers box */
+html[data-theme="light"] .features{background:#fff;border:1px solid #e1e3e8;box-shadow:none}
+html[data-theme="light"] .feature{border-color:#eceef2}
+html[data-theme="light"] .feature b{color:#111}
+html[data-theme="light"] .feature small{color:#666}
+html[data-theme="light"] .feature-icon{background:#eef0ff;color:#3d4ff2}
+html[data-theme="light"] .seo p,html[data-theme="light"] .seo li{color:#555}
+html[data-theme="light"] .seo-grid article,html[data-theme="light"] .faq details{background:#f7f7f9;border:1px solid #e6e8ed;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+html[data-theme="light"] .steps b,html[data-theme="light"] .why b,html[data-theme="light"] .tips b{color:#111}
+html[data-theme="light"] .faq summary{color:#111}
+html[data-theme="light"] .faq summary:after{color:#3d4ff2}
+html[data-theme="light"] .security .seo-grid article a{color:#3d4ff2}
+html[data-theme="light"] .sec-icon{background:#3d4ff2;box-shadow:none}
+html[data-theme="light"] .blog-card{background:#fff;border:1px solid #e1e3e8;box-shadow:none;backdrop-filter:none}
+html[data-theme="light"] .blog-card:hover{border-color:#3d4ff2}
+html[data-theme="light"] .blog-card h3{color:#111}
+html[data-theme="light"] .blog-card p{color:#666}
+html[data-theme="light"] .blog-head a{color:#3d4ff2}
+html[data-theme="light"] .join{background:#f5f5f7;border:0}
+html[data-theme="light"] .join p{color:#555}
+html[data-theme="light"] .join-badge{background:#fff;color:#3d4ff2;border-color:#d9dcff}
+
+/* Hero preview cards on a white page */
+html[data-theme="light"] .dropzone{background:radial-gradient(circle at 50% 48%,rgba(61,79,242,.07),transparent 40%)}
+html[data-theme="light"] .format-card{background:#fff;box-shadow:0 12px 32px rgba(40,50,120,.12)}
+html[data-theme="light"] .core-button{background:#3d4ff2;border-color:#3d4ff2;box-shadow:0 6px 18px rgba(61,79,242,.35)}
+html[data-theme="light"] .float-chips span{background:#fff;color:#3d4ff2;border-color:#d9dcff;box-shadow:0 4px 12px rgba(40,50,120,.08)}
+html[data-theme="light"] .convert-label{color:#666}
+html[data-theme="light"] .toast{background:#fff;color:#111}
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/"}, {"@type": "Organization", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "logo": "https://www.convertkitlite.site/logo.png"}, {"@type": "WebApplication", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "description": "Free online file converter with 42 tools: merge, split and compress PDF, PDF to Word, JPG to PNG, HEIC to JPG, MP4 to MP3, remove backgrounds and more. No sign-up needed.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is ConvertKit Lite really free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All the converters and utilities on ConvertKit Lite are free to use, and you don't need to create an account or register to use them."}}, {"@type": "Question", "name": "Do I need to sign up or install anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. ConvertKit Lite runs in your web browser, so there is nothing to download or install and no registration is required. Open a tool, add your file and convert."}}, {"@type": "Question", "name": "Are my files safe on ConvertKit Lite?", "acceptedAnswer": {"@type": "Answer", "text": "We built ConvertKit Lite with data security in mind. The site uses a secure HTTPS connection, you don't need an account, and your files are handled only to complete the conversion you ask for. For highly sensitive documents such as IDs or financial records, use your own judgment about what you upload to any online tool."}}, {"@type": "Question", "name": "Do you need my personal information to convert a file?", "acceptedAnswer": {"@type": "Answer", "text": "No. You don't need to register, create a profile or provide an email address to use the converters and utilities on ConvertKit Lite."}}, {"@type": "Question", "name": "How can I keep my documents safe when using online converters?", "acceptedAnswer": {"@type": "Answer", "text": "Use trusted websites that load over HTTPS (look for the padlock in your browser), avoid uploading highly confidential files on public Wi-Fi, remove passwords or personal details you don't need to share, and delete downloaded results from shared computers when you are done."}}, {"@type": "Question", "name": "Which file formats can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "You can work with PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), RTF and TXT documents, image formats such as JPG, PNG, WebP and HEIC, audio formats such as MP3 and WAV, and video formats such as MOV, MP4 and GIF. See the full tool list above for every supported conversion."}}, {"@type": "Question", "name": "How do I merge, split or compress a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Open the Merge PDF, Split PDF or Compress PDF tool, add your PDF file or files, and follow the on-screen steps. Merge combines several PDFs into one, Split separates a PDF into smaller files, and Compress reduces the file size so it is easier to share or upload."}}, {"@type": "Question", "name": "Can I convert HEIC photos from my iPhone to JPG?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The HEIC to JPG tool converts photos taken on iPhone and iPad into widely supported JPG images that open on almost any device and website."}}, {"@type": "Question", "name": "Does ConvertKit Lite work on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The site is designed to work on phones, tablets and desktop computers, in any modern browser."}}, {"@type": "Question", "name": "What if the tool I need is marked as coming soon?", "acceptedAnswer": {"@type": "Answer", "text": "We keep adding new converters. If you click a tool that is not live yet, you will see a short notice that it is coming soon. Check back later or browse the other tools in the same category."}}]}]}</script>
