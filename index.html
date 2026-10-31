@@ -389,66 +389,6 @@ html[data-theme="light"] header nav a:hover{color:#0d1b33}
 .categories .category[data-filter=video] .cat-icon{background:linear-gradient(145deg,#2c83ff,#00c2ff)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 14px #00c2ff55}
 .categories .category[data-filter=archive] .cat-icon{background:linear-gradient(145deg,#ff8a24,#ffc044)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 14px #ffc04455}
 .categories .category[data-filter=data] .cat-icon{background:linear-gradient(145deg,#7bd62f,#14b866)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 14px #14b86655}
- /* ===== Transparent / glass look ===== */
-
-/* Header */
-header{background:rgba(2,12,30,.35);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(120,170,255,.14)}
-
-/* Panels and cards: transparent fill, subtle border */
-.phase,
-.features,
-.seo-grid article,
-.faq details,
-.blog-card,
-.join,
-footer.container{
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(120,170,255,.16);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  box-shadow:0 8px 30px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.04);
-}
-.tool-card,
-.category,
-.hero-search{
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(120,170,255,.16);
-}
-.tool-card:hover,
-.category:hover,
-.category.active{
-  background:rgba(60,130,255,.10);
-  border-color:rgba(100,170,255,.55);
-}
-.join{background:radial-gradient(500px 220px at 90% 0%,rgba(124,63,240,.18),transparent 70%),rgba(255,255,255,.03)}
-footer.container{background:radial-gradient(520px 260px at 0% 0%,rgba(44,131,255,.12),transparent 70%),radial-gradient(520px 260px at 100% 100%,rgba(163,92,255,.10),transparent 70%),rgba(255,255,255,.02)}
-
-/* Hero preview cards */
-.format-card{background:rgba(8,14,34,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.format-tab{background:transparent}
-.core-button{background:rgba(17,21,56,.5)}
-
-/* Logo: no box behind it */
-.brand img{background:transparent;mix-blend-mode:normal}
-
-/* Light mode */
-html[data-theme="light"] header{background:rgba(255,255,255,.45)}
-html[data-theme="light"] .phase,
-html[data-theme="light"] .features,
-html[data-theme="light"] .seo-grid article,
-html[data-theme="light"] .faq details,
-html[data-theme="light"] .blog-card,
-html[data-theme="light"] .join,
-html[data-theme="light"] footer.container,
-html[data-theme="light"] .tool-card,
-html[data-theme="light"] .category,
-html[data-theme="light"] .hero-search{background:rgba(255,255,255,.55);border-color:rgba(60,110,220,.18)}
-html[data-theme="light"] .format-card{background:rgba(255,255,255,.55)}
-
-/* Mobile: backdrop blur is expensive, drop it */
-@media(max-width:900px){
-  .phase,.features,.seo-grid article,.faq details,.blog-card,.join,footer.container{backdrop-filter:none;-webkit-backdrop-filter:none}
-}
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/"}, {"@type": "Organization", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "logo": "https://www.convertkitlite.site/logo.png"}, {"@type": "WebApplication", "name": "ConvertKit Lite", "url": "https://www.convertkitlite.site/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "description": "Free online file converter with 42 tools: merge, split and compress PDF, PDF to Word, JPG to PNG, HEIC to JPG, MP4 to MP3, remove backgrounds and more. No sign-up needed.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is ConvertKit Lite really free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All the converters and utilities on ConvertKit Lite are free to use, and you don't need to create an account or register to use them."}}, {"@type": "Question", "name": "Do I need to sign up or install anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. ConvertKit Lite runs in your web browser, so there is nothing to download or install and no registration is required. Open a tool, add your file and convert."}}, {"@type": "Question", "name": "Are my files safe on ConvertKit Lite?", "acceptedAnswer": {"@type": "Answer", "text": "We built ConvertKit Lite with data security in mind. The site uses a secure HTTPS connection, you don't need an account, and your files are handled only to complete the conversion you ask for. For highly sensitive documents such as IDs or financial records, use your own judgment about what you upload to any online tool."}}, {"@type": "Question", "name": "Do you need my personal information to convert a file?", "acceptedAnswer": {"@type": "Answer", "text": "No. You don't need to register, create a profile or provide an email address to use the converters and utilities on ConvertKit Lite."}}, {"@type": "Question", "name": "How can I keep my documents safe when using online converters?", "acceptedAnswer": {"@type": "Answer", "text": "Use trusted websites that load over HTTPS (look for the padlock in your browser), avoid uploading highly confidential files on public Wi-Fi, remove passwords or personal details you don't need to share, and delete downloaded results from shared computers when you are done."}}, {"@type": "Question", "name": "Which file formats can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "You can work with PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), RTF and TXT documents, image formats such as JPG, PNG, WebP and HEIC, audio formats such as MP3 and WAV, and video formats such as MOV, MP4 and GIF. See the full tool list above for every supported conversion."}}, {"@type": "Question", "name": "How do I merge, split or compress a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Open the Merge PDF, Split PDF or Compress PDF tool, add your PDF file or files, and follow the on-screen steps. Merge combines several PDFs into one, Split separates a PDF into smaller files, and Compress reduces the file size so it is easier to share or upload."}}, {"@type": "Question", "name": "Can I convert HEIC photos from my iPhone to JPG?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The HEIC to JPG tool converts photos taken on iPhone and iPad into widely supported JPG images that open on almost any device and website."}}, {"@type": "Question", "name": "Does ConvertKit Lite work on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The site is designed to work on phones, tablets and desktop computers, in any modern browser."}}, {"@type": "Question", "name": "What if the tool I need is marked as coming soon?", "acceptedAnswer": {"@type": "Answer", "text": "We keep adding new converters. If you click a tool that is not live yet, you will see a short notice that it is coming soon. Check back later or browse the other tools in the same category."}}]}]}</script>
