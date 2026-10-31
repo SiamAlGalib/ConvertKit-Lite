@@ -347,7 +347,7 @@ function startLiveStats() {
     Chart.defaults.font.family = "Inter, system-ui, sans-serif";
     Chart.defaults.font.size = 12;
     Chart.defaults.font.weight = "500";
-    Chart.defaults.animation = { duration: 250 };
+    Chart.defaults.animation.duration = 250;
   };
   const mk = (id, cfg) => {
     if (typeof Chart === "undefined") return;
@@ -357,7 +357,22 @@ function startLiveStats() {
   };
   const axes = extra => Object.assign({
     responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { labels: { color: TXT, font: { size: 12, weight: "600" } } } },
+    interaction: { mode: "index", intersect: false },
+    plugins: {
+      legend: { labels: { color: TXT, font: { size: 12, weight: "600" } } },
+      tooltip: {
+        enabled: true,
+        backgroundColor: "#020a19",
+        borderColor: "#5aa6ff",
+        borderWidth: 1,
+        titleColor: "#ffffff",
+        bodyColor: "#ffffff",
+        titleFont: { size: 13, weight: "700" },
+        bodyFont: { size: 13, weight: "600" },
+        padding: 10,
+        displayColors: true
+      }
+    },
     scales: {
       x: { ticks: { color: TXT, autoSkip: false, maxRotation: 0, minRotation: 0, font: { size: 11, weight: "500" } }, grid: { color: GRID }, border: { color: "#3b6aa8" }, beginAtZero: true },
       y: { ticks: { color: TXT, precision: 0, autoSkip: false, font: { size: 12, weight: "500" } }, grid: { color: GRID }, border: { color: "#3b6aa8" }, beginAtZero: true }
