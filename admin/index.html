@@ -10,17 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ===== CRISP THEME: solid panels, bright text, no blur, no glow ===== */
-:root{--bg:#020a19;--panel:#08193a;--panel2:#0c2248;--line:#245a9c;--text:#ffffff;--muted:#c3d4ee;--blue:#2d82ff;--violet:#7c3ff0;--cyan:#3ee7ff;--amber:#ffb84d;--red:#f87171}
+:root{--bg:#0a0720;--panel:#110f3a;--panel2:#181c55;--line:#34509f;--text:#ffffff;--muted:#c3d4ee;--blue:#2d82ff;--violet:#7c3ff0;--cyan:#3ee7ff;--amber:#ffb84d;--red:#f87171}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 /* faint sharp grid only, no soft glow layers */
-body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(80,140,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(80,140,255,.06) 1px,transparent 1px);background-size:56px 56px}
-body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(135deg,#020a19 0%,#03132b 60%,#051a38 100%);opacity:.9}
+body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(120,150,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(120,150,255,.09) 1px,transparent 1px);background-size:56px 56px}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(135deg,#0b0626 0%,#14104f 45%,#06285a 100%);opacity:1}
 button,input,textarea,select{font-family:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
 
 /* NAV */
-.topnav{position:sticky;top:0;z-index:50;background:#020c1e;border-bottom:1px solid #1b4276}
+.topnav{position:sticky;top:0;z-index:50;background:#0a0828;border-bottom:1px solid #2c3f86}
 .topnav-inner{max-width:1180px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:15px}
 .brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:800;letter-spacing:-.6px;white-space:nowrap}
 .brand img{width:32px;height:32px;object-fit:contain}.brand .lite{color:#b283ff}
@@ -29,7 +29,7 @@ button,input,textarea,select{font-family:inherit}button{cursor:pointer}a{color:i
 .admin-tag{font:500 11px "IBM Plex Mono",monospace;color:#c9a6ff;background:#1a1240;border:1px solid #5a3aa8;padding:3px 9px;border-radius:20px;margin-left:16px}
 .nav-actions{display:flex;align-items:center;gap:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 14px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:13px;font-weight:600;transition:background-color .15s,border-color .15s}
-.btn:hover{border-color:#5aa6ff;background:#10306a}
+.btn:hover{border-color:#5aa6ff;background:#1e2a7a}
 .btn-primary{background:linear-gradient(100deg,#2d82ff,#7c3ff0);border-color:transparent;color:#fff;box-shadow:none}
 .btn-primary:hover{border-color:transparent;filter:brightness(1.1)}
 .btn-danger{color:#ff9a9a;border-color:rgba(248,113,113,.5)}
@@ -57,7 +57,7 @@ main{max-width:1180px;margin:auto;padding:32px 24px 80px}
 .activity{margin-bottom:26px}
 .activity .stats{grid-template-columns:repeat(3,1fr)}
 .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#34d399;margin-right:6px}
-.tool-row{display:flex;justify-content:space-between;padding:11px 18px;border-bottom:1px solid #1b4276;font-size:14px}
+.tool-row{display:flex;justify-content:space-between;padding:11px 18px;border-bottom:1px solid #2c3f86;font-size:14px}
 .tool-row:last-child{border-bottom:0}
 
 .posts-panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -67,7 +67,7 @@ main{max-width:1180px;margin:auto;padding:32px 24px 80px}
 .posts-controls select{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:13px}
 .table-head,.post-item{display:grid;grid-template-columns:1.9fr .6fr .7fr .7fr 1fr;gap:10px;align-items:center;padding:13px 18px}
 .table-head{color:var(--muted);font:500 11px "IBM Plex Mono",monospace;text-transform:uppercase;border-bottom:1px solid var(--line)}
-.post-item{border-bottom:1px solid #1b4276}.post-item:last-child{border-bottom:0}
+.post-item{border-bottom:1px solid #2c3f86}.post-item:last-child{border-bottom:0}
 .post-title{min-width:0;display:flex;align-items:center;gap:12px}
 .post-cover{width:76px;height:48px;flex:0 0 76px;overflow:hidden;border-radius:7px;background:var(--panel2);border:1px solid var(--line)}
 .post-cover img{display:block;width:100%;height:100%;object-fit:cover}
@@ -117,11 +117,11 @@ textarea#excerpt{min-height:75px;resize:vertical}
 @media(max-width:600px){.topnav-inner{padding:12px 14px}.admin-tag,.view-blog{display:none}main{padding:25px 14px 70px}.dashboard-head h1{font-size:24px}.posts-panel-head{align-items:flex-start;flex-direction:column}.posts-controls{width:100%}.posts-controls button,.posts-controls select{flex:1}.post-cover{width:64px;height:42px;flex-basis:64px}}
 .clk-nav{display:flex;align-items:center;gap:8px}
 .clk-nav span{font-size:13px;color:var(--muted);min-width:150px;text-align:center}
-.clk-btn{padding:6px 12px;font:inherit;font-size:14px;font-weight:700;color:#fff;background:#123670;border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:background-color .15s}
+.clk-btn{padding:6px 12px;font:inherit;font-size:14px;font-weight:700;color:#fff;background:#1e2a7a;border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:background-color .15s}
 .clk-btn:hover:not(:disabled){background:linear-gradient(135deg,#2d82ff,#9b5cff)}
 .clk-btn:disabled{opacity:.4;cursor:not-allowed}
-.tool-more{display:block;width:100%;padding:13px;font:inherit;font-size:14px;font-weight:700;color:var(--muted);background:#0c2552;border:0;border-top:1px solid var(--line);cursor:pointer;transition:background-color .15s}
-.tool-more:hover{color:#fff;background:#14377a}
+.tool-more{display:block;width:100%;padding:13px;font:inherit;font-size:14px;font-weight:700;color:var(--muted);background:#17206a;border:0;border-top:1px solid var(--line);cursor:pointer;transition:background-color .15s}
+.tool-more:hover{color:#fff;background:#243088}
 .asof-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 16px;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
 .asof-label{font-weight:700;color:#fff}
 .asof-bar input[type=date]{color-scheme:dark;padding:8px 10px;font:inherit;color:#fff;background:var(--panel2);border:1px solid var(--line);border-radius:8px}
@@ -132,11 +132,11 @@ textarea#excerpt{min-height:75px;resize:vertical}
 .err-row small{display:block;margin-top:2px;font-size:12px;font-weight:400;color:var(--muted)}
 .vis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:14px}
 .vis-title{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
-.vis-row{background:linear-gradient(90deg,#17418a var(--p),#0c2248 var(--p));border-radius:6px}
+.vis-row{background:linear-gradient(90deg,#2c46b0 var(--p),#181c55 var(--p));border-radius:6px}
 .admin-tabs{display:flex;gap:6px;margin:0 0 22px;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .admin-tab{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:1;padding:15px 18px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.2px;color:var(--muted);background:transparent;border:0;border-radius:10px;cursor:pointer;transition:background-color .15s,color .15s}
 .admin-tab svg{flex:none}
-.admin-tab:hover{color:#fff;background:#123670}
+.admin-tab:hover{color:#fff;background:#1e2a7a}
 .admin-tab.active{color:#fff;background:linear-gradient(135deg,#2d82ff,#9b5cff);box-shadow:none}
 
 /* charts: never stretch the canvas with CSS */
@@ -362,7 +362,7 @@ function startLiveStats() {
       legend: { labels: { color: TXT, font: { size: 12, weight: "600" } } },
       tooltip: {
         enabled: true,
-        backgroundColor: "#020a19",
+        backgroundColor: "#0a0720",
         borderColor: "#5aa6ff",
         borderWidth: 1,
         titleColor: "#ffffff",
